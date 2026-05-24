@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entscheidungsbaum statistischer Testverfahren</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Startseite">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M10 3h4" />
+              <path d="M11 3v5l-5.4 9.8A2.1 2.1 0 0 0 7.4 21h9.2a2.1 2.1 0 0 0 1.8-3.2L13 8V3" />
+              <path d="M8.4 15h7.2" />
+              <path d="M10 18h4" />
+            </svg>
+          </span>
+          <span class="brand-copy">
+            <span data-i18n="appTitle">Entscheidungsbaum statistischer Testverfahren</span>
+            <span data-i18n="institutionLabel">Institut für Psychologie &amp; Sportwissenschaft</span>
+          </span>
+          <span class="tool-badge" data-i18n="toolBadge">Research Lab Tool</span>
+        </a>
+
+        <nav class="top-actions" aria-label="Werkzeuge">
+          <label class="language-control" for="languageSelect">
+            <span data-i18n="languageLabel">Sprache</span>
+            <select id="languageSelect" aria-label="Sprache wählen">
+              <option value="de">Deutsch</option>
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="es">Español</option>
+              <option value="it">Italiano</option>
+            </select>
+          </label>
+          <button class="icon-button" id="helpButton" type="button" aria-label="Hilfe öffnen" title="Hilfe">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9.6 9a2.6 2.6 0 1 1 3.8 2.3c-.9.5-1.4 1.1-1.4 2.2" />
+              <path d="M12 17.8h.01" />
+              <circle cx="12" cy="12" r="9" />
+            </svg>
+            <span data-i18n="helpShort">Hilfe</span>
+          </button>
+          <button class="text-button" id="backButton" type="button">
+            <span aria-hidden="true">←</span>
+            <span data-i18n="back">Zurück</span>
+          </button>
+          <button class="text-button primary" id="resetButton" type="button">
+            <span data-i18n="reset">Neu starten</span>
+          </button>
+          <div class="authors-badge" aria-label="Authors">Darías Holgado &amp; Corinna Martarelli</div>
+        </nav>
+      </header>
+
+      <section class="workspace" aria-label="Interaktiver Entscheidungsbaum">
+        <aside class="history-panel" aria-labelledby="historyHeading">
+          <div class="panel-heading">
+            <p data-i18n="pathLabel">Pfad</p>
+            <h2 id="historyHeading" data-i18n="historyHeading">Ihr Entscheidungspfad</h2>
+          </div>
+          <div class="path-progress">
+            <div>
+              <strong id="pathProgressLabel">Frage 1</strong>
+              <span id="pathProgressPercent">8%</span>
+            </div>
+            <div class="progress-track compact" aria-hidden="true">
+              <span id="pathProgressFill"></span>
+            </div>
+          </div>
+          <p class="rail-label" data-i18n="previousDecisionsLabel">Bisherige Entscheidungen</p>
+          <div class="lab-path-steps" aria-hidden="true">
+            <div class="lab-path-step active" data-stage="goal">
+              <span>01</span>
+              <strong data-i18n="matrixGoal">Fragestellung</strong>
+              <small data-i18n="stageCurrent">Aktuell</small>
+            </div>
+            <div class="lab-path-step" data-stage="scale">
+              <span>02</span>
+              <strong data-i18n="matrixScale">Skalenniveau</strong>
+              <small data-i18n="stageOpen">Noch offen</small>
+            </div>
+            <div class="lab-path-step" data-stage="groups">
+              <span>03</span>
+              <strong data-i18n="matrixGroups">Gruppen</strong>
+              <small data-i18n="stageOpen">Noch offen</small>
+            </div>
+            <div class="lab-path-step" data-stage="result">
+              <span>04</span>
+              <strong data-i18n="matrixResult">Testwahl</strong>
+              <small data-i18n="stageOpen">Noch offen</small>
+            </div>
+          </div>
+          <ol class="history-list" id="historyList"></ol>
+          <div class="empty-history" id="emptyHistory" data-i18n="emptyHistory">
+            Beantworten Sie die erste Frage, um Ihren Analysepfad aufzubauen.
+          </div>
+        </aside>
+
+        <section class="decision-stage">
+          <div class="progress-strip">
+            <span id="stepLabel">Frage 1</span>
+            <div class="progress-track" aria-hidden="true">
+              <span id="progressFill"></span>
+            </div>
+            <span id="modeLabel">Start</span>
+          </div>
+
+          <article class="question-panel" id="questionPanel">
+            <div class="panel-topline">
+              <span data-i18n="currentQuestionLabel">Aktuelle Frage</span>
+              <span class="required-badge" data-i18n="requiredBadge">Pflichtangabe</span>
+            </div>
+            <div class="current-node">
+              <div class="node-marker" aria-hidden="true">
+                <span></span>
+              </div>
+              <div class="question-copy">
+                <p class="section-label" id="questionArea">Ausgangspunkt</p>
+                <h1 id="questionText"></h1>
+                <p id="questionHint"></p>
+              </div>
+            </div>
+
+            <div class="tree-junction" aria-hidden="true">
+              <span></span>
+            </div>
+
+            <p class="answer-instruction" data-i18n="answerInstruction">Wählen Sie die Antwort, die am besten zu Ihrem Analyseziel passt:</p>
+            <div class="answers" id="answers"></div>
+          </article>
+
+          <article class="method-preview" id="methodPreview">
+            <div class="panel-topline">
+              <span data-i18n="previewHeading">Ergebnisvorschau</span>
+            </div>
+            <div class="preview-grid">
+              <section>
+                <h2 data-i18n="selectedTestLabel">Ausgewählter Test</h2>
+                <p data-i18n="previewPlaceholder">Noch nicht ausgewählt</p>
+                <h2 data-i18n="reasonLabel">Begründung</h2>
+                <p data-i18n="previewPlaceholder">Noch nicht ausgewählt</p>
+              </section>
+              <section>
+                <div class="preview-tabs" aria-hidden="true">
+                  <span data-i18n="assumptionsHeading">Voraussetzungen</span>
+                  <span data-i18n="procedureHeading">Umsetzung</span>
+                  <span>Jamovi</span>
+                </div>
+                <div class="preview-box">
+                  <h2 data-i18n="assumptionsHeading">Voraussetzungen</h2>
+                  <p data-i18n="previewPlaceholder">Noch nicht ausgewählt</p>
+                  <h2 data-i18n="scenarioHeading">Beispielsituationen</h2>
+                  <p data-i18n="previewPlaceholder">Noch nicht ausgewählt</p>
+                </div>
+              </section>
+              <section class="preview-screenshot">
+                <h2>Jamovi</h2>
+                <div>
+                  <span aria-hidden="true">▥</span>
+                  <p data-i18n="screenshotPreviewPlaceholder">Screenshot wird hier angezeigt</p>
+                </div>
+              </section>
+            </div>
+          </article>
+
+          <article class="result-panel" id="resultPanel" hidden>
+            <div class="result-node">
+              <div class="node-marker result-marker" aria-hidden="true">
+                <span></span>
+              </div>
+              <div class="result-heading">
+                <p class="section-label" data-i18n="recommendedLabel">Empfohlenes Verfahren</p>
+                <h1 id="resultTitle"></h1>
+                <p id="resultSummary"></p>
+              </div>
+            </div>
+            <div class="result-grid">
+              <section>
+                <h2 data-i18n="assumptionsHeading">Voraussetzungen</h2>
+                <ul id="assumptionsList"></ul>
+              </section>
+              <section class="procedure-section">
+                <div class="procedure-heading">
+                  <h2 data-i18n="procedureHeading">Umsetzung</h2>
+                  <label class="procedure-control" for="procedureSelect">
+                    <span data-i18n="procedureToolLabel">Ausgabe</span>
+                    <select id="procedureSelect">
+                      <option value="jamovi">Jamovi</option>
+                      <option value="r">R</option>
+                    </select>
+                  </label>
+                </div>
+                <pre class="procedure-output"><code id="procedureOutput"></code></pre>
+              </section>
+              <section class="scenario-section" id="scenarioSection">
+                <h2 data-i18n="scenarioHeading">Beispielsituationen</h2>
+                <div class="scenario-list" id="scenarioList"></div>
+              </section>
+              <section class="apa-section" id="apaSection">
+                <h2 id="apaHeading">APA-Bericht</h2>
+                <div class="apa-list" id="apaReportList"></div>
+              </section>
+            </div>
+            <figure class="jamovi-screenshot" id="jamoviScreenshot" hidden>
+              <img id="jamoviScreenshotImage" alt="">
+              <figcaption id="jamoviScreenshotCaption" data-i18n="jamoviScreenshotCaption">Jamovi-GUI-Screenshot für dieses Verfahren.</figcaption>
+            </figure>
+            <div class="result-actions">
+              <button class="text-button primary" id="copyButton" type="button" data-i18n="copyResult">Ergebnis kopieren</button>
+              <button class="text-button" id="exploreButton" type="button" data-i18n="exploreAlternatives">Alternativen ansehen</button>
+            </div>
+          </article>
+        </section>
+
+        <aside class="reference-panel" aria-label="Orientierung">
+          <div class="panel-heading">
+            <p data-i18n="orientationLabel">Orientierung</p>
+            <h2 data-i18n="orientationHeading">Was wird geprüft?</h2>
+          </div>
+          <div class="reference-matrix">
+            <button class="matrix-cell active" type="button" data-jump="goal">
+              <span>01</span>
+              <span data-i18n="matrixGoal">Fragestellung</span>
+            </button>
+            <button class="matrix-cell" type="button" data-jump="scale">
+              <span>02</span>
+              <span data-i18n="matrixScale">Skalenniveau</span>
+            </button>
+            <button class="matrix-cell" type="button" data-jump="groups">
+              <span>03</span>
+              <span data-i18n="matrixGroups">Gruppen</span>
+            </button>
+            <button class="matrix-cell" type="button" data-jump="result">
+              <span>04</span>
+              <span data-i18n="matrixResult">Testwahl</span>
+            </button>
+          </div>
+          <div class="note-box">
+            <h3 data-i18n="noteHeading">Hinweis</h3>
+            <p data-i18n="noteText">
+              Der Baum unterstützt bei der Auswahl eines üblichen statistischen Tests.
+              Fachliche Annahmen und Studiendesign sollten anschließend geprüft werden.
+            </p>
+          </div>
+          <div class="abbreviations-box">
+            <h3 data-i18n="abbreviationsHeading">Abkürzungen</h3>
+            <dl>
+              <div>
+                <dt>UV</dt>
+                <dd data-i18n="abbrIndependent">Unabhängige Variable(n)</dd>
+              </div>
+              <div>
+                <dt>AV</dt>
+                <dd data-i18n="abbrDependent">Abhängige Variable</dd>
+              </div>
+              <div>
+                <dt>IV</dt>
+                <dd data-i18n="abbrInstrument">Instrument(e)/Messung(en)</dd>
+              </div>
+              <div>
+                <dt>n</dt>
+                <dd data-i18n="abbrSample">Stichprobengröße</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </section>
+      <footer class="lab-footer">
+        <span data-i18n="footerNote">Diese Entscheidungshilfe ersetzt nicht die inhaltliche Prüfung durch Fachliteratur und Methodenlehre.</span>
+        <span>Version 1.0.0</span>
+      </footer>
+    </main>
+
+    <dialog class="help-dialog" id="helpDialog" aria-labelledby="helpTitle">
+      <button class="icon-button close-dialog" id="closeHelpButton" type="button" aria-label="Hilfe schließen" title="Schließen">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 6l12 12" />
+          <path d="M18 6L6 18" />
+        </svg>
+      </button>
+      <h2 id="helpTitle" data-i18n="helpTitle">So verwenden Sie den Entscheidungsbaum</h2>
+      <p data-i18n="helpIntro">
+        Wählen Sie jeweils die Antwort, die zu Ihrer Forschungsfrage passt. Der
+        Pfad links bleibt sichtbar, damit Sie nachvollziehen können, warum ein
+        Test vorgeschlagen wird.
+      </p>
+      <div class="help-columns">
+        <section>
+          <h3 data-i18n="helpGoodHeading">Gute Eingaben</h3>
+          <p data-i18n="helpGoodText">Klären Sie vorab abhängige Variable, Skalenniveau, Anzahl Gruppen und ob Messungen verbunden sind.</p>
+        </section>
+        <section>
+          <h3 data-i18n="helpLimitsHeading">Grenzen</h3>
+          <p data-i18n="helpLimitsText">Der Baum ersetzt keine Prüfung von Verteilung, Stichprobengröße, Ausreißern oder Modellannahmen.</p>
+        </section>
+      </div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="translations-extra.js"></script>
+    <script src="scenarios.js"></script>
+    <script src="procedure-translations.js"></script>
+    <script src="apa-reporting.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
