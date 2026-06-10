@@ -65,6 +65,12 @@ window.localizedProcedurePacks = {
     },
     multidimensionalScaling: {
       jamovi: "Jamovi bietet nur begrenzte direkte Unterstützung für multidimensionale Skalierung.\nNutzen Sie eine Distanz- oder Unähnlichkeitsmatrix, wenn ein geeignetes Modul installiert ist, oder exportieren Sie die Daten nach R.\nPrüfen Sie Stress, Konfigurationsplot und Interpretierbarkeit der Dimensionen."
+    },
+    chiSquareVariance: {
+      jamovi: "Jamovi bietet nur begrenzte direkte Unterstützung für den exakten Chi-Quadrat-Test einer Varianz.\nNutzen Sie Exploration > Deskriptivstatistiken, um n und die Stichprobenvarianz zu erhalten, und führen Sie den exakten Test in R aus.\nBerichten Sie die angenommene Populationsvarianz und die Chi-Quadrat-Statistik."
+    },
+    varianceFTest: {
+      jamovi: "Jamovi kann Gruppenvarianzen unter Exploration > Deskriptivstatistiken anzeigen.\nFür den klassischen F-Test zweier Varianzen exportieren Sie die Daten oder nutzen Sie ein R-Modul und führen var.test() aus.\nPrüfen Sie Levene als robustere Alternative, wenn Normalität fraglich ist."
     }
   },
   fr: {
@@ -133,6 +139,12 @@ window.localizedProcedurePacks = {
     },
     multidimensionalScaling: {
       jamovi: "Jamovi offre une prise en charge directe limitée du positionnement multidimensionnel.\nUtilisez une matrice de distances ou de dissimilarités si un module adapté est installé, ou exportez les données vers R.\nExaminez le stress, le graphique de configuration et l'interprétabilité des dimensions."
+    },
+    chiSquareVariance: {
+      jamovi: "Jamovi offre une prise en charge directe limitée du test exact du khi carré pour une variance.\nUtilisez Exploration > Descriptifs pour obtenir n et la variance d'échantillon, puis exécutez le test exact dans R.\nRapportez la variance de population hypothétique et la statistique du khi carré."
+    },
+    varianceFTest: {
+      jamovi: "Jamovi peut afficher les variances par groupe dans Exploration > Descriptifs.\nPour le test F classique de deux variances, exportez les données ou utilisez un module R et exécutez var.test().\nEnvisagez le test de Levene comme alternative plus robuste si la normalité est douteuse."
     }
   },
   es: {
@@ -201,6 +213,12 @@ window.localizedProcedurePacks = {
     },
     multidimensionalScaling: {
       jamovi: "Jamovi tiene soporte directo limitado para el escalamiento multidimensional.\nUse una matriz de distancias o disimilitudes si hay un módulo adecuado instalado, o exporte los datos a R.\nInspeccione el estrés, el gráfico de configuración y la interpretabilidad de las dimensiones."
+    },
+    chiSquareVariance: {
+      jamovi: "Jamovi tiene soporte directo limitado para la prueba chi-cuadrado exacta de una varianza.\nUse Exploración > Descriptivos para obtener n y la varianza muestral, y después ejecute la prueba exacta en R.\nReporte la varianza poblacional hipotética y el estadístico chi-cuadrado."
+    },
+    varianceFTest: {
+      jamovi: "Jamovi puede mostrar varianzas por grupo en Exploración > Descriptivos.\nPara la prueba F clásica de dos varianzas, exporte los datos o use un módulo de R y ejecute var.test().\nConsidere la prueba de Levene como alternativa más robusta cuando la normalidad sea dudosa."
     }
   }
 };
@@ -271,5 +289,11 @@ window.localizedProcedurePacks.it = {
   },
   multidimensionalScaling: {
     jamovi: "Jamovi offre un supporto diretto limitato per lo scaling multidimensionale.\nUsa una matrice di distanze o dissimilarità se è installato un modulo adatto, oppure esporta i dati in R.\nControlla stress, grafico di configurazione e interpretabilità delle dimensioni."
+  },
+  chiSquareVariance: {
+    jamovi: "Jamovi offre un supporto diretto limitato per il test chi-quadrato esatto di una varianza.\nUsa Esplorazione > Descrittive per ottenere n e la varianza campionaria, poi esegui il test esatto in R.\nRiporta la varianza di popolazione ipotizzata e la statistica chi-quadrato."
+  },
+  varianceFTest: {
+    jamovi: "Jamovi può mostrare le varianze per gruppo in Esplorazione > Descrittive.\nPer il classico test F di due varianze, esporta i dati o usa un modulo R ed esegui var.test().\nConsidera il test di Levene come alternativa più robusta quando la normalità è dubbia."
   }
 };

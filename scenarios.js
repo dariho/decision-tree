@@ -404,6 +404,14 @@ Object.assign(window.resultScenarioPacks.de, {
   multidimensionalScaling: {
     psychology: "Ähnlichkeitsurteile zu Emotionen werden in einer zweidimensionalen Karte dargestellt, um Nähe und Distanz zwischen Emotionen zu verstehen.",
     sport: "Distanzen zwischen Spielertypen werden visualisiert, um taktische Rollen in wenigen Dimensionen darzustellen."
+  },
+  chiSquareVariance: {
+    psychology: "Eine Studie prüft, ob die Varianz von Stresswerten in einer Stichprobe von einer bekannten Referenzvarianz abweicht.",
+    sport: "Ein Trainerteam prüft, ob die Varianz der Sprintzeiten von einer erwarteten Populationsvarianz abweicht."
+  },
+  varianceFTest: {
+    psychology: "Zwei unabhängige Gruppen werden darauf geprüft, ob sich die Varianz ihrer Reaktionszeiten unterscheidet.",
+    sport: "Zwei Trainingsgruppen werden darauf geprüft, ob sich die Varianz der Sprunghöhe unterscheidet."
   }
 });
 
@@ -419,6 +427,14 @@ Object.assign(window.resultScenarioPacks.en, {
   multidimensionalScaling: {
     psychology: "Similarity judgements among emotions are represented on a two-dimensional map to understand emotional proximity and distance.",
     sport: "Distances among player types are visualised to represent tactical roles in a small number of dimensions."
+  },
+  chiSquareVariance: {
+    psychology: "A study tests whether the variance of stress scores in one sample differs from a known reference variance.",
+    sport: "A coaching staff tests whether the variance of sprint times differs from an expected population variance."
+  },
+  varianceFTest: {
+    psychology: "Two independent groups are tested to see whether the variance of reaction times differs.",
+    sport: "Two training groups are tested to see whether the variance of jump height differs."
   }
 });
 
@@ -434,6 +450,14 @@ Object.assign(window.resultScenarioPacks.fr, {
   multidimensionalScaling: {
     psychology: "Des jugements de similarité entre émotions sont représentés sur une carte à deux dimensions pour comprendre leur proximité.",
     sport: "Les distances entre types de joueurs sont visualisées pour représenter les rôles tactiques en peu de dimensions."
+  },
+  chiSquareVariance: {
+    psychology: "Une étude teste si la variance des scores de stress dans un échantillon diffère d'une variance de référence connue.",
+    sport: "Une équipe d'entraîneurs teste si la variance des temps de sprint diffère d'une variance de population attendue."
+  },
+  varianceFTest: {
+    psychology: "Deux groupes indépendants sont testés pour déterminer si la variance des temps de réaction diffère.",
+    sport: "Deux groupes d'entraînement sont testés pour déterminer si la variance de la hauteur de saut diffère."
   }
 });
 
@@ -449,6 +473,14 @@ Object.assign(window.resultScenarioPacks.es, {
   multidimensionalScaling: {
     psychology: "Juicios de similitud entre emociones se representan en un mapa bidimensional para comprender proximidad y distancia emocional.",
     sport: "Las distancias entre tipos de jugadores se visualizan para representar roles tácticos en pocas dimensiones."
+  },
+  chiSquareVariance: {
+    psychology: "Un estudio prueba si la varianza de las puntuaciones de estrés en una muestra difiere de una varianza de referencia conocida.",
+    sport: "Un equipo técnico prueba si la varianza de los tiempos de sprint difiere de una varianza poblacional esperada."
+  },
+  varianceFTest: {
+    psychology: "Dos grupos independientes se comparan para comprobar si difiere la varianza de sus tiempos de reacción.",
+    sport: "Dos grupos de entrenamiento se comparan para comprobar si difiere la varianza de la altura de salto."
   }
 });
 
@@ -464,5 +496,13 @@ Object.assign(window.resultScenarioPacks.it, {
   multidimensionalScaling: {
     psychology: "Giudizi di similarità tra emozioni vengono rappresentati in una mappa bidimensionale per comprendere prossimità e distanza emotiva.",
     sport: "Le distanze tra tipi di giocatori vengono visualizzate per rappresentare ruoli tattici in poche dimensioni."
+  },
+  chiSquareVariance: {
+    psychology: "Uno studio verifica se la varianza dei punteggi di stress in un campione differisce da una varianza di riferimento nota.",
+    sport: "Uno staff tecnico verifica se la varianza dei tempi di sprint differisce da una varianza di popolazione attesa."
+  },
+  varianceFTest: {
+    psychology: "Due gruppi indipendenti vengono confrontati per verificare se la varianza dei tempi di reazione differisce.",
+    sport: "Due gruppi di allenamento vengono confrontati per verificare se la varianza dell'altezza di salto differisce."
   }
 });

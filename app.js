@@ -61,7 +61,18 @@ const tree = {
     answers: [
       { label: "Metrische abhängige Variable", next: "metricGroups" },
       { label: "Ordinale abhängige Variable", next: "ordinalGroups" },
-      { label: "Kategoriale abhängige Variable", next: "categoricalDesign" }
+      { label: "Kategoriale abhängige Variable", next: "categoricalDesign" },
+      { label: "Varianzen vergleichen", next: "varianceComparison" }
+    ]
+  },
+  varianceComparison: {
+    area: "Varianzen",
+    question: "Welche Varianz möchten Sie prüfen oder vergleichen?",
+    hint: "Varianztests sind empfindlich gegenüber Verletzungen der Normalverteilung. Prüfen Sie daher immer zusätzlich Verteilung und Ausreißer.",
+    step: "Varianzen",
+    answers: [
+      { label: "Stichprobenvarianz gegen bekannte Populationsvarianz prüfen", result: "chiSquareVariance" },
+      { label: "Zwei Stichprobenvarianzen miteinander vergleichen", result: "varianceFTest" }
     ]
   },
   metricGroups: {
@@ -283,6 +294,16 @@ const results = {
     title: "Multidimensionale Skalierung",
     summary: "Exploratives Verfahren, um Distanzen oder Unähnlichkeiten zwischen Personen oder Objekten in wenigen Dimensionen darzustellen.",
     assumptions: ["Distanz- oder Unähnlichkeitsmatrix", "Objekte oder Personen sind vergleichbar", "Zahl der Dimensionen wird anhand von Stress und Interpretierbarkeit gewählt", "Darstellung dient primär der Exploration"]
+  },
+  chiSquareVariance: {
+    title: "Chi-Quadrat-Test für eine Varianz",
+    summary: "Prüft, ob eine Stichprobenvarianz von einer bekannten oder theoretischen Populationsvarianz abweicht.",
+    assumptions: ["Eine metrische Variable", "Bekannte oder theoretisch begründete Populationsvarianz", "Unabhängige Beobachtungen", "Normalverteilung in der Population"]
+  },
+  varianceFTest: {
+    title: "F-Test zum Vergleich zweier Varianzen",
+    summary: "Vergleicht, ob sich die Varianzen zweier unabhängiger Stichproben unterscheiden.",
+    assumptions: ["Zwei unabhängige Stichproben", "Metrische Zielvariable", "Normalverteilung in beiden Populationen", "Empfindlich gegenüber Ausreißern und Schiefe"]
   }
 };
 
@@ -495,7 +516,18 @@ const languagePacks = {
         answers: [
           { label: "Metric dependent variable", next: "metricGroups" },
           { label: "Ordinal dependent variable", next: "ordinalGroups" },
-          { label: "Categorical dependent variable", next: "categoricalDesign" }
+          { label: "Categorical dependent variable", next: "categoricalDesign" },
+          { label: "Compare variances", next: "varianceComparison" }
+        ]
+      },
+      varianceComparison: {
+        area: "Variances",
+        question: "Which variance do you want to test or compare?",
+        hint: "Variance tests are sensitive to violations of normality, so always inspect distributions and outliers as well.",
+        step: "Variances",
+        answers: [
+          { label: "Test a sample variance against a known population variance", result: "chiSquareVariance" },
+          { label: "Compare two sample variances", result: "varianceFTest" }
         ]
       },
       metricGroups: {
@@ -628,7 +660,9 @@ const languagePacks = {
       multinomialRegression: { title: "Multinomial logistic regression", summary: "Models a categorical outcome variable with more than two categories.", assumptions: ["Multicategory categorical outcome", "Independent observations", "Meaningful reference category"] },
       factorAnalysis: { title: "Factor analysis", summary: "Exploratory procedure for reducing several correlated variables to a smaller set of latent factors or dimensions.", assumptions: ["Several metric or approximately metric variables", "Meaningful correlations among variables", "Adequate sample size", "Interpretable factor structure"] },
       clusterAnalysis: { title: "Cluster analysis", summary: "Exploratory procedure for grouping people or objects based on similarity.", assumptions: ["Features describing people or objects", "Appropriate scaling or standardisation", "Meaningful distance or similarity measure", "Cluster solution is substantively interpretable"] },
-      multidimensionalScaling: { title: "Multidimensional scaling", summary: "Exploratory procedure for representing distances or dissimilarities among people or objects in a small number of dimensions.", assumptions: ["Distance or dissimilarity matrix", "People or objects are comparable", "Number of dimensions chosen using stress and interpretability", "Primarily an exploratory representation"] }
+      multidimensionalScaling: { title: "Multidimensional scaling", summary: "Exploratory procedure for representing distances or dissimilarities among people or objects in a small number of dimensions.", assumptions: ["Distance or dissimilarity matrix", "People or objects are comparable", "Number of dimensions chosen using stress and interpretability", "Primarily an exploratory representation"] },
+      chiSquareVariance: { title: "Chi-square test for one variance", summary: "Tests whether a sample variance differs from a known or theoretical population variance.", assumptions: ["One metric variable", "Known or theoretically justified population variance", "Independent observations", "Normality in the population"] },
+      varianceFTest: { title: "F-test for comparing two variances", summary: "Compares whether the variances of two independent samples differ.", assumptions: ["Two independent samples", "Metric outcome variable", "Normality in both populations", "Sensitive to outliers and skew"] }
     }
   }
 };
@@ -725,6 +759,14 @@ const procedureCatalog = {
   multidimensionalScaling: {
     jamovi: "Jamovi has limited built-in support for multidimensional scaling.\nUse a distance/dissimilarity matrix if a suitable module is installed, or export the data and run MDS in R.\nInspect stress, the configuration plot, and interpretability of the dimensions.",
     r: "d <- dist(scale(data[, variables]))\nfit <- cmdscale(d, k = 2, eig = TRUE)\nplot(fit$points, xlab = \"Dimension 1\", ylab = \"Dimension 2\")\n# Non-metric MDS: MASS::isoMDS(d, k = 2)"
+  },
+  chiSquareVariance: {
+    jamovi: "Jamovi has limited direct support for the exact chi-square test of one variance.\nUse Exploration > Descriptives to obtain n and the sample variance, then run the exact test in R.\nReport the hypothesised population variance and the chi-square statistic.",
+    r: "n <- length(data$score)\ns2 <- var(data$score)\nsigma2_0 <- 100\nchi2 <- (n - 1) * s2 / sigma2_0\np <- 2 * min(pchisq(chi2, df = n - 1), 1 - pchisq(chi2, df = n - 1))\nc(chi_square = chi2, df = n - 1, p = p)"
+  },
+  varianceFTest: {
+    jamovi: "Jamovi can show group variances in Exploration > Descriptives.\nFor the classical F-test of two variances, export the data or use an R module and run var.test().\nConsider Levene's test as a more robust alternative when normality is doubtful.",
+    r: "var.test(score ~ group, data = data)\n# Robust alternative:\n# car::leveneTest(score ~ group, data = data)"
   }
 };
 
@@ -1029,7 +1071,7 @@ function resetTree() {
 
 function getStageForNode(nodeId) {
   const scaleNodes = ["associationScale", "comparisonOutcome", "predictionOutcome"];
-  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "normalAssociation"];
+  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "varianceComparison", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "normalAssociation"];
   if (nodeId === "goal" || nodeId === "researchGoal" || nodeId === "discoveryStructure") return "goal";
   if (scaleNodes.includes(nodeId)) return "scale";
   if (groupNodes.includes(nodeId)) return "groups";

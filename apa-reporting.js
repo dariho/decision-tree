@@ -20,7 +20,9 @@ const apaMetrics = {
   multinomialRegression: ["N", "model chi-square", "df", "p", "pseudo R2", "odds ratios by outcome category", "95% CI"],
   factorAnalysis: ["N", "number of variables", "extraction method", "rotation", "number of factors", "factor loadings", "variance explained"],
   clusterAnalysis: ["N", "variables used", "standardisation", "distance measure", "clustering method", "number of clusters", "cluster sizes"],
-  multidimensionalScaling: ["N or number of objects", "distance matrix", "number of dimensions", "stress value", "configuration plot", "dimension interpretation"]
+  multidimensionalScaling: ["N or number of objects", "distance matrix", "number of dimensions", "stress value", "configuration plot", "dimension interpretation"],
+  chiSquareVariance: ["n", "sample variance", "population variance", "chi-square", "df = n - 1", "p"],
+  varianceFTest: ["n per group", "variance per group", "F", "df numerator", "df denominator", "p"]
 };
 
 const apaMetricTranslations = {
@@ -91,9 +93,14 @@ const apaMetricTranslations = {
     "N or number of objects": "N oder Anzahl der Objekte",
     "distance matrix": "Distanzmatrix",
     "number of dimensions": "Anzahl der Dimensionen",
+    "population variance": "Populationsvarianz",
+    "sample variance": "Stichprobenvarianz",
     "stress value": "Stress-Wert",
+    "variance per group": "Varianz je Gruppe",
     "configuration plot": "Konfigurationsplot",
     "dimension interpretation": "Interpretation der Dimensionen",
+    "df numerator": "df Zähler",
+    "df denominator": "df Nenner",
     "z if available": "z, falls verfügbar"
   },
   fr: {
@@ -153,9 +160,14 @@ const apaMetricTranslations = {
     "N or number of objects": "N ou nombre d'objets",
     "distance matrix": "matrice de distances",
     "number of dimensions": "nombre de dimensions",
+    "population variance": "variance de population",
+    "sample variance": "variance d'échantillon",
     "stress value": "valeur de stress",
+    "variance per group": "variance par groupe",
     "configuration plot": "graphique de configuration",
     "dimension interpretation": "interprétation des dimensions",
+    "df numerator": "dl numérateur",
+    "df denominator": "dl dénominateur",
     "z if available": "z si disponible"
   },
   es: {
@@ -215,9 +227,14 @@ const apaMetricTranslations = {
     "N or number of objects": "N o número de objetos",
     "distance matrix": "matriz de distancias",
     "number of dimensions": "número de dimensiones",
+    "population variance": "varianza poblacional",
+    "sample variance": "varianza muestral",
     "stress value": "valor de estrés",
+    "variance per group": "varianza por grupo",
     "configuration plot": "gráfico de configuración",
     "dimension interpretation": "interpretación de dimensiones",
+    "df numerator": "gl numerador",
+    "df denominator": "gl denominador",
     "z if available": "z si está disponible"
   },
   it: {
@@ -277,9 +294,14 @@ const apaMetricTranslations = {
     "N or number of objects": "N o numero di oggetti",
     "distance matrix": "matrice delle distanze",
     "number of dimensions": "numero di dimensioni",
+    "population variance": "varianza di popolazione",
+    "sample variance": "varianza campionaria",
     "stress value": "valore di stress",
+    "variance per group": "varianza per gruppo",
     "configuration plot": "grafico di configurazione",
     "dimension interpretation": "interpretazione delle dimensioni",
+    "df numerator": "df numeratore",
+    "df denominator": "df denominatore",
     "z if available": "z se disponibile"
   }
 };
@@ -307,7 +329,9 @@ const apaTemplates = {
     multinomialRegression: "The multinomial logistic regression model significantly predicted Y, chi-square(df, N = n) = value, p = value, pseudo R2 = value. For category A versus the reference category, predictor X had OR = value, p = value.",
     factorAnalysis: "An exploratory factor analysis using [extraction method] and [rotation] suggested a [number]-factor solution, explaining [value]% of the variance. Items with loadings >= [cutoff] were interpreted on each factor.",
     clusterAnalysis: "A cluster analysis using [distance measure] and [clustering method] suggested a [number]-cluster solution. Cluster sizes were n = [values], and clusters were interpreted as [labels].",
-    multidimensionalScaling: "A multidimensional scaling solution with [number] dimensions represented the distance matrix with stress = [value]. The dimensions were interpreted as [dimension labels]."
+    multidimensionalScaling: "A multidimensional scaling solution with [number] dimensions represented the distance matrix with stress = [value]. The dimensions were interpreted as [dimension labels].",
+    chiSquareVariance: "A chi-square test for one variance showed that the sample variance [did/did not] differ from the hypothesised population variance, chi-square(df) = value, p = value.",
+    varianceFTest: "An F-test for equality of variances showed that the two sample variances [did/did not] differ, F(df1, df2) = value, p = value."
   },
   de: {
     pearson: "Eine Pearson-Korrelation zeigte einen [Richtung/Stärke] Zusammenhang zwischen X und Y, r(df) = Wert, p = Wert, 95%-KI [UG, OG].",
@@ -331,7 +355,9 @@ const apaTemplates = {
     multinomialRegression: "Das multinomiale logistische Regressionsmodell sagte Y signifikant vorher, chi-square(df, N = n) = Wert, p = Wert, Pseudo-R2 = Wert. Für Kategorie A gegenüber der Referenzkategorie hatte Prädiktor X OR = Wert, p = Wert.",
     factorAnalysis: "Eine explorative Faktorenanalyse mit [Extraktionsmethode] und [Rotation] ergab eine [Anzahl]-Faktoren-Lösung, die [Wert]% der Varianz erklärte. Items mit Ladungen >= [Grenzwert] wurden auf den jeweiligen Faktoren interpretiert.",
     clusterAnalysis: "Eine Clusteranalyse mit [Distanzmaß] und [Clusterverfahren] ergab eine [Anzahl]-Cluster-Lösung. Die Clustergrößen betrugen n = [Werte], und die Cluster wurden als [Bezeichnungen] interpretiert.",
-    multidimensionalScaling: "Eine multidimensionale Skalierung mit [Anzahl] Dimensionen stellte die Distanzmatrix mit Stress = [Wert] dar. Die Dimensionen wurden als [Dimensionsbezeichnungen] interpretiert."
+    multidimensionalScaling: "Eine multidimensionale Skalierung mit [Anzahl] Dimensionen stellte die Distanzmatrix mit Stress = [Wert] dar. Die Dimensionen wurden als [Dimensionsbezeichnungen] interpretiert.",
+    chiSquareVariance: "Ein Chi-Quadrat-Test für eine Varianz zeigte, dass die Stichprobenvarianz [nicht/von] der angenommenen Populationsvarianz abwich, chi-square(df) = Wert, p = Wert.",
+    varianceFTest: "Ein F-Test auf Varianzgleichheit zeigte, dass sich die beiden Stichprobenvarianzen [nicht/signifikant] unterschieden, F(df1, df2) = Wert, p = Wert."
   },
   fr: {
     pearson: "Une correlation de Pearson a montré une association [direction/force] entre X et Y, r(dl) = valeur, p = valeur, IC 95 % [LI, LS].",
@@ -355,7 +381,9 @@ const apaTemplates = {
     multinomialRegression: "Le modèle de régression logistique multinomiale prédisait significativement Y, chi-square(dl, N = n) = valeur, p = valeur, pseudo-R2 = valeur. Pour la catégorie A contre la catégorie de référence, le prédicteur X avait OR = valeur, p = valeur.",
     factorAnalysis: "Une analyse factorielle exploratoire avec [méthode d'extraction] et [rotation] a suggéré une solution à [nombre] facteurs, expliquant [valeur] % de la variance. Les items avec des charges >= [seuil] ont été interprétés sur chaque facteur.",
     clusterAnalysis: "Une analyse de clusters avec [mesure de distance] et [méthode de clustering] a suggéré une solution à [nombre] clusters. Les tailles des clusters étaient n = [valeurs], et les clusters ont été interprétés comme [étiquettes].",
-    multidimensionalScaling: "Une solution de positionnement multidimensionnel à [nombre] dimensions représentait la matrice de distances avec un stress = [valeur]. Les dimensions ont été interprétées comme [étiquettes des dimensions]."
+    multidimensionalScaling: "Une solution de positionnement multidimensionnel à [nombre] dimensions représentait la matrice de distances avec un stress = [valeur]. Les dimensions ont été interprétées comme [étiquettes des dimensions].",
+    chiSquareVariance: "Un test du khi carré pour une variance a montré que la variance d'échantillon [ne différait pas/différait] de la variance de population hypothétique, chi-square(dl) = valeur, p = valeur.",
+    varianceFTest: "Un test F d'égalité des variances a montré que les deux variances d'échantillons [ne différaient pas/différaient], F(dl1, dl2) = valeur, p = valeur."
   },
   es: {
     pearson: "Una correlación de Pearson mostró una asociación [dirección/fuerza] entre X e Y, r(gl) = valor, p = valor, IC 95 % [LI, LS].",
@@ -379,7 +407,9 @@ const apaTemplates = {
     multinomialRegression: "El modelo de regresión logística multinomial predijo significativamente Y, chi-square(gl, N = n) = valor, p = valor, pseudo-R2 = valor. Para la categoría A frente a la categoría de referencia, el predictor X tuvo OR = valor, p = valor.",
     factorAnalysis: "Un análisis factorial exploratorio con [método de extracción] y [rotación] sugirió una solución de [número] factores, que explicó el [valor]% de la varianza. Los ítems con cargas >= [punto de corte] se interpretaron en cada factor.",
     clusterAnalysis: "Un análisis de conglomerados con [medida de distancia] y [método de conglomerados] sugirió una solución de [número] conglomerados. Los tamaños fueron n = [valores], y los conglomerados se interpretaron como [etiquetas].",
-    multidimensionalScaling: "Una solución de escalamiento multidimensional con [número] dimensiones representó la matriz de distancias con estrés = [valor]. Las dimensiones se interpretaron como [etiquetas de dimensiones]."
+    multidimensionalScaling: "Una solución de escalamiento multidimensional con [número] dimensiones representó la matriz de distancias con estrés = [valor]. Las dimensiones se interpretaron como [etiquetas de dimensiones].",
+    chiSquareVariance: "Una prueba chi-cuadrado para una varianza mostró que la varianza muestral [no difería/difería] de la varianza poblacional hipotética, chi-square(gl) = valor, p = valor.",
+    varianceFTest: "Una prueba F de igualdad de varianzas mostró que las dos varianzas muestrales [no diferían/diferían], F(gl1, gl2) = valor, p = valor."
   },
   it: {
     pearson: "Una correlazione di Pearson ha mostrato un'associazione [direzione/intensità] tra X e Y, r(df) = valore, p = valore, IC 95% [LI, LS].",
@@ -403,7 +433,9 @@ const apaTemplates = {
     multinomialRegression: "Il modello di regressione logistica multinomiale prediceva significativamente Y, chi-square(df, N = n) = valore, p = valore, pseudo-R2 = valore. Per la categoria A rispetto alla categoria di riferimento, il predittore X aveva OR = valore, p = valore.",
     factorAnalysis: "Un'analisi fattoriale esplorativa con [metodo di estrazione] e [rotazione] ha suggerito una soluzione a [numero] fattori, spiegando il [valore]% della varianza. Gli item con carichi >= [soglia] sono stati interpretati su ciascun fattore.",
     clusterAnalysis: "Un'analisi dei cluster con [misura di distanza] e [metodo di clustering] ha suggerito una soluzione a [numero] cluster. Le dimensioni dei cluster erano n = [valori], e i cluster sono stati interpretati come [etichette].",
-    multidimensionalScaling: "Una soluzione di scaling multidimensionale con [numero] dimensioni ha rappresentato la matrice delle distanze con stress = [valore]. Le dimensioni sono state interpretate come [etichette delle dimensioni]."
+    multidimensionalScaling: "Una soluzione di scaling multidimensionale con [numero] dimensioni ha rappresentato la matrice delle distanze con stress = [valore]. Le dimensioni sono state interpretate come [etichette delle dimensioni].",
+    chiSquareVariance: "Un test chi-quadrato per una varianza ha mostrato che la varianza campionaria [non differiva/differiva] dalla varianza di popolazione ipotizzata, chi-square(df) = valore, p = valore.",
+    varianceFTest: "Un test F di uguaglianza delle varianze ha mostrato che le due varianze campionarie [non differivano/differivano], F(df1, df2) = valore, p = valore."
   }
 };
 

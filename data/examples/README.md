@@ -26,5 +26,7 @@ Each CSV matches one result id in the decision tree. Use these files to create J
 | `factorAnalysis` | `factorAnalysis.csv` | Explore factors among the stress, mood, and sleep item columns. |
 | `clusterAnalysis` | `clusterAnalysis.csv` | Cluster athletes using training load, recovery, sprint, jump, and injury variables. |
 | `multidimensionalScaling` | `multidimensionalScaling.csv` | Use the symmetric distance matrix among emotions for MDS. |
+| `chiSquareVariance` | `chiSquareVariance.csv` | Test the variance of `score` against a hypothesised population variance, e.g. `100`. |
+| `varianceFTest` | `varianceFTest.csv` | Compare the variance of `score` between the two levels of `group`. |
 
 For clean screenshots, avoid extra ID columns unless Jamovi needs them for the specific analysis. Extra variables can accidentally be selected during manual setup.
