@@ -820,6 +820,144 @@ const procedureScreenshots = {
   }
 };
 
+const effectSizeDefinitions = {
+  pearson: { measure: "Pearson's r", rangeType: "r" },
+  spearman: { measure: "Spearman's rho", rangeType: "r" },
+  kendall: { measure: "Kendall's tau", rangeType: "r" },
+  chiSquareAssociation: { measure: "Cramer's V", rangeType: "v" },
+  logLinearModel: { measure: "Odds ratios for interaction terms", rangeType: "or" },
+  oneSampleT: { measure: "Cohen's d", rangeType: "d" },
+  oneSampleWilcoxon: { measure: "Effect size r", rangeType: "r" },
+  independentT: { measure: "Cohen's d / Hedges' g", rangeType: "d" },
+  mannWhitney: { measure: "Rank-biserial correlation", rangeType: "r" },
+  pairedT: { measure: "Cohen's dz", rangeType: "d" },
+  wilcoxon: { measure: "Effect size r", rangeType: "r" },
+  anova: { measure: "Partial eta squared", rangeType: "eta" },
+  repeatedAnova: { measure: "Partial eta squared", rangeType: "eta" },
+  kruskalWallis: { measure: "Epsilon squared", rangeType: "eta" },
+  friedman: { measure: "Kendall's W", rangeType: "w" },
+  fisher: { measure: "Odds ratio", rangeType: "or" },
+  mcnemar: { measure: "Matched-pairs odds ratio", rangeType: "or" },
+  chiSquareGoodness: { measure: "Cohen's w", rangeType: "w" },
+  linearRegression: { measure: "R squared / adjusted R squared", rangeType: "r2" },
+  logisticRegression: { measure: "Odds ratio", rangeType: "or" },
+  multinomialRegression: { measure: "Odds ratios by outcome category", rangeType: "or" },
+  factorAnalysis: { measure: "Factor loadings and variance explained", rangeType: "loading" },
+  clusterAnalysis: { measure: "Silhouette width", rangeType: "silhouette" },
+  multidimensionalScaling: { measure: "Stress value", rangeType: "stress" },
+  chiSquareVariance: { measure: "Variance ratio s2 / sigma2", rangeType: "varianceRatio" },
+  varianceFTest: { measure: "Variance ratio F", rangeType: "varianceRatio" }
+};
+
+const effectSizeLabels = {
+  de: {
+    heading: "Effektgröße",
+    measureLabel: "Häufige Effektgröße",
+    rangeLabel: "Übliche Einordnung",
+    noteLabel: "Hinweis",
+    small: "klein",
+    medium: "mittel",
+    large: "groß",
+    note: "Diese Schwellen sind verbreitete Faustregeln. Interpretation hängt immer von Fachgebiet, Messinstrument, Stichprobe und Studiendesign ab.",
+    ranges: {
+      d: "|d|: 0.20 klein, 0.50 mittel, 0.80 groß",
+      r: "|r|: .10 klein, .30 mittel, .50 groß",
+      v: "V: .10 klein, .30 mittel, .50 groß; bei größeren Tabellen nur als grobe Orientierung",
+      eta: "eta2: .01 klein, .06 mittel, .14 groß",
+      w: "w/W: .10 klein, .30 mittel, .50 groß",
+      r2: "R2: .02 klein, .13 mittel, .26 groß",
+      or: "OR: 1.5 klein, 2.0 mittel, 3.0 groß; Werte unter 1 können zur Interpretation invertiert werden",
+      loading: "Ladungen: .30 bedeutsam, .50 stark, .70 sehr stark; erklärte Varianz ist kontextabhängig",
+      silhouette: "Silhouette: < .25 schwach, .26-.50 brauchbar, .51-.70 gut, > .70 stark",
+      stress: "Stress: < .05 exzellent, < .10 gut, < .20 akzeptabel; kleinere Werte sind besser",
+      varianceRatio: "Verhältnis nahe 1 = geringe Abweichung; 1.5 klein, 2.0 mittel, 3.0 groß als grobe Orientierung"
+    }
+  },
+  en: {
+    heading: "Effect size",
+    measureLabel: "Common effect size",
+    rangeLabel: "Common interpretation range",
+    noteLabel: "Note",
+    small: "small",
+    medium: "medium",
+    large: "large",
+    note: "These thresholds are common rules of thumb. Interpretation always depends on the field, measurement instrument, sample, and study design.",
+    ranges: {
+      d: "|d|: 0.20 small, 0.50 medium, 0.80 large",
+      r: "|r|: .10 small, .30 medium, .50 large",
+      v: "V: .10 small, .30 medium, .50 large; only a rough guide for larger tables",
+      eta: "eta2: .01 small, .06 medium, .14 large",
+      w: "w/W: .10 small, .30 medium, .50 large",
+      r2: "R2: .02 small, .13 medium, .26 large",
+      or: "OR: 1.5 small, 2.0 medium, 3.0 large; values below 1 can be inverted for interpretation",
+      loading: "Loadings: .30 meaningful, .50 strong, .70 very strong; variance explained is context-dependent",
+      silhouette: "Silhouette: < .25 weak, .26-.50 fair, .51-.70 good, > .70 strong",
+      stress: "Stress: < .05 excellent, < .10 good, < .20 acceptable; lower values are better",
+      varianceRatio: "Ratio near 1 = little deviation; 1.5 small, 2.0 medium, 3.0 large as a rough guide"
+    }
+  },
+  fr: {
+    heading: "Taille d'effet",
+    measureLabel: "Taille d'effet fréquente",
+    rangeLabel: "Repères d'interprétation courants",
+    noteLabel: "Remarque",
+    note: "Ces seuils sont des règles pratiques courantes. L'interprétation dépend toujours du domaine, de l'instrument, de l'échantillon et du plan d'étude.",
+    ranges: {
+      d: "|d| : 0.20 faible, 0.50 moyen, 0.80 fort",
+      r: "|r| : .10 faible, .30 moyen, .50 fort",
+      v: "V : .10 faible, .30 moyen, .50 fort ; seulement un repère approximatif pour les grands tableaux",
+      eta: "eta2 : .01 faible, .06 moyen, .14 fort",
+      w: "w/W : .10 faible, .30 moyen, .50 fort",
+      r2: "R2 : .02 faible, .13 moyen, .26 fort",
+      or: "OR : 1.5 faible, 2.0 moyen, 3.0 fort ; les valeurs < 1 peuvent être inversées pour l'interprétation",
+      loading: "Charges : .30 significatif, .50 fort, .70 très fort ; la variance expliquée dépend du contexte",
+      silhouette: "Silhouette : < .25 faible, .26-.50 acceptable, .51-.70 bonne, > .70 forte",
+      stress: "Stress : < .05 excellent, < .10 bon, < .20 acceptable ; les valeurs plus faibles sont meilleures",
+      varianceRatio: "Rapport proche de 1 = faible écart ; 1.5 faible, 2.0 moyen, 3.0 fort comme repère approximatif"
+    }
+  },
+  es: {
+    heading: "Tamaño del efecto",
+    measureLabel: "Tamaño del efecto habitual",
+    rangeLabel: "Rango de interpretación habitual",
+    noteLabel: "Nota",
+    note: "Estos umbrales son reglas prácticas frecuentes. La interpretación depende siempre del área, el instrumento, la muestra y el diseño del estudio.",
+    ranges: {
+      d: "|d|: 0.20 pequeño, 0.50 medio, 0.80 grande",
+      r: "|r|: .10 pequeño, .30 medio, .50 grande",
+      v: "V: .10 pequeño, .30 medio, .50 grande; solo como guía aproximada en tablas grandes",
+      eta: "eta2: .01 pequeño, .06 medio, .14 grande",
+      w: "w/W: .10 pequeño, .30 medio, .50 grande",
+      r2: "R2: .02 pequeño, .13 medio, .26 grande",
+      or: "OR: 1.5 pequeño, 2.0 medio, 3.0 grande; los valores < 1 pueden invertirse para interpretarlos",
+      loading: "Cargas: .30 significativa, .50 fuerte, .70 muy fuerte; la varianza explicada depende del contexto",
+      silhouette: "Silueta: < .25 débil, .26-.50 aceptable, .51-.70 buena, > .70 fuerte",
+      stress: "Estrés: < .05 excelente, < .10 bueno, < .20 aceptable; valores menores son mejores",
+      varianceRatio: "Razón cercana a 1 = poca desviación; 1.5 pequeño, 2.0 medio, 3.0 grande como guía aproximada"
+    }
+  },
+  it: {
+    heading: "Dimensione dell'effetto",
+    measureLabel: "Dimensione dell'effetto comune",
+    rangeLabel: "Intervallo interpretativo comune",
+    noteLabel: "Nota",
+    note: "Queste soglie sono regole pratiche comuni. L'interpretazione dipende sempre dal settore, dallo strumento, dal campione e dal disegno dello studio.",
+    ranges: {
+      d: "|d|: 0.20 piccolo, 0.50 medio, 0.80 grande",
+      r: "|r|: .10 piccolo, .30 medio, .50 grande",
+      v: "V: .10 piccolo, .30 medio, .50 grande; solo come guida approssimativa per tabelle grandi",
+      eta: "eta2: .01 piccolo, .06 medio, .14 grande",
+      w: "w/W: .10 piccolo, .30 medio, .50 grande",
+      r2: "R2: .02 piccolo, .13 medio, .26 grande",
+      or: "OR: 1.5 piccolo, 2.0 medio, 3.0 grande; i valori < 1 possono essere invertiti per l'interpretazione",
+      loading: "Carichi: .30 significativo, .50 forte, .70 molto forte; la varianza spiegata dipende dal contesto",
+      silhouette: "Silhouette: < .25 debole, .26-.50 discreta, .51-.70 buona, > .70 forte",
+      stress: "Stress: < .05 eccellente, < .10 buono, < .20 accettabile; valori più bassi sono migliori",
+      varianceRatio: "Rapporto vicino a 1 = poca deviazione; 1.5 piccolo, 2.0 medio, 3.0 grande come guida approssimativa"
+    }
+  }
+};
+
 const state = {
   currentNode: "goal",
   history: [],
@@ -848,6 +986,9 @@ const elements = {
   assumptionsList: document.querySelector("#assumptionsList"),
   scenarioSection: document.querySelector("#scenarioSection"),
   scenarioList: document.querySelector("#scenarioList"),
+  effectSizeSection: null,
+  effectSizeHeading: null,
+  effectSizeList: null,
   apaSection: document.querySelector("#apaSection"),
   apaHeading: document.querySelector("#apaHeading"),
   apaReportList: document.querySelector("#apaReportList"),
@@ -976,6 +1117,7 @@ function renderResult(resultId) {
   elements.procedureSelect.value = state.procedureTool;
   renderProcedure(resultId);
   renderScenarios(resultId, pack);
+  renderEffectSize(resultId, pack);
   renderApaReport(resultId, pack);
   elements.assumptionsList.replaceChildren(
     ...result.assumptions.map((assumption) => {
@@ -1018,6 +1160,39 @@ function createScenarioItem(label, text) {
 function getResultScenarios(resultId, language) {
   const packs = window.resultScenarioPacks || {};
   return packs[language]?.[resultId] || packs.en?.[resultId] || null;
+}
+
+function ensureEffectSizeElements() {
+  if (elements.effectSizeSection) return;
+  const section = document.createElement("section");
+  const heading = document.createElement("h2");
+  const list = document.createElement("div");
+  section.className = "effect-size-section apa-section";
+  section.id = "effectSizeSection";
+  heading.id = "effectSizeHeading";
+  list.className = "apa-list";
+  list.id = "effectSizeList";
+  section.append(heading, list);
+  elements.apaSection.before(section);
+  elements.effectSizeSection = section;
+  elements.effectSizeHeading = heading;
+  elements.effectSizeList = list;
+}
+
+function renderEffectSize(resultId, pack) {
+  ensureEffectSizeElements();
+  const definition = effectSizeDefinitions[resultId];
+  const labels = effectSizeLabels[pack.lang] || effectSizeLabels.en;
+  elements.effectSizeSection.hidden = !definition;
+  elements.effectSizeList.replaceChildren();
+  if (!definition) return;
+
+  elements.effectSizeHeading.textContent = labels.heading;
+  elements.effectSizeList.replaceChildren(
+    createApaReportItem(labels.measureLabel, definition.measure),
+    createApaReportItem(labels.rangeLabel, labels.ranges[definition.rangeType] || ""),
+    createApaReportItem(labels.noteLabel, labels.note)
+  );
 }
 
 function renderApaReport(resultId, pack) {
@@ -1169,7 +1344,12 @@ async function copyResult() {
     : `\n\n${elements.apaHeading.textContent}:\n${[...elements.apaReportList.querySelectorAll(".apa-item")]
         .map((item) => `${item.querySelector("h3")?.textContent || ""}: ${item.querySelector("p, code")?.textContent || ""}`)
         .join("\n")}`;
-  const text = `${elements.resultTitle.textContent}\n${elements.resultSummary.textContent}\n\n${pack.ui.pathLabelInCopy}:\n${path}\n\n${pack.ui.procedureLabelInCopy} (${toolName}):\n${elements.procedureOutput.textContent}${apaText}`;
+  const effectSizeText = !elements.effectSizeSection || elements.effectSizeSection.hidden
+    ? ""
+    : `\n\n${elements.effectSizeHeading.textContent}:\n${[...elements.effectSizeList.querySelectorAll(".apa-item")]
+        .map((item) => `${item.querySelector("h3")?.textContent || ""}: ${item.querySelector("p, code")?.textContent || ""}`)
+        .join("\n")}`;
+  const text = `${elements.resultTitle.textContent}\n${elements.resultSummary.textContent}\n\n${pack.ui.pathLabelInCopy}:\n${path}\n\n${pack.ui.procedureLabelInCopy} (${toolName}):\n${elements.procedureOutput.textContent}${effectSizeText}${apaText}`;
 
   try {
     await navigator.clipboard.writeText(text);
