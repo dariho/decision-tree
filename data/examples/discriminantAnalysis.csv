@@ -1,0 +1,16 @@
+group,anxiety,motivation,reaction_time
+improved,31,82,410
+improved,35,78,430
+improved,29,85,405
+improved,38,76,440
+improved,33,81,415
+stable,48,62,515
+stable,52,58,540
+stable,46,65,505
+stable,55,60,550
+stable,50,63,525
+not_improved,68,42,635
+not_improved,72,38,660
+not_improved,65,45,620
+not_improved,75,35,675
+not_improved,70,40,650

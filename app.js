@@ -42,17 +42,18 @@ const tree = {
       { label: "Mindestens eine Variable ordinal", next: "rankCorrelationChoice" },
       { label: "Zwei kategoriale Variablen", result: "chiSquareAssociation" },
       { label: "Alle Variablen sind nominal (mehrwegige Tabelle)", result: "logLinearModel" },
-      { label: "Mehr als zwei Variablen in einem kausalen Modell", next: "causalModelVariables" }
+      { label: "Mehr als zwei Variablen in einem Pfad- oder Klassifikationsmodell", next: "causalModelVariables" }
     ]
   },
   causalModelVariables: {
-    area: "Kausales Modell",
-    question: "Welche Art von Variablen enthält das kausale Modell?",
-    hint: "Diese Verfahren prüfen gerichtete Pfade zwischen Variablen. Sie liefern nur dann kausale Evidenz, wenn Theorie, Design und Messung dies unterstützen.",
+    area: "Pfad- oder Klassifikationsmodell",
+    question: "Welche Art von multivariablem Modell möchten Sie prüfen?",
+    hint: "Diese Verfahren modellieren gerichtete Pfade oder klassifizieren eine nominale Zielvariable. Kausale Evidenz entsteht nur, wenn Theorie, Design und Messung dies unterstützen.",
     step: "Modelltyp",
     answers: [
       { label: "Alle Variablen sind messbar / beobachtet", result: "pathAnalysis" },
-      { label: "Messbare Variablen und latente Variablen", result: "structuralEquationModeling" }
+      { label: "Messbare Variablen und latente Variablen", result: "structuralEquationModeling" },
+      { label: "Nominale abhängige Variable und intervallskalierte unabhängige Variablen", result: "discriminantAnalysis" }
     ]
   },
   normalAssociation: {
@@ -241,6 +242,11 @@ const results = {
     title: "Strukturgleichungsmodellierung (SEM)",
     summary: "Kombiniert Messmodelle für latente Variablen mit gerichteten Strukturpfaden zwischen latenten und beobachteten Variablen.",
     assumptions: ["Latente Konstrukte werden durch mehrere Indikatoren gemessen", "Theoretisch begründetes Mess- und Strukturmodell", "Ausreichende Stichprobengröße", "Modellfit und alternative Modelle prüfen"]
+  },
+  discriminantAnalysis: {
+    title: "Diskriminanzanalyse",
+    summary: "Klassifiziert Fälle in nominale Gruppen anhand mehrerer intervallskalierter Prädiktoren und beschreibt, welche Variablen die Gruppen trennen.",
+    assumptions: ["Nominale abhängige Variable mit bekannten Gruppen", "Intervallskalierte unabhängige Variablen", "Multivariate Normalität innerhalb der Gruppen", "Ähnliche Kovarianzmatrizen", "Ausreichende Gruppengrößen"]
   },
   oneSampleT: {
     title: "Einstichproben-t-Test",
@@ -539,17 +545,18 @@ const languagePacks = {
           { label: "At least one variable is ordinal", next: "rankCorrelationChoice" },
           { label: "Two categorical variables", result: "chiSquareAssociation" },
           { label: "All variables are nominal (multiway table)", result: "logLinearModel" },
-          { label: "More than two variables in a causal model", next: "causalModelVariables" }
+          { label: "More than two variables in a path or classification model", next: "causalModelVariables" }
         ]
       },
       causalModelVariables: {
-        area: "Causal model",
-        question: "What kind of variables does the causal model include?",
-        hint: "These procedures test directed paths among variables. They support causal claims only when theory, design, and measurement justify that interpretation.",
+        area: "Path or classification model",
+        question: "What kind of multivariable model do you want to test?",
+        hint: "These procedures model directed paths or classify a nominal outcome. They support causal claims only when theory, design, and measurement justify that interpretation.",
         step: "Model type",
         answers: [
           { label: "All variables are measurable / observed", result: "pathAnalysis" },
-          { label: "Measurable variables and latent variables", result: "structuralEquationModeling" }
+          { label: "Measurable variables and latent variables", result: "structuralEquationModeling" },
+          { label: "Nominal dependent variable and interval-scaled independent variables", result: "discriminantAnalysis" }
         ]
       },
       normalAssociation: {
@@ -710,6 +717,7 @@ const languagePacks = {
       logLinearModel: { title: "Log-linear model", summary: "Models associations and interactions among several nominal variables in a contingency table.", assumptions: ["Several nominal variables", "Frequency data in a contingency table", "Independent observations", "Sufficient expected cell counts"] },
       pathAnalysis: { title: "Path analysis (mediation)", summary: "Models directed relations among several observed variables, often to test direct, indirect, or mediated effects.", assumptions: ["All variables are observed/measurable", "Theoretically justified path direction", "Linear relationships", "Adequate sample size", "Causal interpretation only with a suitable design"] },
       structuralEquationModeling: { title: "Structural equation modeling (SEM)", summary: "Combines measurement models for latent variables with directed structural paths among latent and observed variables.", assumptions: ["Latent constructs measured by multiple indicators", "Theoretically justified measurement and structural model", "Adequate sample size", "Model fit and alternative models should be evaluated"] },
+      discriminantAnalysis: { title: "Discriminant analysis", summary: "Classifies cases into nominal groups from several interval-scaled predictors and describes which variables separate the groups.", assumptions: ["Nominal dependent variable with known groups", "Interval-scaled independent variables", "Multivariate normality within groups", "Similar covariance matrices", "Adequate group sizes"] },
       oneSampleT: { title: "One-sample t-test", summary: "Compares the mean of one metric sample with a specified reference value.", assumptions: ["Metric variable", "Independent observations", "Approximate normal distribution"] },
       oneSampleWilcoxon: { title: "One-sample Wilcoxon signed-rank test", summary: "Nonparametric alternative when a median or rank pattern is tested against a reference value.", assumptions: ["At least ordinal data", "Symmetric differences helpful", "Independent observations"] },
       independentT: { title: "Independent-samples t-test", summary: "Compares the means of two independent groups with a metric outcome.", assumptions: ["Two independent groups", "Metric outcome variable", "Approximate normality", "Equal variances or Welch correction"] },
@@ -767,6 +775,10 @@ const procedureCatalog = {
   structuralEquationModeling: {
     jamovi: "Install and open the SEMLj module in jamovi.\nDefine latent variables with their indicators, then add the hypothesised structural paths.\nInspect standardized loadings, path coefficients, indirect effects if relevant, and global fit indices.",
     r: "library(lavaan)\nmodel <- '\n  stress =~ stress1 + stress2 + stress3\n  recovery =~ sleep1 + sleep2 + sleep3\n  recovery ~ stress\n  performance ~ recovery + stress\n'\nfit <- sem(model, data = data)\nsummary(fit, standardized = TRUE, fit.measures = TRUE, rsquare = TRUE)"
+  },
+  discriminantAnalysis: {
+    jamovi: "jamovi has limited direct support for classical discriminant analysis in the core menus.\nUse the Rj Editor module or export the data to R.\nSet the nominal group variable as the dependent variable and the interval-scaled variables as predictors; inspect discriminant functions and classification accuracy.",
+    r: "library(MASS)\nfit <- lda(group ~ anxiety + motivation + reaction_time, data = data)\nfit\npred <- predict(fit)$class\ntable(Predicted = pred, Observed = data$group)\nmean(pred == data$group)"
   },
   oneSampleT: {
     jamovi: "Analyses > T-Tests > One Sample T-Test\nMove the metric variable into Dependent Variables.\nEnter the test value and enable descriptives/normality checks.",
@@ -886,6 +898,7 @@ const effectSizeDefinitions = {
   multinomialRegression: { measure: "Odds ratios by outcome category", rangeType: "or" },
   pathAnalysis: { measure: "Standardized path coefficients and indirect effect", rangeType: "beta" },
   structuralEquationModeling: { measure: "Standardized loadings, path coefficients, and R squared", rangeType: "beta" },
+  discriminantAnalysis: { measure: "Canonical correlation and classification accuracy", rangeType: "canonical" },
   factorAnalysis: { measure: "Factor loadings and variance explained", rangeType: "loading" },
   clusterAnalysis: { measure: "Silhouette width", rangeType: "silhouette" },
   multidimensionalScaling: { measure: "Stress value", rangeType: "stress" },
@@ -911,6 +924,7 @@ const effectSizeLabels = {
       w: "w/W: .10 klein, .30 mittel, .50 groß",
       r2: "R2: .02 klein, .13 mittel, .26 groß",
       beta: "|standardisierte beta|: .10 klein, .30 mittel, .50 groß; indirekte Effekte zusätzlich mit Konfidenzintervall interpretieren",
+      canonical: "Kanonische Korrelation: .10 klein, .30 mittel, .50 groß; Klassifikationsgenauigkeit immer gegen Zufall/Basisrate bewerten",
       or: "OR: 1.5 klein, 2.0 mittel, 3.0 groß; Werte unter 1 können zur Interpretation invertiert werden",
       loading: "Ladungen: .30 bedeutsam, .50 stark, .70 sehr stark; erklärte Varianz ist kontextabhängig",
       silhouette: "Silhouette: < .25 schwach, .26-.50 brauchbar, .51-.70 gut, > .70 stark",
@@ -935,6 +949,7 @@ const effectSizeLabels = {
       w: "w/W: .10 small, .30 medium, .50 large",
       r2: "R2: .02 small, .13 medium, .26 large",
       beta: "|standardized beta|: .10 small, .30 medium, .50 large; interpret indirect effects with confidence intervals",
+      canonical: "Canonical correlation: .10 small, .30 medium, .50 large; always compare classification accuracy with chance/baseline accuracy",
       or: "OR: 1.5 small, 2.0 medium, 3.0 large; values below 1 can be inverted for interpretation",
       loading: "Loadings: .30 meaningful, .50 strong, .70 very strong; variance explained is context-dependent",
       silhouette: "Silhouette: < .25 weak, .26-.50 fair, .51-.70 good, > .70 strong",
@@ -956,6 +971,7 @@ const effectSizeLabels = {
       w: "w/W : .10 faible, .30 moyen, .50 fort",
       r2: "R2 : .02 faible, .13 moyen, .26 fort",
       beta: "|beta standardisé| : .10 faible, .30 moyen, .50 fort ; interpréter les effets indirects avec des intervalles de confiance",
+      canonical: "Corrélation canonique : .10 faible, .30 moyen, .50 fort ; toujours comparer l'exactitude de classification au hasard/taux de base",
       or: "OR : 1.5 faible, 2.0 moyen, 3.0 fort ; les valeurs < 1 peuvent être inversées pour l'interprétation",
       loading: "Charges : .30 significatif, .50 fort, .70 très fort ; la variance expliquée dépend du contexte",
       silhouette: "Silhouette : < .25 faible, .26-.50 acceptable, .51-.70 bonne, > .70 forte",
@@ -977,6 +993,7 @@ const effectSizeLabels = {
       w: "w/W: .10 pequeño, .30 medio, .50 grande",
       r2: "R2: .02 pequeño, .13 medio, .26 grande",
       beta: "|beta estandarizado|: .10 pequeño, .30 medio, .50 grande; interprete los efectos indirectos con intervalos de confianza",
+      canonical: "Correlación canónica: .10 pequeña, .30 media, .50 grande; compare siempre la exactitud de clasificación con el azar/tasa base",
       or: "OR: 1.5 pequeño, 2.0 medio, 3.0 grande; los valores < 1 pueden invertirse para interpretarlos",
       loading: "Cargas: .30 significativa, .50 fuerte, .70 muy fuerte; la varianza explicada depende del contexto",
       silhouette: "Silueta: < .25 débil, .26-.50 aceptable, .51-.70 buena, > .70 fuerte",
@@ -998,6 +1015,7 @@ const effectSizeLabels = {
       w: "w/W: .10 piccolo, .30 medio, .50 grande",
       r2: "R2: .02 piccolo, .13 medio, .26 grande",
       beta: "|beta standardizzato|: .10 piccolo, .30 medio, .50 grande; interpreta gli effetti indiretti con intervalli di confidenza",
+      canonical: "Correlazione canonica: .10 piccola, .30 media, .50 grande; confronta sempre l'accuratezza di classificazione con il caso/tasso base",
       or: "OR: 1.5 piccolo, 2.0 medio, 3.0 grande; i valori < 1 possono essere invertiti per l'interpretazione",
       loading: "Carichi: .30 significativo, .50 forte, .70 molto forte; la varianza spiegata dipende dal contesto",
       silhouette: "Silhouette: < .25 debole, .26-.50 discreta, .51-.70 buona, > .70 forte",

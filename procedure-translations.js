@@ -21,6 +21,9 @@ window.localizedProcedurePacks = {
     structuralEquationModeling: {
       jamovi: "Installieren und öffnen Sie das SEMLj-Modul in jamovi.\nDefinieren Sie latente Variablen über ihre Indikatoren und fügen Sie anschließend die angenommenen Strukturpfade hinzu.\nPrüfen Sie standardisierte Ladungen, Pfadkoeffizienten, gegebenenfalls indirekte Effekte und globale Fit-Indizes."
     },
+    discriminantAnalysis: {
+      jamovi: "Jamovi bietet nur begrenzte direkte Unterstützung für klassische Diskriminanzanalyse in den Kernmenüs.\nNutzen Sie das Rj-Editor-Modul oder exportieren Sie die Daten nach R.\nLegen Sie die nominale Gruppenvariable als abhängige Variable und die intervallskalierten Variablen als Prädiktoren fest; prüfen Sie Diskriminanzfunktionen und Klassifikationsgenauigkeit."
+    },
     oneSampleT: {
       jamovi: "Analysen > T-Tests > Einstichproben-t-Test\nVerschieben Sie die metrische Variable in Abhängige Variablen.\nGeben Sie den Testwert ein und aktivieren Sie Deskriptivstatistiken sowie Normalitätsprüfungen."
     },
@@ -107,6 +110,9 @@ window.localizedProcedurePacks = {
     structuralEquationModeling: {
       jamovi: "Installez et ouvrez le module SEMLj dans jamovi.\nDéfinissez les variables latentes avec leurs indicateurs, puis ajoutez les chemins structurels hypothétiques.\nExaminez les charges standardisées, les coefficients de chemin, les effets indirects si nécessaire et les indices d'ajustement globaux."
     },
+    discriminantAnalysis: {
+      jamovi: "jamovi offre une prise en charge directe limitée de l'analyse discriminante classique dans les menus de base.\nUtilisez le module Rj Editor ou exportez les données vers R.\nDéfinissez la variable de groupe nominale comme variable dépendante et les variables à échelle d'intervalle comme prédicteurs ; examinez les fonctions discriminantes et l'exactitude de classification."
+    },
     oneSampleT: {
       jamovi: "Analyses > Tests t > Test t à un échantillon\nPlacez la variable métrique dans Variables dépendantes.\nSaisissez la valeur de test et activez les descriptifs ainsi que les contrôles de normalité."
     },
@@ -192,6 +198,9 @@ window.localizedProcedurePacks = {
     },
     structuralEquationModeling: {
       jamovi: "Instale y abra el módulo SEMLj en jamovi.\nDefina variables latentes con sus indicadores y añada después las rutas estructurales hipotetizadas.\nRevise cargas estandarizadas, coeficientes de ruta, efectos indirectos si corresponde e índices globales de ajuste."
+    },
+    discriminantAnalysis: {
+      jamovi: "jamovi tiene soporte directo limitado para el análisis discriminante clásico en los menús principales.\nUse el módulo Rj Editor o exporte los datos a R.\nDefina la variable nominal de grupo como variable dependiente y las variables de escala de intervalo como predictores; revise funciones discriminantes y exactitud de clasificación."
     },
     oneSampleT: {
       jamovi: "Análisis > Pruebas t > Prueba t para una muestra\nMueva la variable métrica a Variables dependientes.\nIntroduzca el valor de prueba y active descriptivos y comprobaciones de normalidad."
@@ -280,6 +289,9 @@ window.localizedProcedurePacks.it = {
   },
   structuralEquationModeling: {
     jamovi: "Installa e apri il modulo SEMLj in jamovi.\nDefinisci le variabili latenti con i rispettivi indicatori, poi aggiungi i percorsi strutturali ipotizzati.\nControlla carichi standardizzati, coefficienti di percorso, eventuali effetti indiretti e indici globali di adattamento."
+  },
+  discriminantAnalysis: {
+    jamovi: "jamovi offre un supporto diretto limitato per l'analisi discriminante classica nei menu principali.\nUsa il modulo Rj Editor o esporta i dati in R.\nImposta la variabile nominale di gruppo come variabile dipendente e le variabili a scala di intervallo come predittori; controlla funzioni discriminanti e accuratezza di classificazione."
   },
   oneSampleT: {
     jamovi: "Analisi > Test t > Test t a un campione\nSposta la variabile metrica in Variabili dipendenti.\nInserisci il valore di test e attiva descrittive e controlli di normalità."

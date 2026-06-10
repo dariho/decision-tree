@@ -570,6 +570,10 @@ Object.assign(window.resultScenarioPacks.de, {
   structuralEquationModeling: {
     psychology: "Latente Belastung und latente Emotionsregulation werden mit mehreren Fragebogenitems gemessen und zur Vorhersage von Wohlbefinden modelliert.",
     sport: "Latente Erholung und latente Leistungsbereitschaft werden mit mehreren Indikatoren modelliert, um Wettkampfleistung vorherzusagen."
+  },
+  discriminantAnalysis: {
+    psychology: "Therapieerfolg wird als nominale Gruppe klassifiziert, basierend auf Angstwerten, Motivation und Reaktionszeit.",
+    sport: "Athletinnen und Athleten werden anhand von Sprintzeit, Sprunghöhe und Beweglichkeit in Leistungsprofile klassifiziert."
   }
 });
 
@@ -581,6 +585,10 @@ Object.assign(window.resultScenarioPacks.en, {
   structuralEquationModeling: {
     psychology: "Latent distress and latent emotion regulation are measured with several questionnaire items and modelled to predict wellbeing.",
     sport: "Latent recovery and latent readiness are modelled with several indicators to predict competition performance."
+  },
+  discriminantAnalysis: {
+    psychology: "Treatment outcome is classified as a nominal group from anxiety scores, motivation, and reaction time.",
+    sport: "Athletes are classified into performance profiles from sprint time, jump height, and mobility."
   }
 });
 
@@ -592,6 +600,10 @@ Object.assign(window.resultScenarioPacks.fr, {
   structuralEquationModeling: {
     psychology: "La détresse latente et la régulation émotionnelle latente sont mesurées par plusieurs items et modélisées pour prédire le bien-être.",
     sport: "La récupération latente et la disponibilité latente sont modélisées avec plusieurs indicateurs pour prédire la performance en compétition."
+  },
+  discriminantAnalysis: {
+    psychology: "L'issue thérapeutique est classée comme groupe nominal à partir des scores d'anxiété, de la motivation et du temps de réaction.",
+    sport: "Les athlètes sont classés en profils de performance à partir du temps de sprint, de la hauteur de saut et de la mobilité."
   }
 });
 
@@ -603,6 +615,10 @@ Object.assign(window.resultScenarioPacks.es, {
   structuralEquationModeling: {
     psychology: "Malestar latente y regulación emocional latente se miden con varios ítems y se modelan para predecir bienestar.",
     sport: "Recuperación latente y disposición latente se modelan con varios indicadores para predecir rendimiento competitivo."
+  },
+  discriminantAnalysis: {
+    psychology: "El resultado terapéutico se clasifica como grupo nominal a partir de ansiedad, motivación y tiempo de reacción.",
+    sport: "Los deportistas se clasifican en perfiles de rendimiento a partir de tiempo de sprint, altura de salto y movilidad."
   }
 });
 
@@ -614,5 +630,9 @@ Object.assign(window.resultScenarioPacks.it, {
   structuralEquationModeling: {
     psychology: "Disagio latente e regolazione emotiva latente vengono misurati con più item e modellati per predire il benessere.",
     sport: "Recupero latente e prontezza latente vengono modellati con più indicatori per predire la prestazione in gara."
+  },
+  discriminantAnalysis: {
+    psychology: "L'esito terapeutico viene classificato come gruppo nominale a partire da ansia, motivazione e tempo di reazione.",
+    sport: "Atlete e atleti vengono classificati in profili di prestazione a partire da tempo di sprint, altezza del salto e mobilità."
   }
 });
