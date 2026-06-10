@@ -506,3 +506,58 @@ Object.assign(window.resultScenarioPacks.it, {
     sport: "Due gruppi di allenamento vengono confrontati per verificare se la varianza dell'altezza di salto differisce."
   }
 });
+
+Object.assign(window.resultScenarioPacks.de, {
+  kendall: {
+    psychology: "In einer kleinen Stichprobe wird geprüft, ob Therapieadhärenz-Rangplätze mit Wohlbefinden-Rangplätzen zusammenhängen.",
+    sport: "Trainer prüfen, ob Rangplätze in Technikbewertung und Wettkampfleistung bei wenigen Athletinnen und Athleten übereinstimmen."
+  },
+  logLinearModel: {
+    psychology: "Therapieform, Geschlecht und Behandlungserfolg werden als nominale Kategorien in einer mehrwegigen Häufigkeitstabelle analysiert.",
+    sport: "Sportart, Spielposition und Verletzungsstatus werden gemeinsam betrachtet, um Interaktionen zwischen nominalen Kategorien zu prüfen."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.en, {
+  kendall: {
+    psychology: "A small study tests whether rank orders of therapy adherence are associated with rank orders of wellbeing.",
+    sport: "Coaches test whether ranks in technique ratings and competition performance agree in a small athlete sample."
+  },
+  logLinearModel: {
+    psychology: "Therapy format, gender, and treatment outcome are analysed as nominal categories in a multiway frequency table.",
+    sport: "Sport type, playing position, and injury status are examined together to test interactions among nominal categories."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.fr, {
+  kendall: {
+    psychology: "Une petite étude teste si les rangs d'adhésion thérapeutique sont associés aux rangs de bien-être.",
+    sport: "Des entraîneurs testent si les rangs d'évaluation technique et de performance en compétition concordent dans un petit échantillon d'athlètes."
+  },
+  logLinearModel: {
+    psychology: "Le format de thérapie, le genre et l'issue du traitement sont analysés comme catégories nominales dans un tableau de fréquences à plusieurs entrées.",
+    sport: "Le type de sport, le poste et le statut de blessure sont examinés ensemble pour tester les interactions entre catégories nominales."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.es, {
+  kendall: {
+    psychology: "Un estudio pequeño prueba si los rangos de adherencia terapéutica se asocian con los rangos de bienestar.",
+    sport: "El cuerpo técnico prueba si los rangos de evaluación técnica y rendimiento competitivo concuerdan en una muestra pequeña de deportistas."
+  },
+  logLinearModel: {
+    psychology: "Formato de terapia, género y resultado del tratamiento se analizan como categorías nominales en una tabla de frecuencias multidimensional.",
+    sport: "Tipo de deporte, posición de juego y estado de lesión se examinan conjuntamente para probar interacciones entre categorías nominales."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.it, {
+  kendall: {
+    psychology: "Un piccolo studio verifica se i ranghi di aderenza terapeutica sono associati ai ranghi di benessere.",
+    sport: "Lo staff tecnico verifica se i ranghi nelle valutazioni tecniche e nella prestazione competitiva concordano in un piccolo campione di atleti."
+  },
+  logLinearModel: {
+    psychology: "Formato della terapia, genere ed esito del trattamento vengono analizzati come categorie nominali in una tabella di frequenze multidimensionale.",
+    sport: "Tipo di sport, ruolo di gioco e stato di infortunio vengono esaminati insieme per testare interazioni tra categorie nominali."
+  }
+});

@@ -1,0 +1,13 @@
+therapy,outcome,gender,count
+cbt,improved,woman,28
+cbt,unchanged,woman,12
+cbt,improved,man,22
+cbt,unchanged,man,18
+mindfulness,improved,woman,24
+mindfulness,unchanged,woman,16
+mindfulness,improved,man,20
+mindfulness,unchanged,man,20
+control,improved,woman,14
+control,unchanged,woman,26
+control,improved,man,12
+control,unchanged,man,28

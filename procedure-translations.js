@@ -6,8 +6,14 @@ window.localizedProcedurePacks = {
     spearman: {
       jamovi: "Analysen > Regression > Korrelationsmatrix\nVerschieben Sie die Variablen in Variablen.\nWählen Sie Spearman für ordinale oder monotone Zusammenhänge."
     },
+    kendall: {
+      jamovi: "Analysen > Regression > Korrelationsmatrix\nVerschieben Sie die Variablen in Variablen.\nWählen Sie Kendall's Tau für ordinale oder monotone Zusammenhänge, besonders bei kleinen Stichproben oder vielen Bindungen."
+    },
     chiSquareAssociation: {
       jamovi: "Analysen > Häufigkeiten > Kontingenztabellen > Unabhängige Stichproben\nLegen Sie eine kategoriale Variable in Zeilen und die andere in Spalten.\nAktivieren Sie den Chi-Quadrat-Test und erwartete Häufigkeiten."
+    },
+    logLinearModel: {
+      jamovi: "Jamovi bietet nur begrenzte direkte Unterstützung für vollständige log-lineare Modelle.\nNutzen Sie Häufigkeiten > Kontingenztabellen, um mehrwegige nominale Tabellen zu prüfen, und führen Sie das log-lineare Modell anschließend in R aus.\nVergleichen Sie Modelle mit und ohne Interaktionsterme."
     },
     oneSampleT: {
       jamovi: "Analysen > T-Tests > Einstichproben-t-Test\nVerschieben Sie die metrische Variable in Abhängige Variablen.\nGeben Sie den Testwert ein und aktivieren Sie Deskriptivstatistiken sowie Normalitätsprüfungen."
@@ -49,7 +55,7 @@ window.localizedProcedurePacks = {
       jamovi: "Analysen > Häufigkeiten > Einstichproben-Anteiltests\nWählen Sie die kategoriale Variable aus.\nGeben Sie erwartete Anteile ein oder vergleichen Sie gegen gleiche Anteile."
     },
     linearRegression: {
-      jamovi: "Analysen > Regression > Lineare Regression\nLegen Sie die metrische Zielvariable in Abhängige Variable.\nFügen Sie Prädiktoren zu Kovariaten oder Faktoren hinzu und prüfen Sie die Residualdiagnostik."
+      jamovi: "Analysen > Regression > Lineare Regression\nLegen Sie die metrische Zielvariable in Abhängige Variable.\nFügen Sie Prädiktoren zu Kovariaten oder Faktoren hinzu und prüfen Sie die Residualdiagnostik.\nInterpretieren Sie Koeffizienten als Vorhersage/Zusammenhang, sofern das Studiendesign keine kausale Inferenz erlaubt."
     },
     logisticRegression: {
       jamovi: "Analysen > Regression > Logistische Regression > 2 Ausprägungen\nLegen Sie die dichotome Zielvariable in Abhängige Variable.\nFügen Sie Prädiktoren zu Kovariaten oder Faktoren hinzu und prüfen Sie die Odds Ratios."
@@ -80,8 +86,14 @@ window.localizedProcedurePacks = {
     spearman: {
       jamovi: "Analyses > Régression > Matrice de corrélation\nPlacez les variables dans Variables.\nSélectionnez Spearman pour des variables ordinales ou des relations monotones."
     },
+    kendall: {
+      jamovi: "Analyses > Régression > Matrice de corrélation\nPlacez les variables dans Variables.\nSélectionnez le tau de Kendall pour des variables ordinales ou des relations monotones, surtout avec de petits échantillons ou de nombreux ex aequo."
+    },
     chiSquareAssociation: {
       jamovi: "Analyses > Fréquences > Tableaux de contingence > Échantillons indépendants\nPlacez une variable catégorielle dans Lignes et l'autre dans Colonnes.\nActivez le test du khi carré et les effectifs attendus."
+    },
+    logLinearModel: {
+      jamovi: "Jamovi offre une prise en charge directe limitée des modèles log-linéaires complets.\nUtilisez Fréquences > Tableaux de contingence pour inspecter les tableaux nominaux à plusieurs entrées, puis exécutez le modèle log-linéaire dans R.\nComparez les modèles avec et sans termes d'interaction."
     },
     oneSampleT: {
       jamovi: "Analyses > Tests t > Test t à un échantillon\nPlacez la variable métrique dans Variables dépendantes.\nSaisissez la valeur de test et activez les descriptifs ainsi que les contrôles de normalité."
@@ -123,7 +135,7 @@ window.localizedProcedurePacks = {
       jamovi: "Analyses > Fréquences > Tests de proportion à un échantillon\nSélectionnez la variable catégorielle.\nSaisissez les proportions attendues ou comparez à des proportions égales."
     },
     linearRegression: {
-      jamovi: "Analyses > Régression > Régression linéaire\nPlacez la variable cible métrique dans Variable dépendante.\nAjoutez les prédicteurs dans Covariables ou Facteurs et examinez le diagnostic des résidus."
+      jamovi: "Analyses > Régression > Régression linéaire\nPlacez la variable cible métrique dans Variable dépendante.\nAjoutez les prédicteurs dans Covariables ou Facteurs et examinez le diagnostic des résidus.\nInterprétez les coefficients comme prédiction/association sauf si le plan d'étude permet une inférence causale."
     },
     logisticRegression: {
       jamovi: "Analyses > Régression > Régression logistique > 2 modalités\nPlacez la variable cible dichotomique dans Variable dépendante.\nAjoutez les prédicteurs dans Covariables ou Facteurs et examinez les odds ratios."
@@ -154,8 +166,14 @@ window.localizedProcedurePacks = {
     spearman: {
       jamovi: "Análisis > Regresión > Matriz de correlaciones\nMueva las variables a Variables.\nSeleccione Spearman para variables ordinales o relaciones monótonas."
     },
+    kendall: {
+      jamovi: "Análisis > Regresión > Matriz de correlaciones\nMueva las variables a Variables.\nSeleccione tau de Kendall para variables ordinales o relaciones monótonas, especialmente con muestras pequeñas o muchos empates."
+    },
     chiSquareAssociation: {
       jamovi: "Análisis > Frecuencias > Tablas de contingencia > Muestras independientes\nColoque una variable categórica en Filas y la otra en Columnas.\nActive la prueba chi-cuadrado y las frecuencias esperadas."
+    },
+    logLinearModel: {
+      jamovi: "Jamovi tiene soporte directo limitado para modelos log-lineales completos.\nUse Frecuencias > Tablas de contingencia para inspeccionar tablas nominales multidimensionales, y después ejecute el modelo log-lineal en R.\nCompare modelos con y sin términos de interacción."
     },
     oneSampleT: {
       jamovi: "Análisis > Pruebas t > Prueba t para una muestra\nMueva la variable métrica a Variables dependientes.\nIntroduzca el valor de prueba y active descriptivos y comprobaciones de normalidad."
@@ -197,7 +215,7 @@ window.localizedProcedurePacks = {
       jamovi: "Análisis > Frecuencias > Pruebas de proporción para una muestra\nSeleccione la variable categórica.\nIntroduzca proporciones esperadas o compare con proporciones iguales."
     },
     linearRegression: {
-      jamovi: "Análisis > Regresión > Regresión lineal\nColoque la variable objetivo métrica en Variable dependiente.\nAñada predictores a Covariables o Factores e inspeccione los diagnósticos de residuos."
+      jamovi: "Análisis > Regresión > Regresión lineal\nColoque la variable objetivo métrica en Variable dependiente.\nAñada predictores a Covariables o Factores e inspeccione los diagnósticos de residuos.\nInterprete los coeficientes como predicción/asociación salvo que el diseño del estudio permita inferencia causal."
     },
     logisticRegression: {
       jamovi: "Análisis > Regresión > Regresión logística > 2 resultados\nColoque la variable objetivo dicotómica en Variable dependiente.\nAñada predictores a Covariables o Factores e inspeccione los odds ratios."
@@ -230,8 +248,14 @@ window.localizedProcedurePacks.it = {
   spearman: {
     jamovi: "Analisi > Regressione > Matrice di correlazione\nSposta le variabili in Variabili.\nSeleziona Spearman per variabili ordinali o relazioni monotone."
   },
+  kendall: {
+    jamovi: "Analisi > Regressione > Matrice di correlazione\nSposta le variabili in Variabili.\nSeleziona il tau di Kendall per variabili ordinali o relazioni monotone, specialmente con campioni piccoli o molti pareggi."
+  },
   chiSquareAssociation: {
     jamovi: "Analisi > Frequenze > Tabelle di contingenza > Campioni indipendenti\nInserisci una variabile categoriale in Righe e l'altra in Colonne.\nAttiva il test chi-quadrato e le frequenze attese."
+  },
+  logLinearModel: {
+    jamovi: "Jamovi offre un supporto diretto limitato per modelli log-lineari completi.\nUsa Frequenze > Tabelle di contingenza per ispezionare tabelle nominali multidimensionali, poi esegui il modello log-lineare in R.\nConfronta modelli con e senza termini di interazione."
   },
   oneSampleT: {
     jamovi: "Analisi > Test t > Test t a un campione\nSposta la variabile metrica in Variabili dipendenti.\nInserisci il valore di test e attiva descrittive e controlli di normalità."
@@ -273,7 +297,7 @@ window.localizedProcedurePacks.it = {
     jamovi: "Analisi > Frequenze > Test di proporzione a un campione\nSeleziona la variabile categoriale.\nInserisci le proporzioni attese o confronta con proporzioni uguali."
   },
   linearRegression: {
-    jamovi: "Analisi > Regressione > Regressione lineare\nInserisci l'esito metrico in Variabile dipendente.\nAggiungi i predittori in Covariate o Fattori e controlla la diagnostica dei residui."
+    jamovi: "Analisi > Regressione > Regressione lineare\nInserisci l'esito metrico in Variabile dipendente.\nAggiungi i predittori in Covariate o Fattori e controlla la diagnostica dei residui.\nInterpreta i coefficienti come predizione/associazione salvo che il disegno dello studio supporti inferenza causale."
   },
   logisticRegression: {
     jamovi: "Analisi > Regressione > Regressione logistica > 2 esiti\nInserisci l'esito dicotomico in Variabile dipendente.\nAggiungi i predittori in Covariate o Fattori e controlla gli odds ratio."

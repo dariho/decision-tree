@@ -6,7 +6,9 @@ Each CSV matches one result id in the decision tree. Use these files to create J
 | --- | --- | --- |
 | `pearson` | `pearson.csv` | Correlate `x` and `y` with Pearson. |
 | `spearman` | `spearman.csv` | Correlate `stress_rank` and `wellbeing_rank` with Spearman. |
+| `kendall` | `kendall.csv` | Correlate `adherence_rank` and `wellbeing_rank` with Kendall's tau. |
 | `chiSquareAssociation` | `chiSquareAssociation.csv` | Contingency table: `group` by `outcome`. |
+| `logLinearModel` | `logLinearModel.csv` | Multiway nominal table using `therapy`, `outcome`, `gender`, and frequency `count`. |
 | `oneSampleT` | `oneSampleT.csv` | Test `score` against a reference value, e.g. `50`. |
 | `oneSampleWilcoxon` | `oneSampleWilcoxon.csv` | Test `rating` against a reference value, e.g. `3`. |
 | `independentT` | `independentT.csv` | Dependent variable `score`, grouping variable `group`. |

@@ -34,13 +34,14 @@ const tree = {
   },
   associationScale: {
     area: "Skalenniveau",
-    question: "Wie sind die beiden Variablen skaliert?",
-    hint: "Für Korrelationen ist besonders wichtig, ob die Variablen metrisch oder ordinal/kategorial sind.",
+    question: "Wie sind die Variablen skaliert?",
+    hint: "Für Zusammenhänge ist besonders wichtig, ob die Variablen metrisch, ordinal oder nominal/kategorial sind.",
     step: "Skalenniveau",
     answers: [
       { label: "Beide Variablen metrisch", next: "normalAssociation" },
-      { label: "Mindestens eine Variable ordinal", result: "spearman" },
-      { label: "Beide Variablen kategorial", result: "chiSquareAssociation" }
+      { label: "Mindestens eine Variable ordinal", next: "rankCorrelationChoice" },
+      { label: "Zwei kategoriale Variablen", result: "chiSquareAssociation" },
+      { label: "Alle Variablen sind nominal (mehrwegige Tabelle)", result: "logLinearModel" }
     ]
   },
   normalAssociation: {
@@ -50,7 +51,17 @@ const tree = {
     step: "Annahmen",
     answers: [
       { label: "Ja, lineare Beziehung ist plausibel", result: "pearson" },
-      { label: "Nein oder unsicher", result: "spearman" }
+      { label: "Nein oder unsicher", next: "rankCorrelationChoice" }
+    ]
+  },
+  rankCorrelationChoice: {
+    area: "Rangkorrelation",
+    question: "Welche Rangkorrelation möchten Sie berichten?",
+    hint: "Spearman ist verbreitet und gut interpretierbar. Kendall's Tau ist oft stabiler bei kleinen Stichproben oder vielen Bindungen.",
+    step: "Testwahl",
+    answers: [
+      { label: "Spearman-Rangkorrelation", result: "spearman" },
+      { label: "Kendall's Rangkorrelation", result: "kendall" }
     ]
   },
   comparisonOutcome: {
@@ -195,10 +206,20 @@ const results = {
     summary: "Robuste Wahl für ordinale Variablen oder monotone Zusammenhänge ohne strenge Linearitätsannahme.",
     assumptions: ["Mindestens ordinales Skalenniveau", "Monotone Beziehung", "Unabhängige Beobachtungen"]
   },
+  kendall: {
+    title: "Kendall's Rangkorrelation",
+    summary: "Rangbasierte Korrelation für ordinale Variablen oder monotone Zusammenhänge, besonders hilfreich bei kleinen Stichproben oder vielen Bindungen.",
+    assumptions: ["Mindestens ordinales Skalenniveau", "Monotone Beziehung", "Unabhängige Beobachtungen", "Geeignet bei Bindungen oder kleineren Stichproben"]
+  },
   chiSquareAssociation: {
     title: "Chi-Quadrat-Test auf Unabhängigkeit",
     summary: "Prüft, ob zwei kategoriale Variablen statistisch voneinander abhängig sind.",
     assumptions: ["Kategoriale Variablen", "Unabhängige Beobachtungen", "Ausreichend erwartete Zellhäufigkeiten"]
+  },
+  logLinearModel: {
+    title: "Log-lineares Modell",
+    summary: "Modelliert Zusammenhänge und Interaktionen zwischen mehreren nominalen Variablen in einer Kontingenztabelle.",
+    assumptions: ["Mehrere nominale Variablen", "Häufigkeitsdaten in einer Kontingenztabelle", "Unabhängige Beobachtungen", "Ausreichende erwartete Zellhäufigkeiten"]
   },
   oneSampleT: {
     title: "Einstichproben-t-Test",
@@ -267,8 +288,8 @@ const results = {
   },
   linearRegression: {
     title: "Lineare Regression",
-    summary: "Modelliert eine metrische Zielvariable mithilfe eines oder mehrerer Prädiktoren.",
-    assumptions: ["Metrische Zielvariable", "Lineare Zusammenhänge", "Unabhängige Residuen", "Homoskedastizität und Residualdiagnostik"]
+    summary: "Modelliert eine metrische Zielvariable mithilfe eines oder mehrerer Prädiktoren; das Modell liefert ohne geeignetes Design keine Evidenz für Kausalität.",
+    assumptions: ["Metrische Zielvariable", "Lineare Zusammenhänge", "Unabhängige Residuen", "Homoskedastizität und Residualdiagnostik", "Vorhersage oder Zusammenhang, nicht automatisch Kausalität"]
   },
   logisticRegression: {
     title: "Binäre logistische Regression",
@@ -489,13 +510,14 @@ const languagePacks = {
       },
       associationScale: {
         area: "Scale level",
-        question: "How are the two variables measured?",
-        hint: "For correlations, it matters especially whether variables are metric, ordinal, or categorical.",
+        question: "How are the variables measured?",
+        hint: "For associations, it matters whether variables are metric, ordinal, or nominal/categorical.",
         step: "Scale level",
         answers: [
           { label: "Both variables are metric", next: "normalAssociation" },
-          { label: "At least one variable is ordinal", result: "spearman" },
-          { label: "Both variables are categorical", result: "chiSquareAssociation" }
+          { label: "At least one variable is ordinal", next: "rankCorrelationChoice" },
+          { label: "Two categorical variables", result: "chiSquareAssociation" },
+          { label: "All variables are nominal (multiway table)", result: "logLinearModel" }
         ]
       },
       normalAssociation: {
@@ -505,7 +527,17 @@ const languagePacks = {
         step: "Assumptions",
         answers: [
           { label: "Yes, a linear relationship is plausible", result: "pearson" },
-          { label: "No or unsure", result: "spearman" }
+          { label: "No or unsure", next: "rankCorrelationChoice" }
+        ]
+      },
+      rankCorrelationChoice: {
+        area: "Rank correlation",
+        question: "Which rank correlation do you want to report?",
+        hint: "Spearman is common and easy to interpret. Kendall's tau is often more stable with small samples or many ties.",
+        step: "Test choice",
+        answers: [
+          { label: "Spearman rank correlation", result: "spearman" },
+          { label: "Kendall's rank correlation", result: "kendall" }
         ]
       },
       comparisonOutcome: {
@@ -641,7 +673,9 @@ const languagePacks = {
     results: {
       pearson: { title: "Pearson correlation", summary: "Suitable when two metric variables are tested for a linear relationship.", assumptions: ["Metric variables", "Linear relationship", "No dominant outliers", "For inference: approximate bivariate normality"] },
       spearman: { title: "Spearman rank correlation", summary: "A robust choice for ordinal variables or monotonic relationships without strict linearity.", assumptions: ["At least ordinal scale level", "Monotonic relationship", "Independent observations"] },
+      kendall: { title: "Kendall's rank correlation", summary: "Rank-based correlation for ordinal variables or monotonic relationships, especially useful with small samples or many ties.", assumptions: ["At least ordinal scale level", "Monotonic relationship", "Independent observations", "Useful with ties or smaller samples"] },
       chiSquareAssociation: { title: "Chi-square test of independence", summary: "Tests whether two categorical variables are statistically associated.", assumptions: ["Categorical variables", "Independent observations", "Sufficient expected cell counts"] },
+      logLinearModel: { title: "Log-linear model", summary: "Models associations and interactions among several nominal variables in a contingency table.", assumptions: ["Several nominal variables", "Frequency data in a contingency table", "Independent observations", "Sufficient expected cell counts"] },
       oneSampleT: { title: "One-sample t-test", summary: "Compares the mean of one metric sample with a specified reference value.", assumptions: ["Metric variable", "Independent observations", "Approximate normal distribution"] },
       oneSampleWilcoxon: { title: "One-sample Wilcoxon signed-rank test", summary: "Nonparametric alternative when a median or rank pattern is tested against a reference value.", assumptions: ["At least ordinal data", "Symmetric differences helpful", "Independent observations"] },
       independentT: { title: "Independent-samples t-test", summary: "Compares the means of two independent groups with a metric outcome.", assumptions: ["Two independent groups", "Metric outcome variable", "Approximate normality", "Equal variances or Welch correction"] },
@@ -655,7 +689,7 @@ const languagePacks = {
       fisher: { title: "Fisher's exact test", summary: "Tests associations in small 2x2 tables when chi-square assumptions are not met.", assumptions: ["Dichotomous categorical variables", "Independent observations", "Small expected counts"] },
       mcnemar: { title: "McNemar test", summary: "Compares two paired dichotomous measurements, such as pre-post categories.", assumptions: ["Two paired dichotomous measurements", "Paired data", "Discordant pairs are relevant"] },
       chiSquareGoodness: { title: "Chi-square goodness-of-fit test", summary: "Tests whether observed frequencies match an expected categorical distribution.", assumptions: ["One categorical variable", "Expected frequencies defined", "Independent observations"] },
-      linearRegression: { title: "Linear regression", summary: "Models a metric outcome variable using one or more predictors.", assumptions: ["Metric outcome variable", "Linear relationships", "Independent residuals", "Homoscedasticity and residual diagnostics"] },
+      linearRegression: { title: "Linear regression", summary: "Models a metric outcome variable using one or more predictors; without a suitable design, it does not provide evidence of causality.", assumptions: ["Metric outcome variable", "Linear relationships", "Independent residuals", "Homoscedasticity and residual diagnostics", "Prediction or association, not causality by itself"] },
       logisticRegression: { title: "Binary logistic regression", summary: "Models the probability of a dichotomous outcome variable.", assumptions: ["Dichotomous outcome variable", "Independent observations", "No strong multicollinearity", "Sufficient number of events"] },
       multinomialRegression: { title: "Multinomial logistic regression", summary: "Models a categorical outcome variable with more than two categories.", assumptions: ["Multicategory categorical outcome", "Independent observations", "Meaningful reference category"] },
       factorAnalysis: { title: "Factor analysis", summary: "Exploratory procedure for reducing several correlated variables to a smaller set of latent factors or dimensions.", assumptions: ["Several metric or approximately metric variables", "Meaningful correlations among variables", "Adequate sample size", "Interpretable factor structure"] },
@@ -680,9 +714,17 @@ const procedureCatalog = {
     jamovi: "Analyses > Regression > Correlation Matrix\nMove the variables into Variables.\nSelect Spearman for ordinal or monotonic relationships.",
     r: "cor.test(data$x, data$y, method = \"spearman\", exact = FALSE)"
   },
+  kendall: {
+    jamovi: "Analyses > Regression > Correlation Matrix\nMove the variables into Variables.\nSelect Kendall's tau for ordinal or monotonic relationships, especially with small samples or ties.",
+    r: "cor.test(data$x, data$y, method = \"kendall\", exact = FALSE)"
+  },
   chiSquareAssociation: {
     jamovi: "Analyses > Frequencies > Contingency Tables > Independent Samples\nPut one categorical variable in Rows and the other in Columns.\nEnable Chi-square test and expected counts.",
     r: "tab <- table(data$group, data$outcome)\nchisq.test(tab)"
+  },
+  logLinearModel: {
+    jamovi: "Jamovi has limited direct support for full log-linear modelling.\nUse Frequencies > Contingency Tables to inspect multiway nominal tables, then run the log-linear model in R.\nCompare models with and without interaction terms to understand which associations are needed.",
+    r: "tab <- xtabs(count ~ therapy + outcome + gender, data = data)\nfit <- MASS::loglm(~ therapy * outcome + gender, data = tab)\nsummary(fit)"
   },
   oneSampleT: {
     jamovi: "Analyses > T-Tests > One Sample T-Test\nMove the metric variable into Dependent Variables.\nEnter the test value and enable descriptives/normality checks.",
@@ -737,7 +779,7 @@ const procedureCatalog = {
     r: "observed <- c(20, 30, 50)\nexpected <- c(1/3, 1/3, 1/3)\nchisq.test(observed, p = expected)"
   },
   linearRegression: {
-    jamovi: "Analyses > Regression > Linear Regression\nPut the metric target in Dependent Variable.\nAdd predictors to Covariates or Factors and inspect residual diagnostics.",
+    jamovi: "Analyses > Regression > Linear Regression\nPut the metric target in Dependent Variable.\nAdd predictors to Covariates or Factors and inspect residual diagnostics.\nInterpret coefficients as prediction/association unless the study design supports causal inference.",
     r: "fit <- lm(y ~ x1 + x2, data = data)\nsummary(fit)\nplot(fit)"
   },
   logisticRegression: {
@@ -1071,7 +1113,7 @@ function resetTree() {
 
 function getStageForNode(nodeId) {
   const scaleNodes = ["associationScale", "comparisonOutcome", "predictionOutcome"];
-  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "varianceComparison", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "normalAssociation"];
+  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "varianceComparison", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "normalAssociation", "rankCorrelationChoice"];
   if (nodeId === "goal" || nodeId === "researchGoal" || nodeId === "discoveryStructure") return "goal";
   if (scaleNodes.includes(nodeId)) return "scale";
   if (groupNodes.includes(nodeId)) return "groups";
