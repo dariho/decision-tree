@@ -1,19 +1,20 @@
 :root {
-  color-scheme: light;
-  --bg: #f3f5f4;
-  --surface: #ffffff;
-  --surface-soft: #f6f8f7;
-  --ink: #1b2628;
-  --muted: #647174;
-  --line: #dce3e1;
-  --line-strong: #aebbb8;
-  --teal: #0a6b63;
-  --teal-strong: #064f49;
-  --teal-soft: #e7f0ee;
-  --amber: #b9822f;
-  --amber-soft: #fbf1df;
-  --red: #b94235;
-  --shadow: 0 10px 24px rgba(25, 44, 44, 0.08);
+  color-scheme: dark;
+  --bg: #0d1213;
+  --surface: #151b1d;
+  --surface-soft: #1d2527;
+  --surface-raised: #20292b;
+  --ink: #eef7f5;
+  --muted: #a0b0b0;
+  --line: #2b3638;
+  --line-strong: #455355;
+  --teal: #49c4b6;
+  --teal-strong: #85ddd4;
+  --teal-soft: #143935;
+  --amber: #dca350;
+  --amber-soft: #32291b;
+  --red: #dc6e62;
+  --shadow: 0 18px 44px rgba(0, 0, 0, 0.32);
   --radius: 6px;
   --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -36,6 +37,9 @@ body {
   width: 100%;
   max-width: 100%;
   margin: 0;
+  background:
+    radial-gradient(circle at 18% -18%, rgba(73, 196, 182, 0.12), transparent 36%),
+    linear-gradient(180deg, #101718 0%, var(--bg) 42%, #090d0e 100%);
   color: var(--ink);
   font-family: var(--font);
   letter-spacing: 0;
@@ -62,9 +66,9 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  background: rgba(250, 252, 251, 0.96);
+  background: rgba(15, 21, 22, 0.94);
   border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(14px);
   position: sticky;
   top: 0;
   z-index: 5;
@@ -108,7 +112,7 @@ button {
   place-items: center;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius);
-  background: var(--surface);
+  background: linear-gradient(180deg, #202a2c, var(--surface));
   position: relative;
 }
 
@@ -145,7 +149,7 @@ button {
 
 .authors-badge {
   max-width: 210px;
-  color: #6e797a;
+  color: #8fa2a1;
   font-size: 11px;
   font-weight: 680;
   line-height: 1.25;
@@ -218,7 +222,7 @@ button {
 .text-button.primary {
   background: var(--teal);
   border-color: var(--teal);
-  color: #ffffff;
+  color: #071111;
 }
 
 .icon-button:hover,
@@ -230,7 +234,7 @@ button {
 
 .icon-button:disabled,
 .text-button:disabled {
-  color: #99a8a8;
+  color: #5b686a;
   cursor: not-allowed;
   transform: none;
 }
@@ -255,7 +259,7 @@ button {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: none;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03), var(--shadow);
 }
 
 .history-panel,
@@ -404,8 +408,8 @@ button {
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: #e9eeee;
-  color: #5f6e70;
+  background: #273234;
+  color: #91a3a3;
   font-size: 11px;
   font-weight: 820;
 }
@@ -427,12 +431,12 @@ button {
 .lab-path-step.active {
   border-left-color: var(--teal);
   color: var(--teal-strong);
-  background: linear-gradient(90deg, rgba(10, 107, 99, 0.08), transparent);
+  background: linear-gradient(90deg, rgba(73, 196, 182, 0.12), transparent);
 }
 
 .lab-path-step.active span {
   background: var(--teal);
-  color: #ffffff;
+  color: #071111;
 }
 
 .lab-path-step.complete span {
@@ -461,7 +465,7 @@ button {
 .progress-track {
   height: 4px;
   border-radius: 0;
-  background: #dfe8e6;
+  background: #253033;
   overflow: hidden;
 }
 
@@ -495,7 +499,7 @@ button {
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 14px;
-  color: #334245;
+  color: #d5e3e1;
   font-size: 11px;
   font-weight: 820;
   text-transform: uppercase;
@@ -507,10 +511,10 @@ button {
   align-items: center;
   gap: 6px;
   padding: 5px 9px;
-  border: 1px solid #ead6b3;
+  border: 1px solid rgba(220, 163, 80, 0.46);
   border-radius: 5px;
-  background: #fffaf0;
-  color: #8b5f1e;
+  background: var(--amber-soft);
+  color: #f4c981;
   text-transform: none;
   letter-spacing: 0;
   font-size: 12px;
@@ -586,7 +590,7 @@ button {
   padding: 16px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: #ffffff;
+  background: var(--surface-raised);
   position: relative;
   z-index: 1;
 }
@@ -646,7 +650,7 @@ button {
   padding: 12px 12px 12px 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--surface);
+  background: var(--surface-raised);
   color: var(--ink);
   text-align: left;
   cursor: pointer;
@@ -669,8 +673,8 @@ button {
 }
 
 .answer-button.branch-result {
-  border-color: #ead6b3;
-  background: #fffaf0;
+  border-color: rgba(220, 163, 80, 0.52);
+  background: var(--amber-soft);
 }
 
 .answer-button.branch-result::before {
@@ -678,12 +682,12 @@ button {
 }
 
 .answer-button.branch-result .branch-type {
-  color: #9a6414;
+  color: #f0bd72;
 }
 
 .answer-button.branch-result .branch-arrow {
   background: var(--amber-soft);
-  color: #a96e16;
+  color: #f2c578;
 }
 
 .branch-label {
@@ -743,7 +747,7 @@ button {
 
 .result-marker {
   background: var(--amber-soft);
-  border-color: #edcf98;
+  border-color: rgba(220, 163, 80, 0.58);
 }
 
 .result-marker span {
@@ -754,7 +758,7 @@ button {
 .answer-button:hover,
 .answer-button:focus-visible {
   border-color: var(--teal);
-  background: #fbfdfd;
+  background: #243033;
   box-shadow: none;
   outline: none;
   transform: none;
@@ -773,7 +777,7 @@ button {
 .note-box {
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: #fbfdfd;
+  background: var(--surface-soft);
   padding: 14px;
 }
 
@@ -807,13 +811,13 @@ button {
 .preview-screenshot > div {
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: #fbfdfd;
+  background: var(--surface-soft);
   padding: 12px;
 }
 
 .preview-grid h2 {
   margin: 0 0 9px;
-  color: #334245;
+  color: #d5e3e1;
   font-size: 11px;
   line-height: 1.25;
 }
@@ -839,7 +843,7 @@ button {
   padding: 6px 10px;
   border: 1px solid var(--line);
   border-radius: 5px;
-  background: #ffffff;
+  background: var(--surface-raised);
   color: var(--muted);
   font-size: 11px;
   font-weight: 760;
@@ -860,7 +864,7 @@ button {
 }
 
 .preview-screenshot span {
-  color: #aab6b8;
+  color: #657477;
   font-size: 32px;
   line-height: 1;
 }
@@ -910,7 +914,7 @@ button {
   padding: 10px 12px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: #ffffff;
+  background: var(--surface-raised);
 }
 
 .apa-item h3 {
@@ -973,7 +977,7 @@ button {
   padding: 12px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: #f8faf9;
+  background: #111719;
   color: var(--muted);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   font-size: 12px;
@@ -1019,7 +1023,7 @@ button {
   padding: 8px 10px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--surface);
+  background: var(--surface-raised);
   color: var(--ink);
   cursor: pointer;
   text-align: left;
@@ -1052,12 +1056,12 @@ button {
 
 .matrix-cell.active span:first-child {
   background: var(--teal);
-  color: #ffffff;
+  color: #071111;
 }
 
 .note-box {
-  background: #fffaf0;
-  border-color: #ead6b3;
+  background: var(--amber-soft);
+  border-color: rgba(220, 163, 80, 0.46);
 }
 
 .note-box p {
@@ -1069,12 +1073,12 @@ button {
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: #fbfdfd;
+  background: var(--surface-soft);
 }
 
 .abbreviations-box h3 {
   margin: 0 0 12px;
-  color: #334245;
+  color: #d5e3e1;
   font-size: 11px;
   line-height: 1.25;
   text-transform: uppercase;
@@ -1124,12 +1128,13 @@ button {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 24px;
+  background: var(--surface);
   color: var(--ink);
   box-shadow: var(--shadow);
 }
 
 .help-dialog::backdrop {
-  background: rgba(15, 36, 36, 0.28);
+  background: rgba(3, 8, 9, 0.68);
   backdrop-filter: blur(4px);
 }
 
@@ -1171,8 +1176,8 @@ button {
   transform: translateX(-50%) translateY(16px);
   padding: 10px 14px;
   border-radius: var(--radius);
-  background: var(--ink);
-  color: #ffffff;
+  background: var(--teal);
+  color: #071111;
   font-size: 12px;
   font-weight: 720;
   opacity: 0;
