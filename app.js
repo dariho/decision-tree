@@ -85,7 +85,19 @@ const tree = {
       { label: "Metrische abhängige Variable", next: "metricGroups" },
       { label: "Ordinale abhängige Variable", next: "ordinalGroups" },
       { label: "Kategoriale abhängige Variable", next: "categoricalDesign" },
+      { label: "Wiederholte oder geclusterte Beobachtungen", next: "mixedModelOutcome" },
       { label: "Varianzen vergleichen", next: "varianceComparison" }
+    ]
+  },
+  mixedModelOutcome: {
+    area: "Mehrebenen-/Mixed-Design",
+    question: "Welches Skalenniveau hat die abhängige Variable im Mixed Model?",
+    hint: "Mixed Models sind sinnvoll, wenn Beobachtungen in Personen, Teams, Klassen, Kliniken oder Messzeitpunkten verschachtelt sind oder wenn wiederholte Messungen unbalanciert sind.",
+    step: "Mixed Model",
+    answers: [
+      { label: "Metrische abhängige Variable", result: "linearMixedModel" },
+      { label: "Dichotome oder kategoriale abhängige Variable", result: "generalizedLinearMixedModel" },
+      { label: "Ordinale abhängige Variable", result: "ordinalMixedModel" }
     ]
   },
   varianceComparison: {
@@ -287,6 +299,21 @@ const results = {
     title: "ANOVA mit Messwiederholung",
     summary: "Prüft Mittelwertunterschiede über mehrere verbundene Messzeitpunkte oder Bedingungen.",
     assumptions: ["Verbundene Messungen", "Metrische Zielvariable", "Sphärizität oder geeignete Korrektur"]
+  },
+  linearMixedModel: {
+    title: "Lineares Mixed Model",
+    summary: "Modelliert metrische Zielvariablen bei wiederholten, verschachtelten oder geclusterten Beobachtungen mit festen und zufälligen Effekten.",
+    assumptions: ["Metrische abhängige Variable", "Beobachtungen sind in Personen, Teams oder Messzeitpunkten verschachtelt", "Zufällige Effekte fachlich begründet", "Residualdiagnostik und Varianzstruktur prüfen"]
+  },
+  generalizedLinearMixedModel: {
+    title: "Generalisiertes lineares Mixed Model",
+    summary: "Erweitert logistische oder andere generalisierte Modelle auf wiederholte, verschachtelte oder geclusterte Daten.",
+    assumptions: ["Dichotome, kategoriale oder Zähldaten als abhängige Variable", "Geeignete Linkfunktion und Verteilung", "Cluster oder Personen als zufällige Effekte", "Ausreichende Ereignisse pro Parameter"]
+  },
+  ordinalMixedModel: {
+    title: "Ordinales Mixed Model",
+    summary: "Modelliert ordinale Zielvariablen mit wiederholten oder geclusterten Beobachtungen, häufig über kumulative Link-Modelle.",
+    assumptions: ["Ordinale abhängige Variable", "Wiederholte oder geclusterte Beobachtungen", "Proportional-Odds-Annahme prüfen", "Zufällige Effekte fachlich begründet"]
   },
   kruskalWallis: {
     title: "Kruskal-Wallis-Test",
@@ -588,7 +615,19 @@ const languagePacks = {
           { label: "Metric dependent variable", next: "metricGroups" },
           { label: "Ordinal dependent variable", next: "ordinalGroups" },
           { label: "Categorical dependent variable", next: "categoricalDesign" },
+          { label: "Repeated or clustered observations", next: "mixedModelOutcome" },
           { label: "Compare variances", next: "varianceComparison" }
+        ]
+      },
+      mixedModelOutcome: {
+        area: "Multilevel / mixed design",
+        question: "What scale level does the dependent variable have in the mixed model?",
+        hint: "Mixed models are useful when observations are nested within people, teams, classes, clinics, or measurement occasions, or when repeated measurements are unbalanced.",
+        step: "Mixed model",
+        answers: [
+          { label: "Metric dependent variable", result: "linearMixedModel" },
+          { label: "Dichotomous or categorical dependent variable", result: "generalizedLinearMixedModel" },
+          { label: "Ordinal dependent variable", result: "ordinalMixedModel" }
         ]
       },
       varianceComparison: {
@@ -726,6 +765,9 @@ const languagePacks = {
       wilcoxon: { title: "Wilcoxon signed-rank test", summary: "Nonparametric choice for two paired measurements or ordinal paired comparisons.", assumptions: ["Two paired measurements", "At least ordinal values", "Pairing is present"] },
       anova: { title: "One-way ANOVA", summary: "Compares means across more than two independent groups.", assumptions: ["Independent groups", "Metric outcome variable", "Normality within groups", "Homogeneity of variances"] },
       repeatedAnova: { title: "Repeated-measures ANOVA", summary: "Tests mean differences across several paired time points or conditions.", assumptions: ["Repeated measurements", "Metric outcome variable", "Sphericity or suitable correction"] },
+      linearMixedModel: { title: "Linear mixed model", summary: "Models metric outcomes for repeated, nested, or clustered observations using fixed and random effects.", assumptions: ["Metric dependent variable", "Observations nested within people, teams, or measurement occasions", "Random effects are theoretically justified", "Check residual diagnostics and variance structure"] },
+      generalizedLinearMixedModel: { title: "Generalized linear mixed model", summary: "Extends logistic or other generalized models to repeated, nested, or clustered data.", assumptions: ["Dichotomous, categorical, or count dependent variable", "Appropriate link function and distribution", "Clusters or persons entered as random effects", "Adequate events per parameter"] },
+      ordinalMixedModel: { title: "Ordinal mixed model", summary: "Models ordinal outcomes with repeated or clustered observations, often using cumulative link models.", assumptions: ["Ordinal dependent variable", "Repeated or clustered observations", "Check proportional-odds assumption", "Random effects are theoretically justified"] },
       kruskalWallis: { title: "Kruskal-Wallis test", summary: "Nonparametric alternative to one-way ANOVA for several independent groups.", assumptions: ["Several independent groups", "At least ordinal outcome", "Independent observations"] },
       friedman: { title: "Friedman test", summary: "Nonparametric alternative to repeated-measures ANOVA for several paired conditions.", assumptions: ["Several paired measurements", "At least ordinal values", "Same cases in all conditions"] },
       fisher: { title: "Fisher's exact test", summary: "Tests associations in small 2x2 tables when chi-square assumptions are not met.", assumptions: ["Dichotomous categorical variables", "Independent observations", "Small expected counts"] },
@@ -812,6 +854,18 @@ const procedureCatalog = {
     jamovi: "Analyses > ANOVA > Repeated Measures ANOVA\nDefine the repeated-measures factor and levels.\nAssign the repeated measurement columns and enable sphericity corrections.",
     r: "fit <- aov(score ~ condition + Error(id / condition), data = long_data)\nsummary(fit)"
   },
+  linearMixedModel: {
+    jamovi: "Install and open the GAMLj module in jamovi.\nChoose Mixed Models > Linear Model, place the metric outcome in Dependent Variable, fixed predictors in Fixed Effects, and participant/team/class in Random Effects.\nStart with random intercepts and add random slopes only when theoretically justified and supported by the data.",
+    r: "library(lme4)\nlibrary(lmerTest)\nfit <- lmer(score ~ condition + week + (1 | participant), data = data)\nsummary(fit)\nperformance::r2_nakagawa(fit)"
+  },
+  generalizedLinearMixedModel: {
+    jamovi: "Install and open the GAMLj module in jamovi.\nChoose Mixed Models > Generalized Linear Model, select the outcome distribution and link function, then add fixed predictors and random effects such as participant, team, or class.\nFor binary outcomes, use a binomial distribution with a logit link.",
+    r: "library(lme4)\nfit <- glmer(success ~ condition + week + (1 | participant), data = data, family = binomial)\nsummary(fit)\nexp(fixef(fit))"
+  },
+  ordinalMixedModel: {
+    jamovi: "jamovi has limited direct support for ordinal mixed models in the core menus.\nUse the Rj Editor module or export the data to R.\nModel the ordinal outcome with fixed predictors and random effects for participant, team, class, or another cluster.",
+    r: "library(ordinal)\nfit <- clmm(rating ~ condition + week + (1 | participant), data = data)\nsummary(fit)\nexp(coef(fit))"
+  },
   kruskalWallis: {
     jamovi: "Analyses > ANOVA > One-Way ANOVA\nPut the ordinal/metric outcome in Dependent Variable and the group variable in Fixed Factor.\nEnable Kruskal-Wallis under non-parametric tests.",
     r: "kruskal.test(score ~ group, data = data)"
@@ -888,6 +942,9 @@ const effectSizeDefinitions = {
   wilcoxon: { measure: "Effect size r", rangeType: "r" },
   anova: { measure: "Partial eta squared", rangeType: "eta" },
   repeatedAnova: { measure: "Partial eta squared", rangeType: "eta" },
+  linearMixedModel: { measure: "Marginal and conditional R squared", rangeType: "mixedR2" },
+  generalizedLinearMixedModel: { measure: "Odds ratio or incidence-rate ratio", rangeType: "or" },
+  ordinalMixedModel: { measure: "Cumulative odds ratio", rangeType: "or" },
   kruskalWallis: { measure: "Epsilon squared", rangeType: "eta" },
   friedman: { measure: "Kendall's W", rangeType: "w" },
   fisher: { measure: "Odds ratio", rangeType: "or" },
@@ -923,6 +980,7 @@ const effectSizeLabels = {
       eta: "eta2: .01 klein, .06 mittel, .14 groß",
       w: "w/W: .10 klein, .30 mittel, .50 groß",
       r2: "R2: .02 klein, .13 mittel, .26 groß",
+      mixedR2: "Marginales R2 = erklärte Varianz durch feste Effekte; konditionales R2 = feste plus zufällige Effekte. Differenz fachlich interpretieren.",
       beta: "|standardisierte beta|: .10 klein, .30 mittel, .50 groß; indirekte Effekte zusätzlich mit Konfidenzintervall interpretieren",
       canonical: "Kanonische Korrelation: .10 klein, .30 mittel, .50 groß; Klassifikationsgenauigkeit immer gegen Zufall/Basisrate bewerten",
       or: "OR: 1.5 klein, 2.0 mittel, 3.0 groß; Werte unter 1 können zur Interpretation invertiert werden",
@@ -948,6 +1006,7 @@ const effectSizeLabels = {
       eta: "eta2: .01 small, .06 medium, .14 large",
       w: "w/W: .10 small, .30 medium, .50 large",
       r2: "R2: .02 small, .13 medium, .26 large",
+      mixedR2: "Marginal R2 = variance explained by fixed effects; conditional R2 = fixed plus random effects. Interpret their difference substantively.",
       beta: "|standardized beta|: .10 small, .30 medium, .50 large; interpret indirect effects with confidence intervals",
       canonical: "Canonical correlation: .10 small, .30 medium, .50 large; always compare classification accuracy with chance/baseline accuracy",
       or: "OR: 1.5 small, 2.0 medium, 3.0 large; values below 1 can be inverted for interpretation",
@@ -970,6 +1029,7 @@ const effectSizeLabels = {
       eta: "eta2 : .01 faible, .06 moyen, .14 fort",
       w: "w/W : .10 faible, .30 moyen, .50 fort",
       r2: "R2 : .02 faible, .13 moyen, .26 fort",
+      mixedR2: "R2 marginal = variance expliquée par les effets fixes ; R2 conditionnel = effets fixes plus aléatoires. Interpréter leur différence substantiellement.",
       beta: "|beta standardisé| : .10 faible, .30 moyen, .50 fort ; interpréter les effets indirects avec des intervalles de confiance",
       canonical: "Corrélation canonique : .10 faible, .30 moyen, .50 fort ; toujours comparer l'exactitude de classification au hasard/taux de base",
       or: "OR : 1.5 faible, 2.0 moyen, 3.0 fort ; les valeurs < 1 peuvent être inversées pour l'interprétation",
@@ -992,6 +1052,7 @@ const effectSizeLabels = {
       eta: "eta2: .01 pequeño, .06 medio, .14 grande",
       w: "w/W: .10 pequeño, .30 medio, .50 grande",
       r2: "R2: .02 pequeño, .13 medio, .26 grande",
+      mixedR2: "R2 marginal = varianza explicada por efectos fijos; R2 condicional = efectos fijos más aleatorios. Interprete su diferencia sustantivamente.",
       beta: "|beta estandarizado|: .10 pequeño, .30 medio, .50 grande; interprete los efectos indirectos con intervalos de confianza",
       canonical: "Correlación canónica: .10 pequeña, .30 media, .50 grande; compare siempre la exactitud de clasificación con el azar/tasa base",
       or: "OR: 1.5 pequeño, 2.0 medio, 3.0 grande; los valores < 1 pueden invertirse para interpretarlos",
@@ -1014,6 +1075,7 @@ const effectSizeLabels = {
       eta: "eta2: .01 piccolo, .06 medio, .14 grande",
       w: "w/W: .10 piccolo, .30 medio, .50 grande",
       r2: "R2: .02 piccolo, .13 medio, .26 grande",
+      mixedR2: "R2 marginale = varianza spiegata dagli effetti fissi; R2 condizionale = effetti fissi più casuali. Interpreta la differenza in modo sostanziale.",
       beta: "|beta standardizzato|: .10 piccolo, .30 medio, .50 grande; interpreta gli effetti indiretti con intervalli di confidenza",
       canonical: "Correlazione canonica: .10 piccola, .30 media, .50 grande; confronta sempre l'accuratezza di classificazione con il caso/tasso base",
       or: "OR: 1.5 piccolo, 2.0 medio, 3.0 grande; i valori < 1 possono essere invertiti per l'interpretazione",
@@ -1355,7 +1417,7 @@ function resetTree() {
 
 function getStageForNode(nodeId) {
   const scaleNodes = ["associationScale", "comparisonOutcome", "predictionOutcome"];
-  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "varianceComparison", "causalModelVariables", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "normalAssociation", "rankCorrelationChoice"];
+  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "varianceComparison", "causalModelVariables", "mixedModelOutcome", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "normalAssociation", "rankCorrelationChoice"];
   if (nodeId === "goal" || nodeId === "researchGoal" || nodeId === "discoveryStructure") return "goal";
   if (scaleNodes.includes(nodeId)) return "scale";
   if (groupNodes.includes(nodeId)) return "groups";

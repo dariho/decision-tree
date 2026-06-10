@@ -48,6 +48,15 @@ window.localizedProcedurePacks = {
     repeatedAnova: {
       jamovi: "Analysen > ANOVA > ANOVA mit Messwiederholung\nDefinieren Sie den Messwiederholungsfaktor und seine Stufen.\nOrdnen Sie die Messwiederholungsspalten zu und aktivieren Sie Sphärizitätskorrekturen."
     },
+    linearMixedModel: {
+      jamovi: "Installieren und öffnen Sie das GAMLj-Modul in jamovi.\nWählen Sie Mixed Models > Linear Model, legen Sie die metrische Zielvariable als abhängige Variable fest und fügen Sie feste Prädiktoren sowie Person, Team oder Klasse als zufällige Effekte hinzu.\nBeginnen Sie mit zufälligen Interzepten und ergänzen Sie zufällige Steigungen nur bei theoretischer Begründung."
+    },
+    generalizedLinearMixedModel: {
+      jamovi: "Installieren und öffnen Sie das GAMLj-Modul in jamovi.\nWählen Sie Mixed Models > Generalized Linear Model, bestimmen Sie Verteilung und Linkfunktion und fügen Sie feste Prädiktoren sowie zufällige Effekte hinzu.\nFür dichotome Zielvariablen nutzen Sie eine Binomialverteilung mit Logit-Link."
+    },
+    ordinalMixedModel: {
+      jamovi: "Jamovi bietet nur begrenzte direkte Unterstützung für ordinale Mixed Models in den Kernmenüs.\nNutzen Sie das Rj-Editor-Modul oder exportieren Sie die Daten nach R.\nModellieren Sie die ordinale Zielvariable mit festen Prädiktoren und zufälligen Effekten für Person, Team, Klasse oder einen anderen Cluster."
+    },
     kruskalWallis: {
       jamovi: "Analysen > ANOVA > Einfaktorielle ANOVA\nLegen Sie die ordinale oder metrische Zielvariable in Abhängige Variable und die Gruppenvariable in Fester Faktor.\nAktivieren Sie Kruskal-Wallis unter den nichtparametrischen Tests."
     },
@@ -137,6 +146,15 @@ window.localizedProcedurePacks = {
     repeatedAnova: {
       jamovi: "Analyses > ANOVA > ANOVA à mesures répétées\nDéfinissez le facteur à mesures répétées et ses niveaux.\nAssignez les colonnes de mesures répétées et activez les corrections de sphéricité."
     },
+    linearMixedModel: {
+      jamovi: "Installez et ouvrez le module GAMLj dans jamovi.\nChoisissez Mixed Models > Linear Model, placez la variable cible métrique comme variable dépendante et ajoutez les prédicteurs fixes ainsi que personne, équipe ou classe comme effets aléatoires.\nCommencez par des intercepts aléatoires et ajoutez des pentes aléatoires seulement si elles sont justifiées théoriquement."
+    },
+    generalizedLinearMixedModel: {
+      jamovi: "Installez et ouvrez le module GAMLj dans jamovi.\nChoisissez Mixed Models > Generalized Linear Model, sélectionnez la distribution et la fonction de lien, puis ajoutez les prédicteurs fixes et les effets aléatoires.\nPour une variable dichotomique, utilisez une distribution binomiale avec lien logit."
+    },
+    ordinalMixedModel: {
+      jamovi: "jamovi offre une prise en charge directe limitée des modèles mixtes ordinaux dans les menus de base.\nUtilisez le module Rj Editor ou exportez les données vers R.\nModélisez la variable ordinale avec des prédicteurs fixes et des effets aléatoires pour personne, équipe, classe ou autre cluster."
+    },
     kruskalWallis: {
       jamovi: "Analyses > ANOVA > ANOVA à un facteur\nPlacez la variable cible ordinale ou métrique dans Variable dépendante et la variable de groupe dans Facteur fixe.\nActivez Kruskal-Wallis dans les tests non paramétriques."
     },
@@ -225,6 +243,15 @@ window.localizedProcedurePacks = {
     },
     repeatedAnova: {
       jamovi: "Análisis > ANOVA > ANOVA de medidas repetidas\nDefina el factor de medidas repetidas y sus niveles.\nAsigne las columnas de medición repetida y active correcciones de esfericidad."
+    },
+    linearMixedModel: {
+      jamovi: "Instale y abra el módulo GAMLj en jamovi.\nElija Mixed Models > Linear Model, coloque la variable objetivo métrica como variable dependiente y añada predictores fijos y persona, equipo o clase como efectos aleatorios.\nEmpiece con interceptos aleatorios y añada pendientes aleatorias solo si están justificadas teóricamente."
+    },
+    generalizedLinearMixedModel: {
+      jamovi: "Instale y abra el módulo GAMLj en jamovi.\nElija Mixed Models > Generalized Linear Model, seleccione la distribución y función de enlace, y añada predictores fijos y efectos aleatorios.\nPara variables dicotómicas, use distribución binomial con enlace logit."
+    },
+    ordinalMixedModel: {
+      jamovi: "jamovi tiene soporte directo limitado para modelos mixtos ordinales en los menús principales.\nUse el módulo Rj Editor o exporte los datos a R.\nModele la variable ordinal con predictores fijos y efectos aleatorios para persona, equipo, clase u otro cluster."
     },
     kruskalWallis: {
       jamovi: "Análisis > ANOVA > ANOVA de un factor\nColoque la variable objetivo ordinal o métrica en Variable dependiente y la variable de grupo en Factor fijo.\nActive Kruskal-Wallis en las pruebas no paramétricas."
@@ -316,6 +343,15 @@ window.localizedProcedurePacks.it = {
   },
   repeatedAnova: {
     jamovi: "Analisi > ANOVA > ANOVA a misure ripetute\nDefinisci il fattore a misure ripetute e i suoi livelli.\nAssegna le colonne delle misure ripetute e attiva le correzioni di sfericità."
+  },
+  linearMixedModel: {
+    jamovi: "Installa e apri il modulo GAMLj in jamovi.\nScegli Mixed Models > Linear Model, inserisci l'esito metrico come variabile dipendente e aggiungi predittori fissi e persona, squadra o classe come effetti casuali.\nInizia con intercette casuali e aggiungi pendenze casuali solo se giustificate teoricamente."
+  },
+  generalizedLinearMixedModel: {
+    jamovi: "Installa e apri il modulo GAMLj in jamovi.\nScegli Mixed Models > Generalized Linear Model, seleziona distribuzione e funzione di link, poi aggiungi predittori fissi ed effetti casuali.\nPer esiti dicotomici usa una distribuzione binomiale con link logit."
+  },
+  ordinalMixedModel: {
+    jamovi: "jamovi offre un supporto diretto limitato per modelli misti ordinali nei menu principali.\nUsa il modulo Rj Editor o esporta i dati in R.\nModella l'esito ordinale con predittori fissi ed effetti casuali per persona, squadra, classe o altro cluster."
   },
   kruskalWallis: {
     jamovi: "Analisi > ANOVA > ANOVA a una via\nInserisci l'esito ordinale o metrico in Variabile dipendente e la variabile di gruppo in Fattore fisso.\nAttiva Kruskal-Wallis nei test non parametrici."

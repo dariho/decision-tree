@@ -17,6 +17,9 @@ Each CSV matches one result id in the decision tree. Use these files to create J
 | `wilcoxon` | `wilcoxon.csv` | Pair `before` with `after`, use Wilcoxon signed-rank. |
 | `anova` | `anova.csv` | Dependent variable `score`, factor `group`. |
 | `repeatedAnova` | `repeatedAnova.csv` | Repeated measures columns: `baseline`, `week4`, `week8`; subject id: `id`. |
+| `linearMixedModel` | `linearMixedModel.csv` | Metric outcome `score`; fixed effects `condition` and `week`; random intercept for `participant` or `team`. |
+| `generalizedLinearMixedModel` | `generalizedLinearMixedModel.csv` | Binary outcome `success`; fixed effects `condition` and `week`; random intercept for `participant` or `team`. |
+| `ordinalMixedModel` | `ordinalMixedModel.csv` | Ordinal outcome `rating`; fixed effects `condition` and `day`; random intercept for `participant` or `team`. |
 | `kruskalWallis` | `kruskalWallis.csv` | Outcome `rank_score`, grouping variable `group`. |
 | `friedman` | `friedman.csv` | Repeated measures columns: `condition_a`, `condition_b`, `condition_c`; subject id: `id`. |
 | `fisher` | `fisher.csv` | 2x2 table: `treatment` by `response`; enable Fisher's exact test. |

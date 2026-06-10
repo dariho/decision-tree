@@ -574,6 +574,18 @@ Object.assign(window.resultScenarioPacks.de, {
   discriminantAnalysis: {
     psychology: "Therapieerfolg wird als nominale Gruppe klassifiziert, basierend auf Angstwerten, Motivation und Reaktionszeit.",
     sport: "Athletinnen und Athleten werden anhand von Sprintzeit, Sprunghöhe und Beweglichkeit in Leistungsprofile klassifiziert."
+  },
+  linearMixedModel: {
+    psychology: "Wohlbefinden wird über mehrere Wochen wiederholt pro Person gemessen, um den Effekt einer Intervention zu prüfen.",
+    sport: "Sprunghöhe wird über Trainingswochen bei Athletinnen und Athleten innerhalb verschiedener Teams gemessen."
+  },
+  generalizedLinearMixedModel: {
+    psychology: "Therapieabbruch ja/nein wird über Sitzungen hinweg vorhergesagt, wobei Sitzungen in Personen verschachtelt sind.",
+    sport: "Verletzung ja/nein wird über Trainingswochen modelliert, wobei Messungen in Athletinnen und Athleten verschachtelt sind."
+  },
+  ordinalMixedModel: {
+    psychology: "Wiederholte Likert-Bewertungen der Stimmung werden pro Person über mehrere Tage analysiert.",
+    sport: "Subjektive Belastungsskalen werden nach mehreren Trainingseinheiten pro Athletin oder Athlet ausgewertet."
   }
 });
 
@@ -589,6 +601,18 @@ Object.assign(window.resultScenarioPacks.en, {
   discriminantAnalysis: {
     psychology: "Treatment outcome is classified as a nominal group from anxiety scores, motivation, and reaction time.",
     sport: "Athletes are classified into performance profiles from sprint time, jump height, and mobility."
+  },
+  linearMixedModel: {
+    psychology: "Wellbeing is measured repeatedly across weeks within participants to test an intervention effect.",
+    sport: "Jump height is measured across training weeks for athletes nested within different teams."
+  },
+  generalizedLinearMixedModel: {
+    psychology: "Therapy dropout yes/no is predicted across sessions, with sessions nested within participants.",
+    sport: "Injury yes/no is modelled across training weeks, with measurements nested within athletes."
+  },
+  ordinalMixedModel: {
+    psychology: "Repeated Likert mood ratings are analysed across several days within each participant.",
+    sport: "Subjective exertion ratings are analysed after several training sessions within each athlete."
   }
 });
 
@@ -604,6 +628,18 @@ Object.assign(window.resultScenarioPacks.fr, {
   discriminantAnalysis: {
     psychology: "L'issue thérapeutique est classée comme groupe nominal à partir des scores d'anxiété, de la motivation et du temps de réaction.",
     sport: "Les athlètes sont classés en profils de performance à partir du temps de sprint, de la hauteur de saut et de la mobilité."
+  },
+  linearMixedModel: {
+    psychology: "Le bien-être est mesuré de façon répétée sur plusieurs semaines chez chaque personne pour tester l'effet d'une intervention.",
+    sport: "La hauteur de saut est mesurée sur plusieurs semaines d'entraînement chez des athlètes imbriqués dans différentes équipes."
+  },
+  generalizedLinearMixedModel: {
+    psychology: "L'abandon thérapeutique oui/non est prédit au fil des séances, avec des séances imbriquées dans les personnes.",
+    sport: "La blessure oui/non est modélisée au fil des semaines d'entraînement, avec des mesures imbriquées dans les athlètes."
+  },
+  ordinalMixedModel: {
+    psychology: "Des évaluations Likert répétées de l'humeur sont analysées sur plusieurs jours chez chaque personne.",
+    sport: "Les évaluations subjectives d'effort sont analysées après plusieurs séances d'entraînement chez chaque athlète."
   }
 });
 
@@ -619,6 +655,18 @@ Object.assign(window.resultScenarioPacks.es, {
   discriminantAnalysis: {
     psychology: "El resultado terapéutico se clasifica como grupo nominal a partir de ansiedad, motivación y tiempo de reacción.",
     sport: "Los deportistas se clasifican en perfiles de rendimiento a partir de tiempo de sprint, altura de salto y movilidad."
+  },
+  linearMixedModel: {
+    psychology: "El bienestar se mide repetidamente durante semanas en cada participante para probar el efecto de una intervención.",
+    sport: "La altura de salto se mide durante semanas de entrenamiento en deportistas anidados en distintos equipos."
+  },
+  generalizedLinearMixedModel: {
+    psychology: "El abandono terapéutico sí/no se predice a lo largo de sesiones, con sesiones anidadas en participantes.",
+    sport: "La lesión sí/no se modela durante semanas de entrenamiento, con mediciones anidadas en deportistas."
+  },
+  ordinalMixedModel: {
+    psychology: "Valoraciones Likert repetidas del estado de ánimo se analizan durante varios días en cada participante.",
+    sport: "Las valoraciones subjetivas de esfuerzo se analizan después de varias sesiones de entrenamiento en cada deportista."
   }
 });
 
@@ -634,5 +682,17 @@ Object.assign(window.resultScenarioPacks.it, {
   discriminantAnalysis: {
     psychology: "L'esito terapeutico viene classificato come gruppo nominale a partire da ansia, motivazione e tempo di reazione.",
     sport: "Atlete e atleti vengono classificati in profili di prestazione a partire da tempo di sprint, altezza del salto e mobilità."
+  },
+  linearMixedModel: {
+    psychology: "Il benessere viene misurato ripetutamente per settimane in ogni partecipante per testare l'effetto di un intervento.",
+    sport: "L'altezza del salto viene misurata per settimane di allenamento in atlete e atleti annidati in squadre diverse."
+  },
+  generalizedLinearMixedModel: {
+    psychology: "L'abbandono della terapia sì/no viene predetto nel corso delle sedute, con sedute annidate nelle persone.",
+    sport: "L'infortunio sì/no viene modellato nel corso delle settimane di allenamento, con misure annidate negli atleti."
+  },
+  ordinalMixedModel: {
+    psychology: "Valutazioni Likert ripetute dell'umore vengono analizzate per più giorni in ogni partecipante.",
+    sport: "Valutazioni soggettive dello sforzo vengono analizzate dopo diverse sedute di allenamento in ogni atleta."
   }
 });
