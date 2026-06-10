@@ -391,3 +391,78 @@ window.resultScenarioPacks.it = {
     sport: "Lo stato della stagione viene predetto come titolare, riserva o infortunato a partire da dati di allenamento e prestazione."
   }
 };
+
+Object.assign(window.resultScenarioPacks.de, {
+  factorAnalysis: {
+    psychology: "Ein Fragebogen mit vielen Stress- und Emotionsitems wird untersucht, um wenige zugrunde liegende Belastungsdimensionen zu identifizieren.",
+    sport: "Mehrere Leistungs- und Technikvariablen werden analysiert, um zentrale Dimensionen sportlicher Leistungsfähigkeit zu bündeln."
+  },
+  clusterAnalysis: {
+    psychology: "Teilnehmende werden anhand von Stress, Schlaf, sozialer Unterstützung und Stimmung zu ähnlichen Belastungsprofilen gruppiert.",
+    sport: "Athletinnen und Athleten werden anhand von Trainingsumfang, Erholung, Sprintleistung und Verletzungshistorie in Profile eingeteilt."
+  },
+  multidimensionalScaling: {
+    psychology: "Ähnlichkeitsurteile zu Emotionen werden in einer zweidimensionalen Karte dargestellt, um Nähe und Distanz zwischen Emotionen zu verstehen.",
+    sport: "Distanzen zwischen Spielertypen werden visualisiert, um taktische Rollen in wenigen Dimensionen darzustellen."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.en, {
+  factorAnalysis: {
+    psychology: "A questionnaire with many stress and emotion items is analysed to identify a smaller set of underlying distress dimensions.",
+    sport: "Several performance and technique variables are analysed to reduce them to core dimensions of athletic performance."
+  },
+  clusterAnalysis: {
+    psychology: "Participants are grouped into similar distress profiles based on stress, sleep, social support, and mood.",
+    sport: "Athletes are grouped into profiles based on training volume, recovery, sprint performance, and injury history."
+  },
+  multidimensionalScaling: {
+    psychology: "Similarity judgements among emotions are represented on a two-dimensional map to understand emotional proximity and distance.",
+    sport: "Distances among player types are visualised to represent tactical roles in a small number of dimensions."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.fr, {
+  factorAnalysis: {
+    psychology: "Un questionnaire comportant de nombreux items de stress et d'émotion est analysé pour identifier quelques dimensions latentes de détresse.",
+    sport: "Plusieurs variables de performance et de technique sont analysées pour les réduire à des dimensions centrales de la performance sportive."
+  },
+  clusterAnalysis: {
+    psychology: "Les participants sont regroupés en profils de détresse similaires selon le stress, le sommeil, le soutien social et l'humeur.",
+    sport: "Les athlètes sont regroupés en profils selon le volume d'entraînement, la récupération, la performance de sprint et les antécédents de blessure."
+  },
+  multidimensionalScaling: {
+    psychology: "Des jugements de similarité entre émotions sont représentés sur une carte à deux dimensions pour comprendre leur proximité.",
+    sport: "Les distances entre types de joueurs sont visualisées pour représenter les rôles tactiques en peu de dimensions."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.es, {
+  factorAnalysis: {
+    psychology: "Un cuestionario con muchos ítems de estrés y emoción se analiza para identificar pocas dimensiones latentes de malestar.",
+    sport: "Varias variables de rendimiento y técnica se analizan para reducirlas a dimensiones centrales del rendimiento deportivo."
+  },
+  clusterAnalysis: {
+    psychology: "Los participantes se agrupan en perfiles similares de malestar según estrés, sueño, apoyo social y estado de ánimo.",
+    sport: "Los deportistas se agrupan en perfiles según volumen de entrenamiento, recuperación, rendimiento de sprint e historial de lesiones."
+  },
+  multidimensionalScaling: {
+    psychology: "Juicios de similitud entre emociones se representan en un mapa bidimensional para comprender proximidad y distancia emocional.",
+    sport: "Las distancias entre tipos de jugadores se visualizan para representar roles tácticos en pocas dimensiones."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.it, {
+  factorAnalysis: {
+    psychology: "Un questionario con molti item su stress ed emozioni viene analizzato per identificare poche dimensioni latenti di disagio.",
+    sport: "Diverse variabili di prestazione e tecnica vengono analizzate per ridurle a dimensioni centrali della prestazione sportiva."
+  },
+  clusterAnalysis: {
+    psychology: "I partecipanti vengono raggruppati in profili di disagio simili in base a stress, sonno, supporto sociale e umore.",
+    sport: "Gli atleti vengono raggruppati in profili in base a volume di allenamento, recupero, prestazione nello sprint e storia di infortuni."
+  },
+  multidimensionalScaling: {
+    psychology: "Giudizi di similarità tra emozioni vengono rappresentati in una mappa bidimensionale per comprendere prossimità e distanza emotiva.",
+    sport: "Le distanze tra tipi di giocatori vengono visualizzate per rappresentare ruoli tattici in poche dimensioni."
+  }
+});

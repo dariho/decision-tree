@@ -56,6 +56,15 @@ window.localizedProcedurePacks = {
     },
     multinomialRegression: {
       jamovi: "Analysen > Regression > Logistische Regression > N Ausprägungen\nLegen Sie die mehrkategoriale Zielvariable in Abhängige Variable.\nFügen Sie Prädiktoren zu Kovariaten oder Faktoren hinzu und wählen Sie die Referenzkategorie."
+    },
+    factorAnalysis: {
+      jamovi: "Analysen > Faktoren > Explorative Faktorenanalyse\nVerschieben Sie die zusammengehörigen Variablen in Variablen.\nWählen Sie Extraktionsmethode, Rotation und Faktorenzahl und prüfen Sie Ladungen sowie Modellpassung."
+    },
+    clusterAnalysis: {
+      jamovi: "Analysen > Exploration > Cluster\nVerschieben Sie die Variablen, die Personen oder Objekte beschreiben, in Variablen.\nStandardisieren Sie die Variablen bei Bedarf, wählen Sie eine Distanzmethode und vergleichen Sie Clusterlösungen."
+    },
+    multidimensionalScaling: {
+      jamovi: "Jamovi bietet nur begrenzte direkte Unterstützung für multidimensionale Skalierung.\nNutzen Sie eine Distanz- oder Unähnlichkeitsmatrix, wenn ein geeignetes Modul installiert ist, oder exportieren Sie die Daten nach R.\nPrüfen Sie Stress, Konfigurationsplot und Interpretierbarkeit der Dimensionen."
     }
   },
   fr: {
@@ -115,6 +124,15 @@ window.localizedProcedurePacks = {
     },
     multinomialRegression: {
       jamovi: "Analyses > Régression > Régression logistique > N modalités\nPlacez la variable cible multicatégorielle dans Variable dépendante.\nAjoutez les prédicteurs dans Covariables ou Facteurs et choisissez la catégorie de référence."
+    },
+    factorAnalysis: {
+      jamovi: "Analyses > Facteurs > Analyse factorielle exploratoire\nPlacez les variables liées dans Variables.\nChoisissez la méthode d'extraction, la rotation et le nombre de facteurs, puis examinez les charges et l'ajustement du modèle."
+    },
+    clusterAnalysis: {
+      jamovi: "Analyses > Exploration > Clusters\nPlacez les variables décrivant les personnes ou objets dans Variables.\nStandardisez les variables si nécessaire, choisissez une méthode de distance et comparez les solutions de clusters."
+    },
+    multidimensionalScaling: {
+      jamovi: "Jamovi offre une prise en charge directe limitée du positionnement multidimensionnel.\nUtilisez une matrice de distances ou de dissimilarités si un module adapté est installé, ou exportez les données vers R.\nExaminez le stress, le graphique de configuration et l'interprétabilité des dimensions."
     }
   },
   es: {
@@ -174,6 +192,15 @@ window.localizedProcedurePacks = {
     },
     multinomialRegression: {
       jamovi: "Análisis > Regresión > Regresión logística > N resultados\nColoque la variable objetivo multicategórica en Variable dependiente.\nAñada predictores a Covariables o Factores y elija la categoría de referencia."
+    },
+    factorAnalysis: {
+      jamovi: "Análisis > Factores > Análisis factorial exploratorio\nMueva las variables relacionadas a Variables.\nElija el método de extracción, la rotación y el número de factores, e inspeccione cargas y ajuste del modelo."
+    },
+    clusterAnalysis: {
+      jamovi: "Análisis > Exploración > Conglomerados\nMueva las variables que describen personas u objetos a Variables.\nEstandarice las variables si es necesario, elija un método de distancia y compare soluciones de conglomerados."
+    },
+    multidimensionalScaling: {
+      jamovi: "Jamovi tiene soporte directo limitado para el escalamiento multidimensional.\nUse una matriz de distancias o disimilitudes si hay un módulo adecuado instalado, o exporte los datos a R.\nInspeccione el estrés, el gráfico de configuración y la interpretabilidad de las dimensiones."
     }
   }
 };
@@ -235,5 +262,14 @@ window.localizedProcedurePacks.it = {
   },
   multinomialRegression: {
     jamovi: "Analisi > Regressione > Regressione logistica > N esiti\nInserisci l'esito multicategoriale in Variabile dipendente.\nAggiungi i predittori in Covariate o Fattori e scegli la categoria di riferimento."
+  },
+  factorAnalysis: {
+    jamovi: "Analisi > Fattori > Analisi fattoriale esplorativa\nSposta le variabili correlate in Variabili.\nScegli metodo di estrazione, rotazione e numero di fattori, poi controlla carichi e adattamento del modello."
+  },
+  clusterAnalysis: {
+    jamovi: "Analisi > Esplorazione > Cluster\nSposta le variabili che descrivono persone o oggetti in Variabili.\nStandardizza le variabili se necessario, scegli un metodo di distanza e confronta le soluzioni di cluster."
+  },
+  multidimensionalScaling: {
+    jamovi: "Jamovi offre un supporto diretto limitato per lo scaling multidimensionale.\nUsa una matrice di distanze o dissimilarità se è installato un modulo adatto, oppure esporta i dati in R.\nControlla stress, grafico di configurazione e interpretabilità delle dimensioni."
   }
 };

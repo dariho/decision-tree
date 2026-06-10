@@ -17,7 +17,10 @@ const apaMetrics = {
   chiSquareGoodness: ["N", "observed counts", "expected counts/proportions", "chi-square", "df", "p"],
   linearRegression: ["N", "R2", "adjusted R2", "F", "df model", "df residual", "p", "b or beta", "t", "p for predictors"],
   logisticRegression: ["N", "model chi-square", "df", "p", "pseudo R2", "odds ratio", "95% CI for odds ratio"],
-  multinomialRegression: ["N", "model chi-square", "df", "p", "pseudo R2", "odds ratios by outcome category", "95% CI"]
+  multinomialRegression: ["N", "model chi-square", "df", "p", "pseudo R2", "odds ratios by outcome category", "95% CI"],
+  factorAnalysis: ["N", "number of variables", "extraction method", "rotation", "number of factors", "factor loadings", "variance explained"],
+  clusterAnalysis: ["N", "variables used", "standardisation", "distance measure", "clustering method", "number of clusters", "cluster sizes"],
+  multidimensionalScaling: ["N or number of objects", "distance matrix", "number of dimensions", "stress value", "configuration plot", "dimension interpretation"]
 };
 
 const apaMetricTranslations = {
@@ -73,6 +76,24 @@ const apaMetricTranslations = {
     "rho": "rho",
     "t": "t",
     "test value": "Testwert",
+    "number of variables": "Anzahl der Variablen",
+    "extraction method": "Extraktionsmethode",
+    "rotation": "Rotation",
+    "number of factors": "Anzahl der Faktoren",
+    "factor loadings": "Faktorladungen",
+    "variance explained": "erklärte Varianz",
+    "variables used": "verwendete Variablen",
+    "standardisation": "Standardisierung",
+    "distance measure": "Distanzmaß",
+    "clustering method": "Clusterverfahren",
+    "number of clusters": "Anzahl der Cluster",
+    "cluster sizes": "Clustergrößen",
+    "N or number of objects": "N oder Anzahl der Objekte",
+    "distance matrix": "Distanzmatrix",
+    "number of dimensions": "Anzahl der Dimensionen",
+    "stress value": "Stress-Wert",
+    "configuration plot": "Konfigurationsplot",
+    "dimension interpretation": "Interpretation der Dimensionen",
     "z if available": "z, falls verfügbar"
   },
   fr: {
@@ -117,6 +138,24 @@ const apaMetricTranslations = {
     "partial eta squared": "eta carré partiel",
     "pseudo R2": "pseudo-R2",
     "test value": "valeur de test",
+    "number of variables": "nombre de variables",
+    "extraction method": "méthode d'extraction",
+    "rotation": "rotation",
+    "number of factors": "nombre de facteurs",
+    "factor loadings": "charges factorielles",
+    "variance explained": "variance expliquée",
+    "variables used": "variables utilisées",
+    "standardisation": "standardisation",
+    "distance measure": "mesure de distance",
+    "clustering method": "méthode de clustering",
+    "number of clusters": "nombre de clusters",
+    "cluster sizes": "tailles des clusters",
+    "N or number of objects": "N ou nombre d'objets",
+    "distance matrix": "matrice de distances",
+    "number of dimensions": "nombre de dimensions",
+    "stress value": "valeur de stress",
+    "configuration plot": "graphique de configuration",
+    "dimension interpretation": "interprétation des dimensions",
     "z if available": "z si disponible"
   },
   es: {
@@ -161,6 +200,24 @@ const apaMetricTranslations = {
     "partial eta squared": "eta cuadrado parcial",
     "pseudo R2": "pseudo-R2",
     "test value": "valor de prueba",
+    "number of variables": "número de variables",
+    "extraction method": "método de extracción",
+    "rotation": "rotación",
+    "number of factors": "número de factores",
+    "factor loadings": "cargas factoriales",
+    "variance explained": "varianza explicada",
+    "variables used": "variables usadas",
+    "standardisation": "estandarización",
+    "distance measure": "medida de distancia",
+    "clustering method": "método de conglomerados",
+    "number of clusters": "número de conglomerados",
+    "cluster sizes": "tamaños de conglomerados",
+    "N or number of objects": "N o número de objetos",
+    "distance matrix": "matriz de distancias",
+    "number of dimensions": "número de dimensiones",
+    "stress value": "valor de estrés",
+    "configuration plot": "gráfico de configuración",
+    "dimension interpretation": "interpretación de dimensiones",
     "z if available": "z si está disponible"
   },
   it: {
@@ -205,6 +262,24 @@ const apaMetricTranslations = {
     "partial eta squared": "eta quadrato parziale",
     "pseudo R2": "pseudo-R2",
     "test value": "valore di test",
+    "number of variables": "numero di variabili",
+    "extraction method": "metodo di estrazione",
+    "rotation": "rotazione",
+    "number of factors": "numero di fattori",
+    "factor loadings": "carichi fattoriali",
+    "variance explained": "varianza spiegata",
+    "variables used": "variabili usate",
+    "standardisation": "standardizzazione",
+    "distance measure": "misura di distanza",
+    "clustering method": "metodo di clustering",
+    "number of clusters": "numero di cluster",
+    "cluster sizes": "dimensioni dei cluster",
+    "N or number of objects": "N o numero di oggetti",
+    "distance matrix": "matrice delle distanze",
+    "number of dimensions": "numero di dimensioni",
+    "stress value": "valore di stress",
+    "configuration plot": "grafico di configurazione",
+    "dimension interpretation": "interpretazione delle dimensioni",
     "z if available": "z se disponibile"
   }
 };
@@ -229,7 +304,10 @@ const apaTemplates = {
     chiSquareGoodness: "A chi-square goodness-of-fit test showed that observed frequencies [did/did not] differ from expected frequencies, chi-square(df, N = n) = value, p = value.",
     linearRegression: "The regression model significantly predicted Y, F(df_model, df_residual) = value, p = value, R2 = value. Predictor X was [significant/not significant], beta = value, t(df) = value, p = value.",
     logisticRegression: "The logistic regression model significantly predicted Y, chi-square(df, N = n) = value, p = value, pseudo R2 = value. Predictor X had OR = value, 95% CI [LL, UL], p = value.",
-    multinomialRegression: "The multinomial logistic regression model significantly predicted Y, chi-square(df, N = n) = value, p = value, pseudo R2 = value. For category A versus the reference category, predictor X had OR = value, p = value."
+    multinomialRegression: "The multinomial logistic regression model significantly predicted Y, chi-square(df, N = n) = value, p = value, pseudo R2 = value. For category A versus the reference category, predictor X had OR = value, p = value.",
+    factorAnalysis: "An exploratory factor analysis using [extraction method] and [rotation] suggested a [number]-factor solution, explaining [value]% of the variance. Items with loadings >= [cutoff] were interpreted on each factor.",
+    clusterAnalysis: "A cluster analysis using [distance measure] and [clustering method] suggested a [number]-cluster solution. Cluster sizes were n = [values], and clusters were interpreted as [labels].",
+    multidimensionalScaling: "A multidimensional scaling solution with [number] dimensions represented the distance matrix with stress = [value]. The dimensions were interpreted as [dimension labels]."
   },
   de: {
     pearson: "Eine Pearson-Korrelation zeigte einen [Richtung/Stärke] Zusammenhang zwischen X und Y, r(df) = Wert, p = Wert, 95%-KI [UG, OG].",
@@ -250,7 +328,10 @@ const apaTemplates = {
     chiSquareGoodness: "Ein Chi-Quadrat-Anpassungstest zeigte, dass die beobachteten Häufigkeiten [nicht/von] den erwarteten Häufigkeiten abwichen, chi-square(df, N = n) = Wert, p = Wert.",
     linearRegression: "Das Regressionsmodell sagte Y signifikant vorher, F(df_model, df_residual) = Wert, p = Wert, R2 = Wert. Prädiktor X war [signifikant/nicht signifikant], beta = Wert, t(df) = Wert, p = Wert.",
     logisticRegression: "Das logistische Regressionsmodell sagte Y signifikant vorher, chi-square(df, N = n) = Wert, p = Wert, Pseudo-R2 = Wert. Prädiktor X hatte OR = Wert, 95%-KI [UG, OG], p = Wert.",
-    multinomialRegression: "Das multinomiale logistische Regressionsmodell sagte Y signifikant vorher, chi-square(df, N = n) = Wert, p = Wert, Pseudo-R2 = Wert. Für Kategorie A gegenüber der Referenzkategorie hatte Prädiktor X OR = Wert, p = Wert."
+    multinomialRegression: "Das multinomiale logistische Regressionsmodell sagte Y signifikant vorher, chi-square(df, N = n) = Wert, p = Wert, Pseudo-R2 = Wert. Für Kategorie A gegenüber der Referenzkategorie hatte Prädiktor X OR = Wert, p = Wert.",
+    factorAnalysis: "Eine explorative Faktorenanalyse mit [Extraktionsmethode] und [Rotation] ergab eine [Anzahl]-Faktoren-Lösung, die [Wert]% der Varianz erklärte. Items mit Ladungen >= [Grenzwert] wurden auf den jeweiligen Faktoren interpretiert.",
+    clusterAnalysis: "Eine Clusteranalyse mit [Distanzmaß] und [Clusterverfahren] ergab eine [Anzahl]-Cluster-Lösung. Die Clustergrößen betrugen n = [Werte], und die Cluster wurden als [Bezeichnungen] interpretiert.",
+    multidimensionalScaling: "Eine multidimensionale Skalierung mit [Anzahl] Dimensionen stellte die Distanzmatrix mit Stress = [Wert] dar. Die Dimensionen wurden als [Dimensionsbezeichnungen] interpretiert."
   },
   fr: {
     pearson: "Une correlation de Pearson a montré une association [direction/force] entre X et Y, r(dl) = valeur, p = valeur, IC 95 % [LI, LS].",
@@ -271,7 +352,10 @@ const apaTemplates = {
     chiSquareGoodness: "Un test d'ajustement du khi carré a montré que les fréquences observées [ne différaient pas/différaient] des fréquences attendues, chi-square(dl, N = n) = valeur, p = valeur.",
     linearRegression: "Le modèle de régression prédisait significativement Y, F(dl_modele, dl_residus) = valeur, p = valeur, R2 = valeur. Le prédicteur X était [significatif/non significatif], beta = valeur, t(dl) = valeur, p = valeur.",
     logisticRegression: "Le modèle de régression logistique prédisait significativement Y, chi-square(dl, N = n) = valeur, p = valeur, pseudo-R2 = valeur. Le prédicteur X avait OR = valeur, IC 95 % [LI, LS], p = valeur.",
-    multinomialRegression: "Le modèle de régression logistique multinomiale prédisait significativement Y, chi-square(dl, N = n) = valeur, p = valeur, pseudo-R2 = valeur. Pour la catégorie A contre la catégorie de référence, le prédicteur X avait OR = valeur, p = valeur."
+    multinomialRegression: "Le modèle de régression logistique multinomiale prédisait significativement Y, chi-square(dl, N = n) = valeur, p = valeur, pseudo-R2 = valeur. Pour la catégorie A contre la catégorie de référence, le prédicteur X avait OR = valeur, p = valeur.",
+    factorAnalysis: "Une analyse factorielle exploratoire avec [méthode d'extraction] et [rotation] a suggéré une solution à [nombre] facteurs, expliquant [valeur] % de la variance. Les items avec des charges >= [seuil] ont été interprétés sur chaque facteur.",
+    clusterAnalysis: "Une analyse de clusters avec [mesure de distance] et [méthode de clustering] a suggéré une solution à [nombre] clusters. Les tailles des clusters étaient n = [valeurs], et les clusters ont été interprétés comme [étiquettes].",
+    multidimensionalScaling: "Une solution de positionnement multidimensionnel à [nombre] dimensions représentait la matrice de distances avec un stress = [valeur]. Les dimensions ont été interprétées comme [étiquettes des dimensions]."
   },
   es: {
     pearson: "Una correlación de Pearson mostró una asociación [dirección/fuerza] entre X e Y, r(gl) = valor, p = valor, IC 95 % [LI, LS].",
@@ -292,7 +376,10 @@ const apaTemplates = {
     chiSquareGoodness: "Una prueba chi-cuadrado de bondad de ajuste mostró que las frecuencias observadas [no diferían/diferían] de las esperadas, chi-square(gl, N = n) = valor, p = valor.",
     linearRegression: "El modelo de regresión predijo significativamente Y, F(gl_modelo, gl_residual) = valor, p = valor, R2 = valor. El predictor X fue [significativo/no significativo], beta = valor, t(gl) = valor, p = valor.",
     logisticRegression: "El modelo de regresión logística predijo significativamente Y, chi-square(gl, N = n) = valor, p = valor, pseudo-R2 = valor. El predictor X tuvo OR = valor, IC 95 % [LI, LS], p = valor.",
-    multinomialRegression: "El modelo de regresión logística multinomial predijo significativamente Y, chi-square(gl, N = n) = valor, p = valor, pseudo-R2 = valor. Para la categoría A frente a la categoría de referencia, el predictor X tuvo OR = valor, p = valor."
+    multinomialRegression: "El modelo de regresión logística multinomial predijo significativamente Y, chi-square(gl, N = n) = valor, p = valor, pseudo-R2 = valor. Para la categoría A frente a la categoría de referencia, el predictor X tuvo OR = valor, p = valor.",
+    factorAnalysis: "Un análisis factorial exploratorio con [método de extracción] y [rotación] sugirió una solución de [número] factores, que explicó el [valor]% de la varianza. Los ítems con cargas >= [punto de corte] se interpretaron en cada factor.",
+    clusterAnalysis: "Un análisis de conglomerados con [medida de distancia] y [método de conglomerados] sugirió una solución de [número] conglomerados. Los tamaños fueron n = [valores], y los conglomerados se interpretaron como [etiquetas].",
+    multidimensionalScaling: "Una solución de escalamiento multidimensional con [número] dimensiones representó la matriz de distancias con estrés = [valor]. Las dimensiones se interpretaron como [etiquetas de dimensiones]."
   },
   it: {
     pearson: "Una correlazione di Pearson ha mostrato un'associazione [direzione/intensità] tra X e Y, r(df) = valore, p = valore, IC 95% [LI, LS].",
@@ -313,7 +400,10 @@ const apaTemplates = {
     chiSquareGoodness: "Un test chi-quadrato di adattamento ha mostrato che le frequenze osservate [non differivano/differivano] da quelle attese, chi-square(df, N = n) = valore, p = valore.",
     linearRegression: "Il modello di regressione prediceva significativamente Y, F(df_model, df_residual) = valore, p = valore, R2 = valore. Il predittore X era [significativo/non significativo], beta = valore, t(df) = valore, p = valore.",
     logisticRegression: "Il modello di regressione logistica prediceva significativamente Y, chi-square(df, N = n) = valore, p = valore, pseudo-R2 = valore. Il predittore X aveva OR = valore, IC 95% [LI, LS], p = valore.",
-    multinomialRegression: "Il modello di regressione logistica multinomiale prediceva significativamente Y, chi-square(df, N = n) = valore, p = valore, pseudo-R2 = valore. Per la categoria A rispetto alla categoria di riferimento, il predittore X aveva OR = valore, p = valore."
+    multinomialRegression: "Il modello di regressione logistica multinomiale prediceva significativamente Y, chi-square(df, N = n) = valore, p = valore, pseudo-R2 = valore. Per la categoria A rispetto alla categoria di riferimento, il predittore X aveva OR = valore, p = valore.",
+    factorAnalysis: "Un'analisi fattoriale esplorativa con [metodo di estrazione] e [rotazione] ha suggerito una soluzione a [numero] fattori, spiegando il [valore]% della varianza. Gli item con carichi >= [soglia] sono stati interpretati su ciascun fattore.",
+    clusterAnalysis: "Un'analisi dei cluster con [misura di distanza] e [metodo di clustering] ha suggerito una soluzione a [numero] cluster. Le dimensioni dei cluster erano n = [valori], e i cluster sono stati interpretati come [etichette].",
+    multidimensionalScaling: "Una soluzione di scaling multidimensionale con [numero] dimensioni ha rappresentato la matrice delle distanze con stress = [valore]. Le dimensioni sono state interpretate come [etichette delle dimensioni]."
   }
 };
 
@@ -323,35 +413,35 @@ const apaLabels = {
     templateLabel: "Example sentence",
     valuesLabel: "Values to report",
     noteLabel: "Note",
-    note: "Replace the placeholders with your output values. APA style usually reports exact p values, except when p < .001."
+    note: "Replace the placeholders with your output values. APA style usually reports exact p values where applicable, except when p < .001."
   },
   de: {
     heading: "APA-Bericht",
     templateLabel: "Beispielsatz",
     valuesLabel: "Zu berichtende Werte",
     noteLabel: "Hinweis",
-    note: "Ersetzen Sie die Platzhalter durch Ihre Ausgabewerte. Nach APA werden p-Werte meist exakt berichtet, außer bei p < .001."
+    note: "Ersetzen Sie die Platzhalter durch Ihre Ausgabewerte. Nach APA werden p-Werte, sofern relevant, meist exakt berichtet, außer bei p < .001."
   },
   fr: {
     heading: "Compte rendu APA",
     templateLabel: "Phrase exemple",
     valuesLabel: "Valeurs à rapporter",
     noteLabel: "Remarque",
-    note: "Remplacez les espaces réservés par les valeurs de votre sortie. Le style APA rapporte généralement les valeurs p exactes, sauf lorsque p < .001."
+    note: "Remplacez les espaces réservés par les valeurs de votre sortie. Le style APA rapporte généralement les valeurs p exactes lorsqu'elles sont pertinentes, sauf lorsque p < .001."
   },
   es: {
     heading: "Informe APA",
     templateLabel: "Frase de ejemplo",
     valuesLabel: "Valores que se reportan",
     noteLabel: "Nota",
-    note: "Sustituya los marcadores por los valores de su salida. En estilo APA se suelen reportar valores p exactos, excepto cuando p < .001."
+    note: "Sustituya los marcadores por los valores de su salida. En estilo APA se suelen reportar valores p exactos cuando corresponde, excepto cuando p < .001."
   },
   it: {
     heading: "Resoconto APA",
     templateLabel: "Frase di esempio",
     valuesLabel: "Valori da riportare",
     noteLabel: "Nota",
-    note: "Sostituisci i segnaposto con i valori del tuo output. In stile APA si riportano di solito valori p esatti, tranne quando p < .001."
+    note: "Sostituisci i segnaposto con i valori del tuo output. In stile APA si riportano di solito valori p esatti quando pertinenti, tranne quando p < .001."
   }
 };
 

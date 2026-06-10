@@ -1,5 +1,15 @@
 const tree = {
   goal: {
+    area: "Analysestrategie",
+    question: "Möchten Sie eine Hypothese prüfen oder Hypothesen explorativ entdecken?",
+    hint: "Starten Sie mit der Rolle Ihrer Analyse: Soll eine vorab formulierte Annahme geprüft werden, oder möchten Sie Muster, Dimensionen oder Gruppen in den Daten entdecken?",
+    step: "Strategie",
+    answers: [
+      { label: "Eine Hypothese prüfen", next: "researchGoal" },
+      { label: "Hypothesen explorativ entdecken", next: "discoveryStructure" }
+    ]
+  },
+  researchGoal: {
     area: "Ausgangspunkt",
     question: "Welche Art von Forschungsfrage möchten Sie beantworten?",
     hint: "Beginnen Sie mit dem Ziel der Analyse. Der Baum führt Sie anschließend über Skalenniveau, Gruppendesign und Verteilungsannahmen.",
@@ -9,6 +19,17 @@ const tree = {
       { label: "Unterschiede oder Mittelwerte vergleichen", next: "comparisonOutcome" },
       { label: "Eine Zielvariable vorhersagen", next: "predictionOutcome" },
       { label: "Häufigkeiten oder Kategorien vergleichen", next: "categoricalDesign" }
+    ]
+  },
+  discoveryStructure: {
+    area: "Exploration",
+    question: "Welche Struktur möchten Sie in den Daten explorativ entdecken?",
+    hint: "Explorative Verfahren helfen, Variablen zu bündeln, Personen oder Objekte zu gruppieren oder Distanzen in wenigen Dimensionen darzustellen.",
+    step: "Exploration",
+    answers: [
+      { label: "Mehrere Variablen anhand einer Korrelationsmatrix bündeln oder reduzieren", result: "factorAnalysis" },
+      { label: "Ähnliche Personen oder Objekte zu Gruppen zusammenfassen", result: "clusterAnalysis" },
+      { label: "Distanzen zwischen Personen oder Objekten mit möglichst wenigen Dimensionen darstellen", result: "multidimensionalScaling" }
     ]
   },
   associationScale: {
@@ -247,6 +268,21 @@ const results = {
     title: "Multinomiale logistische Regression",
     summary: "Modelliert eine kategoriale Zielvariable mit mehr als zwei Ausprägungen.",
     assumptions: ["Mehrstufige kategoriale Zielvariable", "Unabhängige Beobachtungen", "Referenzkategorie sinnvoll definiert"]
+  },
+  factorAnalysis: {
+    title: "Faktorenanalyse",
+    summary: "Exploratives Verfahren, um mehrere korrelierte Variablen auf wenige zugrunde liegende Faktoren oder Dimensionen zu reduzieren.",
+    assumptions: ["Mehrere metrische oder annähernd metrische Variablen", "Sinnvolle Korrelationen zwischen Variablen", "Ausreichende Stichprobengröße", "Interpretierbare Faktorstruktur"]
+  },
+  clusterAnalysis: {
+    title: "Clusteranalyse",
+    summary: "Exploratives Verfahren, um Personen oder Objekte anhand ihrer Ähnlichkeit in Gruppen zu ordnen.",
+    assumptions: ["Merkmale zur Beschreibung von Personen oder Objekten", "Geeignete Skalierung oder Standardisierung", "Sinnvolles Distanz- oder Ähnlichkeitsmaß", "Clusterlösung fachlich interpretierbar"]
+  },
+  multidimensionalScaling: {
+    title: "Multidimensionale Skalierung",
+    summary: "Exploratives Verfahren, um Distanzen oder Unähnlichkeiten zwischen Personen oder Objekten in wenigen Dimensionen darzustellen.",
+    assumptions: ["Distanz- oder Unähnlichkeitsmatrix", "Objekte oder Personen sind vergleichbar", "Zahl der Dimensionen wird anhand von Stress und Interpretierbarkeit gewählt", "Darstellung dient primär der Exploration"]
   }
 };
 
@@ -291,7 +327,7 @@ const languagePacks = {
       exploreAlternatives: "Alternativen ansehen",
       orientationLabel: "Orientierung",
       orientationHeading: "Was wird geprüft?",
-      matrixGoal: "Fragestellung",
+      matrixGoal: "Strategie",
       matrixScale: "Skalenniveau",
       matrixGroups: "Gruppen",
       matrixResult: "Testwahl",
@@ -365,7 +401,7 @@ const languagePacks = {
       exploreAlternatives: "View alternatives",
       orientationLabel: "Orientation",
       orientationHeading: "What is being checked?",
-      matrixGoal: "Research question",
+      matrixGoal: "Strategy",
       matrixScale: "Scale level",
       matrixGroups: "Groups",
       matrixResult: "Test choice",
@@ -398,6 +434,16 @@ const languagePacks = {
     },
     tree: {
       goal: {
+        area: "Analysis strategy",
+        question: "Do you want to test a hypothesis or discover hypotheses exploratively?",
+        hint: "Start with the role of your analysis: are you testing a predefined assumption, or are you trying to discover patterns, dimensions, or groups in the data?",
+        step: "Strategy",
+        answers: [
+          { label: "Test a hypothesis", next: "researchGoal" },
+          { label: "Discover hypotheses exploratively", next: "discoveryStructure" }
+        ]
+      },
+      researchGoal: {
         area: "Starting point",
         question: "What kind of research question do you want to answer?",
         hint: "Start with the goal of the analysis. The tree then guides you through scale level, group design, and distribution assumptions.",
@@ -407,6 +453,17 @@ const languagePacks = {
           { label: "Compare differences or means", next: "comparisonOutcome" },
           { label: "Predict an outcome variable", next: "predictionOutcome" },
           { label: "Compare frequencies or categories", next: "categoricalDesign" }
+        ]
+      },
+      discoveryStructure: {
+        area: "Exploration",
+        question: "What kind of structure do you want to discover in the data?",
+        hint: "Exploratory procedures can group variables, group people or objects, or represent distances in a small number of dimensions.",
+        step: "Exploration",
+        answers: [
+          { label: "Group or reduce several variables using a correlation matrix", result: "factorAnalysis" },
+          { label: "Group similar people or objects", result: "clusterAnalysis" },
+          { label: "Represent distances between people or objects with the minimum number of dimensions", result: "multidimensionalScaling" }
         ]
       },
       associationScale: {
@@ -568,12 +625,17 @@ const languagePacks = {
       chiSquareGoodness: { title: "Chi-square goodness-of-fit test", summary: "Tests whether observed frequencies match an expected categorical distribution.", assumptions: ["One categorical variable", "Expected frequencies defined", "Independent observations"] },
       linearRegression: { title: "Linear regression", summary: "Models a metric outcome variable using one or more predictors.", assumptions: ["Metric outcome variable", "Linear relationships", "Independent residuals", "Homoscedasticity and residual diagnostics"] },
       logisticRegression: { title: "Binary logistic regression", summary: "Models the probability of a dichotomous outcome variable.", assumptions: ["Dichotomous outcome variable", "Independent observations", "No strong multicollinearity", "Sufficient number of events"] },
-      multinomialRegression: { title: "Multinomial logistic regression", summary: "Models a categorical outcome variable with more than two categories.", assumptions: ["Multicategory categorical outcome", "Independent observations", "Meaningful reference category"] }
+      multinomialRegression: { title: "Multinomial logistic regression", summary: "Models a categorical outcome variable with more than two categories.", assumptions: ["Multicategory categorical outcome", "Independent observations", "Meaningful reference category"] },
+      factorAnalysis: { title: "Factor analysis", summary: "Exploratory procedure for reducing several correlated variables to a smaller set of latent factors or dimensions.", assumptions: ["Several metric or approximately metric variables", "Meaningful correlations among variables", "Adequate sample size", "Interpretable factor structure"] },
+      clusterAnalysis: { title: "Cluster analysis", summary: "Exploratory procedure for grouping people or objects based on similarity.", assumptions: ["Features describing people or objects", "Appropriate scaling or standardisation", "Meaningful distance or similarity measure", "Cluster solution is substantively interpretable"] },
+      multidimensionalScaling: { title: "Multidimensional scaling", summary: "Exploratory procedure for representing distances or dissimilarities among people or objects in a small number of dimensions.", assumptions: ["Distance or dissimilarity matrix", "People or objects are comparable", "Number of dimensions chosen using stress and interpretability", "Primarily an exploratory representation"] }
     }
   }
 };
 
 Object.assign(languagePacks, window.extraLanguagePacks || {});
+
+const totalDecisionSteps = 13;
 
 const procedureCatalog = {
   pearson: {
@@ -651,6 +713,18 @@ const procedureCatalog = {
   multinomialRegression: {
     jamovi: "Analyses > Regression > Logistic Regression > N Outcomes\nPut the multicategory target in Dependent Variable.\nAdd predictors to Covariates or Factors and choose the reference level.",
     r: "library(nnet)\nfit <- multinom(y ~ x1 + x2, data = data)\nsummary(fit)"
+  },
+  factorAnalysis: {
+    jamovi: "Analyses > Factor > Exploratory Factor Analysis\nMove the related variables into Variables.\nChoose the extraction method, rotation, number of factors, and inspect loadings and model fit.",
+    r: "library(psych)\nfa.parallel(data[, items], fa = \"fa\")\nfit <- fa(data[, items], nfactors = 3, rotate = \"oblimin\")\nprint(fit$loadings, cutoff = .30)"
+  },
+  clusterAnalysis: {
+    jamovi: "Analyses > Exploration > Cluster\nMove the variables that describe people or objects into Variables.\nStandardise variables if needed, choose a distance method, and compare cluster solutions.",
+    r: "scaled <- scale(data[, variables])\nd <- dist(scaled, method = \"euclidean\")\nfit <- hclust(d, method = \"ward.D2\")\nplot(fit)\nclusters <- cutree(fit, k = 3)"
+  },
+  multidimensionalScaling: {
+    jamovi: "Jamovi has limited built-in support for multidimensional scaling.\nUse a distance/dissimilarity matrix if a suitable module is installed, or export the data and run MDS in R.\nInspect stress, the configuration plot, and interpretability of the dimensions.",
+    r: "d <- dist(scale(data[, variables]))\nfit <- cmdscale(d, k = 2, eig = TRUE)\nplot(fit$points, xlab = \"Dimension 1\", ylab = \"Dimension 2\")\n# Non-metric MDS: MASS::isoMDS(d, k = 2)"
   }
 };
 
@@ -793,13 +867,13 @@ function chooseAnswer(answer, answerIndex) {
 }
 
 function updateProgressDisplay(pack, isResult) {
-  const step = isResult ? 12 : Math.min(state.history.length + 1, 12);
-  const percent = isResult ? 100 : Math.min(Math.round((step / 12) * 100), 92);
+  const step = isResult ? totalDecisionSteps : Math.min(state.history.length + 1, totalDecisionSteps);
+  const percent = isResult ? 100 : Math.min(Math.round((step / totalDecisionSteps) * 100), 92);
   elements.stepLabel.textContent = isResult ? pack.ui.resultStep : `${pack.ui.questionStep} ${state.history.length + 1}`;
   elements.progressFill.style.width = `${percent}%`;
   elements.pathProgressLabel.textContent = isResult
     ? pack.ui.resultStep
-    : `${pack.ui.questionStep} ${step} ${pack.ui.pathProgressOf} 12`;
+    : `${pack.ui.questionStep} ${step} ${pack.ui.pathProgressOf} ${totalDecisionSteps}`;
   elements.pathProgressPercent.textContent = `${percent}%`;
   elements.pathProgressFill.style.width = `${percent}%`;
 }
@@ -956,7 +1030,7 @@ function resetTree() {
 function getStageForNode(nodeId) {
   const scaleNodes = ["associationScale", "comparisonOutcome", "predictionOutcome"];
   const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "normalAssociation"];
-  if (nodeId === "goal") return "goal";
+  if (nodeId === "goal" || nodeId === "researchGoal" || nodeId === "discoveryStructure") return "goal";
   if (scaleNodes.includes(nodeId)) return "scale";
   if (groupNodes.includes(nodeId)) return "groups";
   return "result";

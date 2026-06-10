@@ -1,0 +1,6 @@
+object,calm,joy,anger,sadness,fear
+calm,0,4,8,6,7
+joy,4,0,7,6,6
+anger,8,7,0,5,4
+sadness,6,6,5,0,3
+fear,7,6,4,3,0

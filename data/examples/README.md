@@ -23,5 +23,8 @@ Each CSV matches one result id in the decision tree. Use these files to create J
 | `linearRegression` | `linearRegression.csv` | Dependent variable `y`; predictors `x1` and `x2`. |
 | `logisticRegression` | `logisticRegression.csv` | Dichotomous dependent variable `y`; predictors `age` and `hours`. |
 | `multinomialRegression` | `multinomialRegression.csv` | Multicategory dependent variable `choice`; predictors `study_hours` and `motivation`. |
+| `factorAnalysis` | `factorAnalysis.csv` | Explore factors among the stress, mood, and sleep item columns. |
+| `clusterAnalysis` | `clusterAnalysis.csv` | Cluster athletes using training load, recovery, sprint, jump, and injury variables. |
+| `multidimensionalScaling` | `multidimensionalScaling.csv` | Use the symmetric distance matrix among emotions for MDS. |
 
 For clean screenshots, avoid extra ID columns unless Jamovi needs them for the specific analysis. Extra variables can accidentally be selected during manual setup.
