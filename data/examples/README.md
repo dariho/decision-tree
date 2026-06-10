@@ -25,6 +25,8 @@ Each CSV matches one result id in the decision tree. Use these files to create J
 | `linearRegression` | `linearRegression.csv` | Dependent variable `y`; predictors `x1` and `x2`. |
 | `logisticRegression` | `logisticRegression.csv` | Dichotomous dependent variable `y`; predictors `age` and `hours`. |
 | `multinomialRegression` | `multinomialRegression.csv` | Multicategory dependent variable `choice`; predictors `study_hours` and `motivation`. |
+| `pathAnalysis` | `pathAnalysis.csv` | Observed-variable mediation model: `predictor` -> `mediator` -> `outcome`. |
+| `structuralEquationModeling` | `structuralEquationModeling.csv` | Latent `stress` and `sleep` indicators plus observed `performance`. |
 | `factorAnalysis` | `factorAnalysis.csv` | Explore factors among the stress, mood, and sleep item columns. |
 | `clusterAnalysis` | `clusterAnalysis.csv` | Cluster athletes using training load, recovery, sprint, jump, and injury variables. |
 | `multidimensionalScaling` | `multidimensionalScaling.csv` | Use the symmetric distance matrix among emotions for MDS. |

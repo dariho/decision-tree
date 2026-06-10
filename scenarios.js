@@ -561,3 +561,58 @@ Object.assign(window.resultScenarioPacks.it, {
     sport: "Tipo di sport, ruolo di gioco e stato di infortunio vengono esaminati insieme per testare interazioni tra categorie nominali."
   }
 });
+
+Object.assign(window.resultScenarioPacks.de, {
+  pathAnalysis: {
+    psychology: "Eine Studie prüft, ob Schlafqualität den Zusammenhang zwischen Stress und depressiven Symptomen vermittelt.",
+    sport: "Ein Modell prüft, ob Trainingsmotivation den Zusammenhang zwischen Trainerfeedback und Trainingsumfang vermittelt."
+  },
+  structuralEquationModeling: {
+    psychology: "Latente Belastung und latente Emotionsregulation werden mit mehreren Fragebogenitems gemessen und zur Vorhersage von Wohlbefinden modelliert.",
+    sport: "Latente Erholung und latente Leistungsbereitschaft werden mit mehreren Indikatoren modelliert, um Wettkampfleistung vorherzusagen."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.en, {
+  pathAnalysis: {
+    psychology: "A study tests whether sleep quality mediates the association between stress and depressive symptoms.",
+    sport: "A model tests whether training motivation mediates the association between coach feedback and training volume."
+  },
+  structuralEquationModeling: {
+    psychology: "Latent distress and latent emotion regulation are measured with several questionnaire items and modelled to predict wellbeing.",
+    sport: "Latent recovery and latent readiness are modelled with several indicators to predict competition performance."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.fr, {
+  pathAnalysis: {
+    psychology: "Une étude teste si la qualité du sommeil médie l'association entre le stress et les symptômes dépressifs.",
+    sport: "Un modèle teste si la motivation d'entraînement médie l'association entre le feedback de l'entraîneur et le volume d'entraînement."
+  },
+  structuralEquationModeling: {
+    psychology: "La détresse latente et la régulation émotionnelle latente sont mesurées par plusieurs items et modélisées pour prédire le bien-être.",
+    sport: "La récupération latente et la disponibilité latente sont modélisées avec plusieurs indicateurs pour prédire la performance en compétition."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.es, {
+  pathAnalysis: {
+    psychology: "Un estudio prueba si la calidad del sueño media la asociación entre estrés y síntomas depresivos.",
+    sport: "Un modelo prueba si la motivación de entrenamiento media la asociación entre feedback del entrenador y volumen de entrenamiento."
+  },
+  structuralEquationModeling: {
+    psychology: "Malestar latente y regulación emocional latente se miden con varios ítems y se modelan para predecir bienestar.",
+    sport: "Recuperación latente y disposición latente se modelan con varios indicadores para predecir rendimiento competitivo."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.it, {
+  pathAnalysis: {
+    psychology: "Uno studio verifica se la qualità del sonno media l'associazione tra stress e sintomi depressivi.",
+    sport: "Un modello verifica se la motivazione all'allenamento media l'associazione tra feedback dell'allenatore e volume di allenamento."
+  },
+  structuralEquationModeling: {
+    psychology: "Disagio latente e regolazione emotiva latente vengono misurati con più item e modellati per predire il benessere.",
+    sport: "Recupero latente e prontezza latente vengono modellati con più indicatori per predire la prestazione in gara."
+  }
+});

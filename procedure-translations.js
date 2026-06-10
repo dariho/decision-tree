@@ -15,6 +15,12 @@ window.localizedProcedurePacks = {
     logLinearModel: {
       jamovi: "Jamovi bietet nur begrenzte direkte Unterstützung für vollständige log-lineare Modelle.\nNutzen Sie Häufigkeiten > Kontingenztabellen, um mehrwegige nominale Tabellen zu prüfen, und führen Sie das log-lineare Modell anschließend in R aus.\nVergleichen Sie Modelle mit und ohne Interaktionsterme."
     },
+    pathAnalysis: {
+      jamovi: "Installieren und öffnen Sie das SEMLj-Modul in jamovi.\nSpezifizieren Sie nur beobachtete Variablen und zeichnen Sie gerichtete Pfade für das angenommene Mediationsmodell.\nFordern Sie standardisierte Schätzungen, indirekte Effekte, Konfidenzintervalle und Modellfit-Indizes an."
+    },
+    structuralEquationModeling: {
+      jamovi: "Installieren und öffnen Sie das SEMLj-Modul in jamovi.\nDefinieren Sie latente Variablen über ihre Indikatoren und fügen Sie anschließend die angenommenen Strukturpfade hinzu.\nPrüfen Sie standardisierte Ladungen, Pfadkoeffizienten, gegebenenfalls indirekte Effekte und globale Fit-Indizes."
+    },
     oneSampleT: {
       jamovi: "Analysen > T-Tests > Einstichproben-t-Test\nVerschieben Sie die metrische Variable in Abhängige Variablen.\nGeben Sie den Testwert ein und aktivieren Sie Deskriptivstatistiken sowie Normalitätsprüfungen."
     },
@@ -95,6 +101,12 @@ window.localizedProcedurePacks = {
     logLinearModel: {
       jamovi: "Jamovi offre une prise en charge directe limitée des modèles log-linéaires complets.\nUtilisez Fréquences > Tableaux de contingence pour inspecter les tableaux nominaux à plusieurs entrées, puis exécutez le modèle log-linéaire dans R.\nComparez les modèles avec et sans termes d'interaction."
     },
+    pathAnalysis: {
+      jamovi: "Installez et ouvrez le module SEMLj dans jamovi.\nSpécifiez uniquement des variables observées et tracez les chemins dirigés du modèle de médiation hypothétique.\nDemandez les estimations standardisées, les effets indirects, les intervalles de confiance et les indices d'ajustement du modèle."
+    },
+    structuralEquationModeling: {
+      jamovi: "Installez et ouvrez le module SEMLj dans jamovi.\nDéfinissez les variables latentes avec leurs indicateurs, puis ajoutez les chemins structurels hypothétiques.\nExaminez les charges standardisées, les coefficients de chemin, les effets indirects si nécessaire et les indices d'ajustement globaux."
+    },
     oneSampleT: {
       jamovi: "Analyses > Tests t > Test t à un échantillon\nPlacez la variable métrique dans Variables dépendantes.\nSaisissez la valeur de test et activez les descriptifs ainsi que les contrôles de normalité."
     },
@@ -174,6 +186,12 @@ window.localizedProcedurePacks = {
     },
     logLinearModel: {
       jamovi: "Jamovi tiene soporte directo limitado para modelos log-lineales completos.\nUse Frecuencias > Tablas de contingencia para inspeccionar tablas nominales multidimensionales, y después ejecute el modelo log-lineal en R.\nCompare modelos con y sin términos de interacción."
+    },
+    pathAnalysis: {
+      jamovi: "Instale y abra el módulo SEMLj en jamovi.\nEspecifique solo variables observadas y dibuje rutas dirigidas para el modelo de mediación hipotetizado.\nSolicite estimaciones estandarizadas, efectos indirectos, intervalos de confianza e índices de ajuste del modelo."
+    },
+    structuralEquationModeling: {
+      jamovi: "Instale y abra el módulo SEMLj en jamovi.\nDefina variables latentes con sus indicadores y añada después las rutas estructurales hipotetizadas.\nRevise cargas estandarizadas, coeficientes de ruta, efectos indirectos si corresponde e índices globales de ajuste."
     },
     oneSampleT: {
       jamovi: "Análisis > Pruebas t > Prueba t para una muestra\nMueva la variable métrica a Variables dependientes.\nIntroduzca el valor de prueba y active descriptivos y comprobaciones de normalidad."
@@ -256,6 +274,12 @@ window.localizedProcedurePacks.it = {
   },
   logLinearModel: {
     jamovi: "Jamovi offre un supporto diretto limitato per modelli log-lineari completi.\nUsa Frequenze > Tabelle di contingenza per ispezionare tabelle nominali multidimensionali, poi esegui il modello log-lineare in R.\nConfronta modelli con e senza termini di interazione."
+  },
+  pathAnalysis: {
+    jamovi: "Installa e apri il modulo SEMLj in jamovi.\nSpecifica solo variabili osservate e disegna i percorsi diretti per il modello di mediazione ipotizzato.\nRichiedi stime standardizzate, effetti indiretti, intervalli di confidenza e indici di adattamento del modello."
+  },
+  structuralEquationModeling: {
+    jamovi: "Installa e apri il modulo SEMLj in jamovi.\nDefinisci le variabili latenti con i rispettivi indicatori, poi aggiungi i percorsi strutturali ipotizzati.\nControlla carichi standardizzati, coefficienti di percorso, eventuali effetti indiretti e indici globali di adattamento."
   },
   oneSampleT: {
     jamovi: "Analisi > Test t > Test t a un campione\nSposta la variabile metrica in Variabili dipendenti.\nInserisci il valore di test e attiva descrittive e controlli di normalità."
