@@ -60,6 +60,10 @@ window.resultScenarioPacks = {
       psychology: "Dieselben Personen werden vor und nach einer Intervention als symptomatisch oder nicht symptomatisch klassifiziert.",
       sport: "Dieselben Athletinnen und Athleten bestehen oder bestehen einen Fitnesstest vor und nach einem Trainingsprogramm nicht."
     },
+    binomialTest: {
+      psychology: "Es wird geprüft, ob der Anteil der Personen mit Therapieerfolg von einem theoretisch erwarteten Anteil von 50% abweicht.",
+      sport: "Ein Team prüft, ob der Anteil erfolgreicher Strafwürfe vom erwarteten Anteil von 75% abweicht."
+    },
     chiSquareGoodness: {
       psychology: "Eine Stichprobe wird darauf geprüft, ob die Häufigkeit von Bindungskategorien einer erwarteten Verteilung entspricht.",
       sport: "Ein Verein prüft, ob die Verteilung bevorzugter Sportarten den erwarteten Zielanteilen entspricht."
@@ -137,6 +141,10 @@ window.resultScenarioPacks = {
     mcnemar: {
       psychology: "The same people are classified as symptomatic or not symptomatic before and after an intervention.",
       sport: "The same athletes pass or fail a fitness test before and after a training programme."
+    },
+    binomialTest: {
+      psychology: "A study tests whether the proportion of people with treatment success differs from a theoretically expected 50%.",
+      sport: "A team tests whether the proportion of successful penalty shots differs from an expected 75%."
     },
     chiSquareGoodness: {
       psychology: "A sample is tested to see whether attachment-category frequencies match an expected distribution.",
@@ -216,6 +224,10 @@ window.resultScenarioPacks = {
       psychology: "Les mêmes personnes sont classées comme symptomatiques ou non avant et après une intervention.",
       sport: "Les mêmes athlètes réussissent ou échouent à un test de condition physique avant et après un programme."
     },
+    binomialTest: {
+      psychology: "Une étude teste si la proportion de personnes avec succès thérapeutique diffère d'une proportion théorique attendue de 50 %.",
+      sport: "Une équipe teste si la proportion de tirs au but réussis diffère d'une proportion attendue de 75 %."
+    },
     chiSquareGoodness: {
       psychology: "Un échantillon est testé pour savoir si les fréquences des catégories d'attachement suivent une distribution attendue.",
       sport: "Un club teste si la distribution des disciplines sportives préférées suit des proportions cibles attendues."
@@ -293,6 +305,10 @@ window.resultScenarioPacks = {
     mcnemar: {
       psychology: "Las mismas personas se clasifican como sintomáticas o no sintomáticas antes y después de una intervención.",
       sport: "Los mismos deportistas aprueban o no aprueban una prueba física antes y después de un programa de entrenamiento."
+    },
+    binomialTest: {
+      psychology: "Un estudio prueba si la proporción de personas con éxito terapéutico difiere de una proporción teórica esperada del 50%.",
+      sport: "Un equipo prueba si la proporción de penaltis acertados difiere de una proporción esperada del 75%."
     },
     chiSquareGoodness: {
       psychology: "Una muestra se analiza para ver si las frecuencias de categorías de apego coinciden con una distribución esperada.",
@@ -373,6 +389,10 @@ window.resultScenarioPacks.it = {
   mcnemar: {
     psychology: "Le stesse persone sono classificate come sintomatiche o non sintomatiche prima e dopo un intervento.",
     sport: "Gli stessi atleti superano o non superano un test fisico prima e dopo un programma di allenamento."
+  },
+  binomialTest: {
+    psychology: "Uno studio verifica se la proporzione di persone con successo terapeutico differisce da una proporzione teorica attesa del 50%.",
+    sport: "Una squadra verifica se la proporzione di rigori riusciti differisce da una proporzione attesa del 75%."
   },
   chiSquareGoodness: {
     psychology: "Un campione viene analizzato per vedere se le frequenze delle categorie di attaccamento corrispondono a una distribuzione attesa.",

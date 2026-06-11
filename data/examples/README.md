@@ -24,7 +24,8 @@ Each CSV matches one result id in the decision tree. Use these files to create J
 | `friedman` | `friedman.csv` | Repeated measures columns: `condition_a`, `condition_b`, `condition_c`; subject id: `id`. |
 | `fisher` | `fisher.csv` | 2x2 table: `treatment` by `response`; enable Fisher's exact test. |
 | `mcnemar` | `mcnemar.csv` | Paired categorical variables: `before`, `after`. |
-| `chiSquareGoodness` | `chiSquareGoodness.csv` | One categorical variable: `preference`; compare to expected proportions. |
+| `binomialTest` | `binomialTest.csv` | Two-level variable `response`; compare the observed `yes` proportion to an expected value, e.g. `0.50`. |
+| `chiSquareGoodness` | `chiSquareGoodness.csv` | Multilevel categorical variable `preference`; compare observed frequencies to expected proportions. |
 | `linearRegression` | `linearRegression.csv` | Dependent variable `y`; predictors `x1` and `x2`. |
 | `logisticRegression` | `logisticRegression.csv` | Dichotomous dependent variable `y`; predictors `age` and `hours`. |
 | `multinomialRegression` | `multinomialRegression.csv` | Multicategory dependent variable `choice`; predictors `study_hours` and `motivation`. |

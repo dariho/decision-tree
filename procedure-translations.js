@@ -69,6 +69,9 @@ window.localizedProcedurePacks = {
     mcnemar: {
       jamovi: "Analysen > Häufigkeiten > Kontingenztabellen > Verbundene Stichproben\nFügen Sie die zwei verbundenen dichotomen Variablen hinzu.\nAktivieren Sie den McNemar-Test."
     },
+    binomialTest: {
+      jamovi: "Analysen > Häufigkeiten > Einstichproben-Anteiltests\nWählen Sie die zweistufige kategoriale Variable aus.\nGeben Sie den erwarteten Anteil für die Zielkategorie ein und fordern Sie exakte/binomiale Konfidenzintervalle an."
+    },
     chiSquareGoodness: {
       jamovi: "Analysen > Häufigkeiten > Einstichproben-Anteiltests\nWählen Sie die kategoriale Variable aus.\nGeben Sie erwartete Anteile ein oder vergleichen Sie gegen gleiche Anteile."
     },
@@ -167,6 +170,9 @@ window.localizedProcedurePacks = {
     mcnemar: {
       jamovi: "Analyses > Fréquences > Tableaux de contingence > Échantillons appariés\nAjoutez les deux variables dichotomiques appariées.\nActivez le test de McNemar."
     },
+    binomialTest: {
+      jamovi: "Analyses > Fréquences > Tests de proportion à un échantillon\nSélectionnez la variable catégorielle à deux modalités.\nSaisissez la proportion attendue pour la catégorie cible et demandez les intervalles de confiance exacts/binomiaux."
+    },
     chiSquareGoodness: {
       jamovi: "Analyses > Fréquences > Tests de proportion à un échantillon\nSélectionnez la variable catégorielle.\nSaisissez les proportions attendues ou comparez à des proportions égales."
     },
@@ -264,6 +270,9 @@ window.localizedProcedurePacks = {
     },
     mcnemar: {
       jamovi: "Análisis > Frecuencias > Tablas de contingencia > Muestras relacionadas\nAñada las dos variables dicotómicas relacionadas.\nActive la prueba de McNemar."
+    },
+    binomialTest: {
+      jamovi: "Análisis > Frecuencias > Pruebas de proporción para una muestra\nSeleccione la variable categórica de dos niveles.\nIntroduzca la proporción esperada para la categoría focal y solicite intervalos de confianza exactos/binomiales."
     },
     chiSquareGoodness: {
       jamovi: "Análisis > Frecuencias > Pruebas de proporción para una muestra\nSeleccione la variable categórica.\nIntroduzca proporciones esperadas o compare con proporciones iguales."
@@ -364,6 +373,9 @@ window.localizedProcedurePacks.it = {
   },
   mcnemar: {
     jamovi: "Analisi > Frequenze > Tabelle di contingenza > Campioni appaiati\nAggiungi le due variabili dicotomiche appaiate.\nAttiva il test di McNemar."
+  },
+  binomialTest: {
+    jamovi: "Analisi > Frequenze > Test di proporzione a un campione\nSeleziona la variabile categoriale a due livelli.\nInserisci la proporzione attesa per la categoria focale e richiedi intervalli di confidenza esatti/binomiali."
   },
   chiSquareGoodness: {
     jamovi: "Analisi > Frequenze > Test di proporzione a un campione\nSeleziona la variabile categoriale.\nInserisci le proporzioni attese o confronta con proporzioni uguali."

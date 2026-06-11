@@ -18,7 +18,7 @@ const tree = {
       { label: "Zusammenhang zwischen Variablen prüfen", next: "associationScale" },
       { label: "Unterschiede oder Mittelwerte vergleichen", next: "comparisonOutcome" },
       { label: "Eine Zielvariable vorhersagen", next: "predictionOutcome" },
-      { label: "Häufigkeiten oder Kategorien vergleichen", next: "categoricalDesign" }
+      { label: "Häufigkeiten, Kategorien oder Anteile vergleichen", next: "categoricalDesign" }
     ]
   },
   discoveryStructure: {
@@ -197,13 +197,14 @@ const tree = {
   categoricalDesign: {
     area: "Kategorien",
     question: "Wie ist die kategoriale Fragestellung aufgebaut?",
-    hint: "Für Häufigkeiten zählen Anzahl Variablen, erwartete Zellhäufigkeiten und ob die Beobachtungen verbunden sind.",
+    hint: "Für Häufigkeiten und Anteile zählen Anzahl Variablen, erwartete Zellhäufigkeiten und ob die Beobachtungen verbunden sind.",
     step: "Kategorien",
     answers: [
       { label: "Zwei unabhängige kategoriale Variablen", result: "chiSquareAssociation" },
       { label: "Kleine erwartete Häufigkeiten in einer 2x2-Tabelle", result: "fisher" },
       { label: "Zwei verbundene dichotome Messungen", result: "mcnemar" },
-      { label: "Eine kategoriale Verteilung gegen Erwartungswerte", result: "chiSquareGoodness" }
+      { label: "Theoretische und empirische Verteilung bei zweistufiger Variable vergleichen", result: "binomialTest" },
+      { label: "Theoretische und empirische Verteilung bei mehrstufiger Variable vergleichen", result: "chiSquareGoodness" }
     ]
   },
   predictionOutcome: {
@@ -335,10 +336,15 @@ const results = {
     summary: "Vergleicht zwei verbundene dichotome Messungen, etwa Vorher-Nachher-Kategorien.",
     assumptions: ["Zwei verbundene dichotome Messungen", "Paarweise Daten", "Diskordante Paare sind relevant"]
   },
+  binomialTest: {
+    title: "Binomial-Test",
+    summary: "Prüft, ob die empirische Häufigkeit oder der Anteil einer zweistufigen Variable von einer theoretisch erwarteten Wahrscheinlichkeit abweicht.",
+    assumptions: ["Zweistufige kategoriale Variable", "Theoretisch erwarteter Anteil definiert", "Unabhängige Beobachtungen", "Feste Anzahl von Versuchen oder Fällen"]
+  },
   chiSquareGoodness: {
-    title: "Chi-Quadrat-Anpassungstest",
-    summary: "Prüft, ob beobachtete Häufigkeiten zu einer erwarteten kategorialen Verteilung passen.",
-    assumptions: ["Eine kategoriale Variable", "Erwartete Häufigkeiten definiert", "Unabhängige Beobachtungen"]
+    title: "Pearson-Chi-Quadrat-Anpassungstest",
+    summary: "Prüft, ob die empirische Häufigkeitsverteilung einer mehrstufigen kategorialen Variable zu einer theoretisch erwarteten Verteilung passt.",
+    assumptions: ["Mehrstufige kategoriale Variable", "Erwartete Häufigkeiten oder Anteile definiert", "Unabhängige Beobachtungen", "Ausreichend erwartete Häufigkeiten je Kategorie"]
   },
   linearRegression: {
     title: "Lineare Regression",
@@ -548,7 +554,7 @@ const languagePacks = {
           { label: "Test association between variables", next: "associationScale" },
           { label: "Compare differences or means", next: "comparisonOutcome" },
           { label: "Predict an outcome variable", next: "predictionOutcome" },
-          { label: "Compare frequencies or categories", next: "categoricalDesign" }
+          { label: "Compare frequencies, categories, or proportions", next: "categoricalDesign" }
         ]
       },
       discoveryStructure: {
@@ -727,13 +733,14 @@ const languagePacks = {
       categoricalDesign: {
         area: "Categories",
         question: "How is the categorical question structured?",
-        hint: "For frequencies, the number of variables, expected cell counts, and pairedness matter.",
+        hint: "For frequencies and proportions, the number of variables, expected cell counts, and pairedness matter.",
         step: "Categories",
         answers: [
           { label: "Two independent categorical variables", result: "chiSquareAssociation" },
           { label: "Small expected counts in a 2x2 table", result: "fisher" },
           { label: "Two paired dichotomous measurements", result: "mcnemar" },
-          { label: "One categorical distribution against expected values", result: "chiSquareGoodness" }
+          { label: "Compare theoretical and empirical distribution for a two-level variable", result: "binomialTest" },
+          { label: "Compare theoretical and empirical distribution for a multilevel variable", result: "chiSquareGoodness" }
         ]
       },
       predictionOutcome: {
@@ -772,7 +779,8 @@ const languagePacks = {
       friedman: { title: "Friedman test", summary: "Nonparametric alternative to repeated-measures ANOVA for several paired conditions.", assumptions: ["Several paired measurements", "At least ordinal values", "Same cases in all conditions"] },
       fisher: { title: "Fisher's exact test", summary: "Tests associations in small 2x2 tables when chi-square assumptions are not met.", assumptions: ["Dichotomous categorical variables", "Independent observations", "Small expected counts"] },
       mcnemar: { title: "McNemar test", summary: "Compares two paired dichotomous measurements, such as pre-post categories.", assumptions: ["Two paired dichotomous measurements", "Paired data", "Discordant pairs are relevant"] },
-      chiSquareGoodness: { title: "Chi-square goodness-of-fit test", summary: "Tests whether observed frequencies match an expected categorical distribution.", assumptions: ["One categorical variable", "Expected frequencies defined", "Independent observations"] },
+      binomialTest: { title: "Binomial test", summary: "Tests whether the empirical frequency or proportion of a two-level variable differs from a theoretically expected probability.", assumptions: ["Two-level categorical variable", "Theoretically expected proportion is defined", "Independent observations", "Fixed number of trials or cases"] },
+      chiSquareGoodness: { title: "Pearson chi-square goodness-of-fit test", summary: "Tests whether the empirical frequency distribution of a multilevel categorical variable matches a theoretically expected distribution.", assumptions: ["Multilevel categorical variable", "Expected frequencies or proportions are defined", "Independent observations", "Sufficient expected counts per category"] },
       linearRegression: { title: "Linear regression", summary: "Models a metric outcome variable using one or more predictors; without a suitable design, it does not provide evidence of causality.", assumptions: ["Metric outcome variable", "Linear relationships", "Independent residuals", "Homoscedasticity and residual diagnostics", "Prediction or association, not causality by itself"] },
       logisticRegression: { title: "Binary logistic regression", summary: "Models the probability of a dichotomous outcome variable.", assumptions: ["Dichotomous outcome variable", "Independent observations", "No strong multicollinearity", "Sufficient number of events"] },
       multinomialRegression: { title: "Multinomial logistic regression", summary: "Models a categorical outcome variable with more than two categories.", assumptions: ["Multicategory categorical outcome", "Independent observations", "Meaningful reference category"] },
@@ -882,6 +890,10 @@ const procedureCatalog = {
     jamovi: "Analyses > Frequencies > Contingency Tables > Paired Samples\nAdd the two paired dichotomous variables.\nEnable McNemar test.",
     r: "tab <- table(data$before, data$after)\nmcnemar.test(tab)"
   },
+  binomialTest: {
+    jamovi: "Analyses > Frequencies > One Sample Proportion Tests\nSelect the two-level categorical variable.\nEnter the expected proportion for the focal category and request exact/binomial confidence intervals.",
+    r: "successes <- sum(data$response == \"yes\")\nn <- length(data$response)\nbinom.test(successes, n, p = 0.50)"
+  },
   chiSquareGoodness: {
     jamovi: "Analyses > Frequencies > One Sample Proportion Tests\nSelect the categorical variable.\nEnter expected proportions or compare against equal proportions.",
     r: "observed <- c(20, 30, 50)\nexpected <- c(1/3, 1/3, 1/3)\nchisq.test(observed, p = expected)"
@@ -949,6 +961,7 @@ const effectSizeDefinitions = {
   friedman: { measure: "Kendall's W", rangeType: "w" },
   fisher: { measure: "Odds ratio", rangeType: "or" },
   mcnemar: { measure: "Matched-pairs odds ratio", rangeType: "or" },
+  binomialTest: { measure: "Cohen's h", rangeType: "h" },
   chiSquareGoodness: { measure: "Cohen's w", rangeType: "w" },
   linearRegression: { measure: "R squared / adjusted R squared", rangeType: "r2" },
   logisticRegression: { measure: "Odds ratio", rangeType: "or" },
@@ -978,6 +991,7 @@ const effectSizeLabels = {
       r: "|r|: .10 klein, .30 mittel, .50 groß",
       v: "V: .10 klein, .30 mittel, .50 groß; bei größeren Tabellen nur als grobe Orientierung",
       eta: "eta2: .01 klein, .06 mittel, .14 groß",
+      h: "h: 0.20 klein, 0.50 mittel, 0.80 groß",
       w: "w/W: .10 klein, .30 mittel, .50 groß",
       r2: "R2: .02 klein, .13 mittel, .26 groß",
       mixedR2: "Marginales R2 = erklärte Varianz durch feste Effekte; konditionales R2 = feste plus zufällige Effekte. Differenz fachlich interpretieren.",
@@ -1004,6 +1018,7 @@ const effectSizeLabels = {
       r: "|r|: .10 small, .30 medium, .50 large",
       v: "V: .10 small, .30 medium, .50 large; only a rough guide for larger tables",
       eta: "eta2: .01 small, .06 medium, .14 large",
+      h: "h: 0.20 small, 0.50 medium, 0.80 large",
       w: "w/W: .10 small, .30 medium, .50 large",
       r2: "R2: .02 small, .13 medium, .26 large",
       mixedR2: "Marginal R2 = variance explained by fixed effects; conditional R2 = fixed plus random effects. Interpret their difference substantively.",
@@ -1027,6 +1042,7 @@ const effectSizeLabels = {
       r: "|r| : .10 faible, .30 moyen, .50 fort",
       v: "V : .10 faible, .30 moyen, .50 fort ; seulement un repère approximatif pour les grands tableaux",
       eta: "eta2 : .01 faible, .06 moyen, .14 fort",
+      h: "h : 0.20 faible, 0.50 moyen, 0.80 fort",
       w: "w/W : .10 faible, .30 moyen, .50 fort",
       r2: "R2 : .02 faible, .13 moyen, .26 fort",
       mixedR2: "R2 marginal = variance expliquée par les effets fixes ; R2 conditionnel = effets fixes plus aléatoires. Interpréter leur différence substantiellement.",
@@ -1050,6 +1066,7 @@ const effectSizeLabels = {
       r: "|r|: .10 pequeño, .30 medio, .50 grande",
       v: "V: .10 pequeño, .30 medio, .50 grande; solo como guía aproximada en tablas grandes",
       eta: "eta2: .01 pequeño, .06 medio, .14 grande",
+      h: "h: 0.20 pequeño, 0.50 medio, 0.80 grande",
       w: "w/W: .10 pequeño, .30 medio, .50 grande",
       r2: "R2: .02 pequeño, .13 medio, .26 grande",
       mixedR2: "R2 marginal = varianza explicada por efectos fijos; R2 condicional = efectos fijos más aleatorios. Interprete su diferencia sustantivamente.",
@@ -1073,6 +1090,7 @@ const effectSizeLabels = {
       r: "|r|: .10 piccolo, .30 medio, .50 grande",
       v: "V: .10 piccolo, .30 medio, .50 grande; solo come guida approssimativa per tabelle grandi",
       eta: "eta2: .01 piccolo, .06 medio, .14 grande",
+      h: "h: 0.20 piccolo, 0.50 medio, 0.80 grande",
       w: "w/W: .10 piccolo, .30 medio, .50 grande",
       r2: "R2: .02 piccolo, .13 medio, .26 grande",
       mixedR2: "R2 marginale = varianza spiegata dagli effetti fissi; R2 condizionale = effetti fissi più casuali. Interpreta la differenza in modo sostanziale.",
