@@ -1108,7 +1108,7 @@ const effectSizeLabels = {
 const state = {
   currentNode: "goal",
   history: [],
-  language: "de",
+  language: "en",
   procedureTool: "jamovi"
 };
 
