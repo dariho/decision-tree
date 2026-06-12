@@ -659,3 +659,150 @@ function buildApaPack(language) {
 window.apaReportingPacks = Object.fromEntries(
   Object.keys(apaTemplates).map((language) => [language, buildApaPack(language)])
 );
+
+const mlApaMetrics = {
+  decisionTreeRegression: ["N", "training/test split or cross-validation", "tree depth or pruning", "RMSE", "MAE", "R2"],
+  randomForestRegression: ["N", "training/test split or cross-validation", "number of trees", "RMSE", "MAE", "R2", "variable importance"],
+  knnRegression: ["N", "standardisation", "k", "distance measure", "RMSE", "MAE", "R2"],
+  decisionTreeClassifier: ["N", "training/test split or cross-validation", "tree depth or pruning", "accuracy", "balanced accuracy", "F1", "confusion matrix"],
+  randomForestClassifier: ["N", "training/test split or cross-validation", "number of trees", "accuracy", "balanced accuracy", "F1", "AUC if applicable", "variable importance"],
+  knnClassifier: ["N", "standardisation", "k", "distance measure", "accuracy", "balanced accuracy", "F1", "confusion matrix"],
+  naiveBayes: ["N", "feature distributions", "accuracy", "balanced accuracy", "F1", "AUC if applicable", "confusion matrix"],
+  principalComponentAnalysis: ["N", "number of variables", "standardisation", "number of components", "explained variance", "component loadings"]
+};
+
+const mlApaTemplates = {
+  en: {
+    decisionTreeRegression: "A decision tree regression model predicted Y with validation RMSE = value, MAE = value, and R2 = value. The final tree used [depth/leaves/pruning rule], and the strongest splits involved [variables].",
+    randomForestRegression: "A random forest regression model predicted Y with validation RMSE = value, MAE = value, and R2 = value using [number] trees. The most important predictors were [variables].",
+    knnRegression: "A k-nearest neighbors regression model predicted Y with validation RMSE = value, MAE = value, and R2 = value. The best-performing value of k was [value] using [distance measure].",
+    decisionTreeClassifier: "A decision tree classifier achieved validation accuracy = value, balanced accuracy = value, and F1 = value. The confusion matrix indicated [brief pattern], and the main decision rules involved [variables].",
+    randomForestClassifier: "A random forest classifier achieved validation accuracy = value, balanced accuracy = value, and F1 = value using [number] trees. The most important predictors were [variables].",
+    knnClassifier: "A k-nearest neighbors classifier achieved validation accuracy = value, balanced accuracy = value, and F1 = value. The best-performing value of k was [value] using [distance measure].",
+    naiveBayes: "A naive Bayes classifier achieved validation accuracy = value, balanced accuracy = value, and F1 = value. Predicted probabilities were inspected for [calibration/class separation].",
+    principalComponentAnalysis: "A principal component analysis of [number] variables suggested [number] components explaining [value]% of the variance. Variables with high loadings on each component were interpreted as [component labels]."
+  },
+  de: {
+    decisionTreeRegression: "Eine Entscheidungsbaum-Regression sagte Y mit Validierungs-RMSE = Wert, MAE = Wert und R2 = Wert vorher. Der finale Baum nutzte [Tiefe/Blätter/Pruning-Regel], und die wichtigsten Splits betrafen [Variablen].",
+    randomForestRegression: "Eine Random-Forest-Regression sagte Y mit Validierungs-RMSE = Wert, MAE = Wert und R2 = Wert bei [Anzahl] Bäumen vorher. Die wichtigsten Prädiktoren waren [Variablen].",
+    knnRegression: "Eine k-Nearest-Neighbors-Regression sagte Y mit Validierungs-RMSE = Wert, MAE = Wert und R2 = Wert vorher. Der beste k-Wert war [Wert] mit [Distanzmaß].",
+    decisionTreeClassifier: "Ein Entscheidungsbaum-Klassifikator erreichte Validierungs-Accuracy = Wert, balanced accuracy = Wert und F1 = Wert. Die Konfusionsmatrix zeigte [kurzes Muster], und die wichtigsten Regeln betrafen [Variablen].",
+    randomForestClassifier: "Ein Random-Forest-Klassifikator erreichte Validierungs-Accuracy = Wert, balanced accuracy = Wert und F1 = Wert bei [Anzahl] Bäumen. Die wichtigsten Prädiktoren waren [Variablen].",
+    knnClassifier: "Ein k-Nearest-Neighbors-Klassifikator erreichte Validierungs-Accuracy = Wert, balanced accuracy = Wert und F1 = Wert. Der beste k-Wert war [Wert] mit [Distanzmaß].",
+    naiveBayes: "Ein Naive-Bayes-Klassifikator erreichte Validierungs-Accuracy = Wert, balanced accuracy = Wert und F1 = Wert. Vorhergesagte Wahrscheinlichkeiten wurden auf [Kalibrierung/Klassentrennung] geprüft.",
+    principalComponentAnalysis: "Eine Hauptkomponentenanalyse von [Anzahl] Variablen ergab [Anzahl] Komponenten, die [Wert]% der Varianz erklärten. Variablen mit hohen Ladungen wurden als [Komponentenbezeichnungen] interpretiert."
+  },
+  fr: {
+    decisionTreeRegression: "Une régression par arbre de décision a prédit Y avec RMSE de validation = valeur, MAE = valeur et R2 = valeur. L'arbre final utilisait [profondeur/feuilles/élagage], et les principales divisions concernaient [variables].",
+    randomForestRegression: "Une régression par forêt aléatoire a prédit Y avec RMSE de validation = valeur, MAE = valeur et R2 = valeur avec [nombre] arbres. Les prédicteurs les plus importants étaient [variables].",
+    knnRegression: "Une régression k plus proches voisins a prédit Y avec RMSE de validation = valeur, MAE = valeur et R2 = valeur. La meilleure valeur de k était [valeur] avec [mesure de distance].",
+    decisionTreeClassifier: "Un classificateur par arbre de décision a obtenu une exactitude de validation = valeur, une exactitude équilibrée = valeur et F1 = valeur. La matrice de confusion indiquait [motif bref], et les règles principales concernaient [variables].",
+    randomForestClassifier: "Un classificateur par forêt aléatoire a obtenu une exactitude de validation = valeur, une exactitude équilibrée = valeur et F1 = valeur avec [nombre] arbres. Les prédicteurs les plus importants étaient [variables].",
+    knnClassifier: "Un classificateur k plus proches voisins a obtenu une exactitude de validation = valeur, une exactitude équilibrée = valeur et F1 = valeur. La meilleure valeur de k était [valeur] avec [mesure de distance].",
+    naiveBayes: "Un classificateur naïf bayésien a obtenu une exactitude de validation = valeur, une exactitude équilibrée = valeur et F1 = valeur. Les probabilités prédites ont été inspectées pour [calibration/séparation des classes].",
+    principalComponentAnalysis: "Une analyse en composantes principales de [nombre] variables a suggéré [nombre] composantes expliquant [valeur]% de la variance. Les variables à fortes charges ont été interprétées comme [étiquettes des composantes]."
+  },
+  es: {
+    decisionTreeRegression: "Una regresión con árbol de decisión predijo Y con RMSE de validación = valor, MAE = valor y R2 = valor. El árbol final usó [profundidad/hojas/poda], y las divisiones principales implicaron [variables].",
+    randomForestRegression: "Una regresión con bosque aleatorio predijo Y con RMSE de validación = valor, MAE = valor y R2 = valor usando [número] árboles. Los predictores más importantes fueron [variables].",
+    knnRegression: "Una regresión k vecinos más cercanos predijo Y con RMSE de validación = valor, MAE = valor y R2 = valor. El mejor valor de k fue [valor] usando [medida de distancia].",
+    decisionTreeClassifier: "Un clasificador con árbol de decisión alcanzó exactitud de validación = valor, exactitud balanceada = valor y F1 = valor. La matriz de confusión indicó [patrón breve], y las reglas principales implicaron [variables].",
+    randomForestClassifier: "Un clasificador con bosque aleatorio alcanzó exactitud de validación = valor, exactitud balanceada = valor y F1 = valor usando [número] árboles. Los predictores más importantes fueron [variables].",
+    knnClassifier: "Un clasificador k vecinos más cercanos alcanzó exactitud de validación = valor, exactitud balanceada = valor y F1 = valor. El mejor valor de k fue [valor] usando [medida de distancia].",
+    naiveBayes: "Un clasificador naive Bayes alcanzó exactitud de validación = valor, exactitud balanceada = valor y F1 = valor. Las probabilidades predichas se inspeccionaron para [calibración/separación de clases].",
+    principalComponentAnalysis: "Un análisis de componentes principales de [número] variables sugirió [número] componentes que explicaban el [valor]% de la varianza. Las variables con cargas altas se interpretaron como [etiquetas de componentes]."
+  },
+  it: {
+    decisionTreeRegression: "Una regressione con albero decisionale ha predetto Y con RMSE di validazione = valore, MAE = valore e R2 = valore. L'albero finale usava [profondità/foglie/potatura], e gli split principali riguardavano [variabili].",
+    randomForestRegression: "Una regressione random forest ha predetto Y con RMSE di validazione = valore, MAE = valore e R2 = valore usando [numero] alberi. I predittori più importanti erano [variabili].",
+    knnRegression: "Una regressione k-nearest neighbors ha predetto Y con RMSE di validazione = valore, MAE = valore e R2 = valore. Il miglior valore di k era [valore] usando [misura di distanza].",
+    decisionTreeClassifier: "Un classificatore ad albero decisionale ha ottenuto accuratezza di validazione = valore, balanced accuracy = valore e F1 = valore. La matrice di confusione indicava [pattern breve], e le regole principali riguardavano [variabili].",
+    randomForestClassifier: "Un classificatore random forest ha ottenuto accuratezza di validazione = valore, balanced accuracy = valore e F1 = valore usando [numero] alberi. I predittori più importanti erano [variabili].",
+    knnClassifier: "Un classificatore k-nearest neighbors ha ottenuto accuratezza di validazione = valore, balanced accuracy = valore e F1 = valore. Il miglior valore di k era [valore] usando [misura di distanza].",
+    naiveBayes: "Un classificatore naive Bayes ha ottenuto accuratezza di validazione = valore, balanced accuracy = valore e F1 = valore. Le probabilità predette sono state controllate per [calibrazione/separazione delle classi].",
+    principalComponentAnalysis: "Un'analisi delle componenti principali di [numero] variabili ha suggerito [numero] componenti che spiegavano il [valore]% della varianza. Le variabili con carichi elevati sono state interpretate come [etichette delle componenti]."
+  }
+};
+
+const mlApaMetricTranslations = {
+  de: {
+    "training/test split or cross-validation": "Train/Test-Split oder Kreuzvalidierung",
+    "tree depth or pruning": "Baumtiefe oder Pruning",
+    "number of trees": "Anzahl der Bäume",
+    "variable importance": "Variablenwichtigkeit",
+    "standardisation": "Standardisierung",
+    "distance measure": "Distanzmaß",
+    "accuracy": "Accuracy",
+    "balanced accuracy": "Balanced Accuracy",
+    "confusion matrix": "Konfusionsmatrix",
+    "AUC if applicable": "AUC, falls anwendbar",
+    "feature distributions": "Merkmalsverteilungen",
+    "number of variables": "Anzahl der Variablen",
+    "number of components": "Anzahl der Komponenten",
+    "explained variance": "erklärte Varianz",
+    "component loadings": "Komponentenladungen"
+  },
+  fr: {
+    "training/test split or cross-validation": "découpage entraînement/test ou validation croisée",
+    "tree depth or pruning": "profondeur de l'arbre ou élagage",
+    "number of trees": "nombre d'arbres",
+    "variable importance": "importance des variables",
+    "standardisation": "standardisation",
+    "distance measure": "mesure de distance",
+    "accuracy": "exactitude",
+    "balanced accuracy": "exactitude équilibrée",
+    "confusion matrix": "matrice de confusion",
+    "AUC if applicable": "AUC si applicable",
+    "feature distributions": "distributions des caractéristiques",
+    "number of variables": "nombre de variables",
+    "number of components": "nombre de composantes",
+    "explained variance": "variance expliquée",
+    "component loadings": "charges des composantes"
+  },
+  es: {
+    "training/test split or cross-validation": "división entrenamiento/prueba o validación cruzada",
+    "tree depth or pruning": "profundidad del árbol o poda",
+    "number of trees": "número de árboles",
+    "variable importance": "importancia de variables",
+    "standardisation": "estandarización",
+    "distance measure": "medida de distancia",
+    "accuracy": "exactitud",
+    "balanced accuracy": "exactitud balanceada",
+    "confusion matrix": "matriz de confusión",
+    "AUC if applicable": "AUC si procede",
+    "feature distributions": "distribuciones de características",
+    "number of variables": "número de variables",
+    "number of components": "número de componentes",
+    "explained variance": "varianza explicada",
+    "component loadings": "cargas de componentes"
+  },
+  it: {
+    "training/test split or cross-validation": "split training/test o validazione incrociata",
+    "tree depth or pruning": "profondità dell'albero o potatura",
+    "number of trees": "numero di alberi",
+    "variable importance": "importanza delle variabili",
+    "standardisation": "standardizzazione",
+    "distance measure": "misura di distanza",
+    "accuracy": "accuratezza",
+    "balanced accuracy": "balanced accuracy",
+    "confusion matrix": "matrice di confusione",
+    "AUC if applicable": "AUC se applicabile",
+    "feature distributions": "distribuzioni delle caratteristiche",
+    "number of variables": "numero di variabili",
+    "number of components": "numero di componenti",
+    "explained variance": "varianza spiegata",
+    "component loadings": "carichi delle componenti"
+  }
+};
+
+Object.entries(mlApaTemplates).forEach(([language, templates]) => {
+  const pack = window.apaReportingPacks[language];
+  const metricTranslations = mlApaMetricTranslations[language] || {};
+  if (!pack) return;
+  Object.entries(templates).forEach(([resultId, template]) => {
+    pack.tests[resultId] = {
+      template,
+      metrics: (mlApaMetrics[resultId] || []).map((metric) => metricTranslations[metric] || metric)
+    };
+  });
+});

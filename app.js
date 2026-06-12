@@ -795,6 +795,244 @@ const languagePacks = {
 
 Object.assign(languagePacks, window.extraLanguagePacks || {});
 
+const mlLanguageAdditions = {
+  de: {
+    goalUpdate: {
+      question: "Was möchten Sie mit Ihren Daten tun?",
+      hint: "Wählen Sie, ob Sie eine vorab formulierte Hypothese prüfen, explorativ Struktur entdecken oder ein Modell zur Vorhersage bzw. Klassifikation neuer Fälle trainieren möchten."
+    },
+    goalAnswer: { label: "Neue Fälle vorhersagen oder klassifizieren", next: "mlOutcomeKnown" },
+    tree: {
+      mlOutcomeKnown: {
+        area: "Machine Learning",
+        question: "Haben Sie eine bekannte Zielvariable in einem Trainingsdatensatz?",
+        hint: "Supervised Learning benötigt bekannte Zielwerte. Ohne Zielvariable geht es eher um Dimensionsreduktion, Gruppierung oder Visualisierung von Strukturen.",
+        step: "Lernziel",
+        answers: [
+          { label: "Ja, die Zielvariable ist bekannt", next: "mlOutcomeType" },
+          { label: "Nein, ich möchte Muster ohne Zielvariable entdecken", next: "mlUnsupervisedGoal" }
+        ]
+      },
+      mlOutcomeType: {
+        area: "Zielvariable",
+        question: "Welche Art von Zielvariable soll vorhergesagt werden?",
+        hint: "Bei metrischen Zielvariablen geht es um Regression. Bei kategorialen Zielvariablen geht es um Klassifikation.",
+        step: "Zielvariable",
+        answers: [
+          { label: "Metrische Zielvariable", next: "mlNumericModel" },
+          { label: "Kategoriale Zielvariable", next: "mlClassificationModel" }
+        ]
+      },
+      mlNumericModel: {
+        area: "Regressionsmodell",
+        question: "Welche Art von Vorhersagemodell passt am besten?",
+        hint: "Starten Sie oft mit einem interpretierbaren Basismodell und vergleichen Sie flexiblere Modelle per Kreuzvalidierung.",
+        step: "Modellwahl",
+        answers: [
+          { label: "Interpretierbares lineares Basismodell", result: "linearRegression" },
+          { label: "Einfache nichtlineare Entscheidungsregeln", result: "decisionTreeRegression" },
+          { label: "Stärkere Vorhersage mit vielen Prädiktoren", result: "randomForestRegression" },
+          { label: "Vorhersage anhand ähnlicher Fälle", result: "knnRegression" }
+        ]
+      },
+      mlClassificationModel: {
+        area: "Klassifikationsmodell",
+        question: "Welche Klassifikationslogik passt am besten?",
+        hint: "Berichten Sie neben der Treffergenauigkeit immer auch Validierungsstrategie, Klassenverteilung und bei unbalancierten Klassen geeignete Kennwerte.",
+        step: "Modellwahl",
+        answers: [
+          { label: "Dichotome Zielvariable mit interpretierbaren Odds Ratios", result: "logisticRegression" },
+          { label: "Mehrstufige Zielvariable mit interpretierbarem Regressionsmodell", result: "multinomialRegression" },
+          { label: "Transparente Wenn-dann-Regeln", result: "decisionTreeClassifier" },
+          { label: "Robustes Modell mit besserer Vorhersageleistung", result: "randomForestClassifier" },
+          { label: "Klassifikation anhand ähnlicher Fälle", result: "knnClassifier" },
+          { label: "Schnelles Basismodell für viele einfache Merkmale", result: "naiveBayes" }
+        ]
+      },
+      mlUnsupervisedGoal: {
+        area: "Unsupervised Learning",
+        question: "Welches explorative Ziel verfolgen Sie ohne bekannte Zielvariable?",
+        hint: "Diese Verfahren suchen Struktur in Prädiktoren, ohne eine zuvor bekannte Zielvariable zu trainieren.",
+        step: "Exploration",
+        answers: [
+          { label: "Viele Variablen auf wenige Komponenten reduzieren", result: "principalComponentAnalysis" },
+          { label: "Ähnliche Personen oder Objekte gruppieren", result: "clusterAnalysis" },
+          { label: "Distanzen zwischen Personen oder Objekten visualisieren", result: "multidimensionalScaling" }
+        ]
+      }
+    },
+    results: {
+      decisionTreeRegression: { title: "Entscheidungsbaum-Regression", summary: "Sagt eine metrische Zielvariable mit interpretierbaren Wenn-dann-Regeln vorher.", assumptions: ["Metrische Zielvariable", "Trainings- und Testdaten oder Kreuzvalidierung", "Pruning oder Tiefenbegrenzung gegen Overfitting", "Prädiktoren sollten sinnvoll codiert sein"] },
+      randomForestRegression: { title: "Random-Forest-Regression", summary: "Kombiniert viele Regressionsbäume, um robuste nichtlineare Vorhersagen für metrische Zielvariablen zu erzeugen.", assumptions: ["Metrische Zielvariable", "Genügend Fälle für Training und Validierung", "Tuning der Anzahl von Bäumen und Variablen pro Split", "Interpretation über variable importance oder partielle Effekte"] },
+      knnRegression: { title: "k-Nearest-Neighbors-Regression", summary: "Sagt metrische Werte aus den ähnlichsten Fällen im Merkmalsraum vorher.", assumptions: ["Metrische Zielvariable", "Skalierte/standardisierte Prädiktoren", "Sinnvolle Distanzmetrik", "k per Validierung wählen"] },
+      decisionTreeClassifier: { title: "Entscheidungsbaum-Klassifikation", summary: "Klassifiziert Fälle mit transparenten Entscheidungsregeln und eignet sich als gut erklärbares ML-Modell.", assumptions: ["Kategoriale Zielvariable", "Trainings- und Testdaten oder Kreuzvalidierung", "Pruning oder Tiefenbegrenzung gegen Overfitting", "Klassenverteilung prüfen"] },
+      randomForestClassifier: { title: "Random-Forest-Klassifikation", summary: "Kombiniert viele Entscheidungsbäume für robuste Klassifikation, oft mit höherer Vorhersageleistung als ein einzelner Baum.", assumptions: ["Kategoriale Zielvariable", "Ausreichende Stichprobe", "Validierung an ungesehenen Daten", "Klassenungleichgewicht berücksichtigen"] },
+      knnClassifier: { title: "k-Nearest-Neighbors-Klassifikation", summary: "Klassifiziert Fälle nach den Klassen der ähnlichsten Nachbarn.", assumptions: ["Kategoriale Zielvariable", "Skalierte/standardisierte Prädiktoren", "Sinnvolle Distanzmetrik", "k und Gewichtung per Validierung wählen"] },
+      naiveBayes: { title: "Naive-Bayes-Klassifikation", summary: "Schnelles probabilistisches Basismodell für kategoriale Vorhersagen, besonders bei vielen einfachen Merkmalen.", assumptions: ["Kategoriale Zielvariable", "Prädiktoren werden bedingt unabhängig angenähert", "Geeignete Verteilung für metrische Merkmale", "Wahrscheinlichkeiten mit Validierungsdaten prüfen"] },
+      principalComponentAnalysis: { title: "Hauptkomponentenanalyse (PCA)", summary: "Reduziert viele korrelierte metrische Variablen auf wenige Komponenten, die möglichst viel Varianz erklären.", assumptions: ["Mehrere metrische oder annähernd metrische Variablen", "Sinnvolle Korrelationen zwischen Variablen", "Standardisierung bei unterschiedlichen Skalen", "Komponenten nach Varianz und Interpretierbarkeit wählen"] }
+    }
+  },
+  en: {
+    goalUpdate: {
+      question: "What do you want to do with your data?",
+      hint: "Choose whether you want to test a predefined hypothesis, discover structure exploratively, or train a model to predict or classify new cases."
+    },
+    goalAnswer: { label: "Predict or classify new cases", next: "mlOutcomeKnown" },
+    tree: {
+      mlOutcomeKnown: {
+        area: "Machine learning",
+        question: "Do you have a known outcome variable in a training dataset?",
+        hint: "Supervised learning needs known target values. Without an outcome variable, the goal is usually dimension reduction, grouping, or visualising structure.",
+        step: "Learning goal",
+        answers: [
+          { label: "Yes, the outcome variable is known", next: "mlOutcomeType" },
+          { label: "No, I want to discover patterns without an outcome variable", next: "mlUnsupervisedGoal" }
+        ]
+      },
+      mlOutcomeType: {
+        area: "Outcome variable",
+        question: "What kind of outcome variable do you want to predict?",
+        hint: "Metric outcomes lead to regression. Categorical outcomes lead to classification.",
+        step: "Outcome variable",
+        answers: [
+          { label: "Metric outcome variable", next: "mlNumericModel" },
+          { label: "Categorical outcome variable", next: "mlClassificationModel" }
+        ]
+      },
+      mlNumericModel: {
+        area: "Regression model",
+        question: "Which kind of prediction model fits best?",
+        hint: "A good workflow often starts with an interpretable baseline and compares flexible models using cross-validation.",
+        step: "Model choice",
+        answers: [
+          { label: "Interpretable linear baseline", result: "linearRegression" },
+          { label: "Simple nonlinear decision rules", result: "decisionTreeRegression" },
+          { label: "Stronger prediction with many predictors", result: "randomForestRegression" },
+          { label: "Prediction from similar cases", result: "knnRegression" }
+        ]
+      },
+      mlClassificationModel: {
+        area: "Classification model",
+        question: "Which classification logic fits best?",
+        hint: "Alongside accuracy, report the validation strategy, class distribution, and suitable metrics for imbalanced classes.",
+        step: "Model choice",
+        answers: [
+          { label: "Binary outcome with interpretable odds ratios", result: "logisticRegression" },
+          { label: "Multicategory outcome with an interpretable regression model", result: "multinomialRegression" },
+          { label: "Transparent if-then rules", result: "decisionTreeClassifier" },
+          { label: "Robust model with stronger predictive performance", result: "randomForestClassifier" },
+          { label: "Classification from similar cases", result: "knnClassifier" },
+          { label: "Fast baseline for many simple features", result: "naiveBayes" }
+        ]
+      },
+      mlUnsupervisedGoal: {
+        area: "Unsupervised learning",
+        question: "What exploratory goal do you have without a known outcome variable?",
+        hint: "These procedures search for structure in predictors without training against a known target.",
+        step: "Exploration",
+        answers: [
+          { label: "Reduce many variables to a few components", result: "principalComponentAnalysis" },
+          { label: "Group similar people or objects", result: "clusterAnalysis" },
+          { label: "Visualise distances between people or objects", result: "multidimensionalScaling" }
+        ]
+      }
+    },
+    results: {
+      decisionTreeRegression: { title: "Decision tree regression", summary: "Predicts a metric outcome using interpretable if-then decision rules.", assumptions: ["Metric outcome variable", "Training/test split or cross-validation", "Pruning or depth control to reduce overfitting", "Predictors are meaningfully coded"] },
+      randomForestRegression: { title: "Random forest regression", summary: "Combines many regression trees to produce robust nonlinear predictions for metric outcomes.", assumptions: ["Metric outcome variable", "Enough cases for training and validation", "Tune number of trees and variables per split", "Interpret with variable importance or partial effects"] },
+      knnRegression: { title: "k-nearest neighbors regression", summary: "Predicts metric values from the most similar cases in the feature space.", assumptions: ["Metric outcome variable", "Scaled/standardised predictors", "Meaningful distance metric", "Choose k using validation"] },
+      decisionTreeClassifier: { title: "Decision tree classifier", summary: "Classifies cases with transparent decision rules and is useful when interpretability matters.", assumptions: ["Categorical outcome variable", "Training/test split or cross-validation", "Pruning or depth control to reduce overfitting", "Inspect class distribution"] },
+      randomForestClassifier: { title: "Random forest classifier", summary: "Combines many decision trees for robust classification, often with stronger prediction than a single tree.", assumptions: ["Categorical outcome variable", "Adequate sample size", "Validation on unseen data", "Handle class imbalance"] },
+      knnClassifier: { title: "k-nearest neighbors classifier", summary: "Classifies cases according to the classes of their most similar neighbors.", assumptions: ["Categorical outcome variable", "Scaled/standardised predictors", "Meaningful distance metric", "Choose k and weighting using validation"] },
+      naiveBayes: { title: "Naive Bayes classifier", summary: "Fast probabilistic baseline for categorical prediction, especially with many simple features.", assumptions: ["Categorical outcome variable", "Predictors are treated as approximately conditionally independent", "Suitable distribution for metric features", "Check predicted probabilities with validation data"] },
+      principalComponentAnalysis: { title: "Principal component analysis (PCA)", summary: "Reduces many correlated metric variables to a smaller set of components that explain as much variance as possible.", assumptions: ["Several metric or approximately metric variables", "Meaningful correlations among variables", "Standardise variables on different scales", "Choose components by explained variance and interpretability"] }
+    }
+  },
+  fr: {
+    goalUpdate: {
+      question: "Que voulez-vous faire avec vos données ?",
+      hint: "Choisissez si vous voulez tester une hypothèse prédéfinie, découvrir une structure de façon exploratoire ou entraîner un modèle pour prédire ou classer de nouveaux cas."
+    },
+    goalAnswer: { label: "Prédire ou classer de nouveaux cas", next: "mlOutcomeKnown" },
+    tree: {
+      mlOutcomeKnown: { area: "Apprentissage automatique", question: "Avez-vous une variable cible connue dans un jeu d'entraînement ?", hint: "L'apprentissage supervisé nécessite des valeurs cibles connues. Sans variable cible, l'objectif est plutôt de réduire les dimensions, regrouper ou visualiser une structure.", step: "Objectif d'apprentissage", answers: [{ label: "Oui, la variable cible est connue", next: "mlOutcomeType" }, { label: "Non, je veux découvrir des motifs sans variable cible", next: "mlUnsupervisedGoal" }] },
+      mlOutcomeType: { area: "Variable cible", question: "Quel type de variable cible voulez-vous prédire ?", hint: "Les variables cibles métriques mènent à la régression. Les variables cibles catégorielles mènent à la classification.", step: "Variable cible", answers: [{ label: "Variable cible métrique", next: "mlNumericModel" }, { label: "Variable cible catégorielle", next: "mlClassificationModel" }] },
+      mlNumericModel: { area: "Modèle de régression", question: "Quel type de modèle de prédiction convient le mieux ?", hint: "Un bon flux commence souvent par un modèle de base interprétable et compare des modèles plus flexibles par validation croisée.", step: "Choix du modèle", answers: [{ label: "Modèle linéaire de base interprétable", result: "linearRegression" }, { label: "Règles de décision non linéaires simples", result: "decisionTreeRegression" }, { label: "Prédiction plus forte avec de nombreux prédicteurs", result: "randomForestRegression" }, { label: "Prédiction à partir de cas similaires", result: "knnRegression" }] },
+      mlClassificationModel: { area: "Modèle de classification", question: "Quelle logique de classification convient le mieux ?", hint: "En plus de l'exactitude, rapportez la stratégie de validation, la distribution des classes et des métriques adaptées aux classes déséquilibrées.", step: "Choix du modèle", answers: [{ label: "Variable binaire avec odds ratios interprétables", result: "logisticRegression" }, { label: "Variable multicatégorielle avec modèle de régression interprétable", result: "multinomialRegression" }, { label: "Règles si-alors transparentes", result: "decisionTreeClassifier" }, { label: "Modèle robuste avec meilleure performance prédictive", result: "randomForestClassifier" }, { label: "Classification à partir de cas similaires", result: "knnClassifier" }, { label: "Modèle de base rapide pour de nombreuses caractéristiques simples", result: "naiveBayes" }] },
+      mlUnsupervisedGoal: { area: "Apprentissage non supervisé", question: "Quel objectif exploratoire avez-vous sans variable cible connue ?", hint: "Ces procédures cherchent une structure dans les prédicteurs sans entraînement sur une cible connue.", step: "Exploration", answers: [{ label: "Réduire de nombreuses variables à quelques composantes", result: "principalComponentAnalysis" }, { label: "Regrouper des personnes ou des objets similaires", result: "clusterAnalysis" }, { label: "Visualiser les distances entre personnes ou objets", result: "multidimensionalScaling" }] }
+    },
+    results: {
+      decisionTreeRegression: { title: "Régression par arbre de décision", summary: "Prédit une variable cible métrique avec des règles de décision si-alors interprétables.", assumptions: ["Variable cible métrique", "Découpage entraînement/test ou validation croisée", "Élagage ou limitation de profondeur pour réduire le surapprentissage", "Prédicteurs codés de manière pertinente"] },
+      randomForestRegression: { title: "Régression par forêt aléatoire", summary: "Combine de nombreux arbres de régression pour produire des prédictions non linéaires robustes.", assumptions: ["Variable cible métrique", "Nombre de cas suffisant pour entraînement et validation", "Régler le nombre d'arbres et de variables par division", "Interpréter avec importance des variables ou effets partiels"] },
+      knnRegression: { title: "Régression k plus proches voisins", summary: "Prédit des valeurs métriques à partir des cas les plus similaires dans l'espace des caractéristiques.", assumptions: ["Variable cible métrique", "Prédicteurs mis à l'échelle/standardisés", "Mesure de distance pertinente", "Choisir k par validation"] },
+      decisionTreeClassifier: { title: "Classificateur par arbre de décision", summary: "Classe les cas avec des règles transparentes lorsque l'interprétabilité est importante.", assumptions: ["Variable cible catégorielle", "Découpage entraînement/test ou validation croisée", "Élagage ou limitation de profondeur", "Examiner la distribution des classes"] },
+      randomForestClassifier: { title: "Classificateur par forêt aléatoire", summary: "Combine de nombreux arbres pour une classification robuste, souvent plus performante qu'un seul arbre.", assumptions: ["Variable cible catégorielle", "Taille d'échantillon suffisante", "Validation sur des données non vues", "Tenir compte du déséquilibre des classes"] },
+      knnClassifier: { title: "Classificateur k plus proches voisins", summary: "Classe les cas selon les classes de leurs voisins les plus similaires.", assumptions: ["Variable cible catégorielle", "Prédicteurs mis à l'échelle/standardisés", "Mesure de distance pertinente", "Choisir k et la pondération par validation"] },
+      naiveBayes: { title: "Classificateur naïf bayésien", summary: "Modèle probabiliste rapide pour la prédiction catégorielle, surtout avec de nombreuses caractéristiques simples.", assumptions: ["Variable cible catégorielle", "Indépendance conditionnelle approximative des prédicteurs", "Distribution adaptée pour les variables métriques", "Vérifier les probabilités prédites avec des données de validation"] },
+      principalComponentAnalysis: { title: "Analyse en composantes principales (ACP)", summary: "Réduit de nombreuses variables métriques corrélées à quelques composantes expliquant un maximum de variance.", assumptions: ["Plusieurs variables métriques ou approximativement métriques", "Corrélations pertinentes entre variables", "Standardiser les variables sur des échelles différentes", "Choisir les composantes selon variance expliquée et interprétabilité"] }
+    }
+  },
+  es: {
+    goalUpdate: {
+      question: "¿Qué desea hacer con sus datos?",
+      hint: "Elija si quiere probar una hipótesis predefinida, descubrir estructura de forma exploratoria o entrenar un modelo para predecir o clasificar nuevos casos."
+    },
+    goalAnswer: { label: "Predecir o clasificar nuevos casos", next: "mlOutcomeKnown" },
+    tree: {
+      mlOutcomeKnown: { area: "Aprendizaje automático", question: "¿Tiene una variable objetivo conocida en un conjunto de entrenamiento?", hint: "El aprendizaje supervisado necesita valores objetivo conocidos. Sin variable objetivo, el objetivo suele ser reducir dimensiones, agrupar o visualizar estructura.", step: "Objetivo de aprendizaje", answers: [{ label: "Sí, la variable objetivo es conocida", next: "mlOutcomeType" }, { label: "No, quiero descubrir patrones sin variable objetivo", next: "mlUnsupervisedGoal" }] },
+      mlOutcomeType: { area: "Variable objetivo", question: "¿Qué tipo de variable objetivo quiere predecir?", hint: "Los objetivos métricos conducen a regresión. Los objetivos categóricos conducen a clasificación.", step: "Variable objetivo", answers: [{ label: "Variable objetivo métrica", next: "mlNumericModel" }, { label: "Variable objetivo categórica", next: "mlClassificationModel" }] },
+      mlNumericModel: { area: "Modelo de regresión", question: "¿Qué tipo de modelo predictivo encaja mejor?", hint: "Un buen flujo suele empezar con una línea base interpretable y comparar modelos flexibles mediante validación cruzada.", step: "Elección del modelo", answers: [{ label: "Línea base lineal interpretable", result: "linearRegression" }, { label: "Reglas de decisión no lineales simples", result: "decisionTreeRegression" }, { label: "Predicción más fuerte con muchos predictores", result: "randomForestRegression" }, { label: "Predicción a partir de casos similares", result: "knnRegression" }] },
+      mlClassificationModel: { area: "Modelo de clasificación", question: "¿Qué lógica de clasificación encaja mejor?", hint: "Además de la exactitud, reporte la estrategia de validación, la distribución de clases y métricas adecuadas para clases desbalanceadas.", step: "Elección del modelo", answers: [{ label: "Variable binaria con odds ratios interpretables", result: "logisticRegression" }, { label: "Variable multicategórica con modelo de regresión interpretable", result: "multinomialRegression" }, { label: "Reglas transparentes si-entonces", result: "decisionTreeClassifier" }, { label: "Modelo robusto con mayor rendimiento predictivo", result: "randomForestClassifier" }, { label: "Clasificación a partir de casos similares", result: "knnClassifier" }, { label: "Línea base rápida para muchas características simples", result: "naiveBayes" }] },
+      mlUnsupervisedGoal: { area: "Aprendizaje no supervisado", question: "¿Qué objetivo exploratorio tiene sin una variable objetivo conocida?", hint: "Estos procedimientos buscan estructura en los predictores sin entrenar contra un objetivo conocido.", step: "Exploración", answers: [{ label: "Reducir muchas variables a pocos componentes", result: "principalComponentAnalysis" }, { label: "Agrupar personas u objetos similares", result: "clusterAnalysis" }, { label: "Visualizar distancias entre personas u objetos", result: "multidimensionalScaling" }] }
+    },
+    results: {
+      decisionTreeRegression: { title: "Regresión con árbol de decisión", summary: "Predice una variable objetivo métrica mediante reglas si-entonces interpretables.", assumptions: ["Variable objetivo métrica", "División entrenamiento/prueba o validación cruzada", "Poda o control de profundidad contra sobreajuste", "Predictores codificados de forma significativa"] },
+      randomForestRegression: { title: "Regresión con bosque aleatorio", summary: "Combina muchos árboles de regresión para predicciones no lineales robustas.", assumptions: ["Variable objetivo métrica", "Casos suficientes para entrenamiento y validación", "Ajustar número de árboles y variables por división", "Interpretar con importancia de variables o efectos parciales"] },
+      knnRegression: { title: "Regresión k vecinos más cercanos", summary: "Predice valores métricos a partir de los casos más similares en el espacio de características.", assumptions: ["Variable objetivo métrica", "Predictores escalados/estandarizados", "Métrica de distancia significativa", "Elegir k mediante validación"] },
+      decisionTreeClassifier: { title: "Clasificador con árbol de decisión", summary: "Clasifica casos con reglas transparentes cuando la interpretabilidad importa.", assumptions: ["Variable objetivo categórica", "División entrenamiento/prueba o validación cruzada", "Poda o control de profundidad", "Revisar distribución de clases"] },
+      randomForestClassifier: { title: "Clasificador con bosque aleatorio", summary: "Combina muchos árboles para una clasificación robusta, a menudo más predictiva que un solo árbol.", assumptions: ["Variable objetivo categórica", "Tamaño muestral adecuado", "Validación en datos no vistos", "Manejar desbalance de clases"] },
+      knnClassifier: { title: "Clasificador k vecinos más cercanos", summary: "Clasifica casos según las clases de sus vecinos más similares.", assumptions: ["Variable objetivo categórica", "Predictores escalados/estandarizados", "Métrica de distancia significativa", "Elegir k y ponderación mediante validación"] },
+      naiveBayes: { title: "Clasificador naive Bayes", summary: "Línea base probabilística rápida para predicción categórica, especialmente con muchas características simples.", assumptions: ["Variable objetivo categórica", "Independencia condicional aproximada entre predictores", "Distribución adecuada para variables métricas", "Comprobar probabilidades predichas con datos de validación"] },
+      principalComponentAnalysis: { title: "Análisis de componentes principales (PCA)", summary: "Reduce muchas variables métricas correlacionadas a pocos componentes que explican la mayor varianza posible.", assumptions: ["Varias variables métricas o aproximadamente métricas", "Correlaciones significativas entre variables", "Estandarizar variables con escalas distintas", "Elegir componentes por varianza explicada e interpretabilidad"] }
+    }
+  },
+  it: {
+    goalUpdate: {
+      question: "Che cosa vuoi fare con i tuoi dati?",
+      hint: "Scegli se vuoi testare un'ipotesi predefinita, scoprire strutture in modo esplorativo oppure addestrare un modello per predire o classificare nuovi casi."
+    },
+    goalAnswer: { label: "Predire o classificare nuovi casi", next: "mlOutcomeKnown" },
+    tree: {
+      mlOutcomeKnown: { area: "Machine learning", question: "Hai una variabile esito nota in un dataset di training?", hint: "L'apprendimento supervisionato richiede valori esito noti. Senza variabile esito, l'obiettivo è di solito ridurre dimensioni, raggruppare o visualizzare strutture.", step: "Obiettivo di apprendimento", answers: [{ label: "Sì, la variabile esito è nota", next: "mlOutcomeType" }, { label: "No, voglio scoprire pattern senza variabile esito", next: "mlUnsupervisedGoal" }] },
+      mlOutcomeType: { area: "Variabile esito", question: "Che tipo di variabile esito vuoi predire?", hint: "Gli esiti metrici portano alla regressione. Gli esiti categoriali portano alla classificazione.", step: "Variabile esito", answers: [{ label: "Variabile esito metrica", next: "mlNumericModel" }, { label: "Variabile esito categoriale", next: "mlClassificationModel" }] },
+      mlNumericModel: { area: "Modello di regressione", question: "Quale tipo di modello predittivo è più adatto?", hint: "Un buon flusso inizia spesso con una baseline interpretabile e confronta modelli flessibili con validazione incrociata.", step: "Scelta del modello", answers: [{ label: "Baseline lineare interpretabile", result: "linearRegression" }, { label: "Regole decisionali non lineari semplici", result: "decisionTreeRegression" }, { label: "Predizione più forte con molti predittori", result: "randomForestRegression" }, { label: "Predizione da casi simili", result: "knnRegression" }] },
+      mlClassificationModel: { area: "Modello di classificazione", question: "Quale logica di classificazione è più adatta?", hint: "Oltre all'accuratezza, riporta strategia di validazione, distribuzione delle classi e metriche adatte per classi sbilanciate.", step: "Scelta del modello", answers: [{ label: "Esito binario con odds ratio interpretabili", result: "logisticRegression" }, { label: "Esito multicategoriale con modello di regressione interpretabile", result: "multinomialRegression" }, { label: "Regole trasparenti se-allora", result: "decisionTreeClassifier" }, { label: "Modello robusto con prestazione predittiva più forte", result: "randomForestClassifier" }, { label: "Classificazione da casi simili", result: "knnClassifier" }, { label: "Baseline rapida per molte caratteristiche semplici", result: "naiveBayes" }] },
+      mlUnsupervisedGoal: { area: "Apprendimento non supervisionato", question: "Quale obiettivo esplorativo hai senza una variabile esito nota?", hint: "Queste procedure cercano struttura nei predittori senza training su un esito noto.", step: "Esplorazione", answers: [{ label: "Ridurre molte variabili a poche componenti", result: "principalComponentAnalysis" }, { label: "Raggruppare persone o oggetti simili", result: "clusterAnalysis" }, { label: "Visualizzare distanze tra persone o oggetti", result: "multidimensionalScaling" }] }
+    },
+    results: {
+      decisionTreeRegression: { title: "Regressione con albero decisionale", summary: "Predice una variabile esito metrica usando regole decisionali se-allora interpretabili.", assumptions: ["Variabile esito metrica", "Split training/test o validazione incrociata", "Potatura o controllo della profondità contro overfitting", "Predittori codificati in modo significativo"] },
+      randomForestRegression: { title: "Regressione random forest", summary: "Combina molti alberi di regressione per produrre predizioni non lineari robuste.", assumptions: ["Variabile esito metrica", "Casi sufficienti per training e validazione", "Regolare numero di alberi e variabili per split", "Interpretare con importanza delle variabili o effetti parziali"] },
+      knnRegression: { title: "Regressione k-nearest neighbors", summary: "Predice valori metrici dai casi più simili nello spazio delle caratteristiche.", assumptions: ["Variabile esito metrica", "Predittori scalati/standardizzati", "Metrica di distanza significativa", "Scegliere k con validazione"] },
+      decisionTreeClassifier: { title: "Classificatore ad albero decisionale", summary: "Classifica casi con regole trasparenti quando l'interpretabilità è importante.", assumptions: ["Variabile esito categoriale", "Split training/test o validazione incrociata", "Potatura o controllo della profondità", "Controllare distribuzione delle classi"] },
+      randomForestClassifier: { title: "Classificatore random forest", summary: "Combina molti alberi per una classificazione robusta, spesso più predittiva di un singolo albero.", assumptions: ["Variabile esito categoriale", "Dimensione campionaria adeguata", "Validazione su dati non visti", "Gestire classi sbilanciate"] },
+      knnClassifier: { title: "Classificatore k-nearest neighbors", summary: "Classifica casi secondo le classi dei vicini più simili.", assumptions: ["Variabile esito categoriale", "Predittori scalati/standardizzati", "Metrica di distanza significativa", "Scegliere k e pesatura con validazione"] },
+      naiveBayes: { title: "Classificatore naive Bayes", summary: "Baseline probabilistica rapida per predizione categoriale, soprattutto con molte caratteristiche semplici.", assumptions: ["Variabile esito categoriale", "Indipendenza condizionale approssimata tra predittori", "Distribuzione adatta per caratteristiche metriche", "Controllare probabilità predette con dati di validazione"] },
+      principalComponentAnalysis: { title: "Analisi delle componenti principali (PCA)", summary: "Riduce molte variabili metriche correlate a poche componenti che spiegano quanta più varianza possibile.", assumptions: ["Più variabili metriche o approssimativamente metriche", "Correlazioni significative tra variabili", "Standardizzare variabili su scale diverse", "Scegliere componenti per varianza spiegata e interpretabilità"] }
+    }
+  }
+};
+
+Object.entries(mlLanguageAdditions).forEach(([language, addition]) => {
+  const pack = languagePacks[language];
+  if (!pack) return;
+  Object.assign(pack.tree.goal, addition.goalUpdate);
+  if (!pack.tree.goal.answers.some((answer) => answer.next === addition.goalAnswer.next)) {
+    pack.tree.goal.answers.push(addition.goalAnswer);
+  }
+  Object.assign(pack.tree, addition.tree);
+  Object.assign(pack.results, addition.results);
+});
+
 const totalDecisionSteps = 13;
 
 const procedureCatalog = {
@@ -929,6 +1167,38 @@ const procedureCatalog = {
   varianceFTest: {
     jamovi: "Jamovi can show group variances in Exploration > Descriptives.\nFor the classical F-test of two variances, export the data or use an R module and run var.test().\nConsider Levene's test as a more robust alternative when normality is doubtful.",
     r: "var.test(score ~ group, data = data)\n# Robust alternative:\n# car::leveneTest(score ~ group, data = data)"
+  },
+  decisionTreeRegression: {
+    jamovi: "Jamovi has limited built-in support for decision tree regression.\nUse a machine-learning module if installed, or export the data and fit the tree in R.\nValidate the tree with a train/test split or cross-validation and inspect pruning/depth.",
+    r: "library(rpart)\nlibrary(caret)\nset.seed(1)\ntrain_id <- createDataPartition(data$y, p = .70, list = FALSE)\nfit <- rpart(y ~ ., data = data[train_id, ], method = \"anova\")\npred <- predict(fit, newdata = data[-train_id, ])\npostResample(pred, data$y[-train_id])"
+  },
+  randomForestRegression: {
+    jamovi: "Jamovi has limited built-in support for random forests in the core menus.\nUse a suitable machine-learning module if available, or export the data and fit the model in R.\nReport out-of-sample RMSE/R2 and variable importance rather than only training performance.",
+    r: "library(randomForest)\nlibrary(caret)\nset.seed(1)\ntrain_id <- createDataPartition(data$y, p = .70, list = FALSE)\nfit <- randomForest(y ~ ., data = data[train_id, ], ntree = 500, importance = TRUE)\npred <- predict(fit, newdata = data[-train_id, ])\npostResample(pred, data$y[-train_id])\nimportance(fit)"
+  },
+  knnRegression: {
+    jamovi: "Jamovi has limited built-in support for k-nearest-neighbors regression.\nStandardise predictors, then use a machine-learning module if installed or export the data to R.\nChoose k using cross-validation and report out-of-sample prediction error.",
+    r: "library(caret)\nset.seed(1)\nctrl <- trainControl(method = \"cv\", number = 10)\nfit <- train(y ~ ., data = data, method = \"knn\", trControl = ctrl, preProcess = c(\"center\", \"scale\"), tuneLength = 10)\nfit"
+  },
+  decisionTreeClassifier: {
+    jamovi: "Jamovi has limited built-in support for decision tree classification.\nUse a machine-learning module if installed, or export the data and fit the tree in R.\nValidate with a holdout set or cross-validation and inspect the confusion matrix.",
+    r: "library(rpart)\nlibrary(caret)\nset.seed(1)\ntrain_id <- createDataPartition(data$class, p = .70, list = FALSE)\nfit <- rpart(class ~ ., data = data[train_id, ], method = \"class\")\npred <- predict(fit, newdata = data[-train_id, ], type = \"class\")\nconfusionMatrix(pred, data$class[-train_id])"
+  },
+  randomForestClassifier: {
+    jamovi: "Jamovi has limited built-in support for random forests in the core menus.\nUse a suitable machine-learning module if available, or export the data and fit the model in R.\nReport validation accuracy, balanced accuracy/F1 when classes are imbalanced, and variable importance.",
+    r: "library(randomForest)\nlibrary(caret)\nset.seed(1)\ntrain_id <- createDataPartition(data$class, p = .70, list = FALSE)\nfit <- randomForest(class ~ ., data = data[train_id, ], ntree = 500, importance = TRUE)\npred <- predict(fit, newdata = data[-train_id, ])\nconfusionMatrix(pred, data$class[-train_id])\nimportance(fit)"
+  },
+  knnClassifier: {
+    jamovi: "Jamovi has limited built-in support for k-nearest-neighbors classification.\nStandardise predictors, then use a machine-learning module if installed or export the data to R.\nChoose k by cross-validation and report a confusion matrix on validation data.",
+    r: "library(caret)\nset.seed(1)\nctrl <- trainControl(method = \"cv\", number = 10)\nfit <- train(class ~ ., data = data, method = \"knn\", trControl = ctrl, preProcess = c(\"center\", \"scale\"), tuneLength = 10)\nfit"
+  },
+  naiveBayes: {
+    jamovi: "Jamovi has limited built-in support for naive Bayes in the core menus.\nUse a machine-learning module if installed, or export the data and fit the model in R.\nInspect predicted probabilities and a validation confusion matrix.",
+    r: "library(e1071)\nlibrary(caret)\nset.seed(1)\ntrain_id <- createDataPartition(data$class, p = .70, list = FALSE)\nfit <- naiveBayes(class ~ ., data = data[train_id, ])\npred <- predict(fit, newdata = data[-train_id, ])\nconfusionMatrix(pred, data$class[-train_id])"
+  },
+  principalComponentAnalysis: {
+    jamovi: "Analyses > Factor > Principal Component Analysis\nMove the metric variables into Variables.\nChoose the number of components, inspect loadings, scree plot, explained variance, and decide whether to save component scores.",
+    r: "vars <- data[, variables]\nfit <- prcomp(vars, center = TRUE, scale. = TRUE)\nsummary(fit)\nloadings <- fit$rotation\nscores <- fit$x"
   }
 };
 
@@ -973,7 +1243,15 @@ const effectSizeDefinitions = {
   clusterAnalysis: { measure: "Silhouette width", rangeType: "silhouette" },
   multidimensionalScaling: { measure: "Stress value", rangeType: "stress" },
   chiSquareVariance: { measure: "Variance ratio s2 / sigma2", rangeType: "varianceRatio" },
-  varianceFTest: { measure: "Variance ratio F", rangeType: "varianceRatio" }
+  varianceFTest: { measure: "Variance ratio F", rangeType: "varianceRatio" },
+  decisionTreeRegression: { measure: "Cross-validated RMSE and R squared", rangeType: "mlRegression" },
+  randomForestRegression: { measure: "Out-of-sample RMSE and R squared", rangeType: "mlRegression" },
+  knnRegression: { measure: "Cross-validated RMSE and R squared", rangeType: "mlRegression" },
+  decisionTreeClassifier: { measure: "Accuracy, balanced accuracy, F1, or AUC", rangeType: "mlClassification" },
+  randomForestClassifier: { measure: "Accuracy, balanced accuracy, F1, or AUC", rangeType: "mlClassification" },
+  knnClassifier: { measure: "Accuracy, balanced accuracy, F1, or AUC", rangeType: "mlClassification" },
+  naiveBayes: { measure: "Accuracy, balanced accuracy, F1, or AUC", rangeType: "mlClassification" },
+  principalComponentAnalysis: { measure: "Explained variance and component loadings", rangeType: "pca" }
 };
 
 const effectSizeLabels = {
@@ -1104,6 +1382,38 @@ const effectSizeLabels = {
     }
   }
 };
+
+const mlEffectSizeRanges = {
+  de: {
+    mlRegression: "RMSE/MAE: niedriger ist besser; R2 nahe 1 zeigt bessere Vorhersage. Immer mit Testdaten, Kreuzvalidierung oder Baseline vergleichen.",
+    mlClassification: "Accuracy nur bei balancierten Klassen interpretieren. Bei unbalancierten Klassen balanced accuracy, F1, Sensitivität/Spezifität oder AUC berichten.",
+    pca: "Kumulierte erklärte Varianz und Ladungen gemeinsam interpretieren; häufig werden Komponenten mit Eigenwert > 1, Scree-Plot und inhaltlicher Interpretierbarkeit geprüft."
+  },
+  en: {
+    mlRegression: "RMSE/MAE: lower is better; R2 closer to 1 indicates better prediction. Always compare with test data, cross-validation, or a baseline model.",
+    mlClassification: "Interpret accuracy only when classes are balanced. For imbalanced classes report balanced accuracy, F1, sensitivity/specificity, or AUC.",
+    pca: "Interpret cumulative explained variance together with loadings; common guides include eigenvalues > 1, the scree plot, and substantive interpretability."
+  },
+  fr: {
+    mlRegression: "RMSE/MAE : plus faible est meilleur ; R2 proche de 1 indique une meilleure prédiction. Toujours comparer avec des données test, une validation croisée ou un modèle de base.",
+    mlClassification: "Interprétez l'exactitude seulement si les classes sont équilibrées. Si les classes sont déséquilibrées, rapportez exactitude équilibrée, F1, sensibilité/spécificité ou AUC.",
+    pca: "Interprétez la variance expliquée cumulée avec les charges ; repères fréquents : valeurs propres > 1, scree plot et interprétabilité substantielle."
+  },
+  es: {
+    mlRegression: "RMSE/MAE: menor es mejor; R2 cercano a 1 indica mejor predicción. Compare siempre con datos de prueba, validación cruzada o un modelo base.",
+    mlClassification: "Interprete la exactitud solo con clases balanceadas. Con clases desbalanceadas reporte exactitud balanceada, F1, sensibilidad/especificidad o AUC.",
+    pca: "Interprete la varianza explicada acumulada junto con las cargas; guías habituales son autovalores > 1, scree plot e interpretabilidad sustantiva."
+  },
+  it: {
+    mlRegression: "RMSE/MAE: più basso è meglio; R2 vicino a 1 indica migliore predizione. Confronta sempre con dati test, validazione incrociata o un modello baseline.",
+    mlClassification: "Interpreta l'accuratezza solo con classi bilanciate. Con classi sbilanciate riporta balanced accuracy, F1, sensibilità/specificità o AUC.",
+    pca: "Interpreta la varianza spiegata cumulata insieme ai carichi; guide comuni sono autovalori > 1, scree plot e interpretabilità sostanziale."
+  }
+};
+
+Object.entries(mlEffectSizeRanges).forEach(([language, ranges]) => {
+  if (effectSizeLabels[language]) Object.assign(effectSizeLabels[language].ranges, ranges);
+});
 
 const clusterAlgorithmGuides = {
   de: {

@@ -304,6 +304,56 @@ window.localizedProcedurePacks = {
   }
 };
 
+const mlProcedureGuides = {
+  de: {
+    decisionTreeRegression: "Jamovi bietet in den Kernmenüs nur begrenzte Unterstützung für Entscheidungsbaum-Regression.\nNutzen Sie ein Machine-Learning-Modul, falls installiert, oder exportieren Sie die Daten nach R.\nValidieren Sie mit Train/Test-Split oder Kreuzvalidierung und prüfen Sie Pruning bzw. Baumtiefe.",
+    randomForestRegression: "Jamovi bietet in den Kernmenüs nur begrenzte Unterstützung für Random Forests.\nNutzen Sie ein geeignetes Machine-Learning-Modul, falls verfügbar, oder exportieren Sie die Daten nach R.\nBerichten Sie RMSE/R2 auf Validierungsdaten und variable importance.",
+    knnRegression: "Jamovi bietet nur begrenzte direkte Unterstützung für k-Nearest-Neighbors-Regression.\nStandardisieren Sie die Prädiktoren und nutzen Sie ein Machine-Learning-Modul oder R.\nWählen Sie k per Kreuzvalidierung und berichten Sie Vorhersagefehler auf Validierungsdaten.",
+    decisionTreeClassifier: "Jamovi bietet in den Kernmenüs nur begrenzte Unterstützung für Entscheidungsbaum-Klassifikation.\nNutzen Sie ein Machine-Learning-Modul, falls installiert, oder exportieren Sie die Daten nach R.\nValidieren Sie mit Train/Test-Split oder Kreuzvalidierung und prüfen Sie die Konfusionsmatrix.",
+    randomForestClassifier: "Jamovi bietet in den Kernmenüs nur begrenzte Unterstützung für Random-Forest-Klassifikation.\nNutzen Sie ein geeignetes Machine-Learning-Modul oder R.\nBerichten Sie Validierungsgenauigkeit, bei unbalancierten Klassen balanced accuracy/F1 und variable importance.",
+    knnClassifier: "Jamovi bietet nur begrenzte direkte Unterstützung für k-Nearest-Neighbors-Klassifikation.\nStandardisieren Sie die Prädiktoren und nutzen Sie ein Machine-Learning-Modul oder R.\nWählen Sie k per Kreuzvalidierung und berichten Sie eine Konfusionsmatrix.",
+    naiveBayes: "Jamovi bietet in den Kernmenüs nur begrenzte Unterstützung für Naive Bayes.\nNutzen Sie ein Machine-Learning-Modul, falls installiert, oder exportieren Sie die Daten nach R.\nPrüfen Sie vorhergesagte Wahrscheinlichkeiten und die Konfusionsmatrix auf Validierungsdaten.",
+    principalComponentAnalysis: "Analysen > Faktoren > Hauptkomponentenanalyse\nVerschieben Sie die metrischen Variablen in Variablen.\nWählen Sie die Anzahl der Komponenten und prüfen Sie Ladungen, Scree-Plot, erklärte Varianz und gegebenenfalls Komponentenscores."
+  },
+  fr: {
+    decisionTreeRegression: "Jamovi offre un support intégré limité pour la régression par arbre de décision.\nUtilisez un module d'apprentissage automatique si disponible, ou exportez les données vers R.\nValidez avec un découpage entraînement/test ou une validation croisée et vérifiez l'élagage ou la profondeur.",
+    randomForestRegression: "Jamovi offre un support intégré limité pour les forêts aléatoires.\nUtilisez un module adapté si disponible, ou exportez les données vers R.\nRapportez RMSE/R2 hors échantillon et l'importance des variables.",
+    knnRegression: "Jamovi offre un support direct limité pour la régression k plus proches voisins.\nStandardisez les prédicteurs et utilisez un module d'apprentissage automatique ou R.\nChoisissez k par validation croisée et rapportez l'erreur de prédiction.",
+    decisionTreeClassifier: "Jamovi offre un support intégré limité pour la classification par arbre de décision.\nUtilisez un module d'apprentissage automatique si disponible, ou exportez les données vers R.\nValidez avec un découpage entraînement/test ou une validation croisée et inspectez la matrice de confusion.",
+    randomForestClassifier: "Jamovi offre un support intégré limité pour la classification par forêt aléatoire.\nUtilisez un module adapté ou R.\nRapportez l'exactitude de validation, l'exactitude équilibrée/F1 si les classes sont déséquilibrées, et l'importance des variables.",
+    knnClassifier: "Jamovi offre un support direct limité pour la classification k plus proches voisins.\nStandardisez les prédicteurs et utilisez un module d'apprentissage automatique ou R.\nChoisissez k par validation croisée et rapportez une matrice de confusion.",
+    naiveBayes: "Jamovi offre un support intégré limité pour naïf bayésien.\nUtilisez un module d'apprentissage automatique si disponible, ou exportez les données vers R.\nInspectez les probabilités prédites et la matrice de confusion sur données de validation.",
+    principalComponentAnalysis: "Analyses > Facteurs > Analyse en composantes principales\nDéplacez les variables métriques dans Variables.\nChoisissez le nombre de composantes et inspectez les charges, le scree plot, la variance expliquée et les scores de composantes si nécessaire."
+  },
+  es: {
+    decisionTreeRegression: "Jamovi ofrece soporte integrado limitado para regresión con árbol de decisión.\nUse un módulo de machine learning si está instalado, o exporte los datos a R.\nValide con división entrenamiento/prueba o validación cruzada y revise la poda o profundidad.",
+    randomForestRegression: "Jamovi ofrece soporte integrado limitado para bosques aleatorios.\nUse un módulo adecuado si está disponible, o exporte los datos a R.\nReporte RMSE/R2 fuera de muestra e importancia de variables.",
+    knnRegression: "Jamovi ofrece soporte directo limitado para regresión k vecinos más cercanos.\nEstandarice los predictores y use un módulo de machine learning o R.\nElija k mediante validación cruzada y reporte error predictivo.",
+    decisionTreeClassifier: "Jamovi ofrece soporte integrado limitado para clasificación con árbol de decisión.\nUse un módulo de machine learning si está instalado, o exporte los datos a R.\nValide con división entrenamiento/prueba o validación cruzada y revise la matriz de confusión.",
+    randomForestClassifier: "Jamovi ofrece soporte integrado limitado para clasificación con bosque aleatorio.\nUse un módulo adecuado o R.\nReporte exactitud de validación, exactitud balanceada/F1 si las clases están desbalanceadas, e importancia de variables.",
+    knnClassifier: "Jamovi ofrece soporte directo limitado para clasificación k vecinos más cercanos.\nEstandarice los predictores y use un módulo de machine learning o R.\nElija k mediante validación cruzada y reporte una matriz de confusión.",
+    naiveBayes: "Jamovi ofrece soporte integrado limitado para naive Bayes.\nUse un módulo de machine learning si está instalado, o exporte los datos a R.\nRevise probabilidades predichas y matriz de confusión en datos de validación.",
+    principalComponentAnalysis: "Análisis > Factores > Análisis de componentes principales\nMueva las variables métricas a Variables.\nElija el número de componentes y revise cargas, scree plot, varianza explicada y puntuaciones de componentes si procede."
+  },
+  it: {
+    decisionTreeRegression: "Jamovi offre supporto integrato limitato per la regressione con albero decisionale.\nUsa un modulo di machine learning se installato, oppure esporta i dati in R.\nValida con split training/test o validazione incrociata e controlla potatura o profondità.",
+    randomForestRegression: "Jamovi offre supporto integrato limitato per random forest.\nUsa un modulo adatto se disponibile, oppure esporta i dati in R.\nRiporta RMSE/R2 fuori campione e importanza delle variabili.",
+    knnRegression: "Jamovi offre supporto diretto limitato per la regressione k-nearest neighbors.\nStandardizza i predittori e usa un modulo di machine learning o R.\nScegli k con validazione incrociata e riporta errore predittivo.",
+    decisionTreeClassifier: "Jamovi offre supporto integrato limitato per la classificazione con albero decisionale.\nUsa un modulo di machine learning se installato, oppure esporta i dati in R.\nValida con split training/test o validazione incrociata e controlla la matrice di confusione.",
+    randomForestClassifier: "Jamovi offre supporto integrato limitato per la classificazione random forest.\nUsa un modulo adatto o R.\nRiporta accuratezza di validazione, balanced accuracy/F1 se le classi sono sbilanciate, e importanza delle variabili.",
+    knnClassifier: "Jamovi offre supporto diretto limitato per la classificazione k-nearest neighbors.\nStandardizza i predittori e usa un modulo di machine learning o R.\nScegli k con validazione incrociata e riporta una matrice di confusione.",
+    naiveBayes: "Jamovi offre supporto integrato limitato per naive Bayes.\nUsa un modulo di machine learning se installato, oppure esporta i dati in R.\nControlla probabilità predette e matrice di confusione su dati di validazione.",
+    principalComponentAnalysis: "Analisi > Fattori > Analisi delle componenti principali\nSposta le variabili metriche in Variabili.\nScegli il numero di componenti e controlla carichi, scree plot, varianza spiegata ed eventualmente punteggi delle componenti."
+  }
+};
+
+Object.entries(mlProcedureGuides).forEach(([language, entries]) => {
+  if (!window.localizedProcedurePacks[language]) window.localizedProcedurePacks[language] = {};
+  Object.entries(entries).forEach(([resultId, jamovi]) => {
+    window.localizedProcedurePacks[language][resultId] = { jamovi };
+  });
+});
+
 window.localizedProcedurePacks.it = {
   pearson: {
     jamovi: "Analisi > Regressione > Matrice di correlazione\nSposta entrambe le variabili metriche in Variabili.\nSeleziona Pearson e attiva un diagramma di dispersione se vuoi un controllo visivo."

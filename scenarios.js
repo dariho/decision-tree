@@ -528,6 +528,181 @@ Object.assign(window.resultScenarioPacks.it, {
 });
 
 Object.assign(window.resultScenarioPacks.de, {
+  decisionTreeRegression: {
+    psychology: "Therapieerfolg als Symptomscore wird anhand von Motivation, Baseline-Belastung und Sitzungszahl mit Entscheidungsregeln vorhergesagt.",
+    sport: "Die Wettkampfleistung wird aus Trainingsumfang, Erholung und Sprungkraft über einfache Entscheidungsregeln vorhergesagt."
+  },
+  randomForestRegression: {
+    psychology: "Ein Modell sagt Stresswerte aus Schlaf, Stimmung, sozialer Unterstützung und Alltagsbelastungen vorher.",
+    sport: "Ein Modell sagt Sprintzeiten aus Kraftwerten, Trainingslast, Erholung und Technikmerkmalen vorher."
+  },
+  knnRegression: {
+    psychology: "Ein Wohlbefindenswert wird aus den ähnlichsten Personen mit vergleichbaren Schlaf-, Stress- und Aktivitätsprofilen vorhergesagt.",
+    sport: "Eine Leistungskennzahl wird aus Athletinnen und Athleten mit ähnlichen Trainings- und Kraftprofilen vorhergesagt."
+  },
+  decisionTreeClassifier: {
+    psychology: "Teilnehmende werden anhand weniger transparenter Regeln in hohes oder niedriges Rückfallrisiko klassifiziert.",
+    sport: "Athletinnen und Athleten werden anhand transparenter Regeln in hohes oder niedriges Verletzungsrisiko klassifiziert."
+  },
+  randomForestClassifier: {
+    psychology: "Therapieabbruch ja/nein wird aus vielen Basismerkmalen, Motivation und frühen Sitzungsdaten vorhergesagt.",
+    sport: "Verletzungsstatus ja/nein wird aus Trainingslast, Erholung, Beweglichkeit und früheren Beschwerden vorhergesagt."
+  },
+  knnClassifier: {
+    psychology: "Eine Person wird anhand ähnlicher Profile in Belastungsgruppen klassifiziert.",
+    sport: "Ein Spieler wird anhand ähnlicher Leistungsprofile einer taktischen Rolle zugeordnet."
+  },
+  naiveBayes: {
+    psychology: "Risikokategorien werden aus vielen kurzen Screening-Items schnell probabilistisch vorhergesagt.",
+    sport: "Teilnahmebereitschaft oder Ausfallrisiko wird aus mehreren einfachen Screening-Merkmalen vorhergesagt."
+  },
+  principalComponentAnalysis: {
+    psychology: "Viele Fragebogenitems zu Stress und Stimmung werden zu wenigen Komponenten wie Belastung und Ressourcen reduziert.",
+    sport: "Mehrere Kraft-, Technik- und Ausdauermaße werden zu zentralen Leistungsdimensionen reduziert."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.en, {
+  decisionTreeRegression: {
+    psychology: "Therapy outcome as a symptom score is predicted from motivation, baseline distress, and number of sessions using decision rules.",
+    sport: "Competition performance is predicted from training volume, recovery, and jump power using simple decision rules."
+  },
+  randomForestRegression: {
+    psychology: "Stress scores are predicted from sleep, mood, social support, and daily hassles.",
+    sport: "Sprint times are predicted from strength, training load, recovery, and technique variables."
+  },
+  knnRegression: {
+    psychology: "A wellbeing score is predicted from people with similar sleep, stress, and activity profiles.",
+    sport: "A performance measure is predicted from athletes with similar training and strength profiles."
+  },
+  decisionTreeClassifier: {
+    psychology: "Participants are classified into high or low relapse risk using a few transparent rules.",
+    sport: "Athletes are classified into high or low injury risk using transparent rules."
+  },
+  randomForestClassifier: {
+    psychology: "Therapy dropout yes/no is predicted from many baseline features, motivation, and early session data.",
+    sport: "Injury status yes/no is predicted from training load, recovery, mobility, and previous complaints."
+  },
+  knnClassifier: {
+    psychology: "A person is classified into distress groups based on similar profiles.",
+    sport: "A player is assigned to a tactical role based on similar performance profiles."
+  },
+  naiveBayes: {
+    psychology: "Risk categories are quickly predicted from many short screening items.",
+    sport: "Readiness or dropout risk is predicted from several simple screening features."
+  },
+  principalComponentAnalysis: {
+    psychology: "Many questionnaire items on stress and mood are reduced to a few components such as distress and resources.",
+    sport: "Several strength, technique, and endurance measures are reduced to core performance dimensions."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.fr, {
+  decisionTreeRegression: {
+    psychology: "Le résultat thérapeutique comme score de symptômes est prédit à partir de la motivation, de la détresse initiale et du nombre de séances.",
+    sport: "La performance en compétition est prédite à partir du volume d'entraînement, de la récupération et de la puissance de saut."
+  },
+  randomForestRegression: {
+    psychology: "Les scores de stress sont prédits à partir du sommeil, de l'humeur, du soutien social et des tracas quotidiens.",
+    sport: "Les temps de sprint sont prédits à partir de la force, de la charge d'entraînement, de la récupération et de la technique."
+  },
+  knnRegression: {
+    psychology: "Un score de bien-être est prédit à partir de personnes ayant des profils similaires de sommeil, stress et activité.",
+    sport: "Une mesure de performance est prédite à partir d'athlètes ayant des profils d'entraînement et de force similaires."
+  },
+  decisionTreeClassifier: {
+    psychology: "Les participants sont classés en risque élevé ou faible de rechute avec quelques règles transparentes.",
+    sport: "Les athlètes sont classés en risque élevé ou faible de blessure avec des règles transparentes."
+  },
+  randomForestClassifier: {
+    psychology: "L'abandon thérapeutique oui/non est prédit à partir de nombreuses caractéristiques initiales, de la motivation et des premières séances.",
+    sport: "Le statut de blessure oui/non est prédit à partir de la charge d'entraînement, récupération, mobilité et plaintes antérieures."
+  },
+  knnClassifier: {
+    psychology: "Une personne est classée dans des groupes de détresse à partir de profils similaires.",
+    sport: "Un joueur est associé à un rôle tactique à partir de profils de performance similaires."
+  },
+  naiveBayes: {
+    psychology: "Des catégories de risque sont prédites rapidement à partir de nombreux courts items de dépistage.",
+    sport: "La disponibilité ou le risque d'abandon est prédit à partir de plusieurs caractéristiques simples de dépistage."
+  },
+  principalComponentAnalysis: {
+    psychology: "De nombreux items sur le stress et l'humeur sont réduits à quelques composantes comme détresse et ressources.",
+    sport: "Plusieurs mesures de force, technique et endurance sont réduites à des dimensions centrales de performance."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.es, {
+  decisionTreeRegression: {
+    psychology: "El resultado terapéutico como puntuación de síntomas se predice a partir de motivación, malestar inicial y número de sesiones.",
+    sport: "El rendimiento competitivo se predice a partir de volumen de entrenamiento, recuperación y potencia de salto."
+  },
+  randomForestRegression: {
+    psychology: "Las puntuaciones de estrés se predicen a partir de sueño, estado de ánimo, apoyo social y estresores diarios.",
+    sport: "Los tiempos de sprint se predicen a partir de fuerza, carga de entrenamiento, recuperación y variables técnicas."
+  },
+  knnRegression: {
+    psychology: "Una puntuación de bienestar se predice a partir de personas con perfiles similares de sueño, estrés y actividad.",
+    sport: "Una medida de rendimiento se predice a partir de deportistas con perfiles similares de entrenamiento y fuerza."
+  },
+  decisionTreeClassifier: {
+    psychology: "Los participantes se clasifican en alto o bajo riesgo de recaída mediante reglas transparentes.",
+    sport: "Los deportistas se clasifican en alto o bajo riesgo de lesión mediante reglas transparentes."
+  },
+  randomForestClassifier: {
+    psychology: "El abandono terapéutico sí/no se predice a partir de características iniciales, motivación y datos de sesiones tempranas.",
+    sport: "El estado de lesión sí/no se predice a partir de carga de entrenamiento, recuperación, movilidad y molestias previas."
+  },
+  knnClassifier: {
+    psychology: "Una persona se clasifica en grupos de malestar a partir de perfiles similares.",
+    sport: "Un jugador se asigna a un rol táctico a partir de perfiles de rendimiento similares."
+  },
+  naiveBayes: {
+    psychology: "Las categorías de riesgo se predicen rápidamente a partir de muchos ítems breves de cribado.",
+    sport: "La disponibilidad o riesgo de abandono se predice a partir de varias características simples de cribado."
+  },
+  principalComponentAnalysis: {
+    psychology: "Muchos ítems sobre estrés y estado de ánimo se reducen a pocos componentes como malestar y recursos.",
+    sport: "Varias medidas de fuerza, técnica y resistencia se reducen a dimensiones centrales de rendimiento."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.it, {
+  decisionTreeRegression: {
+    psychology: "L'esito terapeutico come punteggio sintomatologico viene predetto da motivazione, disagio iniziale e numero di sedute.",
+    sport: "La prestazione in gara viene predetta da volume di allenamento, recupero e potenza di salto."
+  },
+  randomForestRegression: {
+    psychology: "I punteggi di stress vengono predetti da sonno, umore, supporto sociale e stress quotidiani.",
+    sport: "I tempi di sprint vengono predetti da forza, carico di allenamento, recupero e variabili tecniche."
+  },
+  knnRegression: {
+    psychology: "Un punteggio di benessere viene predetto da persone con profili simili di sonno, stress e attività.",
+    sport: "Una misura di prestazione viene predetta da atlete e atleti con profili simili di allenamento e forza."
+  },
+  decisionTreeClassifier: {
+    psychology: "I partecipanti vengono classificati in alto o basso rischio di ricaduta tramite regole trasparenti.",
+    sport: "Atlete e atleti vengono classificati in alto o basso rischio di infortunio tramite regole trasparenti."
+  },
+  randomForestClassifier: {
+    psychology: "L'abbandono della terapia sì/no viene predetto da caratteristiche iniziali, motivazione e dati delle prime sedute.",
+    sport: "Lo stato di infortunio sì/no viene predetto da carico di allenamento, recupero, mobilità e disturbi precedenti."
+  },
+  knnClassifier: {
+    psychology: "Una persona viene classificata in gruppi di disagio a partire da profili simili.",
+    sport: "Un giocatore viene assegnato a un ruolo tattico a partire da profili di prestazione simili."
+  },
+  naiveBayes: {
+    psychology: "Categorie di rischio vengono predette rapidamente da molti brevi item di screening.",
+    sport: "Disponibilità o rischio di abbandono vengono predetti da diverse caratteristiche semplici di screening."
+  },
+  principalComponentAnalysis: {
+    psychology: "Molti item su stress e umore vengono ridotti a poche componenti come disagio e risorse.",
+    sport: "Diverse misure di forza, tecnica e resistenza vengono ridotte a dimensioni centrali della prestazione."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.de, {
   kendall: {
     psychology: "In einer kleinen Stichprobe wird geprüft, ob Therapieadhärenz-Rangplätze mit Wohlbefinden-Rangplätzen zusammenhängen.",
     sport: "Trainer prüfen, ob Rangplätze in Technikbewertung und Wettkampfleistung bei wenigen Athletinnen und Athleten übereinstimmen."
