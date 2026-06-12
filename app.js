@@ -1105,6 +1105,74 @@ const effectSizeLabels = {
   }
 };
 
+const clusterAlgorithmGuides = {
+  de: {
+    heading: "Häufige Clustering-Algorithmen",
+    familyLabel: "Methodenfamilie",
+    family: "Clusteranalyse ist die übergeordnete Methodenfamilie. Sie beschreibt das Ziel, ähnliche Personen oder Objekte anhand mehrerer Merkmale zu gruppieren.",
+    algorithms: [
+      { name: "k-means-Clustering", text: "Sinnvoll, wenn die Anzahl der Cluster vorab festgelegt wird und eher kompakte Cluster um Zentren erwartet werden." },
+      { name: "Hierarchisches Clustering", text: "Sinnvoll, wenn eine Baumstruktur oder ein Dendrogramm der Ähnlichkeiten interpretiert werden soll." },
+      { name: "DBSCAN", text: "Sinnvoll, wenn Cluster unregelmäßige Formen haben können und Ausreißer oder Rauschen wichtig sind." },
+      { name: "Gaussian-Mixture-Modelle", text: "Sinnvoll, wenn Cluster probabilistisch als überlappende Verteilungen modelliert werden sollen." }
+    ],
+    noteLabel: "Berichten",
+    note: "Immer Skalierung/Standardisierung, Distanzmaß, Algorithmus, Anzahl der Cluster, Clustergrößen und inhaltliche Interpretation angeben."
+  },
+  en: {
+    heading: "Common clustering algorithms",
+    familyLabel: "Method family",
+    family: "Cluster analysis is the broader methodological family. It describes the goal of grouping similar people or objects based on several features.",
+    algorithms: [
+      { name: "k-means clustering", text: "Useful when the number of clusters is set in advance and compact clusters around centroids are plausible." },
+      { name: "Hierarchical clustering", text: "Useful when you want to inspect a tree structure or dendrogram of similarities." },
+      { name: "DBSCAN", text: "Useful when clusters may have irregular shapes and outliers or noise are substantively important." },
+      { name: "Gaussian mixture models", text: "Useful when clusters should be modelled probabilistically as possibly overlapping distributions." }
+    ],
+    noteLabel: "Report",
+    note: "Always report scaling/standardisation, distance measure, algorithm, number of clusters, cluster sizes, and substantive interpretation."
+  },
+  fr: {
+    heading: "Algorithmes de clustering courants",
+    familyLabel: "Famille de méthodes",
+    family: "L'analyse de clusters est la famille méthodologique générale. Elle décrit l'objectif de regrouper des personnes ou objets similaires à partir de plusieurs caractéristiques.",
+    algorithms: [
+      { name: "Clustering k-means", text: "Utile lorsque le nombre de clusters est fixé à l'avance et que des clusters compacts autour de centres sont plausibles." },
+      { name: "Clustering hiérarchique", text: "Utile lorsque l'on souhaite examiner une structure arborescente ou un dendrogramme des similarités." },
+      { name: "DBSCAN", text: "Utile lorsque les clusters peuvent avoir des formes irrégulières et que les valeurs aberrantes ou le bruit sont importants." },
+      { name: "Modèles de mélanges gaussiens", text: "Utile lorsque les clusters doivent être modélisés de manière probabiliste comme des distributions éventuellement superposées." }
+    ],
+    noteLabel: "Rapporter",
+    note: "Toujours rapporter la mise à l'échelle/standardisation, la mesure de distance, l'algorithme, le nombre de clusters, les tailles des clusters et l'interprétation substantielle."
+  },
+  es: {
+    heading: "Algoritmos habituales de clusterización",
+    familyLabel: "Familia de métodos",
+    family: "El análisis de conglomerados es la familia metodológica general. Describe el objetivo de agrupar personas u objetos similares a partir de varias características.",
+    algorithms: [
+      { name: "k-medias", text: "Útil cuando el número de conglomerados se fija de antemano y son plausibles conglomerados compactos alrededor de centroides." },
+      { name: "Clusterización jerárquica", text: "Útil cuando se desea inspeccionar una estructura en árbol o un dendrograma de similitudes." },
+      { name: "DBSCAN", text: "Útil cuando los conglomerados pueden tener formas irregulares y los valores atípicos o el ruido son importantes." },
+      { name: "Modelos de mezcla gaussiana", text: "Útil cuando los conglomerados deben modelarse probabilísticamente como distribuciones posiblemente solapadas." }
+    ],
+    noteLabel: "Informar",
+    note: "Informe siempre la escalización/estandarización, la medida de distancia, el algoritmo, el número de conglomerados, los tamaños de los conglomerados y la interpretación sustantiva."
+  },
+  it: {
+    heading: "Algoritmi di clustering comuni",
+    familyLabel: "Famiglia di metodi",
+    family: "L'analisi dei cluster è la famiglia metodologica più ampia. Descrive l'obiettivo di raggruppare persone o oggetti simili in base a più caratteristiche.",
+    algorithms: [
+      { name: "Clustering k-means", text: "Utile quando il numero di cluster è definito in anticipo e sono plausibili cluster compatti attorno ai centroidi." },
+      { name: "Clustering gerarchico", text: "Utile quando si vuole esaminare una struttura ad albero o un dendrogramma delle somiglianze." },
+      { name: "DBSCAN", text: "Utile quando i cluster possono avere forme irregolari e outlier o rumore sono importanti." },
+      { name: "Modelli a mistura gaussiana", text: "Utile quando i cluster devono essere modellati probabilisticamente come distribuzioni eventualmente sovrapposte." }
+    ],
+    noteLabel: "Riportare",
+    note: "Riportare sempre scaling/standardizzazione, misura di distanza, algoritmo, numero di cluster, dimensioni dei cluster e interpretazione sostanziale."
+  }
+};
+
 const state = {
   currentNode: "goal",
   history: [],
@@ -1133,6 +1201,9 @@ const elements = {
   assumptionsList: document.querySelector("#assumptionsList"),
   scenarioSection: document.querySelector("#scenarioSection"),
   scenarioList: document.querySelector("#scenarioList"),
+  clusterGuideSection: null,
+  clusterGuideHeading: null,
+  clusterGuideList: null,
   effectSizeSection: null,
   effectSizeHeading: null,
   effectSizeList: null,
@@ -1265,6 +1336,7 @@ function renderResult(resultId) {
   renderProcedure(resultId);
   renderScenarios(resultId, pack);
   renderEffectSize(resultId, pack);
+  renderClusterGuide(resultId, pack);
   renderApaReport(resultId, pack);
   elements.assumptionsList.replaceChildren(
     ...result.assumptions.map((assumption) => {
@@ -1339,6 +1411,38 @@ function renderEffectSize(resultId, pack) {
     createApaReportItem(labels.measureLabel, definition.measure),
     createApaReportItem(labels.rangeLabel, labels.ranges[definition.rangeType] || ""),
     createApaReportItem(labels.noteLabel, labels.note)
+  );
+}
+
+function ensureClusterGuideElements() {
+  if (elements.clusterGuideSection) return;
+  const section = document.createElement("section");
+  const heading = document.createElement("h2");
+  const list = document.createElement("div");
+  section.className = "cluster-guide-section apa-section";
+  section.id = "clusterGuideSection";
+  heading.id = "clusterGuideHeading";
+  list.className = "apa-list";
+  list.id = "clusterGuideList";
+  section.append(heading, list);
+  elements.apaSection.before(section);
+  elements.clusterGuideSection = section;
+  elements.clusterGuideHeading = heading;
+  elements.clusterGuideList = list;
+}
+
+function renderClusterGuide(resultId, pack) {
+  ensureClusterGuideElements();
+  const guide = resultId === "clusterAnalysis" ? (clusterAlgorithmGuides[pack.lang] || clusterAlgorithmGuides.en) : null;
+  elements.clusterGuideSection.hidden = !guide;
+  elements.clusterGuideList.replaceChildren();
+  if (!guide) return;
+
+  elements.clusterGuideHeading.textContent = guide.heading;
+  elements.clusterGuideList.replaceChildren(
+    createApaReportItem(guide.familyLabel, guide.family),
+    ...guide.algorithms.map((algorithm) => createApaReportItem(algorithm.name, algorithm.text)),
+    createApaReportItem(guide.noteLabel, guide.note)
   );
 }
 
