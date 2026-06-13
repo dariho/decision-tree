@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2828" height="7592" viewBox="0 0 2828 7592" role="img" aria-labelledby="title desc">
+<title id="title">Classic decision tree overview</title>
+<desc id="desc">A branching overview of the current decision tree from the first question to each final recommendation.</desc>
+<defs>
+  <style>
+    .bg { fill: #0d1416; }
+    .frame { fill: #11191b; stroke: #2e3b3f; stroke-width: 1; }
+    .title { fill: #f5fbfa; font: 800 36px Inter, Arial, sans-serif; }
+    .subtitle { fill: #aab8bb; font: 500 16px Inter, Arial, sans-serif; }
+    .meta { fill: #99eee2; font: 800 11px Inter, Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+    .via { fill: #b9c7ca; font: 700 11px Inter, Arial, sans-serif; }
+    .decisionText { fill: #f1f7f6; font: 800 13px Inter, Arial, sans-serif; }
+    .resultText { fill: #fff4dc; font: 800 13px Inter, Arial, sans-serif; }
+    .summary { fill: #b8c4c6; font: 500 11px Inter, Arial, sans-serif; }
+    .small { fill: #839195; font: 650 12px Inter, Arial, sans-serif; }
+    .edge { fill: none; stroke-width: 2; opacity: .72; }
+  </style>
+</defs>
+<rect class="bg" x="0" y="0" width="2828" height="7592"/>
+<rect class="frame" x="32" y="32" width="2764" height="7528" rx="12"/>
+<text class="title" x="64" y="80">Classic Decision Tree Overview</text>
+<text class="subtitle" x="64" y="110">Branching map of the current beta decision tree. Follow the connected nodes from left to right to reach each test or procedure.</text>
+<text class="small" x="2308" y="82">58 terminal recommendations - Beta Version 2.0.0 - Under development</text>
+<path class="edge" d="M 344 3850 C 401.5 3850, 401.5 2822, 459 2822" stroke="#67d5c9"/>
+<path class="edge" d="M 739 2822 C 796.5 2822, 796.5 797, 854 797" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 797 C 1191.5 797, 1191.5 354, 1249 354" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 354 C 1586.5 354, 1586.5 232, 1644 232" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 354 C 1586.5 354, 1586.5 419, 1644 419" stroke="#67d5c9"/>
+<path class="edge" d="M 1924 419 C 1981.5 419, 1981.5 358, 2039 358" stroke="#67d5c9"/>
+<path class="edge" d="M 1924 419 C 1981.5 419, 1981.5 480, 2039 480" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 797 C 1191.5 797, 1191.5 663, 1249 663" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 663 C 1586.5 663, 1586.5 602, 1644 602" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 663 C 1586.5 663, 1586.5 724, 1644 724" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 797 C 1191.5 797, 1191.5 846, 1249 846" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 797 C 1191.5 797, 1191.5 972, 1249 972" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 797 C 1191.5 797, 1191.5 1232, 1249 1232" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 1232 C 1586.5 1232, 1586.5 1102, 1644 1102" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 1232 C 1586.5 1232, 1586.5 1232, 1644 1232" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 1232 C 1586.5 1232, 1586.5 1362, 1644 1362" stroke="#67d5c9"/>
+<path class="edge" d="M 739 2822 C 796.5 2822, 796.5 2932, 854 2932" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 2932 C 1191.5 2932, 1191.5 2042, 1249 2042" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 2042 C 1586.5 2042, 1586.5 1554, 1644 1554" stroke="#67d5c9"/>
+<path class="edge" d="M 1924 1554 C 1981.5 1554, 1981.5 1488, 2039 1488" stroke="#67d5c9"/>
+<path class="edge" d="M 1924 1554 C 1981.5 1554, 1981.5 1615, 2039 1615" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 2042 C 1586.5 2042, 1586.5 1803, 1644 1803" stroke="#67d5c9"/>
+<path class="edge" d="M 1924 1803 C 1981.5 1803, 1981.5 1742, 2039 1742" stroke="#67d5c9"/>
+<path class="edge" d="M 1924 1803 C 1981.5 1803, 1981.5 1864, 2039 1864" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 2042 C 1586.5 2042, 1586.5 2047, 1644 2047" stroke="#67d5c9"/>
+<path class="edge" d="M 1924 2047 C 1981.5 2047, 1981.5 1986, 2039 1986" stroke="#67d5c9"/>
+<path class="edge" d="M 1924 2047 C 1981.5 2047, 1981.5 2108, 2039 2108" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 2042 C 1586.5 2042, 1586.5 2413, 1644 2413" stroke="#67d5c9"/>
+<path class="edge" d="M 1924 2413 C 1981.5 2413, 1981.5 2291, 2039 2291" stroke="#67d5c9"/>
+<path class="edge" d="M 2319 2291 C 2376.5 2291, 2376.5 2230, 2434 2230" stroke="#67d5c9"/>
+<path class="edge" d="M 2319 2291 C 2376.5 2291, 2376.5 2352, 2434 2352" stroke="#67d5c9"/>
+<path class="edge" d="M 1924 2413 C 1981.5 2413, 1981.5 2535, 2039 2535" stroke="#67d5c9"/>
+<path class="edge" d="M 2319 2535 C 2376.5 2535, 2376.5 2474, 2434 2474" stroke="#67d5c9"/>
+<path class="edge" d="M 2319 2535 C 2376.5 2535, 2376.5 2596, 2434 2596" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 2932 C 1191.5 2932, 1191.5 2901, 1249 2901" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 2901 C 1586.5 2901, 1586.5 2718, 1644 2718" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 2901 C 1586.5 2901, 1586.5 2840, 1644 2840" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 2901 C 1586.5 2901, 1586.5 2962, 1644 2962" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 2901 C 1586.5 2901, 1586.5 3084, 1644 3084" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 2932 C 1191.5 2932, 1191.5 3478, 1249 3478" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 3478 C 1586.5 3478, 1586.5 3210, 1644 3210" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 3478 C 1586.5 3478, 1586.5 3340, 1644 3340" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 3478 C 1586.5 3478, 1586.5 3470, 1644 3470" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 3478 C 1586.5 3478, 1586.5 3600, 1644 3600" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 3478 C 1586.5 3478, 1586.5 3738, 1644 3738" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 2932 C 1191.5 2932, 1191.5 3998, 1249 3998" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 3998 C 1586.5 3998, 1586.5 3872, 1644 3872" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 3998 C 1586.5 3998, 1586.5 3998, 1644 3998" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 3998 C 1586.5 3998, 1586.5 4124, 1644 4124" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 2932 C 1191.5 2932, 1191.5 4311, 1249 4311" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 4311 C 1586.5 4311, 1586.5 4250, 1644 4250" stroke="#67d5c9"/>
+<path class="edge" d="M 1529 4311 C 1586.5 4311, 1586.5 4376, 1644 4376" stroke="#67d5c9"/>
+<path class="edge" d="M 739 2822 C 796.5 2822, 796.5 4624, 854 4624" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 4624 C 1191.5 4624, 1191.5 4498, 1249 4498" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 4624 C 1191.5 4624, 1191.5 4620, 1249 4620" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 4624 C 1191.5 4624, 1191.5 4746, 1249 4746" stroke="#67d5c9"/>
+<path class="edge" d="M 739 2822 C 796.5 2822, 796.5 5144, 854 5144" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 5144 C 1191.5 5144, 1191.5 4876, 1249 4876" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 5144 C 1191.5 5144, 1191.5 5006, 1249 5006" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 5144 C 1191.5 5144, 1191.5 5136, 1249 5136" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 5144 C 1191.5 5144, 1191.5 5266, 1249 5266" stroke="#67d5c9"/>
+<path class="edge" d="M 1134 5144 C 1191.5 5144, 1191.5 5404, 1249 5404" stroke="#67d5c9"/>
+<path class="edge" d="M 344 3850 C 401.5 3850, 401.5 5672, 459 5672" stroke="#e1ad5b"/>
+<path class="edge" d="M 739 5672 C 796.5 5672, 796.5 5542, 854 5542" stroke="#e1ad5b"/>
+<path class="edge" d="M 739 5672 C 796.5 5672, 796.5 5672, 854 5672" stroke="#e1ad5b"/>
+<path class="edge" d="M 739 5672 C 796.5 5672, 796.5 5802, 854 5802" stroke="#e1ad5b"/>
+<path class="edge" d="M 344 3850 C 401.5 3850, 401.5 6700, 459 6700" stroke="#8bb7ff"/>
+<path class="edge" d="M 739 6700 C 796.5 6700, 796.5 6505, 854 6505" stroke="#8bb7ff"/>
+<path class="edge" d="M 1134 6505 C 1191.5 6505, 1191.5 6119, 1249 6119" stroke="#8bb7ff"/>
+<path class="edge" d="M 1529 6119 C 1586.5 6119, 1586.5 5928, 1644 5928" stroke="#8bb7ff"/>
+<path class="edge" d="M 1529 6119 C 1586.5 6119, 1586.5 6054, 1644 6054" stroke="#8bb7ff"/>
+<path class="edge" d="M 1529 6119 C 1586.5 6119, 1586.5 6184, 1644 6184" stroke="#8bb7ff"/>
+<path class="edge" d="M 1529 6119 C 1586.5 6119, 1586.5 6310, 1644 6310" stroke="#8bb7ff"/>
+<path class="edge" d="M 1134 6505 C 1191.5 6505, 1191.5 6757, 1249 6757" stroke="#8bb7ff"/>
+<path class="edge" d="M 1529 6757 C 1586.5 6757, 1586.5 6436, 1644 6436" stroke="#8bb7ff"/>
+<path class="edge" d="M 1529 6757 C 1586.5 6757, 1586.5 6566, 1644 6566" stroke="#8bb7ff"/>
+<path class="edge" d="M 1529 6757 C 1586.5 6757, 1586.5 6692, 1644 6692" stroke="#8bb7ff"/>
+<path class="edge" d="M 1529 6757 C 1586.5 6757, 1586.5 6818, 1644 6818" stroke="#8bb7ff"/>
+<path class="edge" d="M 1529 6757 C 1586.5 6757, 1586.5 6948, 1644 6948" stroke="#8bb7ff"/>
+<path class="edge" d="M 1529 6757 C 1586.5 6757, 1586.5 7078, 1644 7078" stroke="#8bb7ff"/>
+<path class="edge" d="M 739 6700 C 796.5 6700, 796.5 7338, 854 7338" stroke="#8bb7ff"/>
+<path class="edge" d="M 1134 7338 C 1191.5 7338, 1191.5 7208, 1249 7208" stroke="#8bb7ff"/>
+<path class="edge" d="M 1134 7338 C 1191.5 7338, 1191.5 7338, 1249 7338" stroke="#8bb7ff"/>
+<path class="edge" d="M 1134 7338 C 1191.5 7338, 1191.5 7468, 1249 7468" stroke="#8bb7ff"/>
+<rect x="64" y="3804" width="280" height="92" rx="10" fill="#172436" stroke="#8bb7ff" stroke-width="1.4"/>
+<rect x="64" y="3804" width="6" height="92" rx="3" fill="#6dd3c7"/>
+<text class="meta" x="82" y="3826">Analysis strategy</text>
+<text class="decisionText" x="82" y="3846">What do you want to do with</text>
+<text class="decisionText" x="82" y="3862">your data?</text>
+<rect x="459" y="2776" width="280" height="92" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="459" y="2776" width="6" height="92" rx="3" fill="#67d5c9"/>
+<text class="meta" x="477" y="2798">Starting point</text>
+<text class="via" x="477" y="2818">via: Test a hypothesis</text>
+<text class="decisionText" x="477" y="2835">What kind of research question</text>
+<text class="decisionText" x="477" y="2851">do you want to answer?</text>
+<rect x="854" y="751" width="280" height="92" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="854" y="751" width="6" height="92" rx="3" fill="#67d5c9"/>
+<text class="meta" x="872" y="773">Scale level</text>
+<text class="via" x="872" y="793">via: Test association between</text>
+<text class="via" x="872" y="807">via: variables</text>
+<text class="decisionText" x="872" y="824">How are the variables measured?</text>
+<rect x="1249" y="307" width="280" height="94" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="1249" y="307" width="6" height="94" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="329">Assumption</text>
+<text class="via" x="1267" y="349">via: Both variables are metric</text>
+<text class="decisionText" x="1267" y="366">Is a linear relationship</text>
+<text class="decisionText" x="1267" y="382">plausible and are strong</text>
+<text class="decisionText" x="1267" y="398">outliers ruled out?</text>
+<rect x="1644" y="180" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="180" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="202">Recommended procedure</text>
+<text class="via" x="1662" y="222">via: Yes, a linear relationship is</text>
+<text class="via" x="1662" y="236">via: plausible</text>
+<text class="resultText" x="1662" y="253">Pearson correlation</text>
+<text class="summary" x="1662" y="276">Suitable when two metric variables are</text>
+<text class="summary" x="1662" y="290">tested for a linear relationship.</text>
+<rect x="1644" y="373" width="280" height="92" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="1644" y="373" width="6" height="92" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="395">Rank correlation</text>
+<text class="via" x="1662" y="415">via: No or unsure</text>
+<text class="decisionText" x="1662" y="432">Which rank correlation do you</text>
+<text class="decisionText" x="1662" y="448">want to report?</text>
+<rect x="2039" y="310" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="2039" y="310" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2057" y="332">Recommended procedure</text>
+<text class="via" x="2057" y="352">via: Spearman rank correlation</text>
+<text class="resultText" x="2057" y="369">Spearman rank correlation</text>
+<text class="summary" x="2057" y="392">A robust choice for ordinal variables or</text>
+<text class="summary" x="2057" y="406">monotonic relationships without strict</text>
+<rect x="2039" y="432" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="2039" y="432" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2057" y="454">Recommended procedure</text>
+<text class="via" x="2057" y="474">via: Kendall&apos;s rank correlation</text>
+<text class="resultText" x="2057" y="491">Kendall&apos;s rank correlation</text>
+<text class="summary" x="2057" y="514">Rank-based correlation for ordinal</text>
+<text class="summary" x="2057" y="528">variables or monotonic relationships,</text>
+<rect x="1249" y="617" width="280" height="92" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="1249" y="617" width="6" height="92" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="639">Rank correlation</text>
+<text class="via" x="1267" y="659">via: At least one variable is</text>
+<text class="via" x="1267" y="673">via: ordinal</text>
+<text class="decisionText" x="1267" y="690">Which rank correlation do you</text>
+<text class="decisionText" x="1267" y="706">want to report?</text>
+<rect x="1644" y="554" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="554" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="576">Recommended procedure</text>
+<text class="via" x="1662" y="596">via: Spearman rank correlation</text>
+<text class="resultText" x="1662" y="613">Spearman rank correlation</text>
+<text class="summary" x="1662" y="636">A robust choice for ordinal variables or</text>
+<text class="summary" x="1662" y="650">monotonic relationships without strict</text>
+<rect x="1644" y="676" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="676" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="698">Recommended procedure</text>
+<text class="via" x="1662" y="718">via: Kendall&apos;s rank correlation</text>
+<text class="resultText" x="1662" y="735">Kendall&apos;s rank correlation</text>
+<text class="summary" x="1662" y="758">Rank-based correlation for ordinal</text>
+<text class="summary" x="1662" y="772">variables or monotonic relationships,</text>
+<rect x="1249" y="798" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1249" y="798" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="820">Recommended procedure</text>
+<text class="via" x="1267" y="840">via: Two categorical variables</text>
+<text class="resultText" x="1267" y="857">Chi-square test of independence</text>
+<text class="summary" x="1267" y="880">Tests whether two categorical variables</text>
+<text class="summary" x="1267" y="894">are statistically associated.</text>
+<rect x="1249" y="920" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1249" y="920" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="942">Recommended procedure</text>
+<text class="via" x="1267" y="962">via: All variables are nominal</text>
+<text class="via" x="1267" y="976">via: (multiway table)</text>
+<text class="resultText" x="1267" y="993">Log-linear model</text>
+<text class="summary" x="1267" y="1016">Models associations and interactions among</text>
+<text class="summary" x="1267" y="1030">several nominal variables in a contingency</text>
+<rect x="1249" y="1186" width="280" height="92" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="1249" y="1186" width="6" height="92" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="1208">Path or classification model</text>
+<text class="via" x="1267" y="1228">via: More than two variables in a</text>
+<text class="via" x="1267" y="1242">via: path or classification model</text>
+<text class="decisionText" x="1267" y="1259">What kind of multivariable</text>
+<text class="decisionText" x="1267" y="1275">model do you want to test?</text>
+<rect x="1644" y="1050" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="1050" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="1072">Recommended procedure</text>
+<text class="via" x="1662" y="1092">via: All variables are measurable /</text>
+<text class="via" x="1662" y="1106">via: observed</text>
+<text class="resultText" x="1662" y="1123">Path analysis (mediation)</text>
+<text class="summary" x="1662" y="1146">Models directed relations among several</text>
+<text class="summary" x="1662" y="1160">observed variables, often to test direct,</text>
+<rect x="1644" y="1180" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="1180" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="1202">Recommended procedure</text>
+<text class="via" x="1662" y="1222">via: Measurable variables and</text>
+<text class="via" x="1662" y="1236">via: latent variables</text>
+<text class="resultText" x="1662" y="1253">Structural equation modeling (SEM)</text>
+<text class="summary" x="1662" y="1276">Combines measurement models for latent</text>
+<text class="summary" x="1662" y="1290">variables with directed structural paths</text>
+<rect x="1644" y="1310" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="1310" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="1332">Recommended procedure</text>
+<text class="via" x="1662" y="1352">via: Nominal dependent variable and</text>
+<text class="via" x="1662" y="1366">via: interval-scaled independent</text>
+<text class="resultText" x="1662" y="1383">Discriminant analysis</text>
+<text class="summary" x="1662" y="1406">Classifies cases into nominal groups from</text>
+<text class="summary" x="1662" y="1420">several interval-scaled predictors and</text>
+<rect x="854" y="2886" width="280" height="92" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="854" y="2886" width="6" height="92" rx="3" fill="#67d5c9"/>
+<text class="meta" x="872" y="2908">Scale level</text>
+<text class="via" x="872" y="2928">via: Compare differences or means</text>
+<text class="decisionText" x="872" y="2945">What type of dependent variable</text>
+<text class="decisionText" x="872" y="2961">do you have?</text>
+<rect x="1249" y="1996" width="280" height="92" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="1249" y="1996" width="6" height="92" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="2018">Group design</text>
+<text class="via" x="1267" y="2038">via: Metric dependent variable</text>
+<text class="decisionText" x="1267" y="2055">How many groups or measurement</text>
+<text class="decisionText" x="1267" y="2071">times are you comparing?</text>
+<rect x="1644" y="1500" width="280" height="108" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="1644" y="1500" width="6" height="108" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="1522">Assumption</text>
+<text class="via" x="1662" y="1542">via: One sample against a target</text>
+<text class="via" x="1662" y="1556">via: value</text>
+<text class="decisionText" x="1662" y="1573">Is the metric variable</text>
+<text class="decisionText" x="1662" y="1589">approximately normally</text>
+<text class="decisionText" x="1662" y="1605">distributed?</text>
+<rect x="2039" y="1440" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="2039" y="1440" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2057" y="1462">Recommended procedure</text>
+<text class="via" x="2057" y="1482">via: Yes</text>
+<text class="resultText" x="2057" y="1499">One-sample t-test</text>
+<text class="summary" x="2057" y="1522">Compares the mean of one metric sample</text>
+<text class="summary" x="2057" y="1536">with a specified reference value.</text>
+<rect x="2039" y="1562" width="330" height="106" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="2039" y="1562" width="6" height="106" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2057" y="1584">Recommended procedure</text>
+<text class="via" x="2057" y="1604">via: No or clearly skewed</text>
+<text class="resultText" x="2057" y="1621">One-sample Wilcoxon signed-rank</text>
+<text class="resultText" x="2057" y="1637">test</text>
+<text class="summary" x="2057" y="1660">Nonparametric alternative when a median or</text>
+<text class="summary" x="2057" y="1674">rank pattern is tested against a reference</text>
+<rect x="1644" y="1756" width="280" height="94" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="1644" y="1756" width="6" height="94" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="1778">Assumption</text>
+<text class="via" x="1662" y="1798">via: Two independent groups</text>
+<text class="decisionText" x="1662" y="1815">Are normality and homogeneity</text>
+<text class="decisionText" x="1662" y="1831">of variances sufficiently</text>
+<text class="decisionText" x="1662" y="1847">plausible?</text>
+<rect x="2039" y="1694" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="2039" y="1694" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2057" y="1716">Recommended procedure</text>
+<text class="via" x="2057" y="1736">via: Yes</text>
+<text class="resultText" x="2057" y="1753">Independent-samples t-test</text>
+<text class="summary" x="2057" y="1776">Compares the means of two independent</text>
+<text class="summary" x="2057" y="1790">groups with a metric outcome.</text>
+<rect x="2039" y="1816" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="2039" y="1816" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2057" y="1838">Recommended procedure</text>
+<text class="via" x="2057" y="1858">via: No or unsure</text>
+<text class="resultText" x="2057" y="1875">Mann-Whitney U test</text>
+<text class="summary" x="2057" y="1898">Nonparametric alternative to the</text>
+<text class="summary" x="2057" y="1912">independent t-test for two independent</text>
+<rect x="1644" y="2000" width="280" height="94" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="1644" y="2000" width="6" height="94" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="2022">Assumption</text>
+<text class="via" x="1662" y="2042">via: Two paired measurements</text>
+<text class="decisionText" x="1662" y="2059">Are the differences between</text>
+<text class="decisionText" x="1662" y="2075">paired measurements</text>
+<text class="decisionText" x="1662" y="2091">approximately normal?</text>
+<rect x="2039" y="1938" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="2039" y="1938" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2057" y="1960">Recommended procedure</text>
+<text class="via" x="2057" y="1980">via: Yes</text>
+<text class="resultText" x="2057" y="1997">Paired-samples t-test</text>
+<text class="summary" x="2057" y="2020">Compares two paired means, for example</text>
+<text class="summary" x="2057" y="2034">pre-post measurements.</text>
+<rect x="2039" y="2060" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="2039" y="2060" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2057" y="2082">Recommended procedure</text>
+<text class="via" x="2057" y="2102">via: No or ordinal</text>
+<text class="resultText" x="2057" y="2119">Wilcoxon signed-rank test</text>
+<text class="summary" x="2057" y="2142">Nonparametric choice for two paired</text>
+<text class="summary" x="2057" y="2156">measurements or ordinal paired</text>
+<rect x="1644" y="2359" width="280" height="108" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="1644" y="2359" width="6" height="108" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="2381">Group design</text>
+<text class="via" x="1662" y="2401">via: More than two groups or time</text>
+<text class="via" x="1662" y="2415">via: points</text>
+<text class="decisionText" x="1662" y="2432">Are the groups independent or</text>
+<text class="decisionText" x="1662" y="2448">are these repeated</text>
+<text class="decisionText" x="1662" y="2464">measurements?</text>
+<rect x="2039" y="2245" width="280" height="92" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="2039" y="2245" width="6" height="92" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2057" y="2267">Assumption</text>
+<text class="via" x="2057" y="2287">via: Independent groups</text>
+<text class="decisionText" x="2057" y="2304">Are normality within groups and</text>
+<text class="decisionText" x="2057" y="2320">equal variances acceptable?</text>
+<rect x="2434" y="2182" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="2434" y="2182" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2452" y="2204">Recommended procedure</text>
+<text class="via" x="2452" y="2224">via: Yes</text>
+<text class="resultText" x="2452" y="2241">One-way ANOVA</text>
+<text class="summary" x="2452" y="2264">Compares means across more than two</text>
+<text class="summary" x="2452" y="2278">independent groups.</text>
+<rect x="2434" y="2304" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="2434" y="2304" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2452" y="2326">Recommended procedure</text>
+<text class="via" x="2452" y="2346">via: No or ordinal</text>
+<text class="resultText" x="2452" y="2363">Kruskal-Wallis test</text>
+<text class="summary" x="2452" y="2386">Nonparametric alternative to one-way ANOVA</text>
+<text class="summary" x="2452" y="2400">for several independent groups.</text>
+<rect x="2039" y="2488" width="280" height="94" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="2039" y="2488" width="6" height="94" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2057" y="2510">Assumption</text>
+<text class="via" x="2057" y="2530">via: Repeated measurements</text>
+<text class="decisionText" x="2057" y="2547">Are metric measurements and</text>
+<text class="decisionText" x="2057" y="2563">sphericity sufficiently</text>
+<text class="decisionText" x="2057" y="2579">plausible?</text>
+<rect x="2434" y="2426" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="2434" y="2426" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2452" y="2448">Recommended procedure</text>
+<text class="via" x="2452" y="2468">via: Yes</text>
+<text class="resultText" x="2452" y="2485">Repeated-measures ANOVA</text>
+<text class="summary" x="2452" y="2508">Tests mean differences across several</text>
+<text class="summary" x="2452" y="2522">paired time points or conditions.</text>
+<rect x="2434" y="2548" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="2434" y="2548" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="2452" y="2570">Recommended procedure</text>
+<text class="via" x="2452" y="2590">via: No or ordinal</text>
+<text class="resultText" x="2452" y="2607">Friedman test</text>
+<text class="summary" x="2452" y="2630">Nonparametric alternative to</text>
+<text class="summary" x="2452" y="2644">repeated-measures ANOVA for several paired</text>
+<rect x="1249" y="2855" width="280" height="92" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="1249" y="2855" width="6" height="92" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="2877">Group design</text>
+<text class="via" x="1267" y="2897">via: Ordinal dependent variable</text>
+<text class="decisionText" x="1267" y="2914">How are the ordinal</text>
+<text class="decisionText" x="1267" y="2930">measurements arranged?</text>
+<rect x="1644" y="2670" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="2670" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="2692">Recommended procedure</text>
+<text class="via" x="1662" y="2712">via: Two independent groups</text>
+<text class="resultText" x="1662" y="2729">Mann-Whitney U test</text>
+<text class="summary" x="1662" y="2752">Nonparametric alternative to the</text>
+<text class="summary" x="1662" y="2766">independent t-test for two independent</text>
+<rect x="1644" y="2792" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="2792" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="2814">Recommended procedure</text>
+<text class="via" x="1662" y="2834">via: Two paired measurements</text>
+<text class="resultText" x="1662" y="2851">Wilcoxon signed-rank test</text>
+<text class="summary" x="1662" y="2874">Nonparametric choice for two paired</text>
+<text class="summary" x="1662" y="2888">measurements or ordinal paired</text>
+<rect x="1644" y="2914" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="2914" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="2936">Recommended procedure</text>
+<text class="via" x="1662" y="2956">via: Several independent groups</text>
+<text class="resultText" x="1662" y="2973">Kruskal-Wallis test</text>
+<text class="summary" x="1662" y="2996">Nonparametric alternative to one-way ANOVA</text>
+<text class="summary" x="1662" y="3010">for several independent groups.</text>
+<rect x="1644" y="3036" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="3036" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="3058">Recommended procedure</text>
+<text class="via" x="1662" y="3078">via: Several paired measurements</text>
+<text class="resultText" x="1662" y="3095">Friedman test</text>
+<text class="summary" x="1662" y="3118">Nonparametric alternative to</text>
+<text class="summary" x="1662" y="3132">repeated-measures ANOVA for several paired</text>
+<rect x="1249" y="3432" width="280" height="92" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="1249" y="3432" width="6" height="92" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="3454">Categories</text>
+<text class="via" x="1267" y="3474">via: Categorical dependent variable</text>
+<text class="decisionText" x="1267" y="3491">How is the categorical question</text>
+<text class="decisionText" x="1267" y="3507">structured?</text>
+<rect x="1644" y="3158" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="3158" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="3180">Recommended procedure</text>
+<text class="via" x="1662" y="3200">via: Two independent categorical</text>
+<text class="via" x="1662" y="3214">via: variables</text>
+<text class="resultText" x="1662" y="3231">Chi-square test of independence</text>
+<text class="summary" x="1662" y="3254">Tests whether two categorical variables</text>
+<text class="summary" x="1662" y="3268">are statistically associated.</text>
+<rect x="1644" y="3288" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="3288" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="3310">Recommended procedure</text>
+<text class="via" x="1662" y="3330">via: Small expected counts in a 2x2</text>
+<text class="via" x="1662" y="3344">via: table</text>
+<text class="resultText" x="1662" y="3361">Fisher&apos;s exact test</text>
+<text class="summary" x="1662" y="3384">Tests associations in small 2x2 tables</text>
+<text class="summary" x="1662" y="3398">when chi-square assumptions are not met.</text>
+<rect x="1644" y="3418" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="3418" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="3440">Recommended procedure</text>
+<text class="via" x="1662" y="3460">via: Two paired dichotomous</text>
+<text class="via" x="1662" y="3474">via: measurements</text>
+<text class="resultText" x="1662" y="3491">McNemar test</text>
+<text class="summary" x="1662" y="3514">Compares two paired dichotomous</text>
+<text class="summary" x="1662" y="3528">measurements, such as pre-post categories.</text>
+<rect x="1644" y="3548" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="3548" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="3570">Recommended procedure</text>
+<text class="via" x="1662" y="3590">via: Compare theoretical and</text>
+<text class="via" x="1662" y="3604">via: empirical distribution for a</text>
+<text class="resultText" x="1662" y="3621">Binomial test</text>
+<text class="summary" x="1662" y="3644">Tests whether the empirical frequency or</text>
+<text class="summary" x="1662" y="3658">proportion of a two-level variable differs</text>
+<rect x="1644" y="3678" width="330" height="120" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="3678" width="6" height="120" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="3700">Recommended procedure</text>
+<text class="via" x="1662" y="3720">via: Compare theoretical and</text>
+<text class="via" x="1662" y="3734">via: empirical distribution for a</text>
+<text class="resultText" x="1662" y="3751">Pearson chi-square goodness-of-fit</text>
+<text class="resultText" x="1662" y="3767">test</text>
+<text class="summary" x="1662" y="3790">Tests whether the empirical frequency</text>
+<text class="summary" x="1662" y="3804">distribution of a multilevel categorical</text>
+<rect x="1249" y="3944" width="280" height="108" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="1249" y="3944" width="6" height="108" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="3966">Multilevel / mixed design</text>
+<text class="via" x="1267" y="3986">via: Repeated or clustered</text>
+<text class="via" x="1267" y="4000">via: observations</text>
+<text class="decisionText" x="1267" y="4017">What scale level does the</text>
+<text class="decisionText" x="1267" y="4033">dependent variable have in the</text>
+<text class="decisionText" x="1267" y="4049">mixed model?</text>
+<rect x="1644" y="3824" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="3824" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="3846">Recommended procedure</text>
+<text class="via" x="1662" y="3866">via: Metric dependent variable</text>
+<text class="resultText" x="1662" y="3883">Linear mixed model</text>
+<text class="summary" x="1662" y="3906">Models metric outcomes for repeated,</text>
+<text class="summary" x="1662" y="3920">nested, or clustered observations using</text>
+<rect x="1644" y="3946" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="3946" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="3968">Recommended procedure</text>
+<text class="via" x="1662" y="3988">via: Dichotomous or categorical</text>
+<text class="via" x="1662" y="4002">via: dependent variable</text>
+<text class="resultText" x="1662" y="4019">Generalized linear mixed model</text>
+<text class="summary" x="1662" y="4042">Extends logistic or other generalized</text>
+<text class="summary" x="1662" y="4056">models to repeated, nested, or clustered</text>
+<rect x="1644" y="4076" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="4076" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="4098">Recommended procedure</text>
+<text class="via" x="1662" y="4118">via: Ordinal dependent variable</text>
+<text class="resultText" x="1662" y="4135">Ordinal mixed model</text>
+<text class="summary" x="1662" y="4158">Models ordinal outcomes with repeated or</text>
+<text class="summary" x="1662" y="4172">clustered observations, often using</text>
+<rect x="1249" y="4265" width="280" height="92" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="1249" y="4265" width="6" height="92" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="4287">Variances</text>
+<text class="via" x="1267" y="4307">via: Compare variances</text>
+<text class="decisionText" x="1267" y="4324">Which variance do you want to</text>
+<text class="decisionText" x="1267" y="4340">test or compare?</text>
+<rect x="1644" y="4198" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="4198" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="4220">Recommended procedure</text>
+<text class="via" x="1662" y="4240">via: Test a sample variance against</text>
+<text class="via" x="1662" y="4254">via: a known population variance</text>
+<text class="resultText" x="1662" y="4271">Chi-square test for one variance</text>
+<text class="summary" x="1662" y="4294">Tests whether a sample variance differs</text>
+<text class="summary" x="1662" y="4308">from a known or theoretical population</text>
+<rect x="1644" y="4328" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="4328" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1662" y="4350">Recommended procedure</text>
+<text class="via" x="1662" y="4370">via: Compare two sample variances</text>
+<text class="resultText" x="1662" y="4387">F-test for comparing two variances</text>
+<text class="summary" x="1662" y="4410">Compares whether the variances of two</text>
+<text class="summary" x="1662" y="4424">independent samples differ.</text>
+<rect x="854" y="4578" width="280" height="92" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="854" y="4578" width="6" height="92" rx="3" fill="#67d5c9"/>
+<text class="meta" x="872" y="4600">Outcome variable</text>
+<text class="via" x="872" y="4620">via: Predict an outcome variable</text>
+<text class="decisionText" x="872" y="4637">What scale level does the</text>
+<text class="decisionText" x="872" y="4653">outcome variable have?</text>
+<rect x="1249" y="4450" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1249" y="4450" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="4472">Recommended procedure</text>
+<text class="via" x="1267" y="4492">via: Metric outcome variable</text>
+<text class="resultText" x="1267" y="4509">Linear regression</text>
+<text class="summary" x="1267" y="4532">Models a metric outcome variable using one</text>
+<text class="summary" x="1267" y="4546">or more predictors; without a suitable</text>
+<rect x="1249" y="4572" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1249" y="4572" width="6" height="96" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="4594">Recommended procedure</text>
+<text class="via" x="1267" y="4614">via: Dichotomous outcome variable</text>
+<text class="resultText" x="1267" y="4631">Binary logistic regression</text>
+<text class="summary" x="1267" y="4654">Models the probability of a dichotomous</text>
+<text class="summary" x="1267" y="4668">outcome variable.</text>
+<rect x="1249" y="4694" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1249" y="4694" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="4716">Recommended procedure</text>
+<text class="via" x="1267" y="4736">via: Multicategory categorical</text>
+<text class="via" x="1267" y="4750">via: outcome</text>
+<text class="resultText" x="1267" y="4767">Multinomial logistic regression</text>
+<text class="summary" x="1267" y="4790">Models a categorical outcome variable with</text>
+<text class="summary" x="1267" y="4804">more than two categories.</text>
+<rect x="854" y="5098" width="280" height="92" rx="10" fill="#151f22" stroke="#67d5c9" stroke-width="1.4"/>
+<rect x="854" y="5098" width="6" height="92" rx="3" fill="#67d5c9"/>
+<text class="meta" x="872" y="5120">Categories</text>
+<text class="via" x="872" y="5140">via: Compare frequencies,</text>
+<text class="via" x="872" y="5154">via: categories, or proportions</text>
+<text class="decisionText" x="872" y="5171">How is the categorical question</text>
+<text class="decisionText" x="872" y="5187">structured?</text>
+<rect x="1249" y="4824" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1249" y="4824" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="4846">Recommended procedure</text>
+<text class="via" x="1267" y="4866">via: Two independent categorical</text>
+<text class="via" x="1267" y="4880">via: variables</text>
+<text class="resultText" x="1267" y="4897">Chi-square test of independence</text>
+<text class="summary" x="1267" y="4920">Tests whether two categorical variables</text>
+<text class="summary" x="1267" y="4934">are statistically associated.</text>
+<rect x="1249" y="4954" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1249" y="4954" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="4976">Recommended procedure</text>
+<text class="via" x="1267" y="4996">via: Small expected counts in a 2x2</text>
+<text class="via" x="1267" y="5010">via: table</text>
+<text class="resultText" x="1267" y="5027">Fisher&apos;s exact test</text>
+<text class="summary" x="1267" y="5050">Tests associations in small 2x2 tables</text>
+<text class="summary" x="1267" y="5064">when chi-square assumptions are not met.</text>
+<rect x="1249" y="5084" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1249" y="5084" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="5106">Recommended procedure</text>
+<text class="via" x="1267" y="5126">via: Two paired dichotomous</text>
+<text class="via" x="1267" y="5140">via: measurements</text>
+<text class="resultText" x="1267" y="5157">McNemar test</text>
+<text class="summary" x="1267" y="5180">Compares two paired dichotomous</text>
+<text class="summary" x="1267" y="5194">measurements, such as pre-post categories.</text>
+<rect x="1249" y="5214" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1249" y="5214" width="6" height="104" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="5236">Recommended procedure</text>
+<text class="via" x="1267" y="5256">via: Compare theoretical and</text>
+<text class="via" x="1267" y="5270">via: empirical distribution for a</text>
+<text class="resultText" x="1267" y="5287">Binomial test</text>
+<text class="summary" x="1267" y="5310">Tests whether the empirical frequency or</text>
+<text class="summary" x="1267" y="5324">proportion of a two-level variable differs</text>
+<rect x="1249" y="5344" width="330" height="120" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1249" y="5344" width="6" height="120" rx="3" fill="#67d5c9"/>
+<text class="meta" x="1267" y="5366">Recommended procedure</text>
+<text class="via" x="1267" y="5386">via: Compare theoretical and</text>
+<text class="via" x="1267" y="5400">via: empirical distribution for a</text>
+<text class="resultText" x="1267" y="5417">Pearson chi-square goodness-of-fit</text>
+<text class="resultText" x="1267" y="5433">test</text>
+<text class="summary" x="1267" y="5456">Tests whether the empirical frequency</text>
+<text class="summary" x="1267" y="5470">distribution of a multilevel categorical</text>
+<rect x="459" y="5626" width="280" height="92" rx="10" fill="#151f22" stroke="#e1ad5b" stroke-width="1.4"/>
+<rect x="459" y="5626" width="6" height="92" rx="3" fill="#e1ad5b"/>
+<text class="meta" x="477" y="5648">Exploration</text>
+<text class="via" x="477" y="5668">via: Discover hypotheses</text>
+<text class="via" x="477" y="5682">via: exploratively</text>
+<text class="decisionText" x="477" y="5699">What kind of structure do you</text>
+<text class="decisionText" x="477" y="5715">want to discover in the data?</text>
+<rect x="854" y="5490" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="854" y="5490" width="6" height="104" rx="3" fill="#e1ad5b"/>
+<text class="meta" x="872" y="5512">Recommended procedure</text>
+<text class="via" x="872" y="5532">via: Group or reduce several</text>
+<text class="via" x="872" y="5546">via: variables using a correlation</text>
+<text class="resultText" x="872" y="5563">Factor analysis</text>
+<text class="summary" x="872" y="5586">Exploratory procedure for reducing several</text>
+<text class="summary" x="872" y="5600">correlated variables to a smaller set of</text>
+<rect x="854" y="5620" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="854" y="5620" width="6" height="104" rx="3" fill="#e1ad5b"/>
+<text class="meta" x="872" y="5642">Recommended procedure</text>
+<text class="via" x="872" y="5662">via: Group similar people or</text>
+<text class="via" x="872" y="5676">via: objects</text>
+<text class="resultText" x="872" y="5693">Cluster analysis</text>
+<text class="summary" x="872" y="5716">Exploratory procedure for grouping people</text>
+<text class="summary" x="872" y="5730">or objects based on similarity.</text>
+<rect x="854" y="5750" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="854" y="5750" width="6" height="104" rx="3" fill="#e1ad5b"/>
+<text class="meta" x="872" y="5772">Recommended procedure</text>
+<text class="via" x="872" y="5792">via: Represent distances between</text>
+<text class="via" x="872" y="5806">via: people or objects with the</text>
+<text class="resultText" x="872" y="5823">Multidimensional scaling</text>
+<text class="summary" x="872" y="5846">Exploratory procedure for representing</text>
+<text class="summary" x="872" y="5860">distances or dissimilarities among people</text>
+<rect x="459" y="6654" width="280" height="92" rx="10" fill="#151f22" stroke="#8bb7ff" stroke-width="1.4"/>
+<rect x="459" y="6654" width="6" height="92" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="477" y="6676">Machine learning</text>
+<text class="via" x="477" y="6696">via: Predict or classify new cases</text>
+<text class="decisionText" x="477" y="6713">Do you have a known outcome</text>
+<text class="decisionText" x="477" y="6729">variable in a training dataset?</text>
+<rect x="854" y="6459" width="280" height="92" rx="10" fill="#151f22" stroke="#8bb7ff" stroke-width="1.4"/>
+<rect x="854" y="6459" width="6" height="92" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="872" y="6481">Outcome variable</text>
+<text class="via" x="872" y="6501">via: Yes, the outcome variable is</text>
+<text class="via" x="872" y="6515">via: known</text>
+<text class="decisionText" x="872" y="6532">What kind of outcome variable</text>
+<text class="decisionText" x="872" y="6548">do you want to predict?</text>
+<rect x="1249" y="6073" width="280" height="92" rx="10" fill="#151f22" stroke="#8bb7ff" stroke-width="1.4"/>
+<rect x="1249" y="6073" width="6" height="92" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1267" y="6095">Regression model</text>
+<text class="via" x="1267" y="6115">via: Metric outcome variable</text>
+<text class="decisionText" x="1267" y="6132">Which kind of prediction model</text>
+<text class="decisionText" x="1267" y="6148">fits best?</text>
+<rect x="1644" y="5880" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="5880" width="6" height="96" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1662" y="5902">Recommended procedure</text>
+<text class="via" x="1662" y="5922">via: Interpretable linear baseline</text>
+<text class="resultText" x="1662" y="5939">Linear regression</text>
+<text class="summary" x="1662" y="5962">Models a metric outcome variable using one</text>
+<text class="summary" x="1662" y="5976">or more predictors; without a suitable</text>
+<rect x="1644" y="6002" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="6002" width="6" height="104" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1662" y="6024">Recommended procedure</text>
+<text class="via" x="1662" y="6044">via: Simple nonlinear decision</text>
+<text class="via" x="1662" y="6058">via: rules</text>
+<text class="resultText" x="1662" y="6075">Decision tree regression</text>
+<text class="summary" x="1662" y="6098">Predicts a metric outcome using</text>
+<text class="summary" x="1662" y="6112">interpretable if-then decision rules.</text>
+<rect x="1644" y="6132" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="6132" width="6" height="104" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1662" y="6154">Recommended procedure</text>
+<text class="via" x="1662" y="6174">via: Stronger prediction with many</text>
+<text class="via" x="1662" y="6188">via: predictors</text>
+<text class="resultText" x="1662" y="6205">Random forest regression</text>
+<text class="summary" x="1662" y="6228">Combines many regression trees to produce</text>
+<text class="summary" x="1662" y="6242">robust nonlinear predictions for metric</text>
+<rect x="1644" y="6262" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="6262" width="6" height="96" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1662" y="6284">Recommended procedure</text>
+<text class="via" x="1662" y="6304">via: Prediction from similar cases</text>
+<text class="resultText" x="1662" y="6321">k-nearest neighbors regression</text>
+<text class="summary" x="1662" y="6344">Predicts metric values from the most</text>
+<text class="summary" x="1662" y="6358">similar cases in the feature space.</text>
+<rect x="1249" y="6711" width="280" height="92" rx="10" fill="#151f22" stroke="#8bb7ff" stroke-width="1.4"/>
+<rect x="1249" y="6711" width="6" height="92" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1267" y="6733">Classification model</text>
+<text class="via" x="1267" y="6753">via: Categorical outcome variable</text>
+<text class="decisionText" x="1267" y="6770">Which classification logic fits</text>
+<text class="decisionText" x="1267" y="6786">best?</text>
+<rect x="1644" y="6384" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="6384" width="6" height="104" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1662" y="6406">Recommended procedure</text>
+<text class="via" x="1662" y="6426">via: Binary outcome with</text>
+<text class="via" x="1662" y="6440">via: interpretable odds ratios</text>
+<text class="resultText" x="1662" y="6457">Binary logistic regression</text>
+<text class="summary" x="1662" y="6480">Models the probability of a dichotomous</text>
+<text class="summary" x="1662" y="6494">outcome variable.</text>
+<rect x="1644" y="6514" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="6514" width="6" height="104" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1662" y="6536">Recommended procedure</text>
+<text class="via" x="1662" y="6556">via: Multicategory outcome with an</text>
+<text class="via" x="1662" y="6570">via: interpretable regression model</text>
+<text class="resultText" x="1662" y="6587">Multinomial logistic regression</text>
+<text class="summary" x="1662" y="6610">Models a categorical outcome variable with</text>
+<text class="summary" x="1662" y="6624">more than two categories.</text>
+<rect x="1644" y="6644" width="330" height="96" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="6644" width="6" height="96" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1662" y="6666">Recommended procedure</text>
+<text class="via" x="1662" y="6686">via: Transparent if-then rules</text>
+<text class="resultText" x="1662" y="6703">Decision tree classifier</text>
+<text class="summary" x="1662" y="6726">Classifies cases with transparent decision</text>
+<text class="summary" x="1662" y="6740">rules and is useful when interpretability</text>
+<rect x="1644" y="6766" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="6766" width="6" height="104" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1662" y="6788">Recommended procedure</text>
+<text class="via" x="1662" y="6808">via: Robust model with stronger</text>
+<text class="via" x="1662" y="6822">via: predictive performance</text>
+<text class="resultText" x="1662" y="6839">Random forest classifier</text>
+<text class="summary" x="1662" y="6862">Combines many decision trees for robust</text>
+<text class="summary" x="1662" y="6876">classification, often with stronger</text>
+<rect x="1644" y="6896" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="6896" width="6" height="104" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1662" y="6918">Recommended procedure</text>
+<text class="via" x="1662" y="6938">via: Classification from similar</text>
+<text class="via" x="1662" y="6952">via: cases</text>
+<text class="resultText" x="1662" y="6969">k-nearest neighbors classifier</text>
+<text class="summary" x="1662" y="6992">Classifies cases according to the classes</text>
+<text class="summary" x="1662" y="7006">of their most similar neighbors.</text>
+<rect x="1644" y="7026" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1644" y="7026" width="6" height="104" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1662" y="7048">Recommended procedure</text>
+<text class="via" x="1662" y="7068">via: Fast baseline for many simple</text>
+<text class="via" x="1662" y="7082">via: features</text>
+<text class="resultText" x="1662" y="7099">Naive Bayes classifier</text>
+<text class="summary" x="1662" y="7122">Fast probabilistic baseline for</text>
+<text class="summary" x="1662" y="7136">categorical prediction, especially with</text>
+<rect x="854" y="7284" width="280" height="108" rx="10" fill="#151f22" stroke="#8bb7ff" stroke-width="1.4"/>
+<rect x="854" y="7284" width="6" height="108" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="872" y="7306">Unsupervised learning</text>
+<text class="via" x="872" y="7326">via: No, I want to discover</text>
+<text class="via" x="872" y="7340">via: patterns without an outcome</text>
+<text class="decisionText" x="872" y="7357">What exploratory goal do you</text>
+<text class="decisionText" x="872" y="7373">have without a known outcome</text>
+<text class="decisionText" x="872" y="7389">variable?</text>
+<rect x="1249" y="7156" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1249" y="7156" width="6" height="104" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1267" y="7178">Recommended procedure</text>
+<text class="via" x="1267" y="7198">via: Reduce many variables to a few</text>
+<text class="via" x="1267" y="7212">via: components</text>
+<text class="resultText" x="1267" y="7229">Principal component analysis (PCA)</text>
+<text class="summary" x="1267" y="7252">Reduces many correlated metric variables</text>
+<text class="summary" x="1267" y="7266">to a smaller set of components that</text>
+<rect x="1249" y="7286" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1249" y="7286" width="6" height="104" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1267" y="7308">Recommended procedure</text>
+<text class="via" x="1267" y="7328">via: Group similar people or</text>
+<text class="via" x="1267" y="7342">via: objects</text>
+<text class="resultText" x="1267" y="7359">Cluster analysis</text>
+<text class="summary" x="1267" y="7382">Exploratory procedure for grouping people</text>
+<text class="summary" x="1267" y="7396">or objects based on similarity.</text>
+<rect x="1249" y="7416" width="330" height="104" rx="10" fill="#221e16" stroke="#8c6730" stroke-width="1.4"/>
+<rect x="1249" y="7416" width="6" height="104" rx="3" fill="#8bb7ff"/>
+<text class="meta" x="1267" y="7438">Recommended procedure</text>
+<text class="via" x="1267" y="7458">via: Visualise distances between</text>
+<text class="via" x="1267" y="7472">via: people or objects</text>
+<text class="resultText" x="1267" y="7489">Multidimensional scaling</text>
+<text class="summary" x="1267" y="7512">Exploratory procedure for representing</text>
+<text class="summary" x="1267" y="7526">distances or dissimilarities among people</text>
+</svg>
