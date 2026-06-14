@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="4200" height="2080" viewBox="0 0 4200 2080" role="img" aria-labelledby="title desc">
+<title id="title">Horizontal decision tree overview</title>
+<desc id="desc">A landscape overview of the current decision tree, grouped by the three main analysis routes.</desc>
+<defs>
+  <style>
+    .bg { fill: #0d1416; }
+    .frame { fill: #11191b; stroke: #2e3b3f; stroke-width: 1; }
+    .lane { stroke: #2e3b3f; stroke-width: 1; }
+    .root { fill: #172436; stroke: #8bb7ff; stroke-width: 1.4; }
+    .leaf { fill: #221e16; stroke: #765a31; stroke-width: 1; }
+    .title { fill: #f5fbfa; font: 800 36px Inter, Arial, sans-serif; }
+    .subtitle { fill: #aab8bb; font: 500 16px Inter, Arial, sans-serif; }
+    .small { fill: #839195; font: 650 12px Inter, Arial, sans-serif; }
+    .meta { fill: #99eee2; font: 800 11px Inter, Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+    .rootText { fill: #f5fbfa; font: 800 18px Inter, Arial, sans-serif; }
+    .routeText { fill: #f7fbfb; font: 800 18px Inter, Arial, sans-serif; }
+    .routeCount { fill: #b8c4c6; font: 650 13px Inter, Arial, sans-serif; }
+    .leafTitle { fill: #fff4dc; font: 800 15px Inter, Arial, sans-serif; }
+    .leafPath { fill: #c6d2d4; font: 600 11px Inter, Arial, sans-serif; }
+    .edge { fill: none; stroke-width: 2; opacity: .7; }
+  </style>
+</defs>
+<rect class="bg" width="4200" height="2080"/>
+<rect class="frame" x="42" y="42" width="4116" height="1996" rx="14"/>
+<text class="title" x="54" y="78">Horizontal Decision Tree Overview</text>
+<text class="subtitle" x="54" y="108">Landscape concept. Start at the root, choose one main route, then scan horizontally through the final recommendations.</text>
+<text class="small" x="3640" y="78">58 terminal recommendations - Beta Version 2.0.0 - Under development</text>
+<rect class="root" x="64" y="1001" width="300" height="144" rx="14"/>
+<text class="meta" x="86" y="1031">Analysis strategy</text>
+<text class="rootText" x="86" y="1063">What do you want to do</text>
+<text class="rootText" x="86" y="1085">with your data?</text>
+<path class="edge" d="M 364 1073 C 410 1073, 410 215, 456 215" stroke="#67d5c9"/>
+<rect class="lane" x="430" y="160" width="3728" height="1030" rx="16" fill="#172425"/>
+<rect x="456" y="186" width="3676" height="58" rx="14" fill="#123333" stroke="#67d5c9"/>
+<text class="routeText" x="478" y="222">Test a hypothesis</text>
+<text class="routeCount" x="3942" y="222">42 recommendations</text>
+<rect class="leaf" x="456" y="264" width="520" height="116" rx="12"/>
+<rect x="456" y="264" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="474" y="292">Binary logistic regression</text>
+<text class="leafPath" x="474" y="332">Predict an outcome variable -&gt; Dichotomous outcome</text>
+<text class="leafPath" x="474" y="346">variable</text>
+<rect class="leaf" x="1000" y="264" width="520" height="116" rx="12"/>
+<rect x="1000" y="264" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1018" y="292">Binomial test</text>
+<text class="leafPath" x="1018" y="332">Compare differences or means -&gt; Categorical dependent</text>
+<text class="leafPath" x="1018" y="346">variable -&gt; Compare theoretical and empirical</text>
+<text class="leafPath" x="1018" y="360">distribution for a two-level variable</text>
+<rect class="leaf" x="1544" y="264" width="520" height="116" rx="12"/>
+<rect x="1544" y="264" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1562" y="292">Binomial test</text>
+<text class="leafPath" x="1562" y="332">Compare frequencies, categories, or proportions -&gt;</text>
+<text class="leafPath" x="1562" y="346">Compare theoretical and empirical distribution for a</text>
+<text class="leafPath" x="1562" y="360">two-level variable</text>
+<rect class="leaf" x="2088" y="264" width="520" height="116" rx="12"/>
+<rect x="2088" y="264" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2106" y="292">Chi-square test for one variance</text>
+<text class="leafPath" x="2106" y="332">Compare differences or means -&gt; Compare variances -&gt;</text>
+<text class="leafPath" x="2106" y="346">Test a sample variance against a known population</text>
+<text class="leafPath" x="2106" y="360">variance</text>
+<rect class="leaf" x="2632" y="264" width="520" height="116" rx="12"/>
+<rect x="2632" y="264" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2650" y="292">Chi-square test of independence</text>
+<text class="leafPath" x="2650" y="332">Test association between variables -&gt; Two categorical</text>
+<text class="leafPath" x="2650" y="346">variables</text>
+<rect class="leaf" x="3176" y="264" width="520" height="116" rx="12"/>
+<rect x="3176" y="264" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="3194" y="292">Chi-square test of independence</text>
+<text class="leafPath" x="3194" y="332">Compare differences or means -&gt; Categorical dependent</text>
+<text class="leafPath" x="3194" y="346">variable -&gt; Two independent categorical variables</text>
+<rect class="leaf" x="456" y="398" width="520" height="116" rx="12"/>
+<rect x="456" y="398" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="474" y="426">Chi-square test of independence</text>
+<text class="leafPath" x="474" y="466">Compare frequencies, categories, or proportions -&gt; Two</text>
+<text class="leafPath" x="474" y="480">independent categorical variables</text>
+<rect class="leaf" x="1000" y="398" width="520" height="116" rx="12"/>
+<rect x="1000" y="398" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1018" y="426">Discriminant analysis</text>
+<text class="leafPath" x="1018" y="466">Test association between variables -&gt; More than two</text>
+<text class="leafPath" x="1018" y="480">variables in a path or classification model -&gt; Nominal</text>
+<text class="leafPath" x="1018" y="494">dependent variable and interval-scaled independent</text>
+<rect class="leaf" x="1544" y="398" width="520" height="116" rx="12"/>
+<rect x="1544" y="398" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1562" y="426">F-test for comparing two variances</text>
+<text class="leafPath" x="1562" y="466">Compare differences or means -&gt; Compare variances -&gt;</text>
+<text class="leafPath" x="1562" y="480">Compare two sample variances</text>
+<rect class="leaf" x="2088" y="398" width="520" height="116" rx="12"/>
+<rect x="2088" y="398" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2106" y="426">Fisher&apos;s exact test</text>
+<text class="leafPath" x="2106" y="466">Compare differences or means -&gt; Categorical dependent</text>
+<text class="leafPath" x="2106" y="480">variable -&gt; Small expected counts in a 2x2 table</text>
+<rect class="leaf" x="2632" y="398" width="520" height="116" rx="12"/>
+<rect x="2632" y="398" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2650" y="426">Fisher&apos;s exact test</text>
+<text class="leafPath" x="2650" y="466">Compare frequencies, categories, or proportions -&gt;</text>
+<text class="leafPath" x="2650" y="480">Small expected counts in a 2x2 table</text>
+<rect class="leaf" x="3176" y="398" width="520" height="116" rx="12"/>
+<rect x="3176" y="398" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="3194" y="426">Friedman test</text>
+<text class="leafPath" x="3194" y="466">Compare differences or means -&gt; Metric dependent</text>
+<text class="leafPath" x="3194" y="480">variable -&gt; More than two groups or time points -&gt;</text>
+<text class="leafPath" x="3194" y="494">Repeated measurements -&gt; No or ordinal</text>
+<rect class="leaf" x="456" y="532" width="520" height="116" rx="12"/>
+<rect x="456" y="532" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="474" y="560">Friedman test</text>
+<text class="leafPath" x="474" y="600">Compare differences or means -&gt; Ordinal dependent</text>
+<text class="leafPath" x="474" y="614">variable -&gt; Several paired measurements</text>
+<rect class="leaf" x="1000" y="532" width="520" height="116" rx="12"/>
+<rect x="1000" y="532" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1018" y="560">Generalized linear mixed model</text>
+<text class="leafPath" x="1018" y="600">Compare differences or means -&gt; Repeated or clustered</text>
+<text class="leafPath" x="1018" y="614">observations -&gt; Dichotomous or categorical dependent</text>
+<text class="leafPath" x="1018" y="628">variable</text>
+<rect class="leaf" x="1544" y="532" width="520" height="116" rx="12"/>
+<rect x="1544" y="532" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1562" y="560">Independent-samples t-test</text>
+<text class="leafPath" x="1562" y="600">Compare differences or means -&gt; Metric dependent</text>
+<text class="leafPath" x="1562" y="614">variable -&gt; Two independent groups -&gt; Yes</text>
+<rect class="leaf" x="2088" y="532" width="520" height="116" rx="12"/>
+<rect x="2088" y="532" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2106" y="560">Kendall&apos;s rank correlation</text>
+<text class="leafPath" x="2106" y="600">Test association between variables -&gt; Both variables</text>
+<text class="leafPath" x="2106" y="614">are metric -&gt; No or unsure -&gt; Kendall&apos;s rank</text>
+<text class="leafPath" x="2106" y="628">correlation</text>
+<rect class="leaf" x="2632" y="532" width="520" height="116" rx="12"/>
+<rect x="2632" y="532" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2650" y="560">Kendall&apos;s rank correlation</text>
+<text class="leafPath" x="2650" y="600">Test association between variables -&gt; At least one</text>
+<text class="leafPath" x="2650" y="614">variable is ordinal -&gt; Kendall&apos;s rank correlation</text>
+<rect class="leaf" x="3176" y="532" width="520" height="116" rx="12"/>
+<rect x="3176" y="532" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="3194" y="560">Kruskal-Wallis test</text>
+<text class="leafPath" x="3194" y="600">Compare differences or means -&gt; Metric dependent</text>
+<text class="leafPath" x="3194" y="614">variable -&gt; More than two groups or time points -&gt;</text>
+<text class="leafPath" x="3194" y="628">Independent groups -&gt; No or ordinal</text>
+<rect class="leaf" x="456" y="666" width="520" height="116" rx="12"/>
+<rect x="456" y="666" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="474" y="694">Kruskal-Wallis test</text>
+<text class="leafPath" x="474" y="734">Compare differences or means -&gt; Ordinal dependent</text>
+<text class="leafPath" x="474" y="748">variable -&gt; Several independent groups</text>
+<rect class="leaf" x="1000" y="666" width="520" height="116" rx="12"/>
+<rect x="1000" y="666" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1018" y="694">Linear mixed model</text>
+<text class="leafPath" x="1018" y="734">Compare differences or means -&gt; Repeated or clustered</text>
+<text class="leafPath" x="1018" y="748">observations -&gt; Metric dependent variable</text>
+<rect class="leaf" x="1544" y="666" width="520" height="116" rx="12"/>
+<rect x="1544" y="666" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1562" y="694">Linear regression</text>
+<text class="leafPath" x="1562" y="734">Predict an outcome variable -&gt; Metric outcome variable</text>
+<rect class="leaf" x="2088" y="666" width="520" height="116" rx="12"/>
+<rect x="2088" y="666" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2106" y="694">Log-linear model</text>
+<text class="leafPath" x="2106" y="734">Test association between variables -&gt; All variables</text>
+<text class="leafPath" x="2106" y="748">are nominal (multiway table)</text>
+<rect class="leaf" x="2632" y="666" width="520" height="116" rx="12"/>
+<rect x="2632" y="666" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2650" y="694">Mann-Whitney U test</text>
+<text class="leafPath" x="2650" y="734">Compare differences or means -&gt; Metric dependent</text>
+<text class="leafPath" x="2650" y="748">variable -&gt; Two independent groups -&gt; No or unsure</text>
+<rect class="leaf" x="3176" y="666" width="520" height="116" rx="12"/>
+<rect x="3176" y="666" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="3194" y="694">Mann-Whitney U test</text>
+<text class="leafPath" x="3194" y="734">Compare differences or means -&gt; Ordinal dependent</text>
+<text class="leafPath" x="3194" y="748">variable -&gt; Two independent groups</text>
+<rect class="leaf" x="456" y="800" width="520" height="116" rx="12"/>
+<rect x="456" y="800" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="474" y="828">McNemar test</text>
+<text class="leafPath" x="474" y="868">Compare differences or means -&gt; Categorical dependent</text>
+<text class="leafPath" x="474" y="882">variable -&gt; Two paired dichotomous measurements</text>
+<rect class="leaf" x="1000" y="800" width="520" height="116" rx="12"/>
+<rect x="1000" y="800" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1018" y="828">McNemar test</text>
+<text class="leafPath" x="1018" y="868">Compare frequencies, categories, or proportions -&gt; Two</text>
+<text class="leafPath" x="1018" y="882">paired dichotomous measurements</text>
+<rect class="leaf" x="1544" y="800" width="520" height="116" rx="12"/>
+<rect x="1544" y="800" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1562" y="828">Multinomial logistic regression</text>
+<text class="leafPath" x="1562" y="868">Predict an outcome variable -&gt; Multicategory</text>
+<text class="leafPath" x="1562" y="882">categorical outcome</text>
+<rect class="leaf" x="2088" y="800" width="520" height="116" rx="12"/>
+<rect x="2088" y="800" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2106" y="828">One-sample t-test</text>
+<text class="leafPath" x="2106" y="868">Compare differences or means -&gt; Metric dependent</text>
+<text class="leafPath" x="2106" y="882">variable -&gt; One sample against a target value -&gt; Yes</text>
+<rect class="leaf" x="2632" y="800" width="520" height="116" rx="12"/>
+<rect x="2632" y="800" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2650" y="828">One-sample Wilcoxon signed-rank test</text>
+<text class="leafPath" x="2650" y="868">Compare differences or means -&gt; Metric dependent</text>
+<text class="leafPath" x="2650" y="882">variable -&gt; One sample against a target value -&gt; No or</text>
+<text class="leafPath" x="2650" y="896">clearly skewed</text>
+<rect class="leaf" x="3176" y="800" width="520" height="116" rx="12"/>
+<rect x="3176" y="800" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="3194" y="828">One-way ANOVA</text>
+<text class="leafPath" x="3194" y="868">Compare differences or means -&gt; Metric dependent</text>
+<text class="leafPath" x="3194" y="882">variable -&gt; More than two groups or time points -&gt;</text>
+<text class="leafPath" x="3194" y="896">Independent groups -&gt; Yes</text>
+<rect class="leaf" x="456" y="934" width="520" height="116" rx="12"/>
+<rect x="456" y="934" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="474" y="962">Ordinal mixed model</text>
+<text class="leafPath" x="474" y="1002">Compare differences or means -&gt; Repeated or clustered</text>
+<text class="leafPath" x="474" y="1016">observations -&gt; Ordinal dependent variable</text>
+<rect class="leaf" x="1000" y="934" width="520" height="116" rx="12"/>
+<rect x="1000" y="934" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1018" y="962">Paired-samples t-test</text>
+<text class="leafPath" x="1018" y="1002">Compare differences or means -&gt; Metric dependent</text>
+<text class="leafPath" x="1018" y="1016">variable -&gt; Two paired measurements -&gt; Yes</text>
+<rect class="leaf" x="1544" y="934" width="520" height="116" rx="12"/>
+<rect x="1544" y="934" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1562" y="962">Path analysis (mediation)</text>
+<text class="leafPath" x="1562" y="1002">Test association between variables -&gt; More than two</text>
+<text class="leafPath" x="1562" y="1016">variables in a path or classification model -&gt; All</text>
+<text class="leafPath" x="1562" y="1030">variables are measurable / observed</text>
+<rect class="leaf" x="2088" y="934" width="520" height="116" rx="12"/>
+<rect x="2088" y="934" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2106" y="962">Pearson chi-square goodness-of-fit</text>
+<text class="leafTitle" x="2106" y="980">test</text>
+<text class="leafPath" x="2106" y="1002">Compare differences or means -&gt; Categorical dependent</text>
+<text class="leafPath" x="2106" y="1016">variable -&gt; Compare theoretical and empirical</text>
+<text class="leafPath" x="2106" y="1030">distribution for a multilevel variable</text>
+<rect class="leaf" x="2632" y="934" width="520" height="116" rx="12"/>
+<rect x="2632" y="934" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2650" y="962">Pearson chi-square goodness-of-fit</text>
+<text class="leafTitle" x="2650" y="980">test</text>
+<text class="leafPath" x="2650" y="1002">Compare frequencies, categories, or proportions -&gt;</text>
+<text class="leafPath" x="2650" y="1016">Compare theoretical and empirical distribution for a</text>
+<text class="leafPath" x="2650" y="1030">multilevel variable</text>
+<rect class="leaf" x="3176" y="934" width="520" height="116" rx="12"/>
+<rect x="3176" y="934" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="3194" y="962">Pearson correlation</text>
+<text class="leafPath" x="3194" y="1002">Test association between variables -&gt; Both variables</text>
+<text class="leafPath" x="3194" y="1016">are metric -&gt; Yes, a linear relationship is plausible</text>
+<rect class="leaf" x="456" y="1068" width="520" height="116" rx="12"/>
+<rect x="456" y="1068" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="474" y="1096">Repeated-measures ANOVA</text>
+<text class="leafPath" x="474" y="1136">Compare differences or means -&gt; Metric dependent</text>
+<text class="leafPath" x="474" y="1150">variable -&gt; More than two groups or time points -&gt;</text>
+<text class="leafPath" x="474" y="1164">Repeated measurements -&gt; Yes</text>
+<rect class="leaf" x="1000" y="1068" width="520" height="116" rx="12"/>
+<rect x="1000" y="1068" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1018" y="1096">Spearman rank correlation</text>
+<text class="leafPath" x="1018" y="1136">Test association between variables -&gt; Both variables</text>
+<text class="leafPath" x="1018" y="1150">are metric -&gt; No or unsure -&gt; Spearman rank</text>
+<text class="leafPath" x="1018" y="1164">correlation</text>
+<rect class="leaf" x="1544" y="1068" width="520" height="116" rx="12"/>
+<rect x="1544" y="1068" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="1562" y="1096">Spearman rank correlation</text>
+<text class="leafPath" x="1562" y="1136">Test association between variables -&gt; At least one</text>
+<text class="leafPath" x="1562" y="1150">variable is ordinal -&gt; Spearman rank correlation</text>
+<rect class="leaf" x="2088" y="1068" width="520" height="116" rx="12"/>
+<rect x="2088" y="1068" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2106" y="1096">Structural equation modeling (SEM)</text>
+<text class="leafPath" x="2106" y="1136">Test association between variables -&gt; More than two</text>
+<text class="leafPath" x="2106" y="1150">variables in a path or classification model -&gt;</text>
+<text class="leafPath" x="2106" y="1164">Measurable variables and latent variables</text>
+<rect class="leaf" x="2632" y="1068" width="520" height="116" rx="12"/>
+<rect x="2632" y="1068" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="2650" y="1096">Wilcoxon signed-rank test</text>
+<text class="leafPath" x="2650" y="1136">Compare differences or means -&gt; Metric dependent</text>
+<text class="leafPath" x="2650" y="1150">variable -&gt; Two paired measurements -&gt; No or ordinal</text>
+<rect class="leaf" x="3176" y="1068" width="520" height="116" rx="12"/>
+<rect x="3176" y="1068" width="6" height="116" rx="3" fill="#67d5c9"/>
+<text class="leafTitle" x="3194" y="1096">Wilcoxon signed-rank test</text>
+<text class="leafPath" x="3194" y="1136">Compare differences or means -&gt; Ordinal dependent</text>
+<text class="leafPath" x="3194" y="1150">variable -&gt; Two paired measurements</text>
+<path class="edge" d="M 364 1073 C 410 1073, 410 1283, 456 1283" stroke="#e1ad5b"/>
+<rect class="lane" x="430" y="1228" width="3728" height="226" rx="16" fill="#251f16"/>
+<rect x="456" y="1254" width="3676" height="58" rx="14" fill="#352713" stroke="#e1ad5b"/>
+<text class="routeText" x="478" y="1290">Discover hypotheses exploratively</text>
+<text class="routeCount" x="3942" y="1290">3 recommendations</text>
+<rect class="leaf" x="456" y="1332" width="520" height="116" rx="12"/>
+<rect x="456" y="1332" width="6" height="116" rx="3" fill="#e1ad5b"/>
+<text class="leafTitle" x="474" y="1360">Cluster analysis</text>
+<text class="leafPath" x="474" y="1400">Group similar people or objects</text>
+<rect class="leaf" x="1000" y="1332" width="520" height="116" rx="12"/>
+<rect x="1000" y="1332" width="6" height="116" rx="3" fill="#e1ad5b"/>
+<text class="leafTitle" x="1018" y="1360">Factor analysis</text>
+<text class="leafPath" x="1018" y="1400">Group or reduce several variables using a correlation</text>
+<text class="leafPath" x="1018" y="1414">matrix</text>
+<rect class="leaf" x="1544" y="1332" width="520" height="116" rx="12"/>
+<rect x="1544" y="1332" width="6" height="116" rx="3" fill="#e1ad5b"/>
+<text class="leafTitle" x="1562" y="1360">Multidimensional scaling</text>
+<text class="leafPath" x="1562" y="1400">Represent distances between people or objects with the</text>
+<text class="leafPath" x="1562" y="1414">minimum number of dimensions</text>
+<path class="edge" d="M 364 1073 C 410 1073, 410 1547, 456 1547" stroke="#8bb7ff"/>
+<rect class="lane" x="430" y="1492" width="3728" height="494" rx="16" fill="#171f2c"/>
+<rect x="456" y="1518" width="3676" height="58" rx="14" fill="#1e2d46" stroke="#8bb7ff"/>
+<text class="routeText" x="478" y="1554">Predict or classify new cases</text>
+<text class="routeCount" x="3942" y="1554">13 recommendations</text>
+<rect class="leaf" x="456" y="1596" width="520" height="116" rx="12"/>
+<rect x="456" y="1596" width="6" height="116" rx="3" fill="#8bb7ff"/>
+<text class="leafTitle" x="474" y="1624">Binary logistic regression</text>
+<text class="leafPath" x="474" y="1664">Yes, the outcome variable is known -&gt; Categorical</text>
+<text class="leafPath" x="474" y="1678">outcome variable -&gt; Binary outcome with interpretable</text>
+<text class="leafPath" x="474" y="1692">odds ratios</text>
+<rect class="leaf" x="1000" y="1596" width="520" height="116" rx="12"/>
+<rect x="1000" y="1596" width="6" height="116" rx="3" fill="#8bb7ff"/>
+<text class="leafTitle" x="1018" y="1624">Cluster analysis</text>
+<text class="leafPath" x="1018" y="1664">No, I want to discover patterns without an outcome</text>
+<text class="leafPath" x="1018" y="1678">variable -&gt; Group similar people or objects</text>
+<rect class="leaf" x="1544" y="1596" width="520" height="116" rx="12"/>
+<rect x="1544" y="1596" width="6" height="116" rx="3" fill="#8bb7ff"/>
+<text class="leafTitle" x="1562" y="1624">Decision tree classifier</text>
+<text class="leafPath" x="1562" y="1664">Yes, the outcome variable is known -&gt; Categorical</text>
+<text class="leafPath" x="1562" y="1678">outcome variable -&gt; Transparent if-then rules</text>
+<rect class="leaf" x="2088" y="1596" width="520" height="116" rx="12"/>
+<rect x="2088" y="1596" width="6" height="116" rx="3" fill="#8bb7ff"/>
+<text class="leafTitle" x="2106" y="1624">Decision tree regression</text>
+<text class="leafPath" x="2106" y="1664">Yes, the outcome variable is known -&gt; Metric outcome</text>
+<text class="leafPath" x="2106" y="1678">variable -&gt; Simple nonlinear decision rules</text>
+<rect class="leaf" x="2632" y="1596" width="520" height="116" rx="12"/>
+<rect x="2632" y="1596" width="6" height="116" rx="3" fill="#8bb7ff"/>
+<text class="leafTitle" x="2650" y="1624">k-nearest neighbors classifier</text>
+<text class="leafPath" x="2650" y="1664">Yes, the outcome variable is known -&gt; Categorical</text>
+<text class="leafPath" x="2650" y="1678">outcome variable -&gt; Classification from similar cases</text>
+<rect class="leaf" x="3176" y="1596" width="520" height="116" rx="12"/>
+<rect x="3176" y="1596" width="6" height="116" rx="3" fill="#8bb7ff"/>
+<text class="leafTitle" x="3194" y="1624">k-nearest neighbors regression</text>
+<text class="leafPath" x="3194" y="1664">Yes, the outcome variable is known -&gt; Metric outcome</text>
+<text class="leafPath" x="3194" y="1678">variable -&gt; Prediction from similar cases</text>
+<rect class="leaf" x="456" y="1730" width="520" height="116" rx="12"/>
+<rect x="456" y="1730" width="6" height="116" rx="3" fill="#8bb7ff"/>
+<text class="leafTitle" x="474" y="1758">Linear regression</text>
+<text class="leafPath" x="474" y="1798">Yes, the outcome variable is known -&gt; Metric outcome</text>
+<text class="leafPath" x="474" y="1812">variable -&gt; Interpretable linear baseline</text>
+<rect class="leaf" x="1000" y="1730" width="520" height="116" rx="12"/>
+<rect x="1000" y="1730" width="6" height="116" rx="3" fill="#8bb7ff"/>
+<text class="leafTitle" x="1018" y="1758">Multidimensional scaling</text>
+<text class="leafPath" x="1018" y="1798">No, I want to discover patterns without an outcome</text>
+<text class="leafPath" x="1018" y="1812">variable -&gt; Visualise distances between people or</text>
+<text class="leafPath" x="1018" y="1826">objects</text>
+<rect class="leaf" x="1544" y="1730" width="520" height="116" rx="12"/>
+<rect x="1544" y="1730" width="6" height="116" rx="3" fill="#8bb7ff"/>
+<text class="leafTitle" x="1562" y="1758">Multinomial logistic regression</text>
+<text class="leafPath" x="1562" y="1798">Yes, the outcome variable is known -&gt; Categorical</text>
+<text class="leafPath" x="1562" y="1812">outcome variable -&gt; Multicategory outcome with an</text>
+<text class="leafPath" x="1562" y="1826">interpretable regression model</text>
+<rect class="leaf" x="2088" y="1730" width="520" height="116" rx="12"/>
+<rect x="2088" y="1730" width="6" height="116" rx="3" fill="#8bb7ff"/>
+<text class="leafTitle" x="2106" y="1758">Naive Bayes classifier</text>
+<text class="leafPath" x="2106" y="1798">Yes, the outcome variable is known -&gt; Categorical</text>
+<text class="leafPath" x="2106" y="1812">outcome variable -&gt; Fast baseline for many simple</text>
+<text class="leafPath" x="2106" y="1826">features</text>
+<rect class="leaf" x="2632" y="1730" width="520" height="116" rx="12"/>
+<rect x="2632" y="1730" width="6" height="116" rx="3" fill="#8bb7ff"/>
+<text class="leafTitle" x="2650" y="1758">Principal component analysis (PCA)</text>
+<text class="leafPath" x="2650" y="1798">No, I want to discover patterns without an outcome</text>
+<text class="leafPath" x="2650" y="1812">variable -&gt; Reduce many variables to a few components</text>
+<rect class="leaf" x="3176" y="1730" width="520" height="116" rx="12"/>
+<rect x="3176" y="1730" width="6" height="116" rx="3" fill="#8bb7ff"/>
+<text class="leafTitle" x="3194" y="1758">Random forest classifier</text>
+<text class="leafPath" x="3194" y="1798">Yes, the outcome variable is known -&gt; Categorical</text>
+<text class="leafPath" x="3194" y="1812">outcome variable -&gt; Robust model with stronger</text>
+<text class="leafPath" x="3194" y="1826">predictive performance</text>
+<rect class="leaf" x="456" y="1864" width="520" height="116" rx="12"/>
+<rect x="456" y="1864" width="6" height="116" rx="3" fill="#8bb7ff"/>
+<text class="leafTitle" x="474" y="1892">Random forest regression</text>
+<text class="leafPath" x="474" y="1932">Yes, the outcome variable is known -&gt; Metric outcome</text>
+<text class="leafPath" x="474" y="1946">variable -&gt; Stronger prediction with many predictors</text>
+</svg>
