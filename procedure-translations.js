@@ -88,7 +88,7 @@ window.localizedProcedurePacks = {
       jamovi: "Analysen > Faktoren > Explorative Faktorenanalyse\nVerschieben Sie die zusammengehörigen Variablen in Variablen.\nWählen Sie Extraktionsmethode, Rotation und Faktorenzahl und prüfen Sie Ladungen sowie Modellpassung."
     },
     clusterAnalysis: {
-      jamovi: "Analysen > Exploration > Cluster\nVerschieben Sie die Variablen, die Personen oder Objekte beschreiben, in Variablen.\nStandardisieren Sie die Variablen bei Bedarf, wählen Sie eine Distanzmethode und vergleichen Sie Clusterlösungen."
+      jamovi: "Installieren Sie das SnowCluster-Modul aus der jamovi-Bibliothek und öffnen Sie es über das Analysen-Menü.\nVerschieben Sie die Variablen, die Personen oder Objekte beschreiben, in das Feld für Clustering-Variablen.\nStandardisieren Sie die Variablen bei Bedarf, wählen Sie Clustering-Methode/Distanzoption, legen Sie die Clusterzahl fest oder vergleichen Sie Lösungen und prüfen Sie die Clusterqualität."
     },
     multidimensionalScaling: {
       jamovi: "Jamovi bietet nur begrenzte direkte Unterstützung für multidimensionale Skalierung.\nNutzen Sie eine Distanz- oder Unähnlichkeitsmatrix, wenn ein geeignetes Modul installiert ist, oder exportieren Sie die Daten nach R.\nPrüfen Sie Stress, Konfigurationsplot und Interpretierbarkeit der Dimensionen."
@@ -189,7 +189,7 @@ window.localizedProcedurePacks = {
       jamovi: "Analyses > Facteurs > Analyse factorielle exploratoire\nPlacez les variables liées dans Variables.\nChoisissez la méthode d'extraction, la rotation et le nombre de facteurs, puis examinez les charges et l'ajustement du modèle."
     },
     clusterAnalysis: {
-      jamovi: "Analyses > Exploration > Clusters\nPlacez les variables décrivant les personnes ou objets dans Variables.\nStandardisez les variables si nécessaire, choisissez une méthode de distance et comparez les solutions de clusters."
+      jamovi: "Installez le module SnowCluster depuis la bibliothèque jamovi et ouvrez-le dans le menu Analyses.\nPlacez les variables décrivant les personnes ou objets dans le champ des variables de clustering.\nStandardisez les variables si nécessaire, choisissez la méthode de clustering/l'option de distance, fixez ou comparez le nombre de clusters et examinez la qualité de la solution."
     },
     multidimensionalScaling: {
       jamovi: "Jamovi offre une prise en charge directe limitée du positionnement multidimensionnel.\nUtilisez une matrice de distances ou de dissimilarités si un module adapté est installé, ou exportez les données vers R.\nExaminez le stress, le graphique de configuration et l'interprétabilité des dimensions."
@@ -290,7 +290,7 @@ window.localizedProcedurePacks = {
       jamovi: "Análisis > Factores > Análisis factorial exploratorio\nMueva las variables relacionadas a Variables.\nElija el método de extracción, la rotación y el número de factores, e inspeccione cargas y ajuste del modelo."
     },
     clusterAnalysis: {
-      jamovi: "Análisis > Exploración > Conglomerados\nMueva las variables que describen personas u objetos a Variables.\nEstandarice las variables si es necesario, elija un método de distancia y compare soluciones de conglomerados."
+      jamovi: "Instale el módulo SnowCluster desde la biblioteca de jamovi y ábralo desde el menú Análisis.\nMueva las variables que describen personas u objetos al campo de variables de clustering.\nEstandarice las variables si es necesario, elija el método de clustering/opción de distancia, fije o compare el número de conglomerados y revise la calidad de la solución."
     },
     multidimensionalScaling: {
       jamovi: "Jamovi tiene soporte directo limitado para el escalamiento multidimensional.\nUse una matriz de distancias o disimilitudes si hay un módulo adecuado instalado, o exporte los datos a R.\nInspeccione el estrés, el gráfico de configuración y la interpretabilidad de las dimensiones."
@@ -443,7 +443,7 @@ window.localizedProcedurePacks.it = {
     jamovi: "Analisi > Fattori > Analisi fattoriale esplorativa\nSposta le variabili correlate in Variabili.\nScegli metodo di estrazione, rotazione e numero di fattori, poi controlla carichi e adattamento del modello."
   },
   clusterAnalysis: {
-    jamovi: "Analisi > Esplorazione > Cluster\nSposta le variabili che descrivono persone o oggetti in Variabili.\nStandardizza le variabili se necessario, scegli un metodo di distanza e confronta le soluzioni di cluster."
+    jamovi: "Installa il modulo SnowCluster dalla libreria jamovi e aprilo dal menu Analisi.\nSposta le variabili che descrivono persone o oggetti nel campo delle variabili di clustering.\nStandardizza le variabili se necessario, scegli il metodo di clustering/opzione di distanza, imposta o confronta il numero di cluster e controlla la qualità della soluzione."
   },
   multidimensionalScaling: {
     jamovi: "Jamovi offre un supporto diretto limitato per lo scaling multidimensionale.\nUsa una matrice di distanze o dissimilarità se è installato un modulo adatto, oppure esporta i dati in R.\nControlla stress, grafico di configurazione e interpretabilità delle dimensioni."

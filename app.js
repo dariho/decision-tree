@@ -1153,7 +1153,7 @@ const procedureCatalog = {
     r: "library(psych)\nfa.parallel(data[, items], fa = \"fa\")\nfit <- fa(data[, items], nfactors = 3, rotate = \"oblimin\")\nprint(fit$loadings, cutoff = .30)"
   },
   clusterAnalysis: {
-    jamovi: "Analyses > Exploration > Cluster\nMove the variables that describe people or objects into Variables.\nStandardise variables if needed, choose a distance method, and compare cluster solutions.",
+    jamovi: "Install the SnowCluster module from the jamovi library and open it from the Analyses menu.\nMove the variables that describe people or objects into the clustering variables field.\nStandardise variables if needed, choose the clustering method/distance option, set or compare the number of clusters, and inspect the cluster quality output.",
     r: "scaled <- scale(data[, variables])\nd <- dist(scaled, method = \"euclidean\")\nfit <- hclust(d, method = \"ward.D2\")\nplot(fit)\nclusters <- cutree(fit, k = 3)"
   },
   multidimensionalScaling: {
