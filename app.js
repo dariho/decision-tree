@@ -364,7 +364,7 @@ const results = {
   factorAnalysis: {
     title: "Faktorenanalyse",
     summary: "Exploratives Verfahren, um mehrere korrelierte Variablen auf wenige zugrunde liegende Faktoren oder Dimensionen zu reduzieren.",
-    assumptions: ["Mehrere metrische oder annähernd metrische Variablen", "Sinnvolle Korrelationen zwischen Variablen", "Ausreichende Stichprobengröße", "Interpretierbare Faktorstruktur"]
+    assumptions: ["Mehrere metrische oder annähernd metrische Variablen", "Sinnvolle Korrelationen zwischen Variablen", "Ausreichende Stichprobengröße", "Interpretierbare Faktorstruktur", "Keine A-priori-Hypothese zu den Beziehungen zwischen den Faktoren"]
   },
   clusterAnalysis: {
     title: "Clusteranalyse",
@@ -415,7 +415,7 @@ const languagePacks = {
       selectedTestLabel: "Ausgewählter Test",
       reasonLabel: "Begründung",
       previewPlaceholder: "Noch nicht ausgewählt",
-      screenshotPreviewPlaceholder: "Screenshot wird hier angezeigt",
+      screenshotPreviewPlaceholder: "Das Ergebnis wird hier angezeigt",
       recommendedLabel: "Empfohlenes Verfahren",
       assumptionsHeading: "Voraussetzungen",
       scenarioHeading: "Beispielsituationen",
@@ -423,7 +423,7 @@ const languagePacks = {
       sportScenarioLabel: "Sportwissenschaft",
       procedureHeading: "Umsetzung",
       procedureToolLabel: "Ausgabe",
-      jamoviScreenshotCaption: "Jamovi-GUI-Screenshot für dieses Verfahren.",
+      jamoviScreenshotCaption: "Jamovi-Oberfläche für dieses Verfahren.",
       jamoviScreenshotAlt: "Jamovi-Fenster mit Daten und Ergebnistabelle für dieses Verfahren",
       copyResult: "Ergebnis kopieren",
       exploreAlternatives: "Alternativen ansehen",
@@ -489,7 +489,7 @@ const languagePacks = {
       selectedTestLabel: "Selected test",
       reasonLabel: "Rationale",
       previewPlaceholder: "Not selected yet",
-      screenshotPreviewPlaceholder: "Screenshot will appear here",
+      screenshotPreviewPlaceholder: "The result will appear here",
       recommendedLabel: "Recommended procedure",
       assumptionsHeading: "Assumptions",
       scenarioHeading: "Example situations",
@@ -497,7 +497,7 @@ const languagePacks = {
       sportScenarioLabel: "Sport science",
       procedureHeading: "Procedure",
       procedureToolLabel: "Output",
-      jamoviScreenshotCaption: "Jamovi GUI screenshot for this procedure.",
+      jamoviScreenshotCaption: "Jamovi interface for this procedure.",
       jamoviScreenshotAlt: "Jamovi window with data and results table for this procedure",
       copyResult: "Copy result",
       exploreAlternatives: "View alternatives",
@@ -784,7 +784,7 @@ const languagePacks = {
       linearRegression: { title: "Linear regression", summary: "Models a metric outcome variable using one or more predictors; without a suitable design, it does not provide evidence of causality.", assumptions: ["Metric outcome variable", "Linear relationships", "Independent residuals", "Homoscedasticity and residual diagnostics", "Prediction or association, not causality by itself"] },
       logisticRegression: { title: "Binary logistic regression", summary: "Models the probability of a dichotomous outcome variable.", assumptions: ["Dichotomous outcome variable", "Independent observations", "No strong multicollinearity", "Sufficient number of events"] },
       multinomialRegression: { title: "Multinomial logistic regression", summary: "Models a categorical outcome variable with more than two categories.", assumptions: ["Multicategory categorical outcome", "Independent observations", "Meaningful reference category"] },
-      factorAnalysis: { title: "Factor analysis", summary: "Exploratory procedure for reducing several correlated variables to a smaller set of latent factors or dimensions.", assumptions: ["Several metric or approximately metric variables", "Meaningful correlations among variables", "Adequate sample size", "Interpretable factor structure"] },
+      factorAnalysis: { title: "Factor analysis", summary: "Exploratory procedure for reducing several correlated variables to a smaller set of latent factors or dimensions.", assumptions: ["Several metric or approximately metric variables", "Meaningful correlations among variables", "Adequate sample size", "Interpretable factor structure", "No a priori hypothesis about the relationships among the factors"] },
       clusterAnalysis: { title: "Cluster analysis", summary: "Exploratory procedure for grouping people or objects based on similarity.", assumptions: ["Features describing people or objects", "Appropriate scaling or standardisation", "Meaningful distance or similarity measure", "Cluster solution is substantively interpretable"] },
       multidimensionalScaling: { title: "Multidimensional scaling", summary: "Exploratory procedure for representing distances or dissimilarities among people or objects in a small number of dimensions.", assumptions: ["Distance or dissimilarity matrix", "People or objects are comparable", "Number of dimensions chosen using stress and interpretability", "Primarily an exploratory representation"] },
       chiSquareVariance: { title: "Chi-square test for one variance", summary: "Tests whether a sample variance differs from a known or theoretical population variance.", assumptions: ["One metric variable", "Known or theoretically justified population variance", "Independent observations", "Normality in the population"] },
