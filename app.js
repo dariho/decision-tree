@@ -1222,15 +1222,15 @@ const procedureCatalog = {
   },
   linearRegression: {
     jamovi: "Analyses > Regression > Linear Regression\nPut the metric target in Dependent Variable.\nAdd predictors to Covariates or Factors and inspect residual diagnostics.\nInterpret coefficients as prediction/association unless the study design supports causal inference.",
-    r: "fit <- lm(y ~ x1 + x2, data = data)\nsummary(fit)\nplot(fit)"
+    r: "fit <- lm(race_time_min ~ training_volume_km_week + vo2max_ml_kg_min + age_years, data = data)\nsummary(fit)\nplot(fit)"
   },
   logisticRegression: {
     jamovi: "Analyses > Regression > Logistic Regression > 2 Outcomes\nPut the dichotomous target in Dependent Variable.\nAdd predictors to Covariates or Factors and inspect odds ratios.",
-    r: "fit <- glm(y ~ x1 + x2, data = data, family = binomial)\nsummary(fit)\nexp(coef(fit))"
+    r: "data$injury <- factor(data$injury, levels = c(\"no\", \"yes\"))\nfit <- glm(injury ~ training_load_au + previous_injury + recovery_score + age_years, data = data, family = binomial)\nsummary(fit)\nexp(coef(fit))"
   },
   multinomialRegression: {
     jamovi: "Analyses > Regression > Logistic Regression > N Outcomes\nPut the multicategory target in Dependent Variable.\nAdd predictors to Covariates or Factors and choose the reference level.",
-    r: "library(nnet)\nfit <- multinom(y ~ x1 + x2, data = data)\nsummary(fit)"
+    r: "library(nnet)\ndata$treatment_outcome <- relevel(factor(data$treatment_outcome), ref = \"completion\")\nfit <- multinom(treatment_outcome ~ baseline_symptom_score + motivation_score + previous_therapy + age_years, data = data)\nsummary(fit)"
   },
   factorAnalysis: {
     jamovi: "Analyses > Factor > Exploratory Factor Analysis\nMove the related variables into Variables.\nChoose the extraction method, rotation, number of factors, and inspect loadings and model fit.",
@@ -1254,11 +1254,11 @@ const procedureCatalog = {
   },
   decisionTreeRegression: {
     jamovi: "Jamovi has limited built-in support for decision tree regression.\nUse a machine-learning module if installed, or export the data and fit the tree in R.\nValidate the tree with a train/test split or cross-validation and inspect pruning/depth.",
-    r: "library(rpart)\nlibrary(caret)\nset.seed(1)\ntrain_id <- createDataPartition(data$y, p = .70, list = FALSE)\nfit <- rpart(y ~ ., data = data[train_id, ], method = \"anova\")\npred <- predict(fit, newdata = data[-train_id, ])\npostResample(pred, data$y[-train_id])"
+    r: "library(rpart)\nlibrary(caret)\nset.seed(1)\nmodel_data <- subset(data, select = -athlete)\ntrain_id <- createDataPartition(model_data$race_time_min, p = .70, list = FALSE)\nfit <- rpart(race_time_min ~ ., data = model_data[train_id, ], method = \"anova\", control = rpart.control(cp = .01))\npred <- predict(fit, newdata = model_data[-train_id, ])\npostResample(pred, model_data$race_time_min[-train_id])\nplotcp(fit)"
   },
   randomForestRegression: {
-    jamovi: "Jamovi has limited built-in support for random forests in the core menus.\nUse a suitable machine-learning module if available, or export the data and fit the model in R.\nReport out-of-sample RMSE/R2 and variable importance rather than only training performance.",
-    r: "library(randomForest)\nlibrary(caret)\nset.seed(1)\ntrain_id <- createDataPartition(data$y, p = .70, list = FALSE)\nfit <- randomForest(y ~ ., data = data[train_id, ], ntree = 500, importance = TRUE)\npred <- predict(fit, newdata = data[-train_id, ])\npostResample(pred, data$y[-train_id])\nimportance(fit)"
+    jamovi: "Install/open the MLwrapj module, then choose MLwrapj > Regression.\nPut the continuous outcome in Dependent Variable and add numeric predictors to Covariates.\nChoose Random Forest in the model selector, set the training/validation and tree options, then report validation RMSE/R2 and variable importance.",
+    r: "library(randomForest)\nlibrary(caret)\nset.seed(1)\nmodel_data <- subset(data, select = -athlete)\ntrain_id <- createDataPartition(model_data$race_time_min, p = .70, list = FALSE)\nfit <- randomForest(race_time_min ~ ., data = model_data[train_id, ], ntree = 500, importance = TRUE)\npred <- predict(fit, newdata = model_data[-train_id, ])\npostResample(pred, model_data$race_time_min[-train_id])\nimportance(fit)"
   },
   knnRegression: {
     jamovi: "Jamovi has limited built-in support for k-nearest-neighbors regression.\nStandardise predictors, then use a machine-learning module if installed or export the data to R.\nChoose k using cross-validation and report out-of-sample prediction error.",
@@ -1395,6 +1395,21 @@ const procedureScreenshots = {
   chiSquareGoodness: {
     jamovi: {
       en: "assets/jamovi/chiSquareGoodness_ENG.png"
+    }
+  },
+  linearRegression: {
+    jamovi: {
+      en: "assets/jamovi/linearRegression_ENG.png"
+    }
+  },
+  logisticRegression: {
+    jamovi: {
+      en: "assets/jamovi/logisticRegression_ENG.png"
+    }
+  },
+  multinomialRegression: {
+    jamovi: {
+      en: "assets/jamovi/multinomialRegression_ENG.png"
     }
   },
   factorAnalysis: {
