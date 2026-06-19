@@ -154,12 +154,14 @@ const tree = {
   },
   manyGroupsDesign: {
     area: "Gruppendesign",
-    question: "Sind die Gruppen unabhängig oder handelt es sich um wiederholte Messungen?",
-    hint: "Das Design entscheidet, ob eine klassische oder messwiederholte Varianzanalyse passt.",
+    question: "Wie viele Faktoren vergleichen Sie und gibt es Messwiederholungen?",
+    hint: "Bei mehr als einem Faktor können Haupteffekte und Interaktionen geprüft werden. Messwiederholungen ändern das Modell und die Annahmen.",
     step: "Gruppen",
     answers: [
-      { label: "Unabhängige Gruppen", next: "anovaAssumptions" },
-      { label: "Wiederholte Messungen", next: "repeatedAssumptions" }
+      { label: "Ein Faktor: unabhängige Gruppen", next: "anovaAssumptions" },
+      { label: "Ein Faktor: wiederholte Messungen", next: "repeatedAssumptions" },
+      { label: "Zwei oder mehr Faktoren: keine Messwiederholung", next: "twoWayAnovaAssumptions" },
+      { label: "Zwei oder mehr Faktoren: mit Messwiederholung", next: "twoWayRepeatedAssumptions" }
     ]
   },
   anovaAssumptions: {
@@ -180,6 +182,26 @@ const tree = {
     answers: [
       { label: "Ja", result: "repeatedAnova" },
       { label: "Nein oder ordinal", result: "friedman" }
+    ]
+  },
+  twoWayAnovaAssumptions: {
+    area: "Voraussetzung",
+    question: "Sind Normalverteilung je Zelle, Varianzhomogenität und unabhängige Beobachtungen plausibel?",
+    hint: "Eine faktorielle ANOVA prüft Haupteffekte und Interaktionen für zwei oder mehr Faktoren.",
+    step: "Annahmen",
+    answers: [
+      { label: "Ja", result: "twoWayAnova" },
+      { label: "Nein oder ordinal", result: "nonparametricTwoWayAnova" }
+    ]
+  },
+  twoWayRepeatedAssumptions: {
+    area: "Voraussetzung",
+    question: "Sind metrische Messwerte, passende Sphärizitätsannahmen und ein balanciertes Messwiederholungsdesign plausibel?",
+    hint: "Bei zwei oder mehr Faktoren mit Messwiederholung können Haupteffekte, Interaktionen und Korrekturen für Sphärizität relevant sein.",
+    step: "Annahmen",
+    answers: [
+      { label: "Ja", result: "twoWayRepeatedAnova" },
+      { label: "Nein oder ordinal", result: "nonparametricTwoWayRepeatedAnova" }
     ]
   },
   ordinalGroups: {
@@ -301,6 +323,16 @@ const results = {
     summary: "Prüft Mittelwertunterschiede über mehrere verbundene Messzeitpunkte oder Bedingungen.",
     assumptions: ["Verbundene Messungen", "Metrische Zielvariable", "Sphärizität oder geeignete Korrektur"]
   },
+  twoWayAnova: {
+    title: "Faktorielle ANOVA (zwei oder mehr Faktoren)",
+    summary: "Prüft Haupteffekte und Interaktionen von zwei oder mehr unabhängigen Faktoren auf eine metrische Zielvariable.",
+    assumptions: ["Zwei oder mehr kategoriale unabhängige Faktoren", "Metrische Zielvariable", "Unabhängige Beobachtungen", "Normalität innerhalb der Zellen", "Homogenität der Varianzen"]
+  },
+  twoWayRepeatedAnova: {
+    title: "Faktorielle ANOVA mit Messwiederholung (zwei oder mehr Faktoren)",
+    summary: "Prüft Haupteffekte und Interaktionen von zwei oder mehr Faktoren, wenn mindestens ein Faktor innerhalb derselben Personen gemessen wird.",
+    assumptions: ["Mindestens ein Messwiederholungsfaktor", "Metrische Zielvariable", "Sphärizität oder geeignete Korrektur", "Balancierte Zuordnung der Messzeitpunkte/Bedingungen"]
+  },
   linearMixedModel: {
     title: "Lineares Mixed Model",
     summary: "Modelliert metrische Zielvariablen bei wiederholten, verschachtelten oder geclusterten Beobachtungen mit festen und zufälligen Effekten.",
@@ -325,6 +357,16 @@ const results = {
     title: "Friedman-Test",
     summary: "Nichtparametrische Alternative zur ANOVA mit Messwiederholung für mehrere verbundene Bedingungen.",
     assumptions: ["Mehrere verbundene Messungen", "Mindestens ordinale Werte", "Gleiche Fälle in allen Bedingungen"]
+  },
+  nonparametricTwoWayAnova: {
+    title: "Nichtparametrische faktorielle ANOVA (ART)",
+    summary: "Robuste Alternative für faktorielle Designs mit zwei oder mehr unabhängigen Faktoren, häufig über die Aligned-Rank-Transform-Methode.",
+    assumptions: ["Zwei oder mehr kategoriale unabhängige Faktoren", "Mindestens ordinale Zielvariable", "Unabhängige Beobachtungen", "Interaktionen werden über rangtransformierte Daten geprüft"]
+  },
+  nonparametricTwoWayRepeatedAnova: {
+    title: "Nichtparametrische faktorielle ANOVA mit Messwiederholung (ART)",
+    summary: "Robuste Alternative für faktorielle Designs mit zwei oder mehr Faktoren und Messwiederholung, wenn parametrische Annahmen nicht tragfähig sind.",
+    assumptions: ["Mindestens ein Messwiederholungsfaktor", "Mindestens ordinale Zielvariable", "Gleiche Fälle in den verbundenen Bedingungen", "Interaktionen werden über rangtransformierte Daten geprüft"]
   },
   fisher: {
     title: "Exakter Test nach Fisher",
@@ -690,12 +732,14 @@ const languagePacks = {
       },
       manyGroupsDesign: {
         area: "Group design",
-        question: "Are the groups independent or are these repeated measurements?",
-        hint: "The design determines whether a classical or repeated-measures ANOVA fits.",
+        question: "How many factors are you comparing, and are there repeated measurements?",
+        hint: "With more than one factor, you can test main effects and interactions. Repeated measurements change the model and assumptions.",
         step: "Groups",
         answers: [
-          { label: "Independent groups", next: "anovaAssumptions" },
-          { label: "Repeated measurements", next: "repeatedAssumptions" }
+          { label: "One factor: independent groups", next: "anovaAssumptions" },
+          { label: "One factor: repeated measurements", next: "repeatedAssumptions" },
+          { label: "Two or more factors: no repeated measurements", next: "twoWayAnovaAssumptions" },
+          { label: "Two or more factors: with repeated measurements", next: "twoWayRepeatedAssumptions" }
         ]
       },
       anovaAssumptions: {
@@ -716,6 +760,26 @@ const languagePacks = {
         answers: [
           { label: "Yes", result: "repeatedAnova" },
           { label: "No or ordinal", result: "friedman" }
+        ]
+      },
+      twoWayAnovaAssumptions: {
+        area: "Assumption",
+        question: "Are normality within cells, homogeneity of variances, and independent observations plausible?",
+        hint: "A factorial ANOVA tests main effects and interactions for two or more factors.",
+        step: "Assumptions",
+        answers: [
+          { label: "Yes", result: "twoWayAnova" },
+          { label: "No or ordinal", result: "nonparametricTwoWayAnova" }
+        ]
+      },
+      twoWayRepeatedAssumptions: {
+        area: "Assumption",
+        question: "Are metric measurements, suitable sphericity assumptions, and a balanced repeated-measures design plausible?",
+        hint: "With two or more factors and repeated measurements, main effects, interactions, and sphericity corrections may matter.",
+        step: "Assumptions",
+        answers: [
+          { label: "Yes", result: "twoWayRepeatedAnova" },
+          { label: "No or ordinal", result: "nonparametricTwoWayRepeatedAnova" }
         ]
       },
       ordinalGroups: {
@@ -772,11 +836,15 @@ const languagePacks = {
       wilcoxon: { title: "Wilcoxon signed-rank test", summary: "Nonparametric choice for two paired measurements or ordinal paired comparisons.", assumptions: ["Two paired measurements", "At least ordinal values", "Pairing is present"] },
       anova: { title: "One-way ANOVA", summary: "Compares means across more than two independent groups.", assumptions: ["Independent groups", "Metric outcome variable", "Normality within groups", "Homogeneity of variances"] },
       repeatedAnova: { title: "Repeated-measures ANOVA", summary: "Tests mean differences across several paired time points or conditions.", assumptions: ["Repeated measurements", "Metric outcome variable", "Sphericity or suitable correction"] },
+      twoWayAnova: { title: "Factorial ANOVA (two or more factors)", summary: "Tests the main effects and interactions of two or more independent factors on a metric outcome variable.", assumptions: ["Two or more categorical independent factors", "Metric outcome variable", "Independent observations", "Normality within cells", "Homogeneity of variances"] },
+      twoWayRepeatedAnova: { title: "Factorial repeated-measures ANOVA (two or more factors)", summary: "Tests main effects and interactions for two or more factors when at least one factor is measured within the same participants.", assumptions: ["At least one repeated-measures factor", "Metric outcome variable", "Sphericity or suitable correction", "Balanced assignment of time points or conditions"] },
       linearMixedModel: { title: "Linear mixed model", summary: "Models metric outcomes for repeated, nested, or clustered observations using fixed and random effects.", assumptions: ["Metric dependent variable", "Observations nested within people, teams, or measurement occasions", "Random effects are theoretically justified", "Check residual diagnostics and variance structure"] },
       generalizedLinearMixedModel: { title: "Generalized linear mixed model", summary: "Extends logistic or other generalized models to repeated, nested, or clustered data.", assumptions: ["Dichotomous, categorical, or count dependent variable", "Appropriate link function and distribution", "Clusters or persons entered as random effects", "Adequate events per parameter"] },
       ordinalMixedModel: { title: "Ordinal mixed model", summary: "Models ordinal outcomes with repeated or clustered observations, often using cumulative link models.", assumptions: ["Ordinal dependent variable", "Repeated or clustered observations", "Check proportional-odds assumption", "Random effects are theoretically justified"] },
       kruskalWallis: { title: "Kruskal-Wallis test", summary: "Nonparametric alternative to one-way ANOVA for several independent groups.", assumptions: ["Several independent groups", "At least ordinal outcome", "Independent observations"] },
       friedman: { title: "Friedman test", summary: "Nonparametric alternative to repeated-measures ANOVA for several paired conditions.", assumptions: ["Several paired measurements", "At least ordinal values", "Same cases in all conditions"] },
+      nonparametricTwoWayAnova: { title: "Nonparametric factorial ANOVA (ART)", summary: "Robust alternative for factorial designs with two or more independent factors, commonly using the aligned-rank-transform approach.", assumptions: ["Two or more categorical independent factors", "At least ordinal outcome", "Independent observations", "Interactions tested on rank-transformed data"] },
+      nonparametricTwoWayRepeatedAnova: { title: "Nonparametric factorial repeated-measures ANOVA (ART)", summary: "Robust alternative for factorial repeated-measures designs with two or more factors when parametric assumptions are not tenable.", assumptions: ["At least one repeated-measures factor", "At least ordinal outcome", "Same cases in paired conditions", "Interactions tested on rank-transformed data"] },
       fisher: { title: "Fisher's exact test", summary: "Tests associations in small 2x2 tables when chi-square assumptions are not met.", assumptions: ["Dichotomous categorical variables", "Independent observations", "Small expected counts"] },
       mcnemar: { title: "McNemar test", summary: "Compares two paired dichotomous measurements, such as pre-post categories.", assumptions: ["Two paired dichotomous measurements", "Paired data", "Discordant pairs are relevant"] },
       binomialTest: { title: "Binomial test", summary: "Tests whether the empirical frequency or proportion of a two-level variable differs from a theoretically expected probability.", assumptions: ["Two-level categorical variable", "Theoretically expected proportion is defined", "Independent observations", "Fixed number of trials or cases"] },
@@ -1053,19 +1121,19 @@ const procedureCatalog = {
     r: "tab <- table(data$group, data$outcome)\nchisq.test(tab)"
   },
   logLinearModel: {
-    jamovi: "Jamovi has limited direct support for full log-linear modelling.\nUse Frequencies > Contingency Tables to inspect multiway nominal tables, then run the log-linear model in R.\nCompare models with and without interaction terms to understand which associations are needed.",
+    jamovi: "Analyses > Frequencies > Log-Linear Model\nAdd the nominal variables that define the multiway contingency table.\nCompare models with and without interaction terms to understand which associations are needed.",
     r: "tab <- xtabs(count ~ therapy + outcome + gender, data = data)\nfit <- MASS::loglm(~ therapy * outcome + gender, data = tab)\nsummary(fit)"
   },
   pathAnalysis: {
-    jamovi: "Install and open the SEMLj module in jamovi.\nSpecify observed variables only and draw directed paths for the hypothesised mediation model.\nRequest standardized estimates, indirect effects, confidence intervals, and model fit indices.",
+    jamovi: "Install and open the medmod module in jamovi.\nSpecify the predictor, mediator, and outcome variables for the hypothesised mediation model.\nRequest standardized estimates, indirect effects, confidence intervals, and model fit information.",
     r: "library(lavaan)\nmodel <- '\n  mediator ~ a * predictor\n  outcome ~ b * mediator + c_prime * predictor\n  indirect := a * b\n  total := c_prime + indirect\n'\nfit <- sem(model, data = data, se = \"bootstrap\", bootstrap = 5000)\nsummary(fit, standardized = TRUE, fit.measures = TRUE, rsquare = TRUE)"
   },
   structuralEquationModeling: {
-    jamovi: "Install and open the SEMLj module in jamovi.\nDefine latent variables with their indicators, then add the hypothesised structural paths.\nInspect standardized loadings, path coefficients, indirect effects if relevant, and global fit indices.",
+    jamovi: "Install and open the SEMLj module in jamovi.\nUse the SEM (syntax) option as the preferred way to specify the measurement and structural model, because it is clearer and more reproducible than the interactive builder.\nDefine latent variables with their indicators, add the hypothesised structural paths in syntax, and inspect standardized loadings, path coefficients, indirect effects if relevant, and global fit indices.",
     r: "library(lavaan)\nmodel <- '\n  stress =~ stress1 + stress2 + stress3\n  recovery =~ sleep1 + sleep2 + sleep3\n  recovery ~ stress\n  performance ~ recovery + stress\n'\nfit <- sem(model, data = data)\nsummary(fit, standardized = TRUE, fit.measures = TRUE, rsquare = TRUE)"
   },
   discriminantAnalysis: {
-    jamovi: "jamovi has limited direct support for classical discriminant analysis in the core menus.\nUse the Rj Editor module or export the data to R.\nSet the nominal group variable as the dependent variable and the interval-scaled variables as predictors; inspect discriminant functions and classification accuracy.",
+    jamovi: "Install and open the SnowCluster module in jamovi.\nChoose Classification > Linear Discriminant Analysis.\nSet the nominal group variable as the dependent variable and the interval-scaled variables as predictors; inspect discriminant functions and classification accuracy.",
     r: "library(MASS)\nfit <- lda(group ~ anxiety + motivation + reaction_time, data = data)\nfit\npred <- predict(fit)$class\ntable(Predicted = pred, Observed = data$group)\nmean(pred == data$group)"
   },
   oneSampleT: {
@@ -1093,32 +1161,48 @@ const procedureCatalog = {
     r: "wilcox.test(data$before, data$after, paired = TRUE)"
   },
   anova: {
-    jamovi: "Analyses > ANOVA > One-Way ANOVA\nPut the metric outcome in Dependent Variable and the factor in Fixed Factor.\nEnable assumption checks and post-hoc tests if needed.",
+    jamovi: "Analyses > ANOVA > ANOVA\nPut the metric outcome in Dependent Variable and the factor in Fixed Factor.\nEnable assumption checks and post-hoc tests if needed.",
     r: "fit <- aov(score ~ group, data = data)\nsummary(fit)\nTukeyHSD(fit)"
   },
   repeatedAnova: {
     jamovi: "Analyses > ANOVA > Repeated Measures ANOVA\nDefine the repeated-measures factor and levels.\nAssign the repeated measurement columns and enable sphericity corrections.",
     r: "fit <- aov(score ~ condition + Error(id / condition), data = long_data)\nsummary(fit)"
   },
+  twoWayAnova: {
+    jamovi: "Analyses > ANOVA > ANOVA\nPut the metric outcome in Dependent Variable and the two or more grouping factors in Fixed Factors.\nInspect main effects, interaction terms, assumption checks, and post-hoc/simple-effects comparisons if needed.",
+    r: "fit <- aov(score ~ factor_a * factor_b, data = data)\nsummary(fit)\n# Effect sizes: effectsize::eta_squared(fit, partial = TRUE)"
+  },
+  twoWayRepeatedAnova: {
+    jamovi: "Analyses > ANOVA > Repeated Measures ANOVA\nDefine the two or more repeated-measures factors and their levels, then assign the repeated measurement columns to the design cells.\nInspect main effects, interaction terms, and sphericity corrections such as Greenhouse-Geisser when needed.",
+    r: "fit <- aov(score ~ factor_a * factor_b + Error(id / (factor_a * factor_b)), data = long_data)\nsummary(fit)"
+  },
   linearMixedModel: {
     jamovi: "Install and open the GAMLj module in jamovi.\nChoose Mixed Models > Linear Model, place the metric outcome in Dependent Variable, fixed predictors in Fixed Effects, and participant/team/class in Random Effects.\nStart with random intercepts and add random slopes only when theoretically justified and supported by the data.",
     r: "library(lme4)\nlibrary(lmerTest)\nfit <- lmer(score ~ condition + week + (1 | participant), data = data)\nsummary(fit)\nperformance::r2_nakagawa(fit)"
   },
   generalizedLinearMixedModel: {
-    jamovi: "Install and open the GAMLj module in jamovi.\nChoose Mixed Models > Generalized Linear Model, select the outcome distribution and link function, then add fixed predictors and random effects such as participant, team, or class.\nFor binary outcomes, use a binomial distribution with a logit link.",
-    r: "library(lme4)\nfit <- glmer(success ~ condition + week + (1 | participant), data = data, family = binomial)\nsummary(fit)\nexp(fixef(fit))"
+    jamovi: "Install and open the GAMLj module in jamovi.\nChoose the generalized/logistic mixed model option, not Mixed Models > Linear Model.\nUse success as the nominal dependent variable, choose a binomial distribution with a logit link, add condition and week as fixed effects, and add participant as a random intercept.\nIf jamovi says the linear model requires continuous data, you are in the linear mixed model menu.",
+    r: "library(lme4)\ndata$success <- factor(data$success, levels = c(\"no\", \"yes\"))\nfit <- glmer(success ~ condition + week + (1 | participant), data = data, family = binomial)\nsummary(fit)\nexp(fixef(fit))"
   },
   ordinalMixedModel: {
     jamovi: "jamovi has limited direct support for ordinal mixed models in the core menus.\nUse the Rj Editor module or export the data to R.\nModel the ordinal outcome with fixed predictors and random effects for participant, team, class, or another cluster.",
     r: "library(ordinal)\nfit <- clmm(rating ~ condition + week + (1 | participant), data = data)\nsummary(fit)\nexp(coef(fit))"
   },
   kruskalWallis: {
-    jamovi: "Analyses > ANOVA > One-Way ANOVA\nPut the ordinal/metric outcome in Dependent Variable and the group variable in Fixed Factor.\nEnable Kruskal-Wallis under non-parametric tests.",
+    jamovi: "Analyses > Nonparametric Tests > Kruskal-Wallis\nPut the ordinal/metric outcome in the dependent variable field and the grouping variable in the group field.\nRequest descriptives and pairwise comparisons if needed.",
     r: "kruskal.test(score ~ group, data = data)"
   },
   friedman: {
-    jamovi: "Analyses > ANOVA > Repeated Measures ANOVA\nDefine the repeated-measures factor and assign the repeated measurement columns.\nEnable Friedman under non-parametric tests.",
+    jamovi: "Analyses > Nonparametric Tests > Friedman\nAdd the repeated or paired measurement columns for the same participants.\nRequest descriptives and pairwise comparisons if needed.",
     r: "friedman.test(as.matrix(data[, c(\"time1\", \"time2\", \"time3\")]))"
+  },
+  nonparametricTwoWayAnova: {
+    jamovi: "jamovi core menus do not provide a full nonparametric factorial ANOVA for two or more factors with interactions.\nUse the Rj Editor module or export the data to R and fit an aligned-rank-transform model.\nReport main effects and interactions from the ART ANOVA table.",
+    r: "library(ARTool)\nfit <- art(score ~ factor_a * factor_b, data = data)\nanova(fit)"
+  },
+  nonparametricTwoWayRepeatedAnova: {
+    jamovi: "jamovi core menus do not provide a full nonparametric factorial repeated-measures ANOVA for two or more factors with interactions.\nUse the Rj Editor module or export the data to R and fit an aligned-rank-transform model with participant as the repeated unit.\nReport main effects and interactions from the ART ANOVA table.",
+    r: "library(ARTool)\nfit <- art(score ~ factor_a * factor_b + Error(id), data = long_data)\nanova(fit)"
   },
   fisher: {
     jamovi: "Analyses > Frequencies > Contingency Tables > Independent Samples\nPut variables in Rows and Columns.\nEnable Fisher's exact test for a 2x2 table.",
@@ -1153,11 +1237,11 @@ const procedureCatalog = {
     r: "library(psych)\nfa.parallel(data[, items], fa = \"fa\")\nfit <- fa(data[, items], nfactors = 3, rotate = \"oblimin\")\nprint(fit$loadings, cutoff = .30)"
   },
   clusterAnalysis: {
-    jamovi: "Install the SnowCluster module from the jamovi library and open it from the Analyses menu.\nMove the variables that describe people or objects into the clustering variables field.\nStandardise variables if needed, choose the clustering method/distance option, set or compare the number of clusters, and inspect the cluster quality output.",
+    jamovi: "Install the SnowCluster module from the jamovi library and open it from the Analyses menu. Choose Hierarchical Clustering. \nMove the variables that describe people or objects into the clustering variables field.\nStandardise variables if needed, choose the clustering method/distance option, set or compare the number of clusters, and inspect the cluster quality output.",
     r: "scaled <- scale(data[, variables])\nd <- dist(scaled, method = \"euclidean\")\nfit <- hclust(d, method = \"ward.D2\")\nplot(fit)\nclusters <- cutree(fit, k = 3)"
   },
   multidimensionalScaling: {
-    jamovi: "Jamovi has limited built-in support for multidimensional scaling.\nUse a distance/dissimilarity matrix if a suitable module is installed, or export the data and run MDS in R.\nInspect stress, the configuration plot, and interpretability of the dimensions.",
+    jamovi: "Install the jMDS module from the jamovi library and open it from the Analyses menu.\nProvide the distance/dissimilarity matrix or select the variables used to compute distances, depending on the module option.\nChoose the number of dimensions and inspect the stress value, configuration plot, and interpretability of the dimensions.",
     r: "d <- dist(scale(data[, variables]))\nfit <- cmdscale(d, k = 2, eig = TRUE)\nplot(fit$points, xlab = \"Dimension 1\", ylab = \"Dimension 2\")\n# Non-metric MDS: MASS::isoMDS(d, k = 2)"
   },
   chiSquareVariance: {
@@ -1203,9 +1287,149 @@ const procedureCatalog = {
 };
 
 const procedureScreenshots = {
+  oneSampleT: {
+    jamovi: {
+      en: "assets/jamovi/oneSampleT_ENG.png"
+    }
+  },
+  oneSampleWilcoxon: {
+    jamovi: {
+      en: "assets/jamovi/oneSampleWilcoxon_ENG.png"
+    }
+  },
   independentT: {
     jamovi: {
-      default: "assets/jamovi/independentT.png"
+      en: "assets/jamovi/independentT_ENG.png"
+    }
+  },
+  mannWhitney: {
+    jamovi: {
+      en: "assets/jamovi/mannWhitney_ENG.png"
+    }
+  },
+  pairedT: {
+    jamovi: {
+      en: "assets/jamovi/pairedT_ENG.png"
+    }
+  },
+  wilcoxon: {
+    jamovi: {
+      en: "assets/jamovi/wilcoxon_ENG.png"
+    }
+  },
+  anova: {
+    jamovi: {
+      en: "assets/jamovi/anova_ENG.png"
+    }
+  },
+  repeatedAnova: {
+    jamovi: {
+      en: "assets/jamovi/repeatedAnova_ENG.png"
+    }
+  },
+  twoWayAnova: {
+    jamovi: {
+      en: "assets/jamovi/twoWayAnova_ENG.png"
+    }
+  },
+  twoWayRepeatedAnova: {
+    jamovi: {
+      en: "assets/jamovi/twoWayRepeatedAnova_ENG.png"
+    }
+  },
+  kruskalWallis: {
+    jamovi: {
+      en: "assets/jamovi/kruskalWallis_ENG.png"
+    }
+  },
+  friedman: {
+    jamovi: {
+      en: "assets/jamovi/friedman_ENG.png"
+    }
+  },
+  pearson: {
+    jamovi: {
+      en: "assets/jamovi/pearson_ENG.png"
+    }
+  },
+  spearman: {
+    jamovi: {
+      en: "assets/jamovi/spearman_ENG.png"
+    }
+  },
+  kendall: {
+    jamovi: {
+      en: "assets/jamovi/kendall_ENG.png"
+    }
+  },
+  chiSquareAssociation: {
+    jamovi: {
+      en: "assets/jamovi/chiSquareAssociation_ENG.png"
+    }
+  },
+  logLinearModel: {
+    jamovi: {
+      en: "assets/jamovi/logLinearModel_ENG.png"
+    }
+  },
+  pathAnalysis: {
+    jamovi: {
+      en: "assets/jamovi/pathAnalysis_ENG.png"
+    }
+  },
+  fisher: {
+    jamovi: {
+      en: "assets/jamovi/fisher_ENG.png"
+    }
+  },
+  mcnemar: {
+    jamovi: {
+      en: "assets/jamovi/mcnemar_ENG.png"
+    }
+  },
+  binomialTest: {
+    jamovi: {
+      en: "assets/jamovi/binomialTest_ENG.png"
+    }
+  },
+  chiSquareGoodness: {
+    jamovi: {
+      en: "assets/jamovi/chiSquareGoodness_ENG.png"
+    }
+  },
+  factorAnalysis: {
+    jamovi: {
+      en: "assets/jamovi/factorAnalysis_ENG.png"
+    }
+  },
+  clusterAnalysis: {
+    jamovi: {
+      en: "assets/jamovi/clusterAnalysis_ENG.png"
+    }
+  },
+  multidimensionalScaling: {
+    jamovi: {
+      en: "assets/jamovi/multidimensionalScaling_ENG.png"
+    }
+  },
+  structuralEquationModeling: {
+    jamovi: {
+      en: "assets/jamovi/structuralEquationModeling_ENG.png"
+    }
+  },
+  discriminantAnalysis: {
+    jamovi: {
+      en: "assets/jamovi/Linear%20Discriminant%20Analysis_ENG.png"
+    }
+  },
+  linearMixedModel: {
+    jamovi: {
+      en: "assets/jamovi/linearMixedModel_ENG.png"
+    }
+  },
+  generalizedLinearMixedModel: {
+    jamovi: {
+      en: "assets/jamovi/generalizedMixedModel_ENG.png"
     }
   }
 };
@@ -1224,11 +1448,15 @@ const effectSizeDefinitions = {
   wilcoxon: { measure: "Effect size r", rangeType: "r" },
   anova: { measure: "Partial eta squared", rangeType: "eta" },
   repeatedAnova: { measure: "Partial eta squared", rangeType: "eta" },
+  twoWayAnova: { measure: "Partial eta squared for each main effect and interaction", rangeType: "eta" },
+  twoWayRepeatedAnova: { measure: "Partial eta squared for each main effect and interaction", rangeType: "eta" },
   linearMixedModel: { measure: "Marginal and conditional R squared", rangeType: "mixedR2" },
   generalizedLinearMixedModel: { measure: "Odds ratio or incidence-rate ratio", rangeType: "or" },
   ordinalMixedModel: { measure: "Cumulative odds ratio", rangeType: "or" },
   kruskalWallis: { measure: "Epsilon squared", rangeType: "eta" },
   friedman: { measure: "Kendall's W", rangeType: "w" },
+  nonparametricTwoWayAnova: { measure: "Partial eta squared or ART effect size by term", rangeType: "eta" },
+  nonparametricTwoWayRepeatedAnova: { measure: "Partial eta squared or ART effect size by term", rangeType: "eta" },
   fisher: { measure: "Odds ratio", rangeType: "or" },
   mcnemar: { measure: "Matched-pairs odds ratio", rangeType: "or" },
   binomialTest: { measure: "Cohen's h", rangeType: "h" },
@@ -1849,7 +2077,7 @@ function resetTree() {
 
 function getStageForNode(nodeId) {
   const scaleNodes = ["associationScale", "comparisonOutcome", "predictionOutcome"];
-  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "varianceComparison", "causalModelVariables", "mixedModelOutcome", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "normalAssociation", "rankCorrelationChoice"];
+  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "varianceComparison", "causalModelVariables", "mixedModelOutcome", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "twoWayAnovaAssumptions", "twoWayRepeatedAssumptions", "normalAssociation", "rankCorrelationChoice"];
   if (nodeId === "goal" || nodeId === "researchGoal" || nodeId === "discoveryStructure") return "goal";
   if (scaleNodes.includes(nodeId)) return "scale";
   if (groupNodes.includes(nodeId)) return "groups";

@@ -44,6 +44,14 @@ window.resultScenarioPacks = {
       psychology: "Dieselben Personen berichten ihre Stimmung zu drei Messzeitpunkten: vor, während und nach einer Intervention.",
       sport: "Dieselben Athletinnen und Athleten messen ihre Herzfrequenz-Erholung nach drei Trainingsphasen."
     },
+    twoWayAnova: {
+      psychology: "Depressionswerte werden zwischen Therapieform und Altersgruppe verglichen, um Haupteffekte und die Interaktion zu prüfen.",
+      sport: "Sprunghöhe wird zwischen Trainingsprogramm und Geschlecht verglichen, um Haupteffekte und die Interaktion zu prüfen."
+    },
+    twoWayRepeatedAnova: {
+      psychology: "Dieselben Personen bearbeiten Aufgaben mit zwei Schwierigkeitsgraden und drei Zeitpunkten; beide Faktoren werden wiederholt gemessen.",
+      sport: "Dieselben Athletinnen und Athleten absolvieren zwei Trainingsintensitäten an drei Testzeitpunkten; beide Faktoren werden wiederholt gemessen."
+    },
     kruskalWallis: {
       psychology: "Ordinale Motivationsratings werden zwischen drei unabhängigen Schulformen verglichen.",
       sport: "Ordinale Muskelkater-Ratings werden zwischen drei unabhängigen Regenerationsgruppen verglichen."
@@ -51,6 +59,14 @@ window.resultScenarioPacks = {
     friedman: {
       psychology: "Dieselben Personen bewerten drei Bewältigungsstrategien auf einer ordinalen Nützlichkeitsskala.",
       sport: "Dieselben Athletinnen und Athleten bewerten drei Trainingsformen anhand ordinaler Belastungsratings."
+    },
+    nonparametricTwoWayAnova: {
+      psychology: "Ordinale Stressratings werden nach Therapieform und Altersgruppe verglichen, einschließlich der Interaktion.",
+      sport: "Ordinale Erholungsratings werden nach Trainingsprogramm und Leistungsniveau verglichen, einschließlich der Interaktion."
+    },
+    nonparametricTwoWayRepeatedAnova: {
+      psychology: "Dieselben Personen geben ordinale Belastungsratings für zwei Aufgabentypen über mehrere Zeitpunkte ab.",
+      sport: "Dieselben Athletinnen und Athleten geben ordinale Ermüdungsratings für zwei Intensitäten über mehrere Testzeitpunkte ab."
     },
     fisher: {
       psychology: "In einer kleinen Stichprobe wird geprüft, ob Therapieformat und Studienabbruch in einer 2x2-Tabelle zusammenhängen.",
@@ -126,6 +142,14 @@ window.resultScenarioPacks = {
       psychology: "The same people report mood at three time points: before, during, and after an intervention.",
       sport: "The same athletes measure heart-rate recovery after three training phases."
     },
+    twoWayAnova: {
+      psychology: "Depression scores are compared across therapy type and age group to test main effects and the interaction.",
+      sport: "Jump height is compared across training programme and gender to test main effects and the interaction."
+    },
+    twoWayRepeatedAnova: {
+      psychology: "The same people complete tasks with two difficulty levels at three time points; both factors are repeated.",
+      sport: "The same athletes complete two training intensities at three test sessions; both factors are repeated."
+    },
     kruskalWallis: {
       psychology: "Ordinal motivation ratings are compared across three independent school types.",
       sport: "Ordinal soreness ratings are compared across three independent recovery groups."
@@ -133,6 +157,14 @@ window.resultScenarioPacks = {
     friedman: {
       psychology: "The same people rate three coping strategies on an ordinal usefulness scale.",
       sport: "The same athletes rate three training formats using ordinal exertion ratings."
+    },
+    nonparametricTwoWayAnova: {
+      psychology: "Ordinal stress ratings are compared by therapy type and age group, including the interaction.",
+      sport: "Ordinal recovery ratings are compared by training programme and performance level, including the interaction."
+    },
+    nonparametricTwoWayRepeatedAnova: {
+      psychology: "The same people provide ordinal workload ratings for two task types across several time points.",
+      sport: "The same athletes provide ordinal fatigue ratings for two intensities across several test sessions."
     },
     fisher: {
       psychology: "In a small sample, therapy format and dropout status are tested in a 2x2 table.",
@@ -208,6 +240,14 @@ window.resultScenarioPacks = {
       psychology: "Les mêmes personnes rapportent leur humeur à trois moments : avant, pendant et après une intervention.",
       sport: "Les mêmes athlètes mesurent leur récupération de fréquence cardiaque après trois phases d'entraînement."
     },
+    twoWayAnova: {
+      psychology: "Les scores de dépression sont comparés selon le type de thérapie et le groupe d'âge afin de tester les effets principaux et l'interaction.",
+      sport: "La hauteur de saut est comparée selon le programme d'entraînement et le genre afin de tester les effets principaux et l'interaction."
+    },
+    twoWayRepeatedAnova: {
+      psychology: "Les mêmes personnes réalisent des tâches avec deux niveaux de difficulté à trois moments ; les deux facteurs sont répétés.",
+      sport: "Les mêmes athlètes réalisent deux intensités d'entraînement à trois séances de test ; les deux facteurs sont répétés."
+    },
     kruskalWallis: {
       psychology: "Des évaluations ordinales de motivation sont comparées entre trois types d'écoles indépendants.",
       sport: "Des évaluations ordinales de courbatures sont comparées entre trois groupes de récupération indépendants."
@@ -215,6 +255,14 @@ window.resultScenarioPacks = {
     friedman: {
       psychology: "Les mêmes personnes évaluent trois stratégies d'adaptation sur une échelle ordinale d'utilité.",
       sport: "Les mêmes athlètes évaluent trois formats d'entraînement avec des évaluations ordinales d'effort."
+    },
+    nonparametricTwoWayAnova: {
+      psychology: "Des évaluations ordinales de stress sont comparées selon le type de thérapie et le groupe d'âge, interaction incluse.",
+      sport: "Des évaluations ordinales de récupération sont comparées selon le programme d'entraînement et le niveau de performance, interaction incluse."
+    },
+    nonparametricTwoWayRepeatedAnova: {
+      psychology: "Les mêmes personnes donnent des évaluations ordinales de charge pour deux types de tâches à plusieurs moments.",
+      sport: "Les mêmes athlètes donnent des évaluations ordinales de fatigue pour deux intensités à plusieurs séances de test."
     },
     fisher: {
       psychology: "Dans un petit échantillon, le format thérapeutique et l'abandon sont testés dans un tableau 2x2.",
@@ -290,6 +338,14 @@ window.resultScenarioPacks = {
       psychology: "Las mismas personas informan su estado de ánimo en tres momentos: antes, durante y después de una intervención.",
       sport: "Los mismos deportistas miden la recuperación de la frecuencia cardiaca después de tres fases de entrenamiento."
     },
+    twoWayAnova: {
+      psychology: "Las puntuaciones de depresión se comparan según tipo de terapia y grupo de edad para probar efectos principales e interacción.",
+      sport: "La altura de salto se compara según programa de entrenamiento y género para probar efectos principales e interacción."
+    },
+    twoWayRepeatedAnova: {
+      psychology: "Las mismas personas completan tareas con dos niveles de dificultad en tres momentos; ambos factores son repetidos.",
+      sport: "Los mismos deportistas completan dos intensidades de entrenamiento en tres sesiones de prueba; ambos factores son repetidos."
+    },
     kruskalWallis: {
       psychology: "Las valoraciones ordinales de motivación se comparan entre tres tipos de escuela independientes.",
       sport: "Las valoraciones ordinales de dolor muscular se comparan entre tres grupos independientes de recuperación."
@@ -297,6 +353,14 @@ window.resultScenarioPacks = {
     friedman: {
       psychology: "Las mismas personas valoran tres estrategias de afrontamiento en una escala ordinal de utilidad.",
       sport: "Los mismos deportistas valoran tres formatos de entrenamiento mediante valoraciones ordinales de esfuerzo."
+    },
+    nonparametricTwoWayAnova: {
+      psychology: "Las valoraciones ordinales de estrés se comparan por tipo de terapia y grupo de edad, incluida la interacción.",
+      sport: "Las valoraciones ordinales de recuperación se comparan por programa de entrenamiento y nivel de rendimiento, incluida la interacción."
+    },
+    nonparametricTwoWayRepeatedAnova: {
+      psychology: "Las mismas personas dan valoraciones ordinales de carga para dos tipos de tarea en varios momentos.",
+      sport: "Los mismos deportistas dan valoraciones ordinales de fatiga para dos intensidades en varias sesiones de prueba."
     },
     fisher: {
       psychology: "En una muestra pequeña, se prueba la asociación entre formato terapéutico y abandono en una tabla 2x2.",
@@ -374,6 +438,14 @@ window.resultScenarioPacks.it = {
     psychology: "Le stesse persone riportano l'umore in tre momenti: prima, durante e dopo un intervento.",
     sport: "Gli stessi atleti misurano il recupero della frequenza cardiaca dopo tre fasi di allenamento."
   },
+  twoWayAnova: {
+    psychology: "I punteggi di depressione vengono confrontati per tipo di terapia e gruppo d'età per testare effetti principali e interazione.",
+    sport: "L'altezza del salto viene confrontata per programma di allenamento e genere per testare effetti principali e interazione."
+  },
+  twoWayRepeatedAnova: {
+    psychology: "Le stesse persone completano compiti con due livelli di difficoltà in tre momenti; entrambi i fattori sono ripetuti.",
+    sport: "Gli stessi atleti completano due intensità di allenamento in tre sessioni di test; entrambi i fattori sono ripetuti."
+  },
   kruskalWallis: {
     psychology: "Valutazioni ordinali della motivazione vengono confrontate tra tre tipi di scuola indipendenti.",
     sport: "Valutazioni ordinali del dolore muscolare vengono confrontate tra tre gruppi indipendenti di recupero."
@@ -381,6 +453,14 @@ window.resultScenarioPacks.it = {
   friedman: {
     psychology: "Le stesse persone valutano tre strategie di coping su una scala ordinale di utilità.",
     sport: "Gli stessi atleti valutano tre formati di allenamento usando valutazioni ordinali dello sforzo."
+  },
+  nonparametricTwoWayAnova: {
+    psychology: "Valutazioni ordinali dello stress vengono confrontate per tipo di terapia e gruppo d'età, inclusa l'interazione.",
+    sport: "Valutazioni ordinali del recupero vengono confrontate per programma di allenamento e livello di prestazione, inclusa l'interazione."
+  },
+  nonparametricTwoWayRepeatedAnova: {
+    psychology: "Le stesse persone forniscono valutazioni ordinali del carico per due tipi di compito in più momenti.",
+    sport: "Gli stessi atleti forniscono valutazioni ordinali della fatica per due intensità in più sessioni di test."
   },
   fisher: {
     psychology: "In un piccolo campione, formato terapeutico e abbandono vengono testati in una tabella 2x2.",
