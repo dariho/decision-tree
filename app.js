@@ -1253,16 +1253,16 @@ const procedureCatalog = {
     r: "var.test(score ~ group, data = data)\n# Robust alternative:\n# car::leveneTest(score ~ group, data = data)"
   },
   decisionTreeRegression: {
-    jamovi: "Jamovi has limited built-in support for decision tree regression.\nUse a machine-learning module if installed, or export the data and fit the tree in R.\nValidate the tree with a train/test split or cross-validation and inspect pruning/depth.",
-    r: "library(rpart)\nlibrary(caret)\nset.seed(1)\nmodel_data <- subset(data, select = -athlete)\ntrain_id <- createDataPartition(model_data$race_time_min, p = .70, list = FALSE)\nfit <- rpart(race_time_min ~ ., data = model_data[train_id, ], method = \"anova\", control = rpart.control(cp = .01))\npred <- predict(fit, newdata = model_data[-train_id, ])\npostResample(pred, model_data$race_time_min[-train_id])\nplotcp(fit)"
+    jamovi: "Install/open the SnowCluster module and choose Decision Tree.\nMove outcome_symptom_score to Dependent and move motivation_score, baseline_distress_score, and sessions_attended to Covariates.\nIn Analysis, set Split set (e.g. 0.7), tick Overall statistics, and under Plots with train set tick Decision tree and Regression tree. Use the regression tree rules and terminal-node values to explain the predicted symptom score.",
+    r: "library(rpart)\nlibrary(caret)\nset.seed(1)\nmodel_data <- subset(data, select = -client)\ntrain_id <- createDataPartition(model_data$outcome_symptom_score, p = .70, list = FALSE)\nfit <- rpart(outcome_symptom_score ~ motivation_score + baseline_distress_score + sessions_attended, data = model_data[train_id, ], method = \"anova\", control = rpart.control(cp = .01))\npred <- predict(fit, newdata = model_data[-train_id, ])\npostResample(pred, model_data$outcome_symptom_score[-train_id])\nplotcp(fit)"
   },
   randomForestRegression: {
     jamovi: "Install/open the MLwrapj module, then choose MLwrapj > Regression.\nPut the continuous outcome in Dependent Variable and add numeric predictors to Covariates.\nChoose Random Forest in the model selector, set the training/validation and tree options, then report validation RMSE/R2 and variable importance.",
     r: "library(randomForest)\nlibrary(caret)\nset.seed(1)\nmodel_data <- subset(data, select = -athlete)\ntrain_id <- createDataPartition(model_data$race_time_min, p = .70, list = FALSE)\nfit <- randomForest(race_time_min ~ ., data = model_data[train_id, ], ntree = 500, importance = TRUE)\npred <- predict(fit, newdata = model_data[-train_id, ])\npostResample(pred, model_data$race_time_min[-train_id])\nimportance(fit)"
   },
   knnRegression: {
-    jamovi: "Jamovi has limited built-in support for k-nearest-neighbors regression.\nStandardise predictors, then use a machine-learning module if installed or export the data to R.\nChoose k using cross-validation and report out-of-sample prediction error.",
-    r: "library(caret)\nset.seed(1)\nctrl <- trainControl(method = \"cv\", number = 10)\nfit <- train(y ~ ., data = data, method = \"knn\", trControl = ctrl, preProcess = c(\"center\", \"scale\"), tuneLength = 10)\nfit"
+    jamovi: "Install/open the SnowCluster module, then choose Machine Learning.\nMove wellbeing_score to Dependent and move sleep_hours, stress_score, physical_activity_min_week, and social_support_score to the predictor/covariate fields.\nSelect knn as the training model, standardise/scale predictors if the option is available, choose a training/test split or cross-validation, and report validation RMSE/MAE/R2 plus the selected k.",
+    r: "library(caret)\nset.seed(1)\nmodel_data <- subset(data, select = -participant)\nctrl <- trainControl(method = \"cv\", number = 10)\nfit <- train(wellbeing_score ~ sleep_hours + stress_score + physical_activity_min_week + social_support_score, data = model_data, method = \"knn\", trControl = ctrl, preProcess = c(\"center\", \"scale\"), tuneLength = 10)\nfit"
   },
   decisionTreeClassifier: {
     jamovi: "Jamovi has limited built-in support for decision tree classification.\nUse a machine-learning module if installed, or export the data and fit the tree in R.\nValidate with a holdout set or cross-validation and inspect the confusion matrix.",
@@ -1412,6 +1412,11 @@ const procedureScreenshots = {
       en: "assets/jamovi/multinomialRegression_ENG.png"
     }
   },
+  decisionTreeRegression: {
+    jamovi: {
+      en: "assets/jamovi/decisionTreeRegression_ENG.png"
+    }
+  },
   factorAnalysis: {
     jamovi: {
       en: "assets/jamovi/factorAnalysis_ENG.png"
@@ -1487,7 +1492,7 @@ const effectSizeDefinitions = {
   multidimensionalScaling: { measure: "Stress value", rangeType: "stress" },
   chiSquareVariance: { measure: "Variance ratio s2 / sigma2", rangeType: "varianceRatio" },
   varianceFTest: { measure: "Variance ratio F", rangeType: "varianceRatio" },
-  decisionTreeRegression: { measure: "Cross-validated RMSE and R squared", rangeType: "mlRegression" },
+  decisionTreeRegression: { measure: "No classical effect size is shown in SnowCluster; report validation RMSE/MAE/R squared and the final tree rules", rangeType: "treeRegressionPerformance" },
   randomForestRegression: { measure: "Out-of-sample RMSE and R squared", rangeType: "mlRegression" },
   knnRegression: { measure: "Cross-validated RMSE and R squared", rangeType: "mlRegression" },
   decisionTreeClassifier: { measure: "Accuracy, balanced accuracy, F1, or AUC", rangeType: "mlClassification" },
@@ -1629,26 +1634,31 @@ const effectSizeLabels = {
 const mlEffectSizeRanges = {
   de: {
     mlRegression: "RMSE/MAE: niedriger ist besser; R2 nahe 1 zeigt bessere Vorhersage. Immer mit Testdaten, Kreuzvalidierung oder Baseline vergleichen.",
+    treeRegressionPerformance: "SnowCluster berichtet für den Entscheidungsbaum keine klassische Effektgröße. Interpretieren Sie Vorhersagegüte (z. B. RMSE/MAE/R2, falls angezeigt oder berechnet), Split set/Validierung und die inhaltlichen Entscheidungsregeln.",
     mlClassification: "Accuracy nur bei balancierten Klassen interpretieren. Bei unbalancierten Klassen balanced accuracy, F1, Sensitivität/Spezifität oder AUC berichten.",
     pca: "Kumulierte erklärte Varianz und Ladungen gemeinsam interpretieren; häufig werden Komponenten mit Eigenwert > 1, Scree-Plot und inhaltlicher Interpretierbarkeit geprüft."
   },
   en: {
     mlRegression: "RMSE/MAE: lower is better; R2 closer to 1 indicates better prediction. Always compare with test data, cross-validation, or a baseline model.",
+    treeRegressionPerformance: "SnowCluster does not report a classical effect size for this decision tree. Interpret predictive performance (e.g. RMSE/MAE/R2 if shown or computed), the split set/validation strategy, and the substantive decision rules.",
     mlClassification: "Interpret accuracy only when classes are balanced. For imbalanced classes report balanced accuracy, F1, sensitivity/specificity, or AUC.",
     pca: "Interpret cumulative explained variance together with loadings; common guides include eigenvalues > 1, the scree plot, and substantive interpretability."
   },
   fr: {
     mlRegression: "RMSE/MAE : plus faible est meilleur ; R2 proche de 1 indique une meilleure prédiction. Toujours comparer avec des données test, une validation croisée ou un modèle de base.",
+    treeRegressionPerformance: "SnowCluster ne rapporte pas de taille d'effet classique pour cet arbre de décision. Interprétez la performance prédictive (p. ex. RMSE/MAE/R2 si affichés ou calculés), la stratégie split set/validation et les règles de décision substantives.",
     mlClassification: "Interprétez l'exactitude seulement si les classes sont équilibrées. Si les classes sont déséquilibrées, rapportez exactitude équilibrée, F1, sensibilité/spécificité ou AUC.",
     pca: "Interprétez la variance expliquée cumulée avec les charges ; repères fréquents : valeurs propres > 1, scree plot et interprétabilité substantielle."
   },
   es: {
     mlRegression: "RMSE/MAE: menor es mejor; R2 cercano a 1 indica mejor predicción. Compare siempre con datos de prueba, validación cruzada o un modelo base.",
+    treeRegressionPerformance: "SnowCluster no informa un tamaño del efecto clásico para este árbol de decisión. Interprete el rendimiento predictivo (p. ej. RMSE/MAE/R2 si se muestran o calculan), la estrategia split set/validación y las reglas de decisión sustantivas.",
     mlClassification: "Interprete la exactitud solo con clases balanceadas. Con clases desbalanceadas reporte exactitud balanceada, F1, sensibilidad/especificidad o AUC.",
     pca: "Interprete la varianza explicada acumulada junto con las cargas; guías habituales son autovalores > 1, scree plot e interpretabilidad sustantiva."
   },
   it: {
     mlRegression: "RMSE/MAE: più basso è meglio; R2 vicino a 1 indica migliore predizione. Confronta sempre con dati test, validazione incrociata o un modello baseline.",
+    treeRegressionPerformance: "SnowCluster non riporta una dimensione dell'effetto classica per questo albero decisionale. Interpreta la performance predittiva (ad es. RMSE/MAE/R2 se mostrati o calcolati), la strategia split set/validazione e le regole decisionali sostanziali.",
     mlClassification: "Interpreta l'accuratezza solo con classi bilanciate. Con classi sbilanciate riporta balanced accuracy, F1, sensibilità/specificità o AUC.",
     pca: "Interpreta la varianza spiegata cumulata insieme ai carichi; guide comuni sono autovalori > 1, scree plot e interpretabilità sostanziale."
   }

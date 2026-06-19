@@ -31,8 +31,9 @@ Each CSV matches one result id in the decision tree. Use these files to create J
 | `binomialTest` | `binomialTest.csv` | Two-level variable `response`; compare the observed `yes` proportion to an expected value, e.g. `0.50`. |
 | `chiSquareGoodness` | `chiSquareGoodness.csv` | Multilevel categorical variable `preference`; compare observed frequencies to expected proportions. |
 | `linearRegression` | `linearRegression.csv` | Dependent variable `race_time_min`; predictors `training_volume_km_week`, `vo2max_ml_kg_min`, and `age_years`. |
-| `decisionTreeRegression` | `decisionTreeRegression.csv` | Dependent variable `race_time_min`; predictors `training_volume_km_week`, `vo2max_ml_kg_min`, `recovery_score`, `sleep_hours`, `age_years`, and `previous_injury`. |
+| `decisionTreeRegression` | `decisionTreeRegression.csv` | Dependent variable `outcome_symptom_score`; predictors `motivation_score`, `baseline_distress_score`, and `sessions_attended`. |
 | `randomForestRegression` | `randomForestRegression.csv` | Dependent variable `race_time_min`; predictors `training_volume_km_week`, `vo2max_ml_kg_min`, `tempo_pace_min_km`, `long_run_km`, `recovery_score`, `sleep_hours`, `age_years`, and `injury_days_last_month`. |
+| `knnRegression` | `knnRegression.csv` | Dependent variable `wellbeing_score`; predictors `sleep_hours`, `stress_score`, `physical_activity_min_week`, and `social_support_score`; standardise/scale predictors before fitting KNN. |
 | `logisticRegression` | `logisticRegression.csv` | Binary outcome `injury`; predictors `training_load_au`, `previous_injury`, `recovery_score`, and `age_years`. |
 | `multinomialRegression` | `multinomialRegression.csv` | Multicategory outcome `treatment_outcome`; predictors `baseline_symptom_score`, `motivation_score`, `previous_therapy`, and `age_years`. |
 | `pathAnalysis` | `pathAnalysis.csv` | Observed-variable mediation model: `predictor` -> `mediator` -> `outcome`. |
