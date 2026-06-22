@@ -971,3 +971,153 @@ Object.assign(window.resultScenarioPacks.it, {
     sport: "Valutazioni soggettive dello sforzo vengono analizzate dopo diverse sedute di allenamento in ogni atleta."
   }
 });
+
+Object.assign(window.resultScenarioPacks.de, {
+  majorMetaAnalysis: {
+    psychology: "Mehrere Studien zur Wirkung von Achtsamkeit auf Stress werden mit dem passenden Eingabeformat zusammengefasst; Moderator und Publikationsbias können anschließend geprüft werden.",
+    sport: "Mehrere Trainingsstudien zu VO2max, Verletzungsprävention oder Leistung werden meta-analytisch zusammengefasst; Fixed/Random Effects, Moderator und Publikationsbias werden in den Modelloptionen festgelegt."
+  },
+  fixedEffectMetaAnalysis: {
+    psychology: "Mehrere sehr ähnliche Studien untersuchen denselben kurzen Achtsamkeitskurs und berichten Hedges' g für Stressreduktion.",
+    sport: "Studien mit vergleichbaren Sprinttrainingsprogrammen berichten standardisierte Mittelwertsunterschiede in der 30-m-Zeit."
+  },
+  randomEffectsMetaAnalysis: {
+    psychology: "Studien zu kognitiver Verhaltenstherapie bei Angst unterscheiden sich in Setting, Dauer und Stichprobe, sollen aber gemeinsam zusammengefasst werden.",
+    sport: "Trainingsstudien zu Kraftprogrammen unterscheiden sich in Alter, Leistungsniveau und Trainingsdauer und berichten Effekte auf Sprunghöhe."
+  },
+  subgroupMetaAnalysis: {
+    psychology: "Interventionsstudien werden danach verglichen, ob sie online oder in Präsenz durchgeführt wurden.",
+    sport: "Ausdauertrainingsstudien werden danach verglichen, ob sie mit Freizeit- oder Leistungssportlerinnen und -sportlern durchgeführt wurden."
+  },
+  metaRegression: {
+    psychology: "Die Dauer einer Therapie in Wochen wird als Moderator der Effektstärke auf depressive Symptome geprüft.",
+    sport: "Die wöchentliche Trainingsfrequenz wird als Moderator des Effekts auf VO2max untersucht."
+  },
+  publicationBiasDiagnostics: {
+    psychology: "Eine Meta-Analyse zu Smartphone-Interventionen für Wohlbefinden prüft, ob kleine Studien besonders große Effekte berichten.",
+    sport: "Eine Meta-Analyse zu Verletzungsprävention prüft Funnel-Plot-Asymmetrie und Small-Study-Effekte."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.en, {
+  majorMetaAnalysis: {
+    psychology: "Several studies on mindfulness effects on stress are synthesized with the appropriate input format; moderators and publication bias can then be inspected.",
+    sport: "Several training studies on VO2max, injury prevention, or performance are synthesized meta-analytically; fixed/random effects, moderators, and publication bias are selected in the model options."
+  },
+  fixedEffectMetaAnalysis: {
+    psychology: "Several highly similar studies test the same brief mindfulness course and report Hedges' g for stress reduction.",
+    sport: "Studies with comparable sprint-training programmes report standardized mean differences in 30 m sprint time."
+  },
+  randomEffectsMetaAnalysis: {
+    psychology: "Studies of cognitive behavioural therapy for anxiety differ in setting, duration, and sample but need one overall synthesis.",
+    sport: "Strength-training studies differ in age, performance level, and programme length and report effects on jump height."
+  },
+  subgroupMetaAnalysis: {
+    psychology: "Intervention studies are compared according to whether they were delivered online or face to face.",
+    sport: "Endurance-training studies are compared according to whether they used recreational or competitive athletes."
+  },
+  metaRegression: {
+    psychology: "Therapy duration in weeks is tested as a moderator of the effect size for depressive symptoms.",
+    sport: "Weekly training frequency is tested as a moderator of the effect on VO2max."
+  },
+  publicationBiasDiagnostics: {
+    psychology: "A meta-analysis of smartphone interventions for wellbeing checks whether smaller studies report especially large effects.",
+    sport: "A meta-analysis of injury-prevention programmes inspects funnel-plot asymmetry and small-study effects."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.fr, {
+  majorMetaAnalysis: {
+    psychology: "Plusieurs études sur les effets de la pleine conscience sur le stress sont synthétisées avec le format d'entrée approprié ; les modérateurs et le biais de publication peuvent ensuite être examinés.",
+    sport: "Plusieurs études d'entraînement sur le VO2max, la prévention des blessures ou la performance sont synthétisées par méta-analyse ; effets fixes/aléatoires, modérateurs et biais de publication sont choisis dans les options du modèle."
+  },
+  fixedEffectMetaAnalysis: {
+    psychology: "Plusieurs études très similaires testent le même court programme de pleine conscience et rapportent le g de Hedges pour la réduction du stress.",
+    sport: "Des études avec des programmes d'entraînement au sprint comparables rapportent des différences moyennes standardisées du temps sur 30 m."
+  },
+  randomEffectsMetaAnalysis: {
+    psychology: "Des études sur la thérapie cognitivo-comportementale de l'anxiété diffèrent par le contexte, la durée et l'échantillon, mais doivent être synthétisées globalement.",
+    sport: "Des études d'entraînement en force diffèrent par l'âge, le niveau de performance et la durée du programme, et rapportent des effets sur la hauteur de saut."
+  },
+  subgroupMetaAnalysis: {
+    psychology: "Des études d'intervention sont comparées selon qu'elles ont été réalisées en ligne ou en présentiel.",
+    sport: "Des études d'entraînement d'endurance sont comparées selon qu'elles portent sur des sportifs de loisir ou de compétition."
+  },
+  metaRegression: {
+    psychology: "La durée de la thérapie en semaines est testée comme modérateur de la taille d'effet sur les symptômes dépressifs.",
+    sport: "La fréquence hebdomadaire d'entraînement est testée comme modérateur de l'effet sur le VO2max."
+  },
+  publicationBiasDiagnostics: {
+    psychology: "Une méta-analyse d'interventions smartphone pour le bien-être vérifie si les petites études rapportent des effets particulièrement forts.",
+    sport: "Une méta-analyse de programmes de prévention des blessures examine l'asymétrie du funnel plot et les effets de petites études."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.es, {
+  majorMetaAnalysis: {
+    psychology: "Varios estudios sobre los efectos del mindfulness en el estrés se sintetizan con el formato de entrada adecuado; después se pueden examinar moderadores y sesgo de publicación.",
+    sport: "Varios estudios de entrenamiento sobre VO2max, prevención de lesiones o rendimiento se sintetizan mediante meta-análisis; efectos fijos/aleatorios, moderadores y sesgo de publicación se eligen en las opciones del modelo."
+  },
+  fixedEffectMetaAnalysis: {
+    psychology: "Varios estudios muy similares prueban el mismo curso breve de mindfulness e informan g de Hedges para la reducción del estrés.",
+    sport: "Estudios con programas comparables de entrenamiento de sprint informan diferencias medias estandarizadas en el tiempo de 30 m."
+  },
+  randomEffectsMetaAnalysis: {
+    psychology: "Estudios sobre terapia cognitivo-conductual para ansiedad difieren en contexto, duración y muestra, pero se desea una síntesis global.",
+    sport: "Estudios de entrenamiento de fuerza difieren en edad, nivel de rendimiento y duración del programa, e informan efectos sobre altura de salto."
+  },
+  subgroupMetaAnalysis: {
+    psychology: "Los estudios de intervención se comparan según si se realizaron en línea o presencialmente.",
+    sport: "Los estudios de entrenamiento de resistencia se comparan según si incluyeron deportistas recreativos o competitivos."
+  },
+  metaRegression: {
+    psychology: "La duración de la terapia en semanas se prueba como moderador del tamaño del efecto sobre síntomas depresivos.",
+    sport: "La frecuencia semanal de entrenamiento se prueba como moderador del efecto sobre VO2max."
+  },
+  publicationBiasDiagnostics: {
+    psychology: "Un meta-análisis de intervenciones con smartphone para bienestar verifica si los estudios pequeños informan efectos especialmente grandes.",
+    sport: "Un meta-análisis de programas de prevención de lesiones inspecciona la asimetría del funnel plot y efectos de estudios pequeños."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.it, {
+  majorMetaAnalysis: {
+    psychology: "Più studi sugli effetti della mindfulness sullo stress vengono sintetizzati con il formato di input appropriato; moderatori e bias di pubblicazione possono poi essere esaminati.",
+    sport: "Più studi di allenamento su VO2max, prevenzione degli infortuni o prestazione vengono sintetizzati meta-analiticamente; effetti fissi/casuali, moderatori e bias di pubblicazione si scelgono nelle opzioni del modello."
+  },
+  fixedEffectMetaAnalysis: {
+    psychology: "Più studi molto simili testano lo stesso breve corso di mindfulness e riportano g di Hedges per la riduzione dello stress.",
+    sport: "Studi con programmi comparabili di sprint training riportano differenze medie standardizzate nel tempo sui 30 m."
+  },
+  randomEffectsMetaAnalysis: {
+    psychology: "Studi sulla terapia cognitivo-comportamentale per l'ansia differiscono per contesto, durata e campione, ma devono essere sintetizzati globalmente.",
+    sport: "Studi di allenamento della forza differiscono per età, livello prestativo e durata del programma, e riportano effetti sull'altezza del salto."
+  },
+  subgroupMetaAnalysis: {
+    psychology: "Gli studi di intervento vengono confrontati in base alla modalità online o in presenza.",
+    sport: "Gli studi di allenamento di endurance vengono confrontati in base alla presenza di atleti ricreativi o competitivi."
+  },
+  metaRegression: {
+    psychology: "La durata della terapia in settimane viene testata come moderatore della dimensione dell'effetto sui sintomi depressivi.",
+    sport: "La frequenza settimanale di allenamento viene testata come moderatore dell'effetto sul VO2max."
+  },
+  publicationBiasDiagnostics: {
+    psychology: "Una meta-analisi di interventi smartphone per il benessere controlla se gli studi piccoli riportano effetti particolarmente grandi.",
+    sport: "Una meta-analisi di programmi di prevenzione degli infortuni esamina asimmetria del funnel plot ed effetti dei piccoli studi."
+  }
+});
+
+const metaScenarioAliases = [
+  "metaOddsRatioAnalysis",
+  "metaCorrelationAnalysis",
+  "metaMeanDifferenceAnalysis",
+  "metaEffectSizeAnalysis",
+  "metaProportionAnalysis"
+];
+
+Object.values(window.resultScenarioPacks).forEach((pack) => {
+  if (!pack?.majorMetaAnalysis) return;
+  metaScenarioAliases.forEach((resultId) => {
+    pack[resultId] = pack.majorMetaAnalysis;
+  });
+});

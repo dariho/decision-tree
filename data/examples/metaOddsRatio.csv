@@ -1,0 +1,11 @@
+study_label,events_treatment,total_treatment,events_control,total_control,moderator
+CBT-Youth-2017,18,72,30,70,psychology
+Mindfulness-Adult-2018,22,85,35,82,psychology
+Sleep-Coaching-2019,14,64,25,62,psychology
+Resilience-App-2020,26,110,42,108,psychology
+Anxiety-Group-2021,19,78,31,80,psychology
+Injury-Prevention-2017,9,95,18,92,sport
+Warmup-Protocol-2018,11,120,24,118,sport
+Balance-Training-2019,7,88,15,90,sport
+Strength-Program-2021,13,140,27,138,sport
+Load-Monitoring-2022,10,105,20,103,sport

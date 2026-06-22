@@ -830,3 +830,162 @@ Object.entries(mlApaTemplates).forEach(([language, templates]) => {
     };
   });
 });
+
+const metaApaMetrics = {
+  majorMetaAnalysis: ["k studies", "input option", "effect metric", "model estimator", "fixed or random effects", "pooled effect", "95% CI", "p", "I2", "tau2", "moderator", "publication-bias diagnostics"],
+  fixedEffectMetaAnalysis: ["k studies", "effect metric", "pooled effect", "95% CI", "z", "p", "Q", "I2"],
+  randomEffectsMetaAnalysis: ["k studies", "effect metric", "pooled effect", "95% CI", "z", "p", "tau2", "I2", "prediction interval"],
+  subgroupMetaAnalysis: ["k studies", "subgroup variable", "pooled effect per subgroup", "between-subgroup test", "df", "p", "I2"],
+  metaRegression: ["k studies", "moderator", "coefficient", "SE", "z", "p", "95% CI", "residual I2"],
+  publicationBiasDiagnostics: ["k studies", "funnel plot", "Egger's test", "intercept", "SE", "z or t", "p", "trim-and-fill if used"]
+};
+
+const metaApaTemplates = {
+  en: {
+    majorMetaAnalysis: "A meta-analysis using [input format] synthesized k studies with a [fixed/random]-effects model using [estimator]. The pooled effect was [effect metric] = value, 95% CI [lower, upper], p = value, with heterogeneity I2 = value% and tau2 = value. Moderator analyses and publication-bias diagnostics were [not conducted/reported as follows].",
+    fixedEffectMetaAnalysis: "A fixed-effect meta-analysis synthesized k studies and estimated a pooled effect of [effect metric] = value, 95% CI [lower, upper], z = value, p = value. Heterogeneity was low, Q(df) = value, p = value, I2 = value%.",
+    randomEffectsMetaAnalysis: "A random-effects meta-analysis synthesized k studies and estimated a pooled average effect of [effect metric] = value, 95% CI [lower, upper], z = value, p = value. Between-study heterogeneity was tau2 = value and I2 = value%; the prediction interval was [lower, upper].",
+    subgroupMetaAnalysis: "Subgroup meta-analysis compared [subgroup variable]. The pooled effect was [effect] in subgroup A and [effect] in subgroup B; the between-subgroup test was Q(df) = value, p = value.",
+    metaRegression: "Meta-regression tested [moderator] as a study-level predictor of the effect size. The moderator coefficient was b = value, SE = value, 95% CI [lower, upper], z = value, p = value; residual heterogeneity was I2 = value%.",
+    publicationBiasDiagnostics: "Publication-bias diagnostics indicated [symmetric/asymmetric] funnel-plot pattern. Egger's test was intercept = value, SE = value, z/t = value, p = value, suggesting [no evidence/evidence] of small-study effects."
+  },
+  de: {
+    majorMetaAnalysis: "Eine Meta-Analyse mit [Eingabeformat] fasste k Studien mit einem [Fixed-/Random-Effects]-Modell und [Estimator] zusammen. Der gepoolte Effekt betrug [Effektmetrik] = Wert, 95%-KI [untere, obere Grenze], p = Wert, bei Heterogenität I2 = Wert% und tau2 = Wert. Moderatoranalysen und Publikationsbias-Diagnostik wurden [nicht durchgeführt/wie folgt berichtet].",
+    fixedEffectMetaAnalysis: "Eine Fixed-Effect-Meta-Analyse fasste k Studien zusammen und schätzte einen gepoolten Effekt von [Effektmetrik] = Wert, 95%-KI [untere, obere Grenze], z = Wert, p = Wert. Die Heterogenität war gering, Q(df) = Wert, p = Wert, I2 = Wert%.",
+    randomEffectsMetaAnalysis: "Eine Random-Effects-Meta-Analyse fasste k Studien zusammen und schätzte einen mittleren gepoolten Effekt von [Effektmetrik] = Wert, 95%-KI [untere, obere Grenze], z = Wert, p = Wert. Die Zwischenstudienheterogenität betrug tau2 = Wert und I2 = Wert%; das Prädiktionsintervall lag bei [untere, obere Grenze].",
+    subgroupMetaAnalysis: "Eine Subgruppen-Meta-Analyse verglich [Subgruppenvariable]. Der gepoolte Effekt betrug [Effekt] in Subgruppe A und [Effekt] in Subgruppe B; der Test zwischen Subgruppen ergab Q(df) = Wert, p = Wert.",
+    metaRegression: "Eine Meta-Regression prüfte [Moderator] als Studienebenen-Prädiktor der Effektgröße. Der Moderator-Koeffizient betrug b = Wert, SE = Wert, 95%-KI [untere, obere Grenze], z = Wert, p = Wert; die Restheterogenität betrug I2 = Wert%.",
+    publicationBiasDiagnostics: "Die Publikationsbias-Diagnostik zeigte ein [symmetrisches/asymmetrisches] Funnel-Plot-Muster. Der Egger-Test ergab Intercept = Wert, SE = Wert, z/t = Wert, p = Wert und sprach für [keine Hinweise/Hinweise] auf Small-Study-Effekte."
+  },
+  fr: {
+    majorMetaAnalysis: "Une méta-analyse avec [format d'entrée] a synthétisé k études avec un modèle [à effet fixe/à effets aléatoires] et [estimateur]. L'effet combiné était [métrique d'effet] = valeur, IC à 95 % [borne inférieure, borne supérieure], p = valeur, avec une hétérogénéité I2 = valeur % et tau2 = valeur. Les analyses de modérateurs et les diagnostics de biais de publication ont été [non réalisés/rapportés comme suit].",
+    fixedEffectMetaAnalysis: "Une méta-analyse à effet fixe a synthétisé k études et estimé un effet combiné de [métrique d'effet] = valeur, IC à 95 % [borne inférieure, borne supérieure], z = valeur, p = valeur. L'hétérogénéité était faible, Q(dl) = valeur, p = valeur, I2 = valeur %.",
+    randomEffectsMetaAnalysis: "Une méta-analyse à effets aléatoires a synthétisé k études et estimé un effet moyen combiné de [métrique d'effet] = valeur, IC à 95 % [borne inférieure, borne supérieure], z = valeur, p = valeur. L'hétérogénéité inter-études était tau2 = valeur et I2 = valeur % ; l'intervalle de prédiction était [borne inférieure, borne supérieure].",
+    subgroupMetaAnalysis: "Une méta-analyse par sous-groupes a comparé [variable de sous-groupe]. L'effet combiné était [effet] dans le sous-groupe A et [effet] dans le sous-groupe B ; le test entre sous-groupes était Q(dl) = valeur, p = valeur.",
+    metaRegression: "Une méta-régression a testé [modérateur] comme prédicteur au niveau des études de la taille d'effet. Le coefficient du modérateur était b = valeur, SE = valeur, IC à 95 % [borne inférieure, borne supérieure], z = valeur, p = valeur ; l'hétérogénéité résiduelle était I2 = valeur %.",
+    publicationBiasDiagnostics: "Les diagnostics de biais de publication indiquaient un funnel plot [symétrique/asymétrique]. Le test d'Egger était intercept = valeur, SE = valeur, z/t = valeur, p = valeur, suggérant [aucun indice/des indices] d'effets de petites études."
+  },
+  es: {
+    majorMetaAnalysis: "Un meta-análisis con [formato de entrada] sintetizó k estudios con un modelo de [efecto fijo/efectos aleatorios] usando [estimador]. El efecto combinado fue [métrica del efecto] = valor, IC del 95 % [límite inferior, límite superior], p = valor, con heterogeneidad I2 = valor % y tau2 = valor. Los análisis de moderadores y diagnósticos de sesgo de publicación fueron [no realizados/reportados como sigue].",
+    fixedEffectMetaAnalysis: "Un meta-análisis de efecto fijo sintetizó k estudios y estimó un efecto combinado de [métrica del efecto] = valor, IC del 95 % [límite inferior, límite superior], z = valor, p = valor. La heterogeneidad fue baja, Q(gl) = valor, p = valor, I2 = valor %.",
+    randomEffectsMetaAnalysis: "Un meta-análisis de efectos aleatorios sintetizó k estudios y estimó un efecto medio combinado de [métrica del efecto] = valor, IC del 95 % [límite inferior, límite superior], z = valor, p = valor. La heterogeneidad entre estudios fue tau2 = valor e I2 = valor %; el intervalo de predicción fue [límite inferior, límite superior].",
+    subgroupMetaAnalysis: "Un meta-análisis por subgrupos comparó [variable de subgrupo]. El efecto combinado fue [efecto] en el subgrupo A y [efecto] en el subgrupo B; la prueba entre subgrupos fue Q(gl) = valor, p = valor.",
+    metaRegression: "Una meta-regresión probó [moderador] como predictor a nivel de estudio del tamaño del efecto. El coeficiente del moderador fue b = valor, SE = valor, IC del 95 % [límite inferior, límite superior], z = valor, p = valor; la heterogeneidad residual fue I2 = valor %.",
+    publicationBiasDiagnostics: "Los diagnósticos de sesgo de publicación indicaron un patrón de funnel plot [simétrico/asimétrico]. La prueba de Egger fue intercepto = valor, SE = valor, z/t = valor, p = valor, sugiriendo [sin evidencia/evidencia] de efectos de estudios pequeños."
+  },
+  it: {
+    majorMetaAnalysis: "Una meta-analisi con [formato di input] ha sintetizzato k studi con un modello a [effetto fisso/effetti casuali] usando [stimatore]. L'effetto combinato era [metrica dell'effetto] = valore, IC 95% [limite inferiore, limite superiore], p = valore, con eterogeneità I2 = valore% e tau2 = valore. Analisi dei moderatori e diagnostica del bias di pubblicazione sono state [non eseguite/riportate come segue].",
+    fixedEffectMetaAnalysis: "Una meta-analisi a effetto fisso ha sintetizzato k studi e stimato un effetto combinato di [metrica dell'effetto] = valore, IC 95% [limite inferiore, limite superiore], z = valore, p = valore. L'eterogeneità era bassa, Q(df) = valore, p = valore, I2 = valore%.",
+    randomEffectsMetaAnalysis: "Una meta-analisi a effetti casuali ha sintetizzato k studi e stimato un effetto medio combinato di [metrica dell'effetto] = valore, IC 95% [limite inferiore, limite superiore], z = valore, p = valore. L'eterogeneità tra studi era tau2 = valore e I2 = valore%; l'intervallo di predizione era [limite inferiore, limite superiore].",
+    subgroupMetaAnalysis: "Una meta-analisi per sottogruppi ha confrontato [variabile di sottogruppo]. L'effetto combinato era [effetto] nel sottogruppo A e [effetto] nel sottogruppo B; il test tra sottogruppi era Q(df) = valore, p = valore.",
+    metaRegression: "Una meta-regressione ha testato [moderatore] come predittore a livello di studio della dimensione dell'effetto. Il coefficiente del moderatore era b = valore, SE = valore, IC 95% [limite inferiore, limite superiore], z = valore, p = valore; l'eterogeneità residua era I2 = valore%.",
+    publicationBiasDiagnostics: "La diagnostica del bias di pubblicazione indicava un funnel plot [simmetrico/asimmetrico]. Il test di Egger era intercetta = valore, SE = valore, z/t = valore, p = valore, suggerendo [nessuna evidenza/evidenza] di effetti dei piccoli studi."
+  }
+};
+
+const metaApaMetricTranslations = {
+  de: {
+    "input option": "Eingabeoption",
+    "model estimator": "Modell-Estimator",
+    "fixed or random effects": "Fixed oder Random Effects",
+    "publication-bias diagnostics": "Publikationsbias-Diagnostik",
+    "k studies": "k Studien",
+    "effect metric": "Effektmetrik",
+    "pooled effect": "gepoolter Effekt",
+    "pooled effect per subgroup": "gepoolter Effekt je Subgruppe",
+    "between-subgroup test": "Test zwischen Subgruppen",
+    "subgroup variable": "Subgruppenvariable",
+    "moderator": "Moderator",
+    "coefficient": "Koeffizient",
+    "residual I2": "Rest-I2",
+    "prediction interval": "Prädiktionsintervall",
+    "funnel plot": "Funnel Plot",
+    "intercept": "Intercept",
+    "trim-and-fill if used": "Trim-and-Fill, falls verwendet"
+  },
+  fr: {
+    "input option": "option d'entrée",
+    "model estimator": "estimateur du modèle",
+    "fixed or random effects": "effet fixe ou effets aléatoires",
+    "publication-bias diagnostics": "diagnostics de biais de publication",
+    "k studies": "k études",
+    "effect metric": "métrique d'effet",
+    "pooled effect": "effet combiné",
+    "pooled effect per subgroup": "effet combiné par sous-groupe",
+    "between-subgroup test": "test entre sous-groupes",
+    "subgroup variable": "variable de sous-groupe",
+    "moderator": "modérateur",
+    "coefficient": "coefficient",
+    "residual I2": "I2 résiduel",
+    "prediction interval": "intervalle de prédiction",
+    "funnel plot": "funnel plot",
+    "intercept": "intercept",
+    "trim-and-fill if used": "trim-and-fill si utilisé"
+  },
+  es: {
+    "input option": "opción de entrada",
+    "model estimator": "estimador del modelo",
+    "fixed or random effects": "efecto fijo o efectos aleatorios",
+    "publication-bias diagnostics": "diagnósticos de sesgo de publicación",
+    "k studies": "k estudios",
+    "effect metric": "métrica del efecto",
+    "pooled effect": "efecto combinado",
+    "pooled effect per subgroup": "efecto combinado por subgrupo",
+    "between-subgroup test": "prueba entre subgrupos",
+    "subgroup variable": "variable de subgrupo",
+    "moderator": "moderador",
+    "coefficient": "coeficiente",
+    "residual I2": "I2 residual",
+    "prediction interval": "intervalo de predicción",
+    "funnel plot": "funnel plot",
+    "intercept": "intercepto",
+    "trim-and-fill if used": "trim-and-fill si se usa"
+  },
+  it: {
+    "input option": "opzione di input",
+    "model estimator": "stimatore del modello",
+    "fixed or random effects": "effetto fisso o effetti casuali",
+    "publication-bias diagnostics": "diagnostica del bias di pubblicazione",
+    "k studies": "k studi",
+    "effect metric": "metrica dell'effetto",
+    "pooled effect": "effetto combinato",
+    "pooled effect per subgroup": "effetto combinato per sottogruppo",
+    "between-subgroup test": "test tra sottogruppi",
+    "subgroup variable": "variabile di sottogruppo",
+    "moderator": "moderatore",
+    "coefficient": "coefficiente",
+    "residual I2": "I2 residuo",
+    "prediction interval": "intervallo di predizione",
+    "funnel plot": "funnel plot",
+    "intercept": "intercetta",
+    "trim-and-fill if used": "trim-and-fill se usato"
+  }
+};
+
+Object.entries(metaApaTemplates).forEach(([language, templates]) => {
+  const pack = window.apaReportingPacks[language];
+  const metricTranslations = metaApaMetricTranslations[language] || {};
+  if (!pack) return;
+  Object.entries(templates).forEach(([resultId, template]) => {
+    pack.tests[resultId] = {
+      template,
+      metrics: (metaApaMetrics[resultId] || []).map((metric) => metricTranslations[metric] || metric)
+    };
+  });
+});
+
+const metaApaAliases = [
+  "metaOddsRatioAnalysis",
+  "metaCorrelationAnalysis",
+  "metaMeanDifferenceAnalysis",
+  "metaEffectSizeAnalysis",
+  "metaProportionAnalysis"
+];
+
+Object.values(window.apaReportingPacks).forEach((pack) => {
+  const source = pack?.tests?.majorMetaAnalysis;
+  if (!source) return;
+  metaApaAliases.forEach((resultId) => {
+    pack.tests[resultId] = source;
+  });
+});

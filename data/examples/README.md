@@ -44,5 +44,10 @@ Each CSV matches one result id in the decision tree. Use these files to create J
 | `multidimensionalScaling` | `multidimensionalScaling.csv` | Use the symmetric distance matrix among emotions for MDS. |
 | `chiSquareVariance` | `chiSquareVariance.csv` | Test the variance of `score` against a hypothesised population variance, e.g. `100`. |
 | `varianceFTest` | `varianceFTest.csv` | Compare the variance of `score` between the two levels of `group`. |
+| `metaOddsRatio` | `metaOddsRatio.csv` | MAJOR odds-ratio meta-analysis using treatment/control event counts, totals, `moderator`, and `study_label`. |
+| `metaCorrelation` | `metaCorrelation.csv` | MAJOR correlation-coefficient meta-analysis using `correlation`, `sample_size`, `moderator`, and `study_label`. |
+| `metaMeanDifferences` | `metaMeanDifferences.csv` | MAJOR mean-difference meta-analysis from `n`, `M`, and `SD` for treatment and control groups. |
+| `metaEffectSizes` | `metaEffectSizes.csv` | MAJOR effect-size meta-analysis using `effect_size`, `variance` or `se`, `moderator`, and `study_label`. |
+| `metaProportion` | `metaProportion.csv` | MAJOR proportion meta-analysis using `event_frequency`, `total_sample_size`, `moderator`, and `study_label`. |
 
 For clean screenshots, avoid extra ID columns unless Jamovi needs them for the specific analysis. Extra variables can accidentally be selected during manual setup.

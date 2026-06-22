@@ -96,6 +96,24 @@ window.localizedProcedurePacks = {
     multinomialRegression: {
       jamovi: "Analysen > Regression > Logistische Regression > N Ausprägungen\nLegen Sie die mehrkategoriale Zielvariable in Abhängige Variable.\nFügen Sie Prädiktoren zu Kovariaten oder Faktoren hinzu und wählen Sie die Referenzkategorie."
     },
+    majorMetaAnalysis: {
+      jamovi: "Installieren/öffnen Sie das Modul MAJOR in jamovi und wählen Sie die passende Eingabeoption: Odds-Ratio-Meta-Analyse, Korrelationskoeffizienten, Mittelwertsunterschiede aus n, M und SD, Effect sizes mit Variance oder SE oder Proportion.\nFür Korrelationskoeffizienten geben Sie Korrelationen, Stichprobengröße, Moderator und Study Label an. Für Effect sizes geben Sie Effektgröße, Variance oder SE, Moderator und Study Label an. Für Proportion geben Sie Ereignishäufigkeit, Gesamtstichprobengröße, Moderator und Study Label an.\nWählen Sie in Model Options den model estimator und die model measures; für Proportion wählen Sie die effect size model measures. Dort wählen Sie auch Fixed oder Random Effects und optional Moderatoranalysen sowie Publikationsbias-Diagnostik."
+    },
+    fixedEffectMetaAnalysis: {
+      jamovi: "Installieren/öffnen Sie das Modul MAJOR in jamovi und wählen Sie die passende Eingabeoption.\nFür Korrelationskoeffizienten geben Sie Korrelationen, Stichprobengröße, Moderator und Study Label an. Für Effect sizes geben Sie Effektgröße, Variance oder SE, Moderator und Study Label an. Für Proportion geben Sie Ereignishäufigkeit, Gesamtstichprobengröße, Moderator und Study Label an.\nWählen Sie in Model Options den model estimator und die model measures; für Proportion wählen Sie die effect size model measures. Wählen Sie ein Fixed-Effect-Modell und prüfen Sie den gepoolten Effekt mit 95%-KI."
+    },
+    randomEffectsMetaAnalysis: {
+      jamovi: "Installieren/öffnen Sie das Modul MAJOR in jamovi und wählen Sie die passende Eingabeoption.\nFür Korrelationskoeffizienten geben Sie Korrelationen, Stichprobengröße, Moderator und Study Label an. Für Effect sizes geben Sie Effektgröße, Variance oder SE, Moderator und Study Label an. Für Proportion geben Sie Ereignishäufigkeit, Gesamtstichprobengröße, Moderator und Study Label an.\nWählen Sie in Model Options den model estimator und die model measures; für Proportion wählen Sie die effect size model measures. Wählen Sie ein Random-Effects-Modell und berichten Sie gepoolten Effekt, 95%-KI, tau2, I2 und falls verfügbar das Prädiktionsintervall."
+    },
+    subgroupMetaAnalysis: {
+      jamovi: "Installieren/öffnen Sie das Modul MAJOR in jamovi und wählen Sie zuerst die passende Eingabeoption.\nFür Korrelationskoeffizienten geben Sie Korrelationen, Stichprobengröße, Moderator und Study Label an. Für Effect sizes geben Sie Effektgröße, Variance oder SE, Moderator und Study Label an. Für Proportion geben Sie Ereignishäufigkeit, Gesamtstichprobengröße, Moderator und Study Label an.\nWählen Sie in Model Options den model estimator und die model measures; für Proportion wählen Sie die effect size model measures. Nutzen Sie den Moderator als Subgruppenvariable und berichten Sie Subgruppeneffekte sowie den Test zwischen Subgruppen."
+    },
+    metaRegression: {
+      jamovi: "Installieren/öffnen Sie das Modul MAJOR in jamovi und wählen Sie zuerst die passende Eingabeoption.\nFür Korrelationskoeffizienten geben Sie Korrelationen, Stichprobengröße, Moderator und Study Label an. Für Effect sizes geben Sie Effektgröße, Variance oder SE, Moderator und Study Label an. Für Proportion geben Sie Ereignishäufigkeit, Gesamtstichprobengröße, Moderator und Study Label an.\nWählen Sie in Model Options den model estimator und die model measures; für Proportion wählen Sie die effect size model measures. Berichten Sie Moderator-Koeffizient, Konfidenzintervall, p-Wert, Restheterogenität und die Zahl der eingeschlossenen Studien."
+    },
+    publicationBiasDiagnostics: {
+      jamovi: "Installieren/öffnen Sie das Modul MAJOR in jamovi und führen Sie zuerst die Meta-Analyse mit der passenden Eingabeoption durch.\nFür Korrelationskoeffizienten geben Sie Korrelationen, Stichprobengröße, Moderator und Study Label an. Für Effect sizes geben Sie Effektgröße, Variance oder SE, Moderator und Study Label an. Für Proportion geben Sie Ereignishäufigkeit, Gesamtstichprobengröße, Moderator und Study Label an.\nWählen Sie in Model Options den model estimator und die model measures; für Proportion wählen Sie die effect size model measures. Fordern Sie Funnel Plot und Diagnostik für Small-Study-/Publikationsbias an, zum Beispiel Egger-Test, wenn verfügbar."
+    },
     factorAnalysis: {
       jamovi: "Analysen > Faktoren > Explorative Faktorenanalyse\nVerschieben Sie die zusammengehörigen Variablen in Variablen.\nWählen Sie Extraktionsmethode, Rotation und Faktorenzahl und prüfen Sie Ladungen sowie Modellpassung."
     },
@@ -209,6 +227,24 @@ window.localizedProcedurePacks = {
     multinomialRegression: {
       jamovi: "Analyses > Régression > Régression logistique > N modalités\nPlacez la variable cible multicatégorielle dans Variable dépendante.\nAjoutez les prédicteurs dans Covariables ou Facteurs et choisissez la catégorie de référence."
     },
+    majorMetaAnalysis: {
+      jamovi: "Installez/ouvrez le module MAJOR dans jamovi et choisissez l'option d'entrée adaptée : méta-analyse d'odds ratios, coefficients de corrélation, différences de moyennes à partir de n, M et SD, Effect sizes avec Variance ou SE, ou Proportion.\nPour les coefficients de corrélation, indiquez les corrélations, la taille d'échantillon, le Moderator et le Study Label. Pour Effect sizes, indiquez la taille d'effet, Variance ou SE, le Moderator et le Study Label. Pour Proportion, indiquez la fréquence de l'événement, la taille totale d'échantillon, le Moderator et le Study Label.\nDans Model Options, choisissez le model estimator et les model measures ; pour Proportion, choisissez les effect size model measures. Ces options permettent aussi de choisir effet fixe ou effets aléatoires, ainsi que les modérateurs et le biais de publication."
+    },
+    fixedEffectMetaAnalysis: {
+      jamovi: "Installez/ouvrez le module MAJOR dans jamovi et choisissez l'option d'entrée adaptée.\nPour les coefficients de corrélation, indiquez les corrélations, la taille d'échantillon, le Moderator et le Study Label. Pour Effect sizes, indiquez la taille d'effet, Variance ou SE, le Moderator et le Study Label. Pour Proportion, indiquez la fréquence de l'événement, la taille totale d'échantillon, le Moderator et le Study Label.\nDans Model Options, choisissez le model estimator et les model measures ; pour Proportion, choisissez les effect size model measures. Choisissez un modèle à effet fixe et examinez l'effet combiné avec son IC à 95 %."
+    },
+    randomEffectsMetaAnalysis: {
+      jamovi: "Installez/ouvrez le module MAJOR dans jamovi et choisissez l'option d'entrée adaptée.\nPour les coefficients de corrélation, indiquez les corrélations, la taille d'échantillon, le Moderator et le Study Label. Pour Effect sizes, indiquez la taille d'effet, Variance ou SE, le Moderator et le Study Label. Pour Proportion, indiquez la fréquence de l'événement, la taille totale d'échantillon, le Moderator et le Study Label.\nDans Model Options, choisissez le model estimator et les model measures ; pour Proportion, choisissez les effect size model measures. Choisissez un modèle à effets aléatoires et rapportez l'effet combiné, l'IC à 95 %, tau2, I2 et l'intervalle de prédiction si disponible."
+    },
+    subgroupMetaAnalysis: {
+      jamovi: "Installez/ouvrez le module MAJOR dans jamovi et choisissez d'abord l'option d'entrée adaptée.\nPour les coefficients de corrélation, indiquez les corrélations, la taille d'échantillon, le Moderator et le Study Label. Pour Effect sizes, indiquez la taille d'effet, Variance ou SE, le Moderator et le Study Label. Pour Proportion, indiquez la fréquence de l'événement, la taille totale d'échantillon, le Moderator et le Study Label.\nDans Model Options, choisissez le model estimator et les model measures ; pour Proportion, choisissez les effect size model measures. Utilisez le Moderator comme variable de sous-groupe et rapportez les effets par sous-groupe et le test entre sous-groupes."
+    },
+    metaRegression: {
+      jamovi: "Installez/ouvrez le module MAJOR dans jamovi et choisissez d'abord l'option d'entrée adaptée.\nPour les coefficients de corrélation, indiquez les corrélations, la taille d'échantillon, le Moderator et le Study Label. Pour Effect sizes, indiquez la taille d'effet, Variance ou SE, le Moderator et le Study Label. Pour Proportion, indiquez la fréquence de l'événement, la taille totale d'échantillon, le Moderator et le Study Label.\nDans Model Options, choisissez le model estimator et les model measures ; pour Proportion, choisissez les effect size model measures. Rapportez le coefficient du modérateur, l'intervalle de confiance, la valeur p, l'hétérogénéité résiduelle et le nombre d'études utilisées."
+    },
+    publicationBiasDiagnostics: {
+      jamovi: "Installez/ouvrez le module MAJOR dans jamovi et lancez d'abord la méta-analyse avec l'option d'entrée adaptée.\nPour les coefficients de corrélation, indiquez les corrélations, la taille d'échantillon, le Moderator et le Study Label. Pour Effect sizes, indiquez la taille d'effet, Variance ou SE, le Moderator et le Study Label. Pour Proportion, indiquez la fréquence de l'événement, la taille totale d'échantillon, le Moderator et le Study Label.\nDans Model Options, choisissez le model estimator et les model measures ; pour Proportion, choisissez les effect size model measures. Demandez le funnel plot et les diagnostics de petits effets d'étude/biais de publication, par exemple le test d'Egger lorsqu'il est disponible."
+    },
     factorAnalysis: {
       jamovi: "Analyses > Facteurs > Analyse factorielle exploratoire\nPlacez les variables liées dans Variables.\nChoisissez la méthode d'extraction, la rotation et le nombre de facteurs, puis examinez les charges et l'ajustement du modèle."
     },
@@ -321,6 +357,24 @@ window.localizedProcedurePacks = {
     },
     multinomialRegression: {
       jamovi: "Análisis > Regresión > Regresión logística > N resultados\nColoque la variable objetivo multicategórica en Variable dependiente.\nAñada predictores a Covariables o Factores y elija la categoría de referencia."
+    },
+    majorMetaAnalysis: {
+      jamovi: "Instale/abra el módulo MAJOR en jamovi y elija la opción de entrada adecuada: meta-análisis de odds ratios, coeficientes de correlación, diferencias de medias a partir de n, M y SD, Effect sizes con Variance o SE, o Proportion.\nPara coeficientes de correlación, indique las correlaciones, tamaño muestral, Moderator y Study Label. Para Effect sizes, indique el tamaño del efecto, Variance o SE, Moderator y Study Label. Para Proportion, indique la frecuencia del evento, tamaño muestral total, Moderator y Study Label.\nEn Model Options, elija el model estimator y las model measures; para Proportion, elija las effect size model measures. Allí también se elige efecto fijo o efectos aleatorios, y opcionalmente moderadores y sesgo de publicación."
+    },
+    fixedEffectMetaAnalysis: {
+      jamovi: "Instale/abra el módulo MAJOR en jamovi y elija la opción de entrada adecuada.\nPara coeficientes de correlación, indique las correlaciones, tamaño muestral, Moderator y Study Label. Para Effect sizes, indique el tamaño del efecto, Variance o SE, Moderator y Study Label. Para Proportion, indique la frecuencia del evento, tamaño muestral total, Moderator y Study Label.\nEn Model Options, elija el model estimator y las model measures; para Proportion, elija las effect size model measures. Seleccione un modelo de efecto fijo y revise el efecto combinado con IC del 95 %."
+    },
+    randomEffectsMetaAnalysis: {
+      jamovi: "Instale/abra el módulo MAJOR en jamovi y elija la opción de entrada adecuada.\nPara coeficientes de correlación, indique las correlaciones, tamaño muestral, Moderator y Study Label. Para Effect sizes, indique el tamaño del efecto, Variance o SE, Moderator y Study Label. Para Proportion, indique la frecuencia del evento, tamaño muestral total, Moderator y Study Label.\nEn Model Options, elija el model estimator y las model measures; para Proportion, elija las effect size model measures. Seleccione un modelo de efectos aleatorios e informe el efecto combinado, IC del 95 %, tau2, I2 e intervalo de predicción si está disponible."
+    },
+    subgroupMetaAnalysis: {
+      jamovi: "Instale/abra el módulo MAJOR en jamovi y elija primero la opción de entrada adecuada.\nPara coeficientes de correlación, indique las correlaciones, tamaño muestral, Moderator y Study Label. Para Effect sizes, indique el tamaño del efecto, Variance o SE, Moderator y Study Label. Para Proportion, indique la frecuencia del evento, tamaño muestral total, Moderator y Study Label.\nEn Model Options, elija el model estimator y las model measures; para Proportion, elija las effect size model measures. Use Moderator como variable de subgrupo e informe los efectos por subgrupo y la prueba entre subgrupos."
+    },
+    metaRegression: {
+      jamovi: "Instale/abra el módulo MAJOR en jamovi y elija primero la opción de entrada adecuada.\nPara coeficientes de correlación, indique las correlaciones, tamaño muestral, Moderator y Study Label. Para Effect sizes, indique el tamaño del efecto, Variance o SE, Moderator y Study Label. Para Proportion, indique la frecuencia del evento, tamaño muestral total, Moderator y Study Label.\nEn Model Options, elija el model estimator y las model measures; para Proportion, elija las effect size model measures. Informe el coeficiente del moderador, intervalo de confianza, valor p, heterogeneidad residual y número de estudios utilizados."
+    },
+    publicationBiasDiagnostics: {
+      jamovi: "Instale/abra el módulo MAJOR en jamovi y ejecute primero el meta-análisis con la opción de entrada adecuada.\nPara coeficientes de correlación, indique las correlaciones, tamaño muestral, Moderator y Study Label. Para Effect sizes, indique el tamaño del efecto, Variance o SE, Moderator y Study Label. Para Proportion, indique la frecuencia del evento, tamaño muestral total, Moderator y Study Label.\nEn Model Options, elija el model estimator y las model measures; para Proportion, elija las effect size model measures. Solicite el funnel plot y diagnósticos de efectos de estudios pequeños/sesgo de publicación, como la prueba de Egger cuando esté disponible."
     },
     factorAnalysis: {
       jamovi: "Análisis > Factores > Análisis factorial exploratorio\nMueva las variables relacionadas a Variables.\nElija el método de extracción, la rotación y el número de factores, e inspeccione cargas y ajuste del modelo."
@@ -487,6 +541,24 @@ window.localizedProcedurePacks.it = {
   multinomialRegression: {
     jamovi: "Analisi > Regressione > Regressione logistica > N esiti\nInserisci l'esito multicategoriale in Variabile dipendente.\nAggiungi i predittori in Covariate o Fattori e scegli la categoria di riferimento."
   },
+  majorMetaAnalysis: {
+    jamovi: "Installa/apri il modulo MAJOR in jamovi e scegli l'opzione di input adatta: meta-analisi degli odds ratio, coefficienti di correlazione, differenze tra medie da n, M e SD, Effect sizes con Variance o SE, oppure Proportion.\nPer coefficienti di correlazione, indica correlazioni, dimensione campionaria, Moderator e Study Label. Per Effect sizes, indica dimensione dell'effetto, Variance o SE, Moderator e Study Label. Per Proportion, indica frequenza dell'evento, dimensione campionaria totale, Moderator e Study Label.\nIn Model Options, scegli model estimator e model measures; per Proportion, scegli effect size model measures. Nelle stesse opzioni scegli effetto fisso o effetti casuali e, se necessario, moderatori e bias di pubblicazione."
+  },
+  fixedEffectMetaAnalysis: {
+    jamovi: "Installa/apri il modulo MAJOR in jamovi e scegli l'opzione di input adatta.\nPer coefficienti di correlazione, indica correlazioni, dimensione campionaria, Moderator e Study Label. Per Effect sizes, indica dimensione dell'effetto, Variance o SE, Moderator e Study Label. Per Proportion, indica frequenza dell'evento, dimensione campionaria totale, Moderator e Study Label.\nIn Model Options, scegli model estimator e model measures; per Proportion, scegli effect size model measures. Seleziona un modello a effetto fisso e controlla l'effetto combinato con IC 95%."
+  },
+  randomEffectsMetaAnalysis: {
+    jamovi: "Installa/apri il modulo MAJOR in jamovi e scegli l'opzione di input adatta.\nPer coefficienti di correlazione, indica correlazioni, dimensione campionaria, Moderator e Study Label. Per Effect sizes, indica dimensione dell'effetto, Variance o SE, Moderator e Study Label. Per Proportion, indica frequenza dell'evento, dimensione campionaria totale, Moderator e Study Label.\nIn Model Options, scegli model estimator e model measures; per Proportion, scegli effect size model measures. Seleziona un modello a effetti casuali e riporta effetto combinato, IC 95%, tau2, I2 e intervallo di predizione se disponibile."
+  },
+  subgroupMetaAnalysis: {
+    jamovi: "Installa/apri il modulo MAJOR in jamovi e scegli prima l'opzione di input adatta.\nPer coefficienti di correlazione, indica correlazioni, dimensione campionaria, Moderator e Study Label. Per Effect sizes, indica dimensione dell'effetto, Variance o SE, Moderator e Study Label. Per Proportion, indica frequenza dell'evento, dimensione campionaria totale, Moderator e Study Label.\nIn Model Options, scegli model estimator e model measures; per Proportion, scegli effect size model measures. Usa Moderator come variabile di sottogruppo e riporta effetti per sottogruppo e test tra sottogruppi."
+  },
+  metaRegression: {
+    jamovi: "Installa/apri il modulo MAJOR in jamovi e scegli prima l'opzione di input adatta.\nPer coefficienti di correlazione, indica correlazioni, dimensione campionaria, Moderator e Study Label. Per Effect sizes, indica dimensione dell'effetto, Variance o SE, Moderator e Study Label. Per Proportion, indica frequenza dell'evento, dimensione campionaria totale, Moderator e Study Label.\nIn Model Options, scegli model estimator e model measures; per Proportion, scegli effect size model measures. Riporta coefficiente del moderatore, intervallo di confidenza, valore p, eterogeneità residua e numero di studi usati."
+  },
+  publicationBiasDiagnostics: {
+    jamovi: "Installa/apri il modulo MAJOR in jamovi ed esegui prima la meta-analisi con l'opzione di input adatta.\nPer coefficienti di correlazione, indica correlazioni, dimensione campionaria, Moderator e Study Label. Per Effect sizes, indica dimensione dell'effetto, Variance o SE, Moderator e Study Label. Per Proportion, indica frequenza dell'evento, dimensione campionaria totale, Moderator e Study Label.\nIn Model Options, scegli model estimator e model measures; per Proportion, scegli effect size model measures. Richiedi funnel plot e diagnostica per small-study effect/bias di pubblicazione, per esempio il test di Egger quando disponibile."
+  },
   factorAnalysis: {
     jamovi: "Analisi > Fattori > Analisi fattoriale esplorativa\nSposta le variabili correlate in Variabili.\nScegli metodo di estrazione, rotazione e numero di fattori, poi controlla carichi e adattamento del modello."
   },
@@ -503,3 +575,18 @@ window.localizedProcedurePacks.it = {
     jamovi: "Jamovi può mostrare le varianze per gruppo in Esplorazione > Descrittive.\nPer il classico test F di due varianze, esporta i dati o usa un modulo R ed esegui var.test().\nConsidera il test di Levene come alternativa più robusta quando la normalità è dubbia."
   }
 };
+
+const metaProcedureAliases = [
+  "metaOddsRatioAnalysis",
+  "metaCorrelationAnalysis",
+  "metaMeanDifferenceAnalysis",
+  "metaEffectSizeAnalysis",
+  "metaProportionAnalysis"
+];
+
+Object.values(window.localizedProcedurePacks).forEach((pack) => {
+  if (!pack?.majorMetaAnalysis) return;
+  metaProcedureAliases.forEach((resultId) => {
+    pack[resultId] = pack.majorMetaAnalysis;
+  });
+});

@@ -1101,6 +1101,200 @@ Object.entries(mlLanguageAdditions).forEach(([language, addition]) => {
   Object.assign(pack.results, addition.results);
 });
 
+const metaLanguageAdditions = {
+  de: {
+    goalUpdate: {
+      question: "Was möchten Sie mit Ihren Daten tun?",
+      hint: "Wählen Sie, ob Sie eine einzelne Studie analysieren, explorativ Struktur entdecken, neue Fälle vorhersagen oder mehrere Studien/ Effektgrößen zusammenfassen möchten."
+    },
+    goalAnswer: { label: "Mehrere Studien oder Effektgrößen zusammenfassen", next: "metaEffectType" },
+    tree: {
+      metaEffectType: {
+        area: "Meta-Analyse",
+        question: "Welche Informationen liegen aus Ihren Studien vor?",
+        hint: "Wählen Sie das Datenformat anhand der Kennwerte, die Sie aus den Primärstudien extrahiert haben.",
+        step: "Eingabeformat",
+        answers: [
+          { label: "Odds-Ratio-Meta-Analyse", result: "metaOddsRatioAnalysis" },
+          { label: "Korrelationskoeffizienten", result: "metaCorrelationAnalysis" },
+          { label: "Mittelwertsunterschiede aus n, M und SD", result: "metaMeanDifferenceAnalysis" },
+          { label: "Berechnete Effektgrößen mit Stichprobenvarianzen oder Standardfehlern", result: "metaEffectSizeAnalysis" },
+          { label: "Anteile/Proportionen aus Ereignishäufigkeit und Gesamtstichprobe", result: "metaProportionAnalysis" }
+        ]
+      },
+      metaHeterogeneity: {
+        area: "Heterogenität",
+        question: "Ist zwischen den Studien relevante Heterogenität zu erwarten?",
+        hint: "Unterschiede in Stichproben, Interventionen, Messinstrumenten oder Studiendesigns sprechen meist für ein Random-Effects-Modell.",
+        step: "Modelltyp",
+        answers: [
+          { label: "Kaum Heterogenität und sehr ähnliche Studien", result: "fixedEffectMetaAnalysis" },
+          { label: "Moderate oder hohe Heterogenität erwartet", next: "metaPurpose" }
+        ]
+      },
+      metaPurpose: {
+        area: "Zusatzfrage",
+        question: "Möchten Sie Heterogenität erklären oder Bias prüfen?",
+        hint: "Nach dem gepoolten Effekt können Subgruppen, kontinuierliche Moderatoren oder Small-Study-Effekte geprüft werden.",
+        step: "Zusatzanalyse",
+        answers: [
+          { label: "Nein, gepoolten Gesamteffekt berichten", result: "randomEffectsMetaAnalysis" },
+          { label: "Kategoriale Subgruppen vergleichen", result: "subgroupMetaAnalysis" },
+          { label: "Kontinuierliche Moderatoren prüfen", result: "metaRegression" },
+          { label: "Publikationsbias oder Small-Study-Effekte prüfen", result: "publicationBiasDiagnostics" }
+        ]
+      }
+    },
+    results: {
+      metaOddsRatioAnalysis: { title: "Odds-Ratio-Meta-Analyse", summary: "Synthetisiert Odds Ratios aus Ereignishäufigkeiten und Gruppengrößen über mehrere Studien.", assumptions: ["Mehrere unabhängige Studien", "Ereignisse und Gesamtstichprobengröße pro Gruppe verfügbar", "Moderator und Study Label können ergänzt werden", "Fixed/Random Effects, Moderatoranalysen und Publikationsbias-Prüfung in den Modelloptionen festlegen"] },
+      metaCorrelationAnalysis: { title: "Korrelations-Meta-Analyse", summary: "Synthetisiert Korrelationskoeffizienten aus mehreren Studien.", assumptions: ["Korrelation und Stichprobengröße pro Studie verfügbar", "Studien messen vergleichbare Konstrukte", "Moderator und Study Label können ergänzt werden", "Fixed/Random Effects, Moderatoranalysen und Publikationsbias-Prüfung in den Modelloptionen festlegen"] },
+      metaMeanDifferenceAnalysis: { title: "Meta-Analyse von Mittelwertsunterschieden", summary: "Synthetisiert Gruppenunterschiede aus n, Mittelwert und Standardabweichung.", assumptions: ["n, M und SD pro Gruppe verfügbar", "Gruppen und Messskalen sind vergleichbar", "Moderator und Study Label können ergänzt werden", "Fixed/Random Effects, Moderatoranalysen und Publikationsbias-Prüfung in den Modelloptionen festlegen"] },
+      metaEffectSizeAnalysis: { title: "Effektgrößen-Meta-Analyse", summary: "Synthetisiert bereits berechnete Effektgrößen mit Varianz oder Standardfehler.", assumptions: ["Effektgröße pro Studie verfügbar", "Varianz oder Standardfehler pro Effektgröße verfügbar", "Moderator und Study Label können ergänzt werden", "Fixed/Random Effects, Moderatoranalysen und Publikationsbias-Prüfung in den Modelloptionen festlegen"] },
+      metaProportionAnalysis: { title: "Proportions-Meta-Analyse", summary: "Synthetisiert Anteile aus Ereignishäufigkeiten und Gesamtstichproben.", assumptions: ["Ereignishäufigkeit pro Studie verfügbar", "Gesamtstichprobengröße pro Studie verfügbar", "Moderator und Study Label können ergänzt werden", "Fixed/Random Effects, Moderatoranalysen und Publikationsbias-Prüfung in den Modelloptionen festlegen"] },
+      majorMetaAnalysis: { title: "Meta-Analyse", summary: "Synthetisiert mehrere Studien mit der passenden Eingabeoption. Fixed- oder Random-Effects-Modell, Moderatoranalysen und Publikationsbias-Diagnostik werden anschließend in den Modelloptionen ausgewählt.", assumptions: ["Mehrere unabhängige Studien oder Effektgrößen", "Passende Eingabedaten für die gewählte Option", "Fixed vs. Random Effects anhand von Studiendesign und Heterogenität begründen", "Moderatoranalysen und Publikationsbias-Prüfungen als optionale Zusatzanalysen berichten"] },
+      fixedEffectMetaAnalysis: { title: "Fixed-Effect-Meta-Analyse", summary: "Schätzt einen gemeinsamen Effekt unter der Annahme, dass alle Studien denselben wahren Effekt teilen.", assumptions: ["Mehrere unabhängige Studien oder Effektgrößen", "Gemeinsame Effektgröße und Standardfehler/Varianz verfügbar", "Studien sind inhaltlich sehr ähnlich", "Heterogenität ist gering"] },
+      randomEffectsMetaAnalysis: { title: "Random-Effects-Meta-Analyse", summary: "Schätzt einen mittleren Effekt, wenn wahre Effekte zwischen Studien variieren können.", assumptions: ["Mehrere unabhängige Studien oder Effektgrößen", "Effektgröße und Präzisionsmaß verfügbar", "Zwischenstudienvarianz wird geschätzt", "Heterogenität wird mit tau2/I2 berichtet"] },
+      subgroupMetaAnalysis: { title: "Subgruppen-Meta-Analyse", summary: "Vergleicht gepoolte Effekte zwischen kategorial definierten Studiengruppen.", assumptions: ["Subgruppen vorab begründet", "Ausreichend Studien pro Subgruppe", "Gleiche Effektmetrik", "Subgruppenvergleiche vorsichtig interpretieren"] },
+      metaRegression: { title: "Meta-Regression", summary: "Prüft, ob kontinuierliche oder mehrere Moderatorvariablen Unterschiede zwischen Studien erklären.", assumptions: ["Ausreichend viele Studien", "Moderator auf Studienebene gemessen", "Gleiche Effektmetrik", "Ökologische Interpretation beachten"] },
+      publicationBiasDiagnostics: { title: "Publikationsbias-Diagnostik", summary: "Prüft Funnel-Plot-Asymmetrie und Small-Study-Effekte als Hinweis auf mögliche Verzerrungen.", assumptions: ["Genügend Studien für sinnvolle Diagnostik", "Vergleichbare Effektmetrik", "Asymmetrie kann mehrere Ursachen haben", "Diagnostik nicht als Beweis für Bias interpretieren"] }
+    }
+  },
+  en: {
+    goalUpdate: {
+      question: "What do you want to do with your data?",
+      hint: "Choose whether you want to analyse one study, discover structure exploratively, predict new cases, or synthesize several studies/effect sizes."
+    },
+    goalAnswer: { label: "Synthesize several studies or effect sizes", next: "metaEffectType" },
+    tree: {
+      metaEffectType: {
+        area: "Meta-analysis",
+        question: "Which information is available from your studies?",
+        hint: "Choose the data format based on the statistics you extracted from the primary studies.",
+        step: "Input format",
+        answers: [
+          { label: "Odds-ratio meta-analysis", result: "metaOddsRatioAnalysis" },
+          { label: "Correlation coefficients", result: "metaCorrelationAnalysis" },
+          { label: "Mean differences from n, M, and SD", result: "metaMeanDifferenceAnalysis" },
+          { label: "Effect sizes with sampling variances or standard errors", result: "metaEffectSizeAnalysis" },
+          { label: "Proportions from event frequency and total sample size", result: "metaProportionAnalysis" }
+        ]
+      },
+      metaHeterogeneity: {
+        area: "Heterogeneity",
+        question: "Do you expect meaningful heterogeneity between studies?",
+        hint: "Differences in samples, interventions, instruments, or designs usually favor a random-effects model.",
+        step: "Model type",
+        answers: [
+          { label: "Little heterogeneity and very similar studies", result: "fixedEffectMetaAnalysis" },
+          { label: "Moderate or high heterogeneity expected", next: "metaPurpose" }
+        ]
+      },
+      metaPurpose: {
+        area: "Follow-up question",
+        question: "Do you want to explain heterogeneity or inspect bias?",
+        hint: "After the pooled effect, you may inspect subgroups, continuous moderators, or small-study effects.",
+        step: "Additional analysis",
+        answers: [
+          { label: "No, report the pooled overall effect", result: "randomEffectsMetaAnalysis" },
+          { label: "Compare categorical subgroups", result: "subgroupMetaAnalysis" },
+          { label: "Test continuous moderators", result: "metaRegression" },
+          { label: "Inspect publication bias or small-study effects", result: "publicationBiasDiagnostics" }
+        ]
+      }
+    },
+    results: {
+      metaOddsRatioAnalysis: { title: "Odds-ratio meta-analysis", summary: "Synthesizes odds ratios from event counts and group sizes across studies.", assumptions: ["Several independent studies", "Events and total sample size available for each group", "Moderator and Study Label can be added", "Select fixed/random effects, moderator analyses, and publication-bias checks in the model options"] },
+      metaCorrelationAnalysis: { title: "Correlation-coefficient meta-analysis", summary: "Synthesizes correlation coefficients from several studies.", assumptions: ["Correlation and sample size available for each study", "Studies measure comparable constructs", "Moderator and Study Label can be added", "Select fixed/random effects, moderator analyses, and publication-bias checks in the model options"] },
+      metaMeanDifferenceAnalysis: { title: "Mean-difference meta-analysis", summary: "Synthesizes group differences from n, mean, and standard deviation.", assumptions: ["n, M, and SD available for each group", "Groups and measurement scales are comparable", "Moderator and Study Label can be added", "Select fixed/random effects, moderator analyses, and publication-bias checks in the model options"] },
+      metaEffectSizeAnalysis: { title: "Effect-size meta-analysis", summary: "Synthesizes already computed effect sizes with their variance or standard error.", assumptions: ["Effect size available for each study", "Variance or standard error available for each effect size", "Moderator and Study Label can be added", "Select fixed/random effects, moderator analyses, and publication-bias checks in the model options"] },
+      metaProportionAnalysis: { title: "Proportion meta-analysis", summary: "Synthesizes proportions from event frequencies and total sample sizes.", assumptions: ["Event frequency available for each study", "Total sample size available for each study", "Moderator and Study Label can be added", "Select fixed/random effects, moderator analyses, and publication-bias checks in the model options"] },
+      majorMetaAnalysis: { title: "Meta-analysis", summary: "Synthesizes several studies with the appropriate input option. The fixed- or random-effects model, moderator analyses, and publication-bias diagnostics are then chosen in the model options.", assumptions: ["Several independent studies or effect sizes", "Input data match the selected option", "Justify fixed vs. random effects from study design and heterogeneity", "Report moderator analyses and publication-bias checks as optional follow-up analyses"] },
+      fixedEffectMetaAnalysis: { title: "Fixed-effect meta-analysis", summary: "Estimates one common effect under the assumption that all studies share the same true effect.", assumptions: ["Several independent studies or effect sizes", "Common effect size and standard error/variance available", "Studies are substantively very similar", "Heterogeneity is low"] },
+      randomEffectsMetaAnalysis: { title: "Random-effects meta-analysis", summary: "Estimates an average effect when true effects may vary between studies.", assumptions: ["Several independent studies or effect sizes", "Effect size and precision measure available", "Between-study variance is estimated", "Heterogeneity is reported with tau2/I2"] },
+      subgroupMetaAnalysis: { title: "Subgroup meta-analysis", summary: "Compares pooled effects between categorically defined groups of studies.", assumptions: ["Subgroups justified in advance", "Enough studies per subgroup", "Same effect metric", "Subgroup comparisons interpreted cautiously"] },
+      metaRegression: { title: "Meta-regression", summary: "Tests whether continuous or multiple study-level moderators explain between-study differences.", assumptions: ["Enough studies", "Moderator measured at study level", "Same effect metric", "Ecological interpretation considered"] },
+      publicationBiasDiagnostics: { title: "Publication-bias diagnostics", summary: "Inspects funnel-plot asymmetry and small-study effects as possible signs of bias.", assumptions: ["Enough studies for meaningful diagnostics", "Comparable effect metric", "Asymmetry can have several causes", "Diagnostics are not proof of bias"] }
+    }
+  },
+  fr: {
+    goalUpdate: { question: "Que voulez-vous faire avec vos données ?", hint: "Choisissez si vous voulez analyser une étude, découvrir une structure, prédire de nouveaux cas ou synthétiser plusieurs études/tailles d'effet." },
+    goalAnswer: { label: "Synthétiser plusieurs études ou tailles d'effet", next: "metaEffectType" },
+    tree: {
+      metaEffectType: { area: "Méta-analyse", question: "Quelles informations sont disponibles dans vos études ?", hint: "Choisissez le format des données selon les statistiques extraites des études primaires.", step: "Format d'entrée", answers: [{ label: "Méta-analyse d'odds ratios", result: "metaOddsRatioAnalysis" }, { label: "Coefficients de corrélation", result: "metaCorrelationAnalysis" }, { label: "Différences de moyennes à partir de n, M et SD", result: "metaMeanDifferenceAnalysis" }, { label: "Tailles d'effet avec variances d'échantillonnage ou erreurs standard", result: "metaEffectSizeAnalysis" }, { label: "Proportions à partir de la fréquence d'événement et de l'effectif total", result: "metaProportionAnalysis" }] },
+      metaHeterogeneity: { area: "Hétérogénéité", question: "Attendez-vous une hétérogénéité importante entre les études ?", hint: "Des différences d'échantillons, d'interventions, d'instruments ou de plans favorisent souvent un modèle à effets aléatoires.", step: "Type de modèle", answers: [{ label: "Peu d'hétérogénéité et études très similaires", result: "fixedEffectMetaAnalysis" }, { label: "Hétérogénéité modérée ou élevée attendue", next: "metaPurpose" }] },
+      metaPurpose: { area: "Question complémentaire", question: "Voulez-vous expliquer l'hétérogénéité ou examiner un biais ?", hint: "Après l'effet combiné, vous pouvez examiner des sous-groupes, des modérateurs continus ou les effets de petites études.", step: "Analyse complémentaire", answers: [{ label: "Non, rapporter l'effet global combiné", result: "randomEffectsMetaAnalysis" }, { label: "Comparer des sous-groupes catégoriels", result: "subgroupMetaAnalysis" }, { label: "Tester des modérateurs continus", result: "metaRegression" }, { label: "Examiner le biais de publication ou les effets de petites études", result: "publicationBiasDiagnostics" }] }
+    },
+    results: {
+      metaOddsRatioAnalysis: { title: "Méta-analyse d'odds ratios", summary: "Synthétise des odds ratios à partir des fréquences d'événements et des tailles de groupes.", assumptions: ["Plusieurs études indépendantes", "Événements et taille totale disponibles pour chaque groupe", "Moderator et Study Label peuvent être ajoutés", "Choisir effet fixe/aléatoire, modérateurs et biais de publication dans les options du modèle"] },
+      metaCorrelationAnalysis: { title: "Méta-analyse de coefficients de corrélation", summary: "Synthétise des coefficients de corrélation provenant de plusieurs études.", assumptions: ["Corrélation et taille d'échantillon disponibles pour chaque étude", "Construits comparables entre études", "Moderator et Study Label peuvent être ajoutés", "Choisir effet fixe/aléatoire, modérateurs et biais de publication dans les options du modèle"] },
+      metaMeanDifferenceAnalysis: { title: "Méta-analyse de différences de moyennes", summary: "Synthétise des différences entre groupes à partir de n, moyenne et écart-type.", assumptions: ["n, M et SD disponibles pour chaque groupe", "Groupes et échelles de mesure comparables", "Moderator et Study Label peuvent être ajoutés", "Choisir effet fixe/aléatoire, modérateurs et biais de publication dans les options du modèle"] },
+      metaEffectSizeAnalysis: { title: "Méta-analyse de tailles d'effet", summary: "Synthétise des tailles d'effet déjà calculées avec leur variance ou erreur standard.", assumptions: ["Taille d'effet disponible pour chaque étude", "Variance ou erreur standard disponible", "Moderator et Study Label peuvent être ajoutés", "Choisir effet fixe/aléatoire, modérateurs et biais de publication dans les options du modèle"] },
+      metaProportionAnalysis: { title: "Méta-analyse de proportions", summary: "Synthétise des proportions à partir des fréquences d'événements et des effectifs totaux.", assumptions: ["Fréquence d'événement disponible pour chaque étude", "Taille totale d'échantillon disponible", "Moderator et Study Label peuvent être ajoutés", "Choisir effet fixe/aléatoire, modérateurs et biais de publication dans les options du modèle"] },
+      majorMetaAnalysis: { title: "Méta-analyse", summary: "Synthétise plusieurs études avec l'option d'entrée appropriée. Le modèle à effet fixe ou à effets aléatoires, les analyses de modérateurs et les diagnostics de biais de publication sont ensuite choisis dans les options du modèle.", assumptions: ["Plusieurs études ou tailles d'effet indépendantes", "Données d'entrée adaptées à l'option choisie", "Justifier effet fixe vs effets aléatoires par le plan des études et l'hétérogénéité", "Rapporter les modérateurs et le biais de publication comme analyses complémentaires optionnelles"] },
+      fixedEffectMetaAnalysis: { title: "Méta-analyse à effet fixe", summary: "Estime un effet commun en supposant que toutes les études partagent le même effet vrai.", assumptions: ["Plusieurs études ou tailles d'effet indépendantes", "Taille d'effet commune et erreur standard/variance disponibles", "Études substantiellement très similaires", "Hétérogénéité faible"] },
+      randomEffectsMetaAnalysis: { title: "Méta-analyse à effets aléatoires", summary: "Estime un effet moyen lorsque les effets vrais peuvent varier entre les études.", assumptions: ["Plusieurs études ou tailles d'effet indépendantes", "Taille d'effet et mesure de précision disponibles", "Variance inter-études estimée", "Hétérogénéité rapportée avec tau2/I2"] },
+      subgroupMetaAnalysis: { title: "Méta-analyse par sous-groupes", summary: "Compare les effets combinés entre groupes d'études définis catégoriellement.", assumptions: ["Sous-groupes justifiés à l'avance", "Assez d'études par sous-groupe", "Même métrique d'effet", "Comparaisons interprétées prudemment"] },
+      metaRegression: { title: "Méta-régression", summary: "Teste si des modérateurs continus ou multiples au niveau des études expliquent les différences entre études.", assumptions: ["Nombre suffisant d'études", "Modérateur mesuré au niveau de l'étude", "Même métrique d'effet", "Interprétation écologique prise en compte"] },
+      publicationBiasDiagnostics: { title: "Diagnostic du biais de publication", summary: "Examine l'asymétrie du funnel plot et les effets de petites études comme indices possibles de biais.", assumptions: ["Assez d'études pour un diagnostic utile", "Métrique d'effet comparable", "L'asymétrie peut avoir plusieurs causes", "Le diagnostic ne prouve pas le biais"] }
+    }
+  },
+  es: {
+    goalUpdate: { question: "¿Qué desea hacer con sus datos?", hint: "Elija si quiere analizar un estudio, descubrir estructura, predecir nuevos casos o sintetizar varios estudios/tamaños del efecto." },
+    goalAnswer: { label: "Sintetizar varios estudios o tamaños del efecto", next: "metaEffectType" },
+    tree: {
+      metaEffectType: { area: "Meta-análisis", question: "¿Qué información está disponible en sus estudios?", hint: "Elija el formato de datos según los estadísticos extraídos de los estudios primarios.", step: "Formato de entrada", answers: [{ label: "Meta-análisis de odds ratios", result: "metaOddsRatioAnalysis" }, { label: "Coeficientes de correlación", result: "metaCorrelationAnalysis" }, { label: "Diferencias de medias a partir de n, M y SD", result: "metaMeanDifferenceAnalysis" }, { label: "Tamaños del efecto con varianzas muestrales o errores estándar", result: "metaEffectSizeAnalysis" }, { label: "Proporciones a partir de frecuencia del evento y tamaño muestral total", result: "metaProportionAnalysis" }] },
+      metaHeterogeneity: { area: "Heterogeneidad", question: "¿Espera heterogeneidad relevante entre estudios?", hint: "Diferencias en muestras, intervenciones, instrumentos o diseños suelen favorecer un modelo de efectos aleatorios.", step: "Tipo de modelo", answers: [{ label: "Poca heterogeneidad y estudios muy similares", result: "fixedEffectMetaAnalysis" }, { label: "Heterogeneidad moderada o alta esperada", next: "metaPurpose" }] },
+      metaPurpose: { area: "Pregunta adicional", question: "¿Quiere explicar la heterogeneidad o inspeccionar sesgo?", hint: "Después del efecto combinado puede examinar subgrupos, moderadores continuos o efectos de estudios pequeños.", step: "Análisis adicional", answers: [{ label: "No, reportar el efecto global combinado", result: "randomEffectsMetaAnalysis" }, { label: "Comparar subgrupos categóricos", result: "subgroupMetaAnalysis" }, { label: "Probar moderadores continuos", result: "metaRegression" }, { label: "Inspeccionar sesgo de publicación o efectos de estudios pequeños", result: "publicationBiasDiagnostics" }] }
+    },
+    results: {
+      metaOddsRatioAnalysis: { title: "Meta-análisis de odds ratios", summary: "Sintetiza odds ratios a partir de frecuencias de eventos y tamaños de grupo.", assumptions: ["Varios estudios independientes", "Eventos y tamaño muestral total disponibles para cada grupo", "Moderator y Study Label pueden añadirse", "Elegir efectos fijos/aleatorios, moderadores y sesgo de publicación en las opciones del modelo"] },
+      metaCorrelationAnalysis: { title: "Meta-análisis de coeficientes de correlación", summary: "Sintetiza coeficientes de correlación de varios estudios.", assumptions: ["Correlación y tamaño muestral disponibles para cada estudio", "Constructos comparables entre estudios", "Moderator y Study Label pueden añadirse", "Elegir efectos fijos/aleatorios, moderadores y sesgo de publicación en las opciones del modelo"] },
+      metaMeanDifferenceAnalysis: { title: "Meta-análisis de diferencias de medias", summary: "Sintetiza diferencias entre grupos a partir de n, media y desviación estándar.", assumptions: ["n, M y SD disponibles para cada grupo", "Grupos y escalas de medición comparables", "Moderator y Study Label pueden añadirse", "Elegir efectos fijos/aleatorios, moderadores y sesgo de publicación en las opciones del modelo"] },
+      metaEffectSizeAnalysis: { title: "Meta-análisis de tamaños del efecto", summary: "Sintetiza tamaños del efecto ya calculados con su varianza o error estándar.", assumptions: ["Tamaño del efecto disponible para cada estudio", "Varianza o error estándar disponible", "Moderator y Study Label pueden añadirse", "Elegir efectos fijos/aleatorios, moderadores y sesgo de publicación en las opciones del modelo"] },
+      metaProportionAnalysis: { title: "Meta-análisis de proporciones", summary: "Sintetiza proporciones a partir de frecuencias del evento y tamaños muestrales totales.", assumptions: ["Frecuencia del evento disponible para cada estudio", "Tamaño muestral total disponible", "Moderator y Study Label pueden añadirse", "Elegir efectos fijos/aleatorios, moderadores y sesgo de publicación en las opciones del modelo"] },
+      majorMetaAnalysis: { title: "Meta-análisis", summary: "Sintetiza varios estudios con la opción de entrada adecuada. El modelo de efecto fijo o efectos aleatorios, los moderadores y el sesgo de publicación se eligen después en las opciones del modelo.", assumptions: ["Varios estudios o tamaños del efecto independientes", "Datos de entrada adecuados para la opción elegida", "Justificar efecto fijo vs efectos aleatorios según diseño y heterogeneidad", "Reportar moderadores y sesgo de publicación como análisis complementarios opcionales"] },
+      fixedEffectMetaAnalysis: { title: "Meta-análisis de efecto fijo", summary: "Estima un efecto común bajo el supuesto de que todos los estudios comparten el mismo efecto verdadero.", assumptions: ["Varios estudios o tamaños del efecto independientes", "Tamaño del efecto común y error estándar/varianza disponibles", "Estudios sustantivamente muy similares", "Heterogeneidad baja"] },
+      randomEffectsMetaAnalysis: { title: "Meta-análisis de efectos aleatorios", summary: "Estima un efecto medio cuando los efectos verdaderos pueden variar entre estudios.", assumptions: ["Varios estudios o tamaños del efecto independientes", "Tamaño del efecto y medida de precisión disponibles", "Varianza entre estudios estimada", "Heterogeneidad reportada con tau2/I2"] },
+      subgroupMetaAnalysis: { title: "Meta-análisis por subgrupos", summary: "Compara efectos combinados entre grupos de estudios definidos categóricamente.", assumptions: ["Subgrupos justificados previamente", "Suficientes estudios por subgrupo", "Misma métrica de efecto", "Comparaciones interpretadas con cautela"] },
+      metaRegression: { title: "Meta-regresión", summary: "Prueba si moderadores continuos o múltiples a nivel de estudio explican diferencias entre estudios.", assumptions: ["Suficientes estudios", "Moderador medido a nivel de estudio", "Misma métrica de efecto", "Interpretación ecológica considerada"] },
+      publicationBiasDiagnostics: { title: "Diagnóstico de sesgo de publicación", summary: "Examina asimetría del funnel plot y efectos de estudios pequeños como posibles indicios de sesgo.", assumptions: ["Suficientes estudios para diagnóstico útil", "Métrica de efecto comparable", "La asimetría puede tener varias causas", "El diagnóstico no prueba sesgo"] }
+    }
+  },
+  it: {
+    goalUpdate: { question: "Che cosa vuoi fare con i tuoi dati?", hint: "Scegli se analizzare un singolo studio, scoprire struttura, predire nuovi casi o sintetizzare più studi/dimensioni dell'effetto." },
+    goalAnswer: { label: "Sintetizzare più studi o dimensioni dell'effetto", next: "metaEffectType" },
+    tree: {
+      metaEffectType: { area: "Meta-analisi", question: "Quali informazioni sono disponibili nei tuoi studi?", hint: "Scegli il formato dei dati in base alle statistiche estratte dagli studi primari.", step: "Formato di input", answers: [{ label: "Meta-analisi degli odds ratio", result: "metaOddsRatioAnalysis" }, { label: "Coefficienti di correlazione", result: "metaCorrelationAnalysis" }, { label: "Differenze tra medie da n, M e SD", result: "metaMeanDifferenceAnalysis" }, { label: "Dimensioni dell'effetto con varianze campionarie o errori standard", result: "metaEffectSizeAnalysis" }, { label: "Proporzioni da frequenza dell'evento e campione totale", result: "metaProportionAnalysis" }] },
+      metaHeterogeneity: { area: "Eterogeneità", question: "Ti aspetti eterogeneità rilevante tra gli studi?", hint: "Differenze in campioni, interventi, strumenti o disegni spesso favoriscono un modello a effetti casuali.", step: "Tipo di modello", answers: [{ label: "Poca eterogeneità e studi molto simili", result: "fixedEffectMetaAnalysis" }, { label: "Eterogeneità moderata o alta prevista", next: "metaPurpose" }] },
+      metaPurpose: { area: "Domanda aggiuntiva", question: "Vuoi spiegare l'eterogeneità o controllare bias?", hint: "Dopo l'effetto combinato puoi esaminare sottogruppi, moderatori continui o effetti dei piccoli studi.", step: "Analisi aggiuntiva", answers: [{ label: "No, riportare l'effetto globale combinato", result: "randomEffectsMetaAnalysis" }, { label: "Confrontare sottogruppi categoriali", result: "subgroupMetaAnalysis" }, { label: "Testare moderatori continui", result: "metaRegression" }, { label: "Controllare bias di pubblicazione o effetti dei piccoli studi", result: "publicationBiasDiagnostics" }] }
+    },
+    results: {
+      metaOddsRatioAnalysis: { title: "Meta-analisi degli odds ratio", summary: "Sintetizza odds ratio da frequenze degli eventi e dimensioni dei gruppi.", assumptions: ["Più studi indipendenti", "Eventi e dimensione totale disponibili per ogni gruppo", "Moderator e Study Label possono essere aggiunti", "Scegli effetti fissi/casuali, moderatori e bias di pubblicazione nelle opzioni del modello"] },
+      metaCorrelationAnalysis: { title: "Meta-analisi dei coefficienti di correlazione", summary: "Sintetizza coefficienti di correlazione provenienti da più studi.", assumptions: ["Correlazione e dimensione campionaria disponibili per ogni studio", "Costrutti comparabili tra studi", "Moderator e Study Label possono essere aggiunti", "Scegli effetti fissi/casuali, moderatori e bias di pubblicazione nelle opzioni del modello"] },
+      metaMeanDifferenceAnalysis: { title: "Meta-analisi delle differenze tra medie", summary: "Sintetizza differenze tra gruppi da n, media e deviazione standard.", assumptions: ["n, M e SD disponibili per ogni gruppo", "Gruppi e scale di misura comparabili", "Moderator e Study Label possono essere aggiunti", "Scegli effetti fissi/casuali, moderatori e bias di pubblicazione nelle opzioni del modello"] },
+      metaEffectSizeAnalysis: { title: "Meta-analisi delle dimensioni dell'effetto", summary: "Sintetizza dimensioni dell'effetto già calcolate con varianza o errore standard.", assumptions: ["Dimensione dell'effetto disponibile per ogni studio", "Varianza o errore standard disponibile", "Moderator e Study Label possono essere aggiunti", "Scegli effetti fissi/casuali, moderatori e bias di pubblicazione nelle opzioni del modello"] },
+      metaProportionAnalysis: { title: "Meta-analisi delle proporzioni", summary: "Sintetizza proporzioni da frequenze degli eventi e campioni totali.", assumptions: ["Frequenza dell'evento disponibile per ogni studio", "Dimensione campionaria totale disponibile", "Moderator e Study Label possono essere aggiunti", "Scegli effetti fissi/casuali, moderatori e bias di pubblicazione nelle opzioni del modello"] },
+      majorMetaAnalysis: { title: "Meta-analisi", summary: "Sintetizza più studi con l'opzione di input appropriata. Modello a effetto fisso o a effetti casuali, analisi dei moderatori e diagnostica del bias di pubblicazione vengono poi scelti nelle opzioni del modello.", assumptions: ["Più studi o dimensioni dell'effetto indipendenti", "Dati di input adatti all'opzione scelta", "Giustificare effetto fisso vs effetti casuali in base a disegno ed eterogeneità", "Riportare moderatori e bias di pubblicazione come analisi aggiuntive opzionali"] },
+      fixedEffectMetaAnalysis: { title: "Meta-analisi a effetto fisso", summary: "Stima un effetto comune assumendo che tutti gli studi condividano lo stesso effetto vero.", assumptions: ["Più studi o dimensioni dell'effetto indipendenti", "Dimensione dell'effetto comune ed errore standard/varianza disponibili", "Studi sostanzialmente molto simili", "Eterogeneità bassa"] },
+      randomEffectsMetaAnalysis: { title: "Meta-analisi a effetti casuali", summary: "Stima un effetto medio quando gli effetti veri possono variare tra gli studi.", assumptions: ["Più studi o dimensioni dell'effetto indipendenti", "Dimensione dell'effetto e misura di precisione disponibili", "Varianza tra studi stimata", "Eterogeneità riportata con tau2/I2"] },
+      subgroupMetaAnalysis: { title: "Meta-analisi per sottogruppi", summary: "Confronta effetti combinati tra gruppi di studi definiti categorialmente.", assumptions: ["Sottogruppi giustificati in anticipo", "Studi sufficienti per sottogruppo", "Stessa metrica dell'effetto", "Confronti interpretati con cautela"] },
+      metaRegression: { title: "Meta-regressione", summary: "Verifica se moderatori continui o multipli a livello di studio spiegano differenze tra studi.", assumptions: ["Studi sufficienti", "Moderatore misurato a livello di studio", "Stessa metrica dell'effetto", "Interpretazione ecologica considerata"] },
+      publicationBiasDiagnostics: { title: "Diagnostica del bias di pubblicazione", summary: "Esamina asimmetria del funnel plot ed effetti dei piccoli studi come possibili indizi di bias.", assumptions: ["Studi sufficienti per diagnostica utile", "Metrica dell'effetto comparabile", "L'asimmetria può avere più cause", "La diagnostica non prova il bias"] }
+    }
+  }
+};
+
+Object.entries(metaLanguageAdditions).forEach(([language, addition]) => {
+  const pack = languagePacks[language];
+  if (!pack) return;
+  Object.assign(pack.tree.goal, addition.goalUpdate);
+  if (!pack.tree.goal.answers.some((answer) => answer.next === addition.goalAnswer.next)) {
+    pack.tree.goal.answers.push(addition.goalAnswer);
+  }
+  Object.assign(pack.tree, addition.tree);
+  Object.assign(pack.results, addition.results);
+});
+
 const totalDecisionSteps = 13;
 
 const procedureCatalog = {
@@ -1231,6 +1425,50 @@ const procedureCatalog = {
   multinomialRegression: {
     jamovi: "Analyses > Regression > Logistic Regression > N Outcomes\nPut the multicategory target in Dependent Variable.\nAdd predictors to Covariates or Factors and choose the reference level.",
     r: "library(nnet)\ndata$treatment_outcome <- relevel(factor(data$treatment_outcome), ref = \"completion\")\nfit <- multinom(treatment_outcome ~ baseline_symptom_score + motivation_score + previous_therapy + age_years, data = data)\nsummary(fit)"
+  },
+  majorMetaAnalysis: {
+    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data: odds-ratio meta-analysis, correlation coefficients, mean differences from n, M, and SD, effect sizes with Variance or SE, or Proportion.\nEnter the required study-level fields. For correlations, use correlations, sample size, Moderator, and Study Label. For Effect sizes, use effect size, Variance or SE, Moderator, and Study Label. For Proportion, use event frequency, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Use the same options to select fixed or random effects, and optionally request moderator analyses and publication-bias diagnostics.",
+    r: "library(metafor)\n# Generic precomputed-effect workflow\nfit <- rma(yi = effect_size, sei = standard_error, mods = ~ moderator, data = data, method = \"REML\")\nsummary(fit)\nforest(fit)\nfunnel(fit)\nregtest(fit, model = \"rma\")"
+  },
+  metaOddsRatioAnalysis: {
+    jamovi: "Install/open the MAJOR module in jamovi and choose the odds-ratio meta-analysis input option.\nEnter the event frequencies and total sample sizes for the comparison groups, plus Moderator and Study Label when available.\nIn Model Options, choose the model estimator and model measures. Select fixed or random effects there, and optionally request moderator analyses and publication-bias diagnostics.",
+    r: "library(metafor)\ndata$non_events_treatment <- data$total_treatment - data$events_treatment\ndata$non_events_control <- data$total_control - data$events_control\nes <- escalc(measure = \"OR\", ai = events_treatment, bi = non_events_treatment, ci = events_control, di = non_events_control, data = data)\nfit <- rma(yi, vi, mods = ~ moderator, data = es, method = \"REML\")\nsummary(fit)"
+  },
+  metaCorrelationAnalysis: {
+    jamovi: "Install/open the MAJOR module in jamovi and choose the correlation coefficients input option.\nEnter the correlations, sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures. Select fixed or random effects there, and optionally request moderator analyses and publication-bias diagnostics.",
+    r: "library(metafor)\nes <- escalc(measure = \"ZCOR\", ri = correlation, ni = sample_size, data = data)\nfit <- rma(yi, vi, mods = ~ moderator, data = es, method = \"REML\")\nsummary(fit)\npredict(fit, transf = transf.ztor)"
+  },
+  metaMeanDifferenceAnalysis: {
+    jamovi: "Install/open the MAJOR module in jamovi and choose the mean differences option based on n, M, and SD.\nEnter n, mean, and standard deviation for each group, plus Moderator and Study Label when available.\nIn Model Options, choose the model estimator and model measures. Select fixed or random effects there, and optionally request moderator analyses and publication-bias diagnostics.",
+    r: "library(metafor)\nes <- escalc(measure = \"SMD\", m1i = mean_treatment, sd1i = sd_treatment, n1i = n_treatment, m2i = mean_control, sd2i = sd_control, n2i = n_control, data = data)\nfit <- rma(yi, vi, mods = ~ moderator, data = es, method = \"REML\")\nsummary(fit)"
+  },
+  metaEffectSizeAnalysis: {
+    jamovi: "Install/open the MAJOR module in jamovi and choose the Effect sizes input option.\nEnter the effect size, Variance or SE, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures. Select fixed or random effects there, and optionally request moderator analyses and publication-bias diagnostics.",
+    r: "library(metafor)\nfit <- rma(yi = effect_size, vi = variance, mods = ~ moderator, data = data, method = \"REML\")\nsummary(fit)\n# If only SE is available, use sei = se instead of vi = variance."
+  },
+  metaProportionAnalysis: {
+    jamovi: "Install/open the MAJOR module in jamovi and choose the Proportion input option.\nEnter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and the effect size model measures. Select fixed or random effects there, and optionally request moderator analyses and publication-bias diagnostics.",
+    r: "library(metafor)\nes <- escalc(measure = \"PLO\", xi = event_frequency, ni = total_sample_size, data = data)\nfit <- rma(yi, vi, mods = ~ moderator, data = es, method = \"REML\")\nsummary(fit)\npredict(fit, transf = transf.ilogit)"
+  },
+  fixedEffectMetaAnalysis: {
+    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Select a fixed-effect model and inspect the pooled effect with its 95% CI.",
+    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = standard_error, data = data, method = \"FE\")\nsummary(fit)\nforest(fit)"
+  },
+  randomEffectsMetaAnalysis: {
+    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Select a random-effects model and report the pooled effect, 95% CI, tau2, I2, and prediction interval if available.",
+    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = standard_error, data = data, method = \"REML\")\nsummary(fit)\npredict(fit)\nforest(fit)"
+  },
+  subgroupMetaAnalysis: {
+    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data before adding subgroup information.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Use the Moderator as the subgroup variable and report pooled effects within each subgroup plus the between-subgroup test.",
+    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = standard_error, mods = ~ subgroup, data = data, method = \"REML\")\nsummary(fit)\n# For separate subgroup summaries: by(data, data$subgroup, function(d) summary(rma(yi = effect_size, sei = standard_error, data = d, method = \"REML\")))"
+  },
+  metaRegression: {
+    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data before adding moderators.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Report the moderator coefficient, confidence interval, p-value, residual heterogeneity, and the number of studies used.",
+    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = standard_error, mods = ~ moderator, data = data, method = \"REML\")\nsummary(fit)"
+  },
+  publicationBiasDiagnostics: {
+    jamovi: "Install/open the MAJOR module in jamovi and first run the meta-analysis using the correct input option.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Request funnel plot and small-study/publication-bias diagnostics such as Egger's test when available.",
+    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = standard_error, data = data, method = \"REML\")\nfunnel(fit)\nregtest(fit, model = \"rma\")\ntrimfill(fit)"
   },
   factorAnalysis: {
     jamovi: "Analyses > Factor > Exploratory Factor Analysis\nMove the related variables into Variables.\nChoose the extraction method, rotation, number of factors, and inspect loadings and model fit.",
@@ -1451,6 +1689,21 @@ const procedureScreenshots = {
     jamovi: {
       en: "assets/jamovi/generalizedMixedModel_ENG.png"
     }
+  },
+  metaCorrelationAnalysis: {
+    jamovi: {
+      en: "assets/jamovi/metaCorrelation_ENG.png"
+    }
+  },
+  metaMeanDifferenceAnalysis: {
+    jamovi: {
+      en: "assets/jamovi/metaMeanDifferences_ENG.png"
+    }
+  },
+  metaEffectSizeAnalysis: {
+    jamovi: {
+      en: "assets/jamovi/metaEffectSizes_ENG.png"
+    }
   }
 };
 
@@ -1484,6 +1737,17 @@ const effectSizeDefinitions = {
   linearRegression: { measure: "R squared / adjusted R squared", rangeType: "r2" },
   logisticRegression: { measure: "Odds ratio", rangeType: "or" },
   multinomialRegression: { measure: "Odds ratios by outcome category", rangeType: "or" },
+  majorMetaAnalysis: { measure: "Pooled effect size with 95% CI plus heterogeneity and optional moderator/bias diagnostics", rangeType: "metaEffect" },
+  metaOddsRatioAnalysis: { measure: "Pooled odds ratio with 95% CI", rangeType: "or" },
+  metaCorrelationAnalysis: { measure: "Pooled correlation coefficient with 95% CI", rangeType: "r" },
+  metaMeanDifferenceAnalysis: { measure: "Pooled standardized or raw mean difference with 95% CI", rangeType: "cohen" },
+  metaEffectSizeAnalysis: { measure: "Pooled effect size with 95% CI", rangeType: "metaEffect" },
+  metaProportionAnalysis: { measure: "Pooled proportion/prevalence with 95% CI", rangeType: "metaEffect" },
+  fixedEffectMetaAnalysis: { measure: "Pooled effect size with 95% CI", rangeType: "metaEffect" },
+  randomEffectsMetaAnalysis: { measure: "Pooled average effect with 95% CI, tau2, and I2", rangeType: "metaEffect" },
+  subgroupMetaAnalysis: { measure: "Pooled effect by subgroup and between-subgroup test", rangeType: "metaEffect" },
+  metaRegression: { measure: "Meta-regression coefficient and residual heterogeneity", rangeType: "metaRegression" },
+  publicationBiasDiagnostics: { measure: "Funnel plot asymmetry / Egger's test", rangeType: "publicationBias" },
   pathAnalysis: { measure: "Standardized path coefficients and indirect effect", rangeType: "beta" },
   structuralEquationModeling: { measure: "Standardized loadings, path coefficients, and R squared", rangeType: "beta" },
   discriminantAnalysis: { measure: "Canonical correlation and classification accuracy", rangeType: "canonical" },
@@ -1527,7 +1791,10 @@ const effectSizeLabels = {
       loading: "Ladungen: .30 bedeutsam, .50 stark, .70 sehr stark; erklärte Varianz ist kontextabhängig",
       silhouette: "Silhouette: < .25 schwach, .26-.50 brauchbar, .51-.70 gut, > .70 stark",
       stress: "Stress: < .05 exzellent, < .10 gut, < .20 akzeptabel; kleinere Werte sind besser",
-      varianceRatio: "Verhältnis nahe 1 = geringe Abweichung; 1.5 klein, 2.0 mittel, 3.0 groß als grobe Orientierung"
+      varianceRatio: "Verhältnis nahe 1 = geringe Abweichung; 1.5 klein, 2.0 mittel, 3.0 groß als grobe Orientierung",
+      metaEffect: "Interpretation hängt von der Effektmetrik ab (z. B. g, r, OR/RR, Prävalenz). Immer 95%-KI, Gewichtung und Heterogenität (I2/tau2) berichten.",
+      metaRegression: "Moderator-Koeffizienten beschreiben Studienebenen-Zusammenhänge. Nur bei ausreichender Studienzahl interpretieren und Restheterogenität berichten.",
+      publicationBias: "Funnel-Plot-Asymmetrie oder Egger-Test weisen nur auf mögliche Small-Study-Effekte hin; sie beweisen keinen Publikationsbias."
     }
   },
   en: {
@@ -1554,7 +1821,10 @@ const effectSizeLabels = {
       loading: "Loadings: .30 meaningful, .50 strong, .70 very strong; variance explained is context-dependent",
       silhouette: "Silhouette: < .25 weak, .26-.50 fair, .51-.70 good, > .70 strong",
       stress: "Stress: < .05 excellent, < .10 good, < .20 acceptable; lower values are better",
-      varianceRatio: "Ratio near 1 = little deviation; 1.5 small, 2.0 medium, 3.0 large as a rough guide"
+      varianceRatio: "Ratio near 1 = little deviation; 1.5 small, 2.0 medium, 3.0 large as a rough guide",
+      metaEffect: "Interpretation depends on the effect metric (e.g. g, r, OR/RR, prevalence). Always report the 95% CI, weighting, and heterogeneity (I2/tau2).",
+      metaRegression: "Moderator coefficients describe study-level associations. Interpret only with enough studies and report residual heterogeneity.",
+      publicationBias: "Funnel-plot asymmetry or Egger's test only suggests possible small-study effects; it does not prove publication bias."
     }
   },
   fr: {
@@ -1578,7 +1848,10 @@ const effectSizeLabels = {
       loading: "Charges : .30 significatif, .50 fort, .70 très fort ; la variance expliquée dépend du contexte",
       silhouette: "Silhouette : < .25 faible, .26-.50 acceptable, .51-.70 bonne, > .70 forte",
       stress: "Stress : < .05 excellent, < .10 bon, < .20 acceptable ; les valeurs plus faibles sont meilleures",
-      varianceRatio: "Rapport proche de 1 = faible écart ; 1.5 faible, 2.0 moyen, 3.0 fort comme repère approximatif"
+      varianceRatio: "Rapport proche de 1 = faible écart ; 1.5 faible, 2.0 moyen, 3.0 fort comme repère approximatif",
+      metaEffect: "L'interprétation dépend de la métrique d'effet (p. ex. g, r, OR/RR, prévalence). Rapportez toujours l'IC à 95 %, la pondération et l'hétérogénéité (I2/tau2).",
+      metaRegression: "Les coefficients de modérateur décrivent des associations au niveau des études. Interprétez seulement avec assez d'études et rapportez l'hétérogénéité résiduelle.",
+      publicationBias: "L'asymétrie du funnel plot ou le test d'Egger suggèrent seulement de possibles effets de petites études ; ils ne prouvent pas un biais de publication."
     }
   },
   es: {
@@ -1602,7 +1875,10 @@ const effectSizeLabels = {
       loading: "Cargas: .30 significativa, .50 fuerte, .70 muy fuerte; la varianza explicada depende del contexto",
       silhouette: "Silueta: < .25 débil, .26-.50 aceptable, .51-.70 buena, > .70 fuerte",
       stress: "Estrés: < .05 excelente, < .10 bueno, < .20 aceptable; valores menores son mejores",
-      varianceRatio: "Razón cercana a 1 = poca desviación; 1.5 pequeño, 2.0 medio, 3.0 grande como guía aproximada"
+      varianceRatio: "Razón cercana a 1 = poca desviación; 1.5 pequeño, 2.0 medio, 3.0 grande como guía aproximada",
+      metaEffect: "La interpretación depende de la métrica del efecto (p. ej. g, r, OR/RR, prevalencia). Informe siempre IC del 95 %, ponderación y heterogeneidad (I2/tau2).",
+      metaRegression: "Los coeficientes de moderador describen asociaciones a nivel de estudio. Interprete solo con suficientes estudios y reporte heterogeneidad residual.",
+      publicationBias: "La asimetría del funnel plot o la prueba de Egger solo sugieren posibles efectos de estudios pequeños; no prueban sesgo de publicación."
     }
   },
   it: {
@@ -1626,7 +1902,10 @@ const effectSizeLabels = {
       loading: "Carichi: .30 significativo, .50 forte, .70 molto forte; la varianza spiegata dipende dal contesto",
       silhouette: "Silhouette: < .25 debole, .26-.50 discreta, .51-.70 buona, > .70 forte",
       stress: "Stress: < .05 eccellente, < .10 buono, < .20 accettabile; valori più bassi sono migliori",
-      varianceRatio: "Rapporto vicino a 1 = poca deviazione; 1.5 piccolo, 2.0 medio, 3.0 grande come guida approssimativa"
+      varianceRatio: "Rapporto vicino a 1 = poca deviazione; 1.5 piccolo, 2.0 medio, 3.0 grande come guida approssimativa",
+      metaEffect: "L'interpretazione dipende dalla metrica dell'effetto (es. g, r, OR/RR, prevalenza). Riporta sempre IC 95%, ponderazione ed eterogeneità (I2/tau2).",
+      metaRegression: "I coefficienti dei moderatori descrivono associazioni a livello di studio. Interpretali solo con abbastanza studi e riporta eterogeneità residua.",
+      publicationBias: "Asimmetria del funnel plot o test di Egger suggeriscono solo possibili effetti dei piccoli studi; non provano bias di pubblicazione."
     }
   }
 };
