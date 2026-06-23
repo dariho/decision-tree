@@ -219,6 +219,27 @@ button {
   font-weight: 720;
 }
 
+#backButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 82px;
+  background: rgba(220, 163, 80, 0.14);
+  border-color: var(--amber);
+  color: #ffe3b5;
+  font-weight: 800;
+  box-shadow: inset 0 0 0 1px rgba(220, 163, 80, 0.18), 0 0 0 1px rgba(220, 163, 80, 0.08);
+}
+
+#backButton:hover,
+#backButton:focus-visible {
+  background: rgba(220, 163, 80, 0.22);
+  border-color: #f0bf73;
+  color: #fff0d6;
+  outline: none;
+}
+
 .text-button.primary {
   background: var(--teal);
   border-color: var(--teal);
@@ -237,6 +258,13 @@ button {
   color: #5b686a;
   cursor: not-allowed;
   transform: none;
+}
+
+#backButton:disabled {
+  background: rgba(220, 163, 80, 0.06);
+  border-color: rgba(220, 163, 80, 0.36);
+  color: #8f7b5a;
+  box-shadow: inset 0 0 0 1px rgba(220, 163, 80, 0.06);
 }
 
 .text-button.primary:hover {
