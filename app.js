@@ -494,6 +494,8 @@ const languagePacks = {
       resultMode: "Testwahl",
       nextQuestion: "Nächste Frage",
       resultBranch: "Ergebnis",
+      nextQuestionAction: "Weiter zur Frage",
+      resultBranchAction: "Ergebnis anzeigen",
       noResult: "Noch kein Ergebnis vorhanden",
       copied: "Ergebnis wurde kopiert",
       copyBlocked: "Kopieren im Browser blockiert",
@@ -568,6 +570,8 @@ const languagePacks = {
       resultMode: "Test choice",
       nextQuestion: "Next question",
       resultBranch: "Result",
+      nextQuestionAction: "Next question",
+      resultBranchAction: "Show result",
       noResult: "No result yet",
       copied: "Result copied",
       copyBlocked: "Copying was blocked by the browser",
@@ -2113,23 +2117,27 @@ function render() {
   elements.answers.replaceChildren(
     ...node.answers.map((answer, answerIndex) => {
       const button = document.createElement("button");
-      const targetType = answer.result ? pack.ui.resultBranch : pack.ui.nextQuestion;
+      const targetAction = answer.result ? pack.ui.resultBranchAction : pack.ui.nextQuestionAction;
       button.className = `answer-button ${answer.result ? "branch-result" : "branch-question"}`;
       button.type = "button";
       const copy = document.createElement("span");
-      const type = document.createElement("span");
       const label = document.createElement("span");
+      const action = document.createElement("span");
+      const actionText = document.createElement("span");
       const arrow = document.createElement("span");
       copy.className = "branch-copy";
-      type.className = "branch-type";
       label.className = "branch-label";
+      action.className = "branch-action";
+      actionText.className = "branch-action-text";
       arrow.className = "branch-arrow";
-      type.textContent = targetType;
       label.textContent = answer.label;
+      actionText.textContent = targetAction;
       arrow.setAttribute("aria-hidden", "true");
       arrow.textContent = "›";
-      copy.append(type, label);
-      button.append(copy, arrow);
+      copy.append(label);
+      action.append(actionText, arrow);
+      button.append(copy, action);
+      button.setAttribute("aria-label", `${answer.label}. ${targetAction}`);
       button.addEventListener("click", () => chooseAnswer(answer, answerIndex));
       return button;
     })

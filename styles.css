@@ -672,7 +672,7 @@ button {
 .answer-button {
   min-height: 68px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 30px;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 12px;
   padding: 12px 12px 12px 14px;
@@ -709,42 +709,50 @@ button {
   background: var(--amber);
 }
 
-.answer-button.branch-result .branch-type {
-  color: #f0bd72;
-}
-
-.answer-button.branch-result .branch-arrow {
+.answer-button.branch-result .branch-action {
   background: var(--amber-soft);
+  border-color: rgba(220, 163, 80, 0.52);
   color: #f2c578;
 }
 
+.branch-copy {
+  min-width: 0;
+}
+
 .branch-label {
+  display: block;
   font-size: 14px;
-  font-weight: 760;
+  font-weight: 820;
   line-height: 1.35;
 }
 
-.branch-type {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--teal);
-  font-size: 10px;
+.branch-action {
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  justify-self: end;
+  padding: 0 6px 0 10px;
+  border: 1px solid rgba(73, 196, 182, 0.42);
+  border-radius: var(--radius);
+  background: var(--teal-soft);
+  color: var(--teal-strong);
+  font-size: 11px;
   font-weight: 820;
   line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  white-space: nowrap;
 }
 
 .branch-arrow {
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
   display: grid;
   place-items: center;
-  border-radius: var(--radius);
-  background: var(--surface-soft);
-  color: var(--teal);
+  border-radius: 50%;
+  background: rgba(8, 15, 16, 0.42);
+  color: currentColor;
   font-size: 18px;
-  justify-self: end;
+  line-height: 1;
 }
 
 .tree-junction {
@@ -790,6 +798,24 @@ button {
   box-shadow: none;
   outline: none;
   transform: none;
+}
+
+.answer-button:hover .branch-action,
+.answer-button:focus-visible .branch-action {
+  border-color: var(--teal);
+  background: rgba(73, 196, 182, 0.16);
+}
+
+.answer-button.branch-result:hover,
+.answer-button.branch-result:focus-visible {
+  border-color: var(--amber);
+  background: #3a2d1b;
+}
+
+.answer-button.branch-result:hover .branch-action,
+.answer-button.branch-result:focus-visible .branch-action {
+  border-color: var(--amber);
+  background: rgba(220, 163, 80, 0.16);
 }
 
 .result-grid {
@@ -1407,7 +1433,13 @@ button {
   }
 
   .answer-button {
+    grid-template-columns: 1fr;
     min-height: 68px;
+  }
+
+  .branch-action {
+    justify-self: start;
+    white-space: normal;
   }
 
   .procedure-heading {
