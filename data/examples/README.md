@@ -10,6 +10,7 @@ Each CSV matches one result id in the decision tree. Use these files to create J
 | `chiSquareAssociation` | `chiSquareAssociation.csv` | Contingency table: `group` by `outcome`. |
 | `logLinearModel` | `logLinearModel.csv` | Multiway nominal table using `therapy`, `outcome`, `gender`, and frequency `count`. |
 | `oneSampleT` | `oneSampleT.csv` | Test `score` against a reference value, e.g. `50`. |
+| `oneSampleZ` | `oneSampleZ.csv` | Test `score` against a reference mean, e.g. `100`, with known population SD, e.g. `15`. |
 | `oneSampleWilcoxon` | `oneSampleWilcoxon.csv` | Test `rating` against a reference value, e.g. `3`. |
 | `independentT` | `independentT.csv` | Dependent variable `score`, grouping variable `group`. |
 | `mannWhitney` | `mannWhitney.csv` | Outcome `pain_score`, grouping variable `group`. |

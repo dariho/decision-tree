@@ -16,6 +16,10 @@ window.resultScenarioPacks = {
       psychology: "Eine Stichprobe von Studierenden wird darauf geprüft, ob ihr mittlerer Stresswert von einem bekannten Referenzwert abweicht.",
       sport: "Ein Trainerteam prüft, ob die durchschnittliche Sprintzeit einer Gruppe von einem Zielwert abweicht."
     },
+    oneSampleZ: {
+      psychology: "Eine Studie prüft, ob der mittlere Aufmerksamkeitswert einer Stichprobe von einem Normwert abweicht, wobei die Populationsstandardabweichung aus Normdaten bekannt ist.",
+      sport: "Ein Team prüft, ob die mittlere VO2max einer Trainingsgruppe von einem bekannten Populationswert abweicht, wobei die Populationsstandardabweichung aus Referenzdaten bekannt ist."
+    },
     oneSampleWilcoxon: {
       psychology: "Eine Studie prüft, ob ordinale Wohlbefindensratings im Median über einem neutralen Skalenpunkt liegen.",
       sport: "Eine Studie prüft, ob Muskelkater-Ratings im Median über dem erwarteten Basiswert liegen."
@@ -113,6 +117,10 @@ window.resultScenarioPacks = {
     oneSampleT: {
       psychology: "A sample of students is tested to see whether its mean stress score differs from a known reference value.",
       sport: "A coaching staff tests whether a group's mean sprint time differs from a target value."
+    },
+    oneSampleZ: {
+      psychology: "A study tests whether a sample's mean attention score differs from a norm value when the population standard deviation is known from norm data.",
+      sport: "A team tests whether a training group's mean VO2max differs from a known population value when the population standard deviation is known from reference data."
     },
     oneSampleWilcoxon: {
       psychology: "A study tests whether ordinal well-being ratings have a median above the neutral point of the scale.",
@@ -212,6 +220,10 @@ window.resultScenarioPacks = {
       psychology: "Un échantillon d'étudiants est testé pour savoir si son score moyen de stress diffère d'une valeur de référence connue.",
       sport: "Un encadrement sportif teste si le temps moyen de sprint d'un groupe diffère d'une valeur cible."
     },
+    oneSampleZ: {
+      psychology: "Une étude teste si le score moyen d'attention d'un échantillon diffère d'une norme lorsque l'écart-type de population est connu à partir de données normatives.",
+      sport: "Une équipe teste si la VO2max moyenne d'un groupe d'entraînement diffère d'une valeur de population connue lorsque l'écart-type de population provient de données de référence."
+    },
     oneSampleWilcoxon: {
       psychology: "Une étude teste si les évaluations ordinales du bien-être ont une médiane supérieure au point neutre de l'échelle.",
       sport: "Une étude teste si les évaluations de courbatures ont une médiane supérieure au niveau de base attendu."
@@ -309,6 +321,10 @@ window.resultScenarioPacks = {
     oneSampleT: {
       psychology: "Una muestra de estudiantes se analiza para ver si su puntuación media de estrés difiere de un valor de referencia conocido.",
       sport: "Un cuerpo técnico comprueba si el tiempo medio de sprint de un grupo difiere de un valor objetivo."
+    },
+    oneSampleZ: {
+      psychology: "Un estudio comprueba si la puntuación media de atención de una muestra difiere de un valor normativo cuando la desviación estándar poblacional se conoce por datos normativos.",
+      sport: "Un equipo comprueba si la VO2max media de un grupo de entrenamiento difiere de un valor poblacional conocido cuando la desviación estándar poblacional se conoce por datos de referencia."
     },
     oneSampleWilcoxon: {
       psychology: "Un estudio comprueba si las valoraciones ordinales de bienestar tienen una mediana superior al punto neutral de la escala.",
@@ -409,6 +425,10 @@ window.resultScenarioPacks.it = {
   oneSampleT: {
     psychology: "Un campione di studenti viene analizzato per vedere se il punteggio medio di stress differisce da un valore di riferimento noto.",
     sport: "Uno staff tecnico verifica se il tempo medio di sprint di un gruppo differisce da un valore obiettivo."
+  },
+  oneSampleZ: {
+    psychology: "Uno studio verifica se il punteggio medio di attenzione di un campione differisce da un valore normativo quando la deviazione standard della popolazione è nota da dati normativi.",
+    sport: "Un team verifica se la VO2max media di un gruppo di allenamento differisce da un valore di popolazione noto quando la deviazione standard della popolazione è nota da dati di riferimento."
   },
   oneSampleWilcoxon: {
     psychology: "Uno studio verifica se valutazioni ordinali del benessere hanno una mediana superiore al punto neutro della scala.",

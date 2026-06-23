@@ -116,10 +116,20 @@ const tree = {
     hint: "Unterscheiden Sie unabhängige Gruppen von verbundenen Messungen, etwa Vorher-Nachher-Daten.",
     step: "Gruppen",
     answers: [
-      { label: "Eine Stichprobe gegen einen Sollwert", next: "oneSampleNormal" },
+      { label: "Eine Stichprobe gegen einen Sollwert", next: "oneSampleKnownVariance" },
       { label: "Zwei unabhängige Gruppen", next: "twoIndependentNormal" },
       { label: "Zwei verbundene Messungen", next: "twoPairedNormal" },
       { label: "Mehr als zwei Gruppen oder Zeitpunkte", next: "manyGroupsDesign" }
+    ]
+  },
+  oneSampleKnownVariance: {
+    area: "Voraussetzung",
+    question: "Ist die Populationsstandardabweichung oder Populationsvarianz bekannt?",
+    hint: "Ein z-Test für eine Stichprobe setzt voraus, dass die Populationsstreuung vor der Analyse bekannt ist. Wird die Streuung aus der Stichprobe geschätzt, ist meist der t-Test passend.",
+    step: "Annahmen",
+    answers: [
+      { label: "Ja, Populationsstreuung ist bekannt", result: "oneSampleZ" },
+      { label: "Nein, Streuung wird aus der Stichprobe geschätzt", next: "oneSampleNormal" }
     ]
   },
   oneSampleNormal: {
@@ -287,6 +297,11 @@ const results = {
     title: "Einstichproben-t-Test",
     summary: "Vergleicht den Mittelwert einer metrischen Stichprobe mit einem vorgegebenen Referenzwert.",
     assumptions: ["Metrische Variable", "Unabhängige Beobachtungen", "Annähernde Normalverteilung"]
+  },
+  oneSampleZ: {
+    title: "Einstichproben-z-Test",
+    summary: "Vergleicht den Mittelwert einer metrischen Stichprobe mit einem Referenzwert, wenn die Populationsstandardabweichung oder Populationsvarianz bekannt ist.",
+    assumptions: ["Metrische Variable", "Unabhängige Beobachtungen", "Populationsstandardabweichung oder Populationsvarianz bekannt", "Normalverteilung der Population oder ausreichend große Stichprobe"]
   },
   oneSampleWilcoxon: {
     title: "Wilcoxon-Vorzeichenrangtest für eine Stichprobe",
@@ -698,10 +713,20 @@ const languagePacks = {
         hint: "Distinguish independent groups from paired measurements, such as pre-post data.",
         step: "Groups",
         answers: [
-          { label: "One sample against a target value", next: "oneSampleNormal" },
+          { label: "One sample against a target value", next: "oneSampleKnownVariance" },
           { label: "Two independent groups", next: "twoIndependentNormal" },
           { label: "Two paired measurements", next: "twoPairedNormal" },
           { label: "More than two groups or time points", next: "manyGroupsDesign" }
+        ]
+      },
+      oneSampleKnownVariance: {
+        area: "Assumption",
+        question: "Is the population standard deviation or population variance known?",
+        hint: "A one-sample z-test requires the population spread to be known before the analysis. If the spread is estimated from the sample, the t-test is usually the better choice.",
+        step: "Assumptions",
+        answers: [
+          { label: "Yes, the population spread is known", result: "oneSampleZ" },
+          { label: "No, the spread is estimated from the sample", next: "oneSampleNormal" }
         ]
       },
       oneSampleNormal: {
@@ -833,6 +858,7 @@ const languagePacks = {
       structuralEquationModeling: { title: "Structural equation modeling (SEM)", summary: "Combines measurement models for latent variables with directed structural paths among latent and observed variables.", assumptions: ["Latent constructs measured by multiple indicators", "Theoretically justified measurement and structural model", "Adequate sample size", "Model fit and alternative models should be evaluated"] },
       discriminantAnalysis: { title: "Discriminant analysis", summary: "Classifies cases into nominal groups from several interval-scaled predictors and describes which variables separate the groups.", assumptions: ["Nominal dependent variable with known groups", "Interval-scaled independent variables", "Multivariate normality within groups", "Similar covariance matrices", "Adequate group sizes"] },
       oneSampleT: { title: "One-sample t-test", summary: "Compares the mean of one metric sample with a specified reference value.", assumptions: ["Metric variable", "Independent observations", "Approximate normal distribution"] },
+      oneSampleZ: { title: "One-sample z-test", summary: "Compares the mean of one metric sample with a reference value when the population standard deviation or variance is known.", assumptions: ["Metric variable", "Independent observations", "Known population standard deviation or variance", "Normal population or sufficiently large sample"] },
       oneSampleWilcoxon: { title: "One-sample Wilcoxon signed-rank test", summary: "Nonparametric alternative when a median or rank pattern is tested against a reference value.", assumptions: ["At least ordinal data", "Symmetric differences helpful", "Independent observations"] },
       independentT: { title: "Independent-samples t-test", summary: "Compares the means of two independent groups with a metric outcome.", assumptions: ["Two independent groups", "Metric outcome variable", "Approximate normality", "Equal variances or Welch correction"] },
       mannWhitney: { title: "Mann-Whitney U test", summary: "Nonparametric alternative to the independent t-test for two independent groups.", assumptions: ["Two independent groups", "At least ordinal outcome", "Similar distribution shapes for location interpretation"] },
@@ -1299,7 +1325,7 @@ Object.entries(metaLanguageAdditions).forEach(([language, addition]) => {
   Object.assign(pack.results, addition.results);
 });
 
-const totalDecisionSteps = 13;
+const totalDecisionSteps = 14;
 
 const procedureCatalog = {
   pearson: {
@@ -1337,6 +1363,10 @@ const procedureCatalog = {
   oneSampleT: {
     jamovi: "Analyses > T-Tests > One Sample T-Test\nMove the metric variable into Dependent Variables.\nEnter the test value and enable descriptives/normality checks.",
     r: "t.test(data$score, mu = 0)"
+  },
+  oneSampleZ: {
+    jamovi: "Install and open the ztesvis module in jamovi.\nChoose the one-sample z-test option, move the metric variable into the analysis field, and enter the reference mean and known population standard deviation or variance.\nCheck the z statistic, p-value, confidence interval, and descriptive statistics.",
+    r: "mu0 <- 50\nsigma <- 15\nx <- data$score\nn <- length(x)\nz <- (mean(x) - mu0) / (sigma / sqrt(n))\np <- 2 * pnorm(-abs(z))\nc(z = z, p = p)"
   },
   oneSampleWilcoxon: {
     jamovi: "Analyses > T-Tests > One Sample T-Test\nMove the variable into Dependent Variables.\nUse the non-parametric option / Wilcoxon signed-rank where available.",
@@ -1534,6 +1564,11 @@ const procedureScreenshots = {
       en: "assets/jamovi/oneSampleT_ENG.png"
     }
   },
+  oneSampleZ: {
+    jamovi: {
+      en: "assets/jamovi/oneSampleZ_ENG.png"
+    }
+  },
   oneSampleWilcoxon: {
     jamovi: {
       en: "assets/jamovi/oneSampleWilcoxon_ENG.png"
@@ -1718,6 +1753,7 @@ const effectSizeDefinitions = {
   chiSquareAssociation: { measure: "Cramer's V", rangeType: "v" },
   logLinearModel: { measure: "Odds ratios for interaction terms", rangeType: "or" },
   oneSampleT: { measure: "Cohen's d", rangeType: "d" },
+  oneSampleZ: { measure: "Cohen's d", rangeType: "d" },
   oneSampleWilcoxon: { measure: "Effect size r", rangeType: "r" },
   independentT: { measure: "Cohen's d / Hedges' g", rangeType: "d" },
   mannWhitney: { measure: "Rank-biserial correlation", rangeType: "r" },
@@ -2389,7 +2425,7 @@ function resetTree() {
 
 function getStageForNode(nodeId) {
   const scaleNodes = ["associationScale", "comparisonOutcome", "predictionOutcome"];
-  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "varianceComparison", "causalModelVariables", "mixedModelOutcome", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "twoWayAnovaAssumptions", "twoWayRepeatedAssumptions", "normalAssociation", "rankCorrelationChoice"];
+  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "varianceComparison", "causalModelVariables", "mixedModelOutcome", "oneSampleKnownVariance", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "twoWayAnovaAssumptions", "twoWayRepeatedAssumptions", "normalAssociation", "rankCorrelationChoice"];
   if (nodeId === "goal" || nodeId === "researchGoal" || nodeId === "discoveryStructure") return "goal";
   if (scaleNodes.includes(nodeId)) return "scale";
   if (groupNodes.includes(nodeId)) return "groups";
