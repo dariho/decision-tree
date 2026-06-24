@@ -482,6 +482,9 @@ const languagePacks = {
       procedureToolLabel: "Ausgabe",
       jamoviScreenshotCaption: "Jamovi-Oberfläche für dieses Verfahren.",
       jamoviScreenshotAlt: "Jamovi-Fenster mit Daten und Ergebnistabelle für dieses Verfahren",
+      datasetHeading: "Beispieldatensatz",
+      datasetText: "Laden Sie den vorbereiteten CSV-Datensatz herunter, um diese Analyse in Jamovi oder R nachzuvollziehen.",
+      downloadDataset: "Datensatz herunterladen",
       copyResult: "Ergebnis kopieren",
       exploreAlternatives: "Alternativen ansehen",
       orientationLabel: "Orientierung",
@@ -558,6 +561,9 @@ const languagePacks = {
       procedureToolLabel: "Output",
       jamoviScreenshotCaption: "Jamovi interface for this procedure.",
       jamoviScreenshotAlt: "Jamovi window with data and results table for this procedure",
+      datasetHeading: "Example dataset",
+      datasetText: "Download the prepared CSV dataset to run this analysis in Jamovi or R.",
+      downloadDataset: "Download dataset",
       copyResult: "Copy result",
       exploreAlternatives: "View alternatives",
       orientationLabel: "Orientation",
@@ -1365,7 +1371,7 @@ const procedureCatalog = {
     r: "t.test(data$score, mu = 0)"
   },
   oneSampleZ: {
-    jamovi: "Install and open the ztesvis module in jamovi.\nChoose the one-sample z-test option, move the metric variable into the analysis field, and enter the reference mean and known population standard deviation or variance.\nCheck the z statistic, p-value, confidence interval, and descriptive statistics.",
+    jamovi: "Install and open the ztesvis module in jamovi.\nChoose the one-sample z-test option and enter the summary values: sample mean, null population mean, null population standard deviation, sample size, and alpha level.\nCheck the z statistic, p-value, and confidence interval in the output.",
     r: "mu0 <- 50\nsigma <- 15\nx <- data$score\nn <- length(x)\nz <- (mean(x) - mu0) / (sigma / sqrt(n))\np <- 2 * pnorm(-abs(z))\nc(z = z, p = p)"
   },
   oneSampleWilcoxon: {
@@ -1746,6 +1752,55 @@ const procedureScreenshots = {
   }
 };
 
+const datasetFiles = {
+  anova: "anova.csv",
+  binomialTest: "binomialTest.csv",
+  chiSquareAssociation: "chiSquareAssociation.csv",
+  chiSquareGoodness: "chiSquareGoodness.csv",
+  chiSquareVariance: "chiSquareVariance.csv",
+  clusterAnalysis: "clusterAnalysis.csv",
+  decisionTreeRegression: "decisionTreeRegression.csv",
+  discriminantAnalysis: "discriminantAnalysis.csv",
+  factorAnalysis: "factorAnalysis.csv",
+  fisher: "fisher.csv",
+  friedman: "friedman.csv",
+  generalizedLinearMixedModel: "generalizedMixedModel.csv",
+  independentT: "independentT.csv",
+  kendall: "kendall.csv",
+  knnRegression: "knnRegression.csv",
+  kruskalWallis: "kruskalWallis.csv",
+  linearMixedModel: "linearMixedModel.csv",
+  linearRegression: "linearRegression.csv",
+  logLinearModel: "logLinearModel.csv",
+  logisticRegression: "logisticRegression.csv",
+  mannWhitney: "mannWhitney.csv",
+  mcnemar: "mcnemar.csv",
+  metaCorrelationAnalysis: "metaCorrelation.csv",
+  metaEffectSizeAnalysis: "metaEffectSizes.csv",
+  metaMeanDifferenceAnalysis: "metaMeanDifferences.csv",
+  metaOddsRatioAnalysis: "metaOddsRatio.csv",
+  metaProportionAnalysis: "metaProportion.csv",
+  multidimensionalScaling: "multidimensionalScaling.csv",
+  multinomialRegression: "multinomialRegression.csv",
+  nonparametricTwoWayAnova: "nonparametricTwoWayAnova.csv",
+  nonparametricTwoWayRepeatedAnova: "nonparametricTwoWayRepeatedAnova.csv",
+  oneSampleT: "oneSampleT.csv",
+  oneSampleWilcoxon: "oneSampleWilcoxon.csv",
+  oneSampleZ: "oneSampleZ.csv",
+  ordinalMixedModel: "ordinalMixedModel.csv",
+  pairedT: "pairedT.csv",
+  pathAnalysis: "pathAnalysis.csv",
+  pearson: "pearson.csv",
+  randomForestRegression: "randomForestRegression.csv",
+  repeatedAnova: "repeatedAnova.csv",
+  spearman: "spearman.csv",
+  structuralEquationModeling: "structuralEquationModeling.csv",
+  twoWayAnova: "twoWayAnova.csv",
+  twoWayRepeatedAnova: "twoWayRepeatedAnova.csv",
+  varianceFTest: "varianceFTest.csv",
+  wilcoxon: "wilcoxon.csv"
+};
+
 const effectSizeDefinitions = {
   pearson: { measure: "Pearson's r", rangeType: "r" },
   spearman: { measure: "Spearman's rho", rangeType: "r" },
@@ -2089,6 +2144,10 @@ const elements = {
   effectSizeSection: null,
   effectSizeHeading: null,
   effectSizeList: null,
+  datasetSection: null,
+  datasetHeading: null,
+  datasetText: null,
+  datasetLink: null,
   apaSection: document.querySelector("#apaSection"),
   apaHeading: document.querySelector("#apaHeading"),
   apaReportList: document.querySelector("#apaReportList"),
@@ -2221,6 +2280,7 @@ function renderResult(resultId) {
   elements.procedureSelect.value = state.procedureTool;
   renderProcedure(resultId);
   renderScenarios(resultId, pack);
+  renderDatasetDownload(resultId, pack);
   renderEffectSize(resultId, pack);
   renderClusterGuide(resultId, pack);
   renderApaReport(resultId, pack);
@@ -2265,6 +2325,42 @@ function createScenarioItem(label, text) {
 function getResultScenarios(resultId, language) {
   const packs = window.resultScenarioPacks || {};
   return packs[language]?.[resultId] || packs.en?.[resultId] || null;
+}
+
+function ensureDatasetElements() {
+  if (elements.datasetSection) return;
+  const section = document.createElement("section");
+  const heading = document.createElement("h2");
+  const text = document.createElement("p");
+  const link = document.createElement("a");
+  section.className = "dataset-section";
+  section.id = "datasetSection";
+  heading.id = "datasetHeading";
+  text.id = "datasetText";
+  link.id = "datasetLink";
+  link.className = "dataset-download-link";
+  link.download = "";
+  section.append(heading, text, link);
+  elements.scenarioSection.before(section);
+  elements.datasetSection = section;
+  elements.datasetHeading = heading;
+  elements.datasetText = text;
+  elements.datasetLink = link;
+}
+
+function renderDatasetDownload(resultId, pack) {
+  ensureDatasetElements();
+  const filename = datasetFiles[resultId];
+  elements.datasetSection.hidden = !filename;
+  if (!filename) return;
+
+  const href = `data/examples/${encodeURIComponent(filename)}`;
+  elements.datasetHeading.textContent = pack.ui.datasetHeading;
+  elements.datasetText.textContent = pack.ui.datasetText;
+  elements.datasetLink.href = href;
+  elements.datasetLink.download = filename;
+  elements.datasetLink.textContent = pack.ui.downloadDataset;
+  elements.datasetLink.setAttribute("aria-label", `${pack.ui.downloadDataset}: ${filename}`);
 }
 
 function ensureEffectSizeElements() {

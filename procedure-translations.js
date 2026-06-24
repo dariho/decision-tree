@@ -28,7 +28,7 @@ window.localizedProcedurePacks = {
       jamovi: "Analysen > T-Tests > Einstichproben-t-Test\nVerschieben Sie die metrische Variable in Abhängige Variablen.\nGeben Sie den Testwert ein und aktivieren Sie Deskriptivstatistiken sowie Normalitätsprüfungen."
     },
     oneSampleZ: {
-      jamovi: "Installieren und öffnen Sie das ztesvis-Modul in jamovi.\nWählen Sie die Option für den Einstichproben-z-Test, verschieben Sie die metrische Variable in das Analysefeld und geben Sie Referenzmittelwert sowie bekannte Populationsstandardabweichung oder Populationsvarianz ein.\nPrüfen Sie z-Wert, p-Wert, Konfidenzintervall und Deskriptivstatistiken."
+      jamovi: "Installieren und öffnen Sie das ztesvis-Modul in jamovi.\nWählen Sie die Option für den Einstichproben-z-Test und geben Sie die zusammengefassten Werte ein: Stichprobenmittelwert, Nullhypothesen-Populationsmittelwert, Nullhypothesen-Populationsstandardabweichung, Stichprobengröße und Alpha-Niveau.\nPrüfen Sie z-Wert, p-Wert und Konfidenzintervall im Output."
     },
     oneSampleWilcoxon: {
       jamovi: "Analysen > T-Tests > Einstichproben-t-Test\nVerschieben Sie die Variable in Abhängige Variablen.\nNutzen Sie, sofern verfügbar, die nichtparametrische Option bzw. den Wilcoxon-Vorzeichen-Rang-Test."
@@ -162,7 +162,7 @@ window.localizedProcedurePacks = {
       jamovi: "Analyses > Tests t > Test t à un échantillon\nPlacez la variable métrique dans Variables dépendantes.\nSaisissez la valeur de test et activez les descriptifs ainsi que les contrôles de normalité."
     },
     oneSampleZ: {
-      jamovi: "Installez et ouvrez le module ztesvis dans jamovi.\nChoisissez l'option de test z à un échantillon, placez la variable métrique dans le champ d'analyse et saisissez la moyenne de référence ainsi que l'écart-type ou la variance de population connue.\nVérifiez la statistique z, la valeur p, l'intervalle de confiance et les descriptifs."
+      jamovi: "Installez et ouvrez le module ztesvis dans jamovi.\nChoisissez l'option de test z à un échantillon et saisissez les valeurs résumées : moyenne de l'échantillon, moyenne de population sous l'hypothèse nulle, écart-type de population sous l'hypothèse nulle, taille de l'échantillon et niveau alpha.\nVérifiez la statistique z, la valeur p et l'intervalle de confiance dans la sortie."
     },
     oneSampleWilcoxon: {
       jamovi: "Analyses > Tests t > Test t à un échantillon\nPlacez la variable dans Variables dépendantes.\nUtilisez l'option non paramétrique ou le test des rangs signés de Wilcoxon lorsque disponible."
@@ -296,7 +296,7 @@ window.localizedProcedurePacks = {
       jamovi: "Análisis > Pruebas t > Prueba t para una muestra\nMueva la variable métrica a Variables dependientes.\nIntroduzca el valor de prueba y active descriptivos y comprobaciones de normalidad."
     },
     oneSampleZ: {
-      jamovi: "Instale y abra el módulo ztesvis en jamovi.\nElija la opción de prueba z para una muestra, mueva la variable métrica al campo de análisis e introduzca la media de referencia y la desviación estándar o varianza poblacional conocida.\nRevise el estadístico z, el valor p, el intervalo de confianza y los descriptivos."
+      jamovi: "Instale y abra el módulo ztesvis en jamovi.\nElija la opción de prueba z para una muestra e introduzca los valores resumidos: media muestral, media poblacional bajo la hipótesis nula, desviación estándar poblacional bajo la hipótesis nula, tamaño muestral y nivel alfa.\nRevise el estadístico z, el valor p y el intervalo de confianza en la salida."
     },
     oneSampleWilcoxon: {
       jamovi: "Análisis > Pruebas t > Prueba t para una muestra\nMueva la variable a Variables dependientes.\nUse la opción no paramétrica o Wilcoxon de rangos con signo cuando esté disponible."
@@ -482,7 +482,7 @@ window.localizedProcedurePacks.it = {
     jamovi: "Analisi > Test t > Test t a un campione\nSposta la variabile metrica in Variabili dipendenti.\nInserisci il valore di test e attiva descrittive e controlli di normalità."
   },
   oneSampleZ: {
-    jamovi: "Installa e apri il modulo ztesvis in jamovi.\nScegli l'opzione per il test z a un campione, sposta la variabile metrica nel campo di analisi e inserisci la media di riferimento e la deviazione standard o varianza nota della popolazione.\nControlla statistica z, valore p, intervallo di confidenza e descrittive."
+    jamovi: "Installa e apri il modulo ztesvis in jamovi.\nScegli l'opzione per il test z a un campione e inserisci i valori riassuntivi: media campionaria, media della popolazione sotto l'ipotesi nulla, deviazione standard della popolazione sotto l'ipotesi nulla, dimensione del campione e livello alfa.\nControlla statistica z, valore p e intervallo di confidenza nell'output."
   },
   oneSampleWilcoxon: {
     jamovi: "Analisi > Test t > Test t a un campione\nSposta la variabile in Variabili dipendenti.\nUsa l'opzione non parametrica o il test di Wilcoxon per ranghi con segno quando disponibile."
