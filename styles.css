@@ -1207,6 +1207,26 @@ button {
   font-size: 12px;
 }
 
+.footer-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.footer-contact a {
+  color: var(--teal-strong);
+  font-weight: 760;
+  text-decoration: none;
+}
+
+.footer-contact a:hover,
+.footer-contact a:focus-visible {
+  color: var(--teal);
+  text-decoration: underline;
+  outline: none;
+}
+
 .help-dialog {
   width: min(640px, calc(100vw - 32px));
   border: 1px solid var(--line);

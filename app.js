@@ -501,6 +501,7 @@ const languagePacks = {
       abbrInstrument: "Instrument(e)/Messung(en)",
       abbrSample: "Stichprobengröße",
       footerNote: "Diese Entscheidungshilfe ersetzt nicht die inhaltliche Prüfung durch Fachliteratur und Methodenlehre.",
+      footerContact: "Fehler oder Verbesserungsvorschläge:",
       helpTitle: "So verwenden Sie den Entscheidungsbaum",
       helpIntro: "Wählen Sie jeweils die Antwort, die zu Ihrer Forschungsfrage passt. Der Pfad links bleibt sichtbar, damit Sie nachvollziehen können, warum ein Test vorgeschlagen wird.",
       helpGoodHeading: "Gute Eingaben",
@@ -580,6 +581,7 @@ const languagePacks = {
       abbrInstrument: "Instrument(s)/measurement(s)",
       abbrSample: "Sample size",
       footerNote: "This decision aid does not replace substantive checking with the literature and methods guidance.",
+      footerContact: "To report bugs or suggest improvements:",
       helpTitle: "How to use the decision tree",
       helpIntro: "Choose the answer that matches your research question. The path on the left stays visible so you can see why a test is suggested.",
       helpGoodHeading: "Good inputs",
@@ -1492,23 +1494,23 @@ const procedureCatalog = {
   },
   fixedEffectMetaAnalysis: {
     jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Select a fixed-effect model and inspect the pooled effect with its 95% CI.",
-    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = standard_error, data = data, method = \"FE\")\nsummary(fit)\nforest(fit)"
+    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = se, data = data, method = \"FE\")\nsummary(fit)\nforest(fit)"
   },
   randomEffectsMetaAnalysis: {
     jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Select a random-effects model and report the pooled effect, 95% CI, tau2, I2, and prediction interval if available.",
-    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = standard_error, data = data, method = \"REML\")\nsummary(fit)\npredict(fit)\nforest(fit)"
+    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = se, data = data, method = \"REML\")\nsummary(fit)\npredict(fit)\nforest(fit)"
   },
   subgroupMetaAnalysis: {
     jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data before adding subgroup information.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Use the Moderator as the subgroup variable and report pooled effects within each subgroup plus the between-subgroup test.",
-    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = standard_error, mods = ~ subgroup, data = data, method = \"REML\")\nsummary(fit)\n# For separate subgroup summaries: by(data, data$subgroup, function(d) summary(rma(yi = effect_size, sei = standard_error, data = d, method = \"REML\")))"
+    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = se, mods = ~ moderator, data = data, method = \"REML\")\nsummary(fit)\n# For separate subgroup summaries: by(data, data$moderator, function(d) summary(rma(yi = effect_size, sei = se, data = d, method = \"REML\")))"
   },
   metaRegression: {
     jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data before adding moderators.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Report the moderator coefficient, confidence interval, p-value, residual heterogeneity, and the number of studies used.",
-    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = standard_error, mods = ~ moderator, data = data, method = \"REML\")\nsummary(fit)"
+    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = se, mods = ~ moderator, data = data, method = \"REML\")\nsummary(fit)"
   },
   publicationBiasDiagnostics: {
     jamovi: "Install/open the MAJOR module in jamovi and first run the meta-analysis using the correct input option.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Request funnel plot and small-study/publication-bias diagnostics such as Egger's test when available.",
-    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = standard_error, data = data, method = \"REML\")\nfunnel(fit)\nregtest(fit, model = \"rma\")\ntrimfill(fit)"
+    r: "library(metafor)\nfit <- rma(yi = effect_size, sei = se, data = data, method = \"REML\")\nfunnel(fit)\nregtest(fit, model = \"rma\")\ntrimfill(fit)"
   },
   factorAnalysis: {
     jamovi: "Analyses > Factor > Exploratory Factor Analysis\nMove the related variables into Variables.\nChoose the extraction method, rotation, number of factors, and inspect loadings and model fit.",
@@ -1544,23 +1546,23 @@ const procedureCatalog = {
   },
   decisionTreeClassifier: {
     jamovi: "Jamovi has limited built-in support for decision tree classification.\nUse a machine-learning module if installed, or export the data and fit the tree in R.\nValidate with a holdout set or cross-validation and inspect the confusion matrix.",
-    r: "library(rpart)\nlibrary(caret)\nset.seed(1)\ntrain_id <- createDataPartition(data$class, p = .70, list = FALSE)\nfit <- rpart(class ~ ., data = data[train_id, ], method = \"class\")\npred <- predict(fit, newdata = data[-train_id, ], type = \"class\")\nconfusionMatrix(pred, data$class[-train_id])"
+    r: "library(rpart)\nlibrary(caret)\ndata$class <- factor(data$class)\nmodel_data <- subset(data, select = -participant)\nset.seed(1)\ntrain_id <- createDataPartition(model_data$class, p = .70, list = FALSE)\nfit <- rpart(class ~ ., data = model_data[train_id, ], method = \"class\")\npred <- predict(fit, newdata = model_data[-train_id, ], type = \"class\")\nconfusionMatrix(pred, model_data$class[-train_id])"
   },
   randomForestClassifier: {
     jamovi: "Jamovi has limited built-in support for random forests in the core menus.\nUse a suitable machine-learning module if available, or export the data and fit the model in R.\nReport validation accuracy, balanced accuracy/F1 when classes are imbalanced, and variable importance.",
-    r: "library(randomForest)\nlibrary(caret)\nset.seed(1)\ntrain_id <- createDataPartition(data$class, p = .70, list = FALSE)\nfit <- randomForest(class ~ ., data = data[train_id, ], ntree = 500, importance = TRUE)\npred <- predict(fit, newdata = data[-train_id, ])\nconfusionMatrix(pred, data$class[-train_id])\nimportance(fit)"
+    r: "library(randomForest)\nlibrary(caret)\ndata$class <- factor(data$class)\nmodel_data <- subset(data, select = -athlete)\nset.seed(1)\ntrain_id <- createDataPartition(model_data$class, p = .70, list = FALSE)\nfit <- randomForest(class ~ ., data = model_data[train_id, ], ntree = 500, importance = TRUE)\npred <- predict(fit, newdata = model_data[-train_id, ])\nconfusionMatrix(pred, model_data$class[-train_id])\nimportance(fit)"
   },
   knnClassifier: {
     jamovi: "Jamovi has limited built-in support for k-nearest-neighbors classification.\nStandardise predictors, then use a machine-learning module if installed or export the data to R.\nChoose k by cross-validation and report a confusion matrix on validation data.",
-    r: "library(caret)\nset.seed(1)\nctrl <- trainControl(method = \"cv\", number = 10)\nfit <- train(class ~ ., data = data, method = \"knn\", trControl = ctrl, preProcess = c(\"center\", \"scale\"), tuneLength = 10)\nfit"
+    r: "library(caret)\ndata$class <- factor(data$class)\nmodel_data <- subset(data, select = -participant)\nset.seed(1)\nctrl <- trainControl(method = \"cv\", number = 10)\nfit <- train(class ~ ., data = model_data, method = \"knn\", trControl = ctrl, preProcess = c(\"center\", \"scale\"), tuneLength = 10)\nfit"
   },
   naiveBayes: {
     jamovi: "Jamovi has limited built-in support for naive Bayes in the core menus.\nUse a machine-learning module if installed, or export the data and fit the model in R.\nInspect predicted probabilities and a validation confusion matrix.",
-    r: "library(e1071)\nlibrary(caret)\nset.seed(1)\ntrain_id <- createDataPartition(data$class, p = .70, list = FALSE)\nfit <- naiveBayes(class ~ ., data = data[train_id, ])\npred <- predict(fit, newdata = data[-train_id, ])\nconfusionMatrix(pred, data$class[-train_id])"
+    r: "library(e1071)\nlibrary(caret)\ndata$class <- factor(data$class)\nmodel_data <- subset(data, select = -student)\nset.seed(1)\ntrain_id <- createDataPartition(model_data$class, p = .70, list = FALSE)\nfit <- naiveBayes(class ~ ., data = model_data[train_id, ])\npred <- predict(fit, newdata = model_data[-train_id, ])\nconfusionMatrix(pred, model_data$class[-train_id])"
   },
   principalComponentAnalysis: {
     jamovi: "Analyses > Factor > Principal Component Analysis\nMove the metric variables into Variables.\nChoose the number of components, inspect loadings, scree plot, explained variance, and decide whether to save component scores.",
-    r: "vars <- data[, variables]\nfit <- prcomp(vars, center = TRUE, scale. = TRUE)\nsummary(fit)\nloadings <- fit$rotation\nscores <- fit$x"
+    r: "variables <- c(\"attention_accuracy\", \"working_memory\", \"processing_speed\", \"inhibition_score\", \"cognitive_flexibility\", \"verbal_memory\", \"spatial_reasoning\")\nvars <- data[, variables]\nfit <- prcomp(vars, center = TRUE, scale. = TRUE)\nsummary(fit)\nloadings <- fit$rotation\nscores <- fit$x"
   }
 };
 
@@ -1759,6 +1761,7 @@ const datasetFiles = {
   chiSquareGoodness: "chiSquareGoodness.csv",
   chiSquareVariance: "chiSquareVariance.csv",
   clusterAnalysis: "clusterAnalysis.csv",
+  decisionTreeClassifier: "decisionTreeClassifier.csv",
   decisionTreeRegression: "decisionTreeRegression.csv",
   discriminantAnalysis: "discriminantAnalysis.csv",
   factorAnalysis: "factorAnalysis.csv",
@@ -1777,11 +1780,17 @@ const datasetFiles = {
   mcnemar: "mcnemar.csv",
   metaCorrelationAnalysis: "metaCorrelation.csv",
   metaEffectSizeAnalysis: "metaEffectSizes.csv",
+  fixedEffectMetaAnalysis: "metaEffectSizes.csv",
   metaMeanDifferenceAnalysis: "metaMeanDifferences.csv",
+  metaRegression: "metaEffectSizes.csv",
   metaOddsRatioAnalysis: "metaOddsRatio.csv",
   metaProportionAnalysis: "metaProportion.csv",
+  publicationBiasDiagnostics: "metaEffectSizes.csv",
+  randomEffectsMetaAnalysis: "metaEffectSizes.csv",
+  subgroupMetaAnalysis: "metaEffectSizes.csv",
   multidimensionalScaling: "multidimensionalScaling.csv",
   multinomialRegression: "multinomialRegression.csv",
+  naiveBayes: "naiveBayes.csv",
   nonparametricTwoWayAnova: "nonparametricTwoWayAnova.csv",
   nonparametricTwoWayRepeatedAnova: "nonparametricTwoWayRepeatedAnova.csv",
   oneSampleT: "oneSampleT.csv",
@@ -1791,13 +1800,16 @@ const datasetFiles = {
   pairedT: "pairedT.csv",
   pathAnalysis: "pathAnalysis.csv",
   pearson: "pearson.csv",
+  principalComponentAnalysis: "principalComponentAnalysis.csv",
   randomForestRegression: "randomForestRegression.csv",
+  randomForestClassifier: "randomForestClassifier.csv",
   repeatedAnova: "repeatedAnova.csv",
   spearman: "spearman.csv",
   structuralEquationModeling: "structuralEquationModeling.csv",
   twoWayAnova: "twoWayAnova.csv",
   twoWayRepeatedAnova: "twoWayRepeatedAnova.csv",
   varianceFTest: "varianceFTest.csv",
+  knnClassifier: "knnClassifier.csv",
   wilcoxon: "wilcoxon.csv"
 };
 

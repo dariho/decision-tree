@@ -1,0 +1,1056 @@
+---
+title: "Decision Tree Statistical Analyses in R"
+subtitle: "Example R code linked to the prepared datasets"
+author: "Darias Holgado & Corinna Martarelli"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+---
+
+```{r setup}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  error = TRUE
+)
+
+data_dir <- file.path("..", "data", "examples")
+
+read_example <- function(file) {
+  read.csv(file.path(data_dir, file), stringsAsFactors = FALSE)
+}
+
+has_pkg <- function(package) {
+  requireNamespace(package, quietly = TRUE)
+}
+
+optional_packages <- c(
+  "ARTool",
+  "caret",
+  "e1071",
+  "lavaan",
+  "lme4",
+  "lmerTest",
+  "MASS",
+  "metafor",
+  "nnet",
+  "ordinal",
+  "performance",
+  "psych",
+  "randomForest",
+  "rpart"
+)
+
+install_missing_packages <- function(packages = optional_packages) {
+  missing_packages <- packages[!vapply(packages, has_pkg, logical(1))]
+
+  if (length(missing_packages) == 0) {
+    message("All optional packages are already installed.")
+    return(invisible(character()))
+  }
+
+  install.packages(
+    missing_packages,
+    repos = "https://cloud.r-project.org"
+  )
+
+  invisible(missing_packages)
+}
+```
+
+## Optional packages
+
+Run this chunk once if you want to install only the packages that are missing on your computer.
+
+```{r install-missing-packages, eval=FALSE}
+install_missing_packages()
+```
+
+# Associations and relationships
+
+## Pearson correlation
+
+```{r pearson-correlation}
+data <- read_example("pearson.csv")
+cor.test(data$x, data$y, method = "pearson")
+plot(data$x, data$y, xlab = "x", ylab = "y")
+```
+
+## Spearman rank correlation
+
+```{r spearman-correlation}
+data <- read_example("spearman.csv")
+cor.test(data$stress_rank, data$wellbeing_rank, method = "spearman", exact = FALSE)
+```
+
+## Kendall rank correlation
+
+```{r kendall-correlation}
+data <- read_example("kendall.csv")
+cor.test(data$adherence_rank, data$wellbeing_rank, method = "kendall", exact = FALSE)
+```
+
+## Chi-square test of association
+
+```{r chi-square-association}
+data <- read_example("chiSquareAssociation.csv")
+tab <- table(data$group, data$outcome)
+tab
+chisq.test(tab)
+```
+
+## Fisher exact test
+
+```{r fisher-exact}
+data <- read_example("fisher.csv")
+tab <- table(data$treatment, data$response)
+tab
+fisher.test(tab)
+```
+
+## McNemar test
+
+```{r mcnemar-test}
+data <- read_example("mcnemar.csv")
+tab <- table(data$before, data$after)
+tab
+mcnemar.test(tab)
+```
+
+## Log-linear model
+
+```{r log-linear-model}
+data <- read_example("logLinearModel.csv")
+tab <- xtabs(count ~ therapy + outcome + gender, data = data)
+
+if (has_pkg("MASS")) {
+  fit <- MASS::loglm(~ therapy * outcome + gender, data = tab)
+  summary(fit)
+} else {
+  message("Install MASS to run MASS::loglm().")
+}
+```
+
+## Path analysis / mediation
+
+```{r path-analysis}
+data <- read_example("pathAnalysis.csv")
+
+if (has_pkg("lavaan")) {
+  model <- '
+    mediator ~ a * predictor
+    outcome ~ b * mediator + c_prime * predictor
+    indirect := a * b
+    total := c_prime + indirect
+  '
+
+  fit <- lavaan::sem(model, data = data, se = "bootstrap", bootstrap = 5000)
+  summary(fit, standardized = TRUE, fit.measures = TRUE, rsquare = TRUE,ci = TRUE)
+} else {
+  message("Install lavaan to run the mediation model.")
+}
+
+#Extract path coefficients
+
+lavaan::parameterEstimates(
+  fit,
+  standardized = TRUE,
+  ci = TRUE
+)
+
+#Extract regression path
+pe <- lavaan::parameterEstimates(
+  fit,
+  standardized = TRUE,
+  ci = TRUE
+)
+
+pe[pe$op == "~", ]
+
+#R2
+
+lavaan::inspect(fit, "r2")
+
+```
+
+## Structural equation modeling
+
+```{r structural-equation-modeling}
+data <- read_example("structuralEquationModeling.csv")
+
+if (has_pkg("lavaan")) {
+  model <- '
+    stress =~ stress1 + stress2 + stress3
+    recovery =~ sleep1 + sleep2 + sleep3
+    recovery ~ stress
+    performance ~ recovery + stress
+  '
+
+  fit <- lavaan::sem(model, data = data)
+  summary(fit, standardized = TRUE, fit.measures = TRUE, rsquare = TRUE)
+} else {
+  message("Install lavaan to run SEM.")
+}
+
+pe <- lavaan::parameterEstimates(
+  fit,
+  standardized = TRUE,
+  ci = TRUE
+)
+
+pe
+
+
+```
+
+## Discriminant analysis
+
+```{r discriminant-analysis}
+data <- read_example("discriminantAnalysis.csv")
+data$group <- factor(data$group)
+
+if (has_pkg("MASS")) {
+  fit <- MASS::lda(group ~ anxiety + motivation + reaction_time, data = data)
+  fit
+  pred <- predict(fit)$class
+  table(Predicted = pred, Observed = data$group)
+  mean(pred == data$group)
+} else {
+  message("Install MASS to run linear discriminant analysis.")
+}
+```
+
+# One-sample analyses
+
+## One-sample t-test
+
+```{r one-sample-t-test}
+data <- read_example("oneSampleT.csv")
+t.test(data$score, mu = 0)
+```
+
+## One-sample z-test
+
+```{r one-sample-z-test}
+data <- read_example("oneSampleZ.csv")
+
+mu0 <- 50
+sigma <- 15
+x <- data$score
+n <- length(x)
+z <- (mean(x) - mu0) / (sigma / sqrt(n))
+p <- 2 * pnorm(-abs(z))
+
+c(
+  sample_mean = mean(x),
+  null_mean = mu0,
+  population_sd = sigma,
+  n = n,
+  z = z,
+  p = p
+)
+```
+
+## One-sample Wilcoxon signed-rank test
+
+```{r one-sample-wilcoxon}
+data <- read_example("oneSampleWilcoxon.csv")
+wilcox.test(data$rating, mu = 0)
+```
+
+# Two-group and paired analyses
+
+## Independent-samples t-test
+
+```{r independent-t-test}
+data <- read_example("independentT.csv")
+data$group <- factor(data$group)
+t.test(score ~ group, data = data, var.equal = FALSE)
+```
+
+## Mann-Whitney U test
+
+```{r mann-whitney-u}
+data <- read_example("mannWhitney.csv")
+data$group <- factor(data$group)
+wilcox.test(pain_score ~ group, data = data)
+```
+
+## Paired-samples t-test
+
+```{r paired-t-test}
+data <- read_example("pairedT.csv")
+t.test(data$baseline_score, data$followup_score, paired = TRUE)
+shapiro.test(data$difference)
+```
+
+## Wilcoxon signed-rank test
+
+```{r wilcoxon-signed-rank}
+data <- read_example("wilcoxon.csv")
+wilcox.test(data$before, data$after, paired = TRUE)
+```
+
+# Variance tests
+
+## Chi-square test for one variance
+
+```{r chi-square-variance}
+data <- read_example("chiSquareVariance.csv")
+
+n <- length(data$score)
+s2 <- var(data$score)
+sigma2_0 <- 100
+chi2 <- (n - 1) * s2 / sigma2_0
+p <- 2 * min(pchisq(chi2, df = n - 1), 1 - pchisq(chi2, df = n - 1))
+
+c(
+  chi_square = chi2,
+  df = n - 1,
+  p = p
+)
+```
+
+## F-test for two variances
+
+```{r f-test-variance}
+data <- read_example("varianceFTest.csv")
+data$group <- factor(data$group)
+var.test(score ~ group, data = data)
+```
+
+# ANOVA and nonparametric alternatives
+
+## One-way ANOVA
+
+```{r one-way-anova}
+data <- read_example("anova.csv")
+data$group <- factor(data$group)
+
+fit <- aov(score ~ group, data = data)
+summary(fit)
+TukeyHSD(fit)
+```
+
+## Repeated-measures ANOVA
+
+```{r repeated-measures-anova}
+data <- read_example("repeatedAnova.csv")
+
+long_data <- data.frame(
+  id = rep(data$id, each = 3),
+  condition = factor(rep(c("baseline", "week4", "week8"), times = nrow(data))),
+  score = c(t(data[, c("baseline", "week4", "week8")]))
+)
+
+fit <- aov(score ~ condition + Error(id / condition), data = long_data)
+summary(fit)
+```
+
+## Two-way ANOVA
+
+```{r two-way-anova}
+data <- read_example("twoWayAnova.csv")
+data$therapy <- factor(data$therapy)
+data$age_group <- factor(data$age_group)
+
+fit <- aov(stress_score ~ therapy * age_group, data = data)
+summary(fit)
+```
+
+## Two-way repeated-measures ANOVA
+
+```{r two-way-repeated-anova}
+data <- read_example("twoWayRepeatedAnova.csv")
+
+long_data <- data.frame(
+  participant = rep(data$participant, each = 6),
+  load = factor(rep(rep(c("low", "high"), each = 3), times = nrow(data))),
+  time = factor(rep(c("pre", "post", "followup"), times = 2 * nrow(data))),
+  score = c(t(data[, c("low_pre", "low_post", "low_followup", "high_pre", "high_post", "high_followup")]))
+)
+
+fit <- aov(score ~ load * time + Error(participant / (load * time)), data = long_data)
+summary(fit)
+```
+
+## Kruskal-Wallis test
+
+```{r kruskal-wallis}
+data <- read_example("kruskalWallis.csv")
+data$group <- factor(data$group)
+kruskal.test(rank_score ~ group, data = data)
+```
+
+## Friedman test
+
+```{r friedman-test}
+data <- read_example("friedman.csv")
+friedman.test(as.matrix(data[, c("condition_a", "condition_b", "condition_c")]))
+```
+
+## Nonparametric two-way ANOVA via aligned rank transform
+
+```{r nonparametric-two-way-anova}
+data <- read_example("nonparametricTwoWayAnova.csv")
+data$therapy <- factor(data$therapy)
+data$age_group <- factor(data$age_group)
+
+if (has_pkg("ARTool")) {
+  fit <- ARTool::art(stress_rating ~ therapy * age_group, data = data)
+  anova(fit)
+} else {
+  message("Install ARTool to run aligned rank transform ANOVA.")
+}
+```
+
+## Nonparametric two-way repeated-measures ANOVA via aligned rank transform
+
+```{r nonparametric-two-way-repeated-anova}
+data <- read_example("nonparametricTwoWayRepeatedAnova.csv")
+
+long_data <- data.frame(
+  participant = factor(rep(data$participant, each = 6)),
+  load = factor(rep(rep(c("low", "high"), each = 3), times = nrow(data))),
+  time = factor(rep(c("pre", "post", "followup"), times = 2 * nrow(data))),
+  stress_rating = c(t(data[, c("low_pre", "low_post", "low_followup", "high_pre", "high_post", "high_followup")]))
+)
+
+if (has_pkg("ARTool")) {
+  fit <- ARTool::art(stress_rating ~ load * time + Error(participant), data = long_data)
+  anova(fit)
+} else {
+  message("Install ARTool to run aligned rank transform ANOVA.")
+}
+```
+
+# Frequencies and distributions
+
+## Binomial test
+
+```{r binomial-test}
+data <- read_example("binomialTest.csv")
+successes <- sum(data$response == "yes")
+n <- length(data$response)
+binom.test(successes, n, p = 0.50)
+```
+
+## Chi-square goodness-of-fit test
+
+```{r chi-square-goodness}
+data <- read_example("chiSquareGoodness.csv")
+observed <- table(data$preference)
+observed
+chisq.test(observed, p = rep(1 / length(observed), length(observed)))
+```
+
+# Regression models
+
+Regression models estimate associations and predictions. They do not, by themselves, provide evidence of causality.
+
+## Linear regression
+
+```{r linear-regression}
+data <- read_example("linearRegression.csv")
+
+fit <- lm(
+  race_time_min ~ training_volume_km_week + vo2max_ml_kg_min + age_years,
+  data = data
+)
+
+summary(fit)
+par(mfrow = c(2, 2))
+plot(fit)
+par(mfrow = c(1, 1))
+```
+
+## Binary logistic regression
+
+```{r binary-logistic-regression}
+data <- read_example("logisticRegression.csv")
+data$injury <- factor(data$injury, levels = c("no", "yes"))
+
+fit <- glm(
+  injury ~ training_load_au + previous_injury + recovery_score + age_years,
+  data = data,
+  family = binomial
+)
+
+summary(fit)
+exp(coef(fit))
+```
+
+## Multinomial logistic regression
+
+```{r multinomial-logistic-regression}
+data <- read_example("multinomialRegression.csv")
+
+if (has_pkg("nnet")) {
+  data$treatment_outcome <- relevel(factor(data$treatment_outcome), ref = "completion")
+  fit <- nnet::multinom(
+    treatment_outcome ~ baseline_symptom_score + motivation_score + previous_therapy + age_years,
+    data = data
+  )
+  summary(fit)
+} else {
+  message("Install nnet to run multinomial logistic regression.")
+}
+```
+
+## Linear mixed model
+
+```{r linear-mixed-model}
+data <- read_example("linearMixedModel.csv")
+data$participant <- factor(data$participant)
+data$condition <- factor(data$condition)
+data$team <- factor(data$team)
+
+if (has_pkg("lme4") && has_pkg("lmerTest")) {
+  fit <- lmerTest::lmer(score ~ condition + week + (1 | participant), data = data)
+  summary(fit)
+
+  if (has_pkg("performance")) {
+    performance::r2_nakagawa(fit)
+  }
+} else {
+  message("Install lme4 and lmerTest to run the linear mixed model.")
+}
+```
+
+## Generalized linear mixed model
+
+```{r generalized-linear-mixed-model}
+data <- read_example("generalizedMixedModel.csv")
+data$participant <- factor(data$participant)
+data$condition <- factor(data$condition)
+data$success_num <- ifelse(data$success %in% c("yes", "1", 1, "success"), 1, 0)
+
+if (has_pkg("lme4")) {
+  fit <- lme4::glmer(
+    success_num ~ condition + week + (1 | participant),
+    data = data,
+    family = binomial
+  )
+  summary(fit)
+  exp(lme4::fixef(fit))
+} else {
+  message("Install lme4 to run the generalized linear mixed model.")
+}
+```
+
+## Ordinal mixed model
+
+```{r ordinal-mixed-model}
+data <- read_example("ordinalMixedModel.csv")
+data$participant <- factor(data$participant)
+data$condition <- factor(data$condition)
+data$rating <- ordered(data$rating)
+
+if (has_pkg("ordinal")) {
+  fit <- ordinal::clmm(rating ~ condition + day + (1 | participant), data = data)
+  summary(fit)
+  exp(coef(fit))
+} else {
+  message("Install ordinal to run the ordinal mixed model.")
+}
+```
+
+# Exploratory structure
+
+## Factor analysis
+
+```{r factor-analysis}
+data <- read_example("factorAnalysis.csv")
+items <- c(
+  "stress_item_1", "stress_item_2", "stress_item_3",
+  "mood_item_1", "mood_item_2", "mood_item_3",
+  "sleep_item_1", "sleep_item_2"
+)
+
+if (has_pkg("psych")) {
+  psych::fa.parallel(data[, items], fa = "fa")
+  fit <- psych::fa(data[, items], nfactors = 3, rotate = "oblimin")
+  print(fit$loadings, cutoff = .30)
+} else {
+  fit <- factanal(data[, items], factors = 3, rotation = "promax")
+  print(fit)
+}
+```
+
+## Cluster analysis
+
+```{r cluster-analysis}
+data <- read_example("clusterAnalysis.csv")
+variables <- c("training_load", "recovery_score", "sprint_time", "jump_height", "injury_count")
+
+scaled <- scale(data[, variables])
+d <- dist(scaled, method = "euclidean")
+fit <- hclust(d, method = "ward.D2")
+plot(fit)
+
+clusters <- cutree(fit, k = 3)
+table(clusters)
+
+set.seed(1)
+kmeans_fit <- kmeans(scaled, centers = 3, nstart = 25)
+table(kmeans_fit$cluster)
+```
+
+## Multidimensional scaling
+
+```{r multidimensional-scaling}
+data <- read_example("multidimensionalScaling.csv")
+variables <- c("calm", "joy", "anger", "sadness", "fear")
+
+d <- dist(scale(data[, variables]))
+fit <- cmdscale(d, k = 2, eig = TRUE)
+
+plot(fit$points, xlab = "Dimension 1", ylab = "Dimension 2")
+text(fit$points, labels = data$object, pos = 3)
+
+if (has_pkg("MASS")) {
+  nonmetric_fit <- MASS::isoMDS(d, k = 2)
+  nonmetric_fit$stress
+}
+```
+
+# Meta-analysis
+
+## Odds ratio meta-analysis
+
+```{r meta-odds-ratio}
+data <- read_example("metaOddsRatio.csv")
+
+if (has_pkg("metafor")) {
+  data$non_events_treatment <- data$total_treatment - data$events_treatment
+  data$non_events_control <- data$total_control - data$events_control
+
+  es <- metafor::escalc(
+    measure = "OR",
+    ai = events_treatment,
+    bi = non_events_treatment,
+    ci = events_control,
+    di = non_events_control,
+    data = data
+  )
+
+  fit <- metafor::rma(yi, vi, mods = ~ moderator, data = es, method = "REML")
+  summary(fit)
+  forest(fit, slab = data$study_label)
+} else {
+  message("Install metafor to run this meta-analysis.")
+}
+```
+
+## Correlation coefficient meta-analysis
+
+```{r meta-correlation}
+data <- read_example("metaCorrelation.csv")
+
+if (has_pkg("metafor")) {
+  es <- metafor::escalc(measure = "ZCOR", ri = correlation, ni = sample_size, data = data)
+  fit <- metafor::rma(yi, vi, mods = ~ moderator, data = es, method = "REML")
+  summary(fit)
+  predict(fit, transf = metafor::transf.ztor)
+  forest(fit, slab = data$study_label)
+} else {
+  message("Install metafor to run this meta-analysis.")
+}
+```
+
+## Mean difference meta-analysis
+
+```{r meta-mean-difference}
+data <- read_example("metaMeanDifferences.csv")
+
+if (has_pkg("metafor")) {
+  es <- metafor::escalc(
+    measure = "SMD",
+    m1i = mean_treatment,
+    sd1i = sd_treatment,
+    n1i = n_treatment,
+    m2i = mean_control,
+    sd2i = sd_control,
+    n2i = n_control,
+    data = data
+  )
+
+  fit <- metafor::rma(yi, vi, mods = ~ moderator, data = es, method = "REML")
+  summary(fit)
+  forest(fit, slab = data$study_label)
+} else {
+  message("Install metafor to run this meta-analysis.")
+}
+```
+
+## Effect size meta-analysis
+
+```{r meta-effect-size}
+data <- read_example("metaEffectSizes.csv")
+
+if (has_pkg("metafor")) {
+  fit <- metafor::rma(
+    yi = effect_size,
+    vi = variance,
+    mods = ~ moderator,
+    data = data,
+    method = "REML"
+  )
+
+  summary(fit)
+  forest(fit, slab = data$study_label)
+  funnel(fit)
+  metafor::regtest(fit, model = "rma")
+} else {
+  message("Install metafor to run this meta-analysis.")
+}
+```
+
+## Fixed-effect meta-analysis
+
+```{r fixed-effect-meta-analysis}
+data <- read_example("metaEffectSizes.csv")
+
+if (has_pkg("metafor")) {
+  fit <- metafor::rma(
+    yi = effect_size,
+    sei = se,
+    data = data,
+    method = "FE"
+  )
+
+  summary(fit)
+  forest(fit, slab = data$study_label)
+} else {
+  message("Install metafor to run this meta-analysis.")
+}
+```
+
+## Random-effects meta-analysis
+
+```{r random-effects-meta-analysis}
+data <- read_example("metaEffectSizes.csv")
+
+if (has_pkg("metafor")) {
+  fit <- metafor::rma(
+    yi = effect_size,
+    sei = se,
+    data = data,
+    method = "REML"
+  )
+
+  summary(fit)
+  predict(fit)
+  forest(fit, slab = data$study_label)
+} else {
+  message("Install metafor to run this meta-analysis.")
+}
+```
+
+## Subgroup meta-analysis
+
+```{r subgroup-meta-analysis}
+data <- read_example("metaEffectSizes.csv")
+
+if (has_pkg("metafor")) {
+  fit <- metafor::rma(
+    yi = effect_size,
+    sei = se,
+    mods = ~ moderator,
+    data = data,
+    method = "REML"
+  )
+
+  summary(fit)
+
+  by(
+    data,
+    data$moderator,
+    function(d) summary(metafor::rma(yi = effect_size, sei = se, data = d, method = "REML"))
+  )
+} else {
+  message("Install metafor to run this meta-analysis.")
+}
+```
+
+## Meta-regression
+
+```{r meta-regression}
+data <- read_example("metaEffectSizes.csv")
+
+if (has_pkg("metafor")) {
+  fit <- metafor::rma(
+    yi = effect_size,
+    sei = se,
+    mods = ~ moderator,
+    data = data,
+    method = "REML"
+  )
+
+  summary(fit)
+} else {
+  message("Install metafor to run meta-regression.")
+}
+```
+
+## Publication-bias diagnostics
+
+```{r publication-bias-diagnostics}
+data <- read_example("metaEffectSizes.csv")
+
+if (has_pkg("metafor")) {
+  fit <- metafor::rma(
+    yi = effect_size,
+    sei = se,
+    data = data,
+    method = "REML"
+  )
+
+  funnel(fit)
+  metafor::regtest(fit, model = "rma")
+  metafor::trimfill(fit)
+} else {
+  message("Install metafor to run publication-bias diagnostics.")
+}
+```
+
+## Proportion meta-analysis
+
+```{r meta-proportion}
+data <- read_example("metaProportion.csv")
+
+if (has_pkg("metafor")) {
+  es <- metafor::escalc(
+    measure = "PLO",
+    xi = event_frequency,
+    ni = total_sample_size,
+    data = data
+  )
+
+  fit <- metafor::rma(yi, vi, mods = ~ moderator, data = es, method = "REML")
+  summary(fit)
+  predict(fit, transf = metafor::transf.ilogit)
+  forest(fit, slab = data$study_label)
+} else {
+  message("Install metafor to run this meta-analysis.")
+}
+```
+
+# Machine learning regression
+
+## Decision tree regression
+
+```{r decision-tree-regression}
+data <- read_example("decisionTreeRegression.csv")
+model_data <- subset(data, select = -client)
+
+if (has_pkg("rpart")) {
+  set.seed(1)
+  train_id <- sample(seq_len(nrow(model_data)), size = floor(0.70 * nrow(model_data)))
+
+  fit <- rpart::rpart(
+    outcome_symptom_score ~ motivation_score + baseline_distress_score + sessions_attended,
+    data = model_data[train_id, ],
+    method = "anova",
+    control = rpart::rpart.control(cp = .01)
+  )
+
+  pred <- predict(fit, newdata = model_data[-train_id, ])
+  actual <- model_data$outcome_symptom_score[-train_id]
+  c(
+    RMSE = sqrt(mean((pred - actual)^2)),
+    MAE = mean(abs(pred - actual)),
+    R2 = cor(pred, actual)^2
+  )
+  plot(fit)
+  text(fit)
+} else {
+  message("Install rpart to run decision tree regression.")
+}
+```
+
+## Random forest regression
+
+```{r random-forest-regression}
+data <- read_example("randomForestRegression.csv")
+model_data <- subset(data, select = -athlete)
+
+if (has_pkg("randomForest")) {
+  set.seed(1)
+  train_id <- sample(seq_len(nrow(model_data)), size = floor(0.70 * nrow(model_data)))
+
+  fit <- randomForest::randomForest(
+    race_time_min ~ .,
+    data = model_data[train_id, ],
+    ntree = 500,
+    importance = TRUE
+  )
+
+  pred <- predict(fit, newdata = model_data[-train_id, ])
+  actual <- model_data$race_time_min[-train_id]
+  c(
+    RMSE = sqrt(mean((pred - actual)^2)),
+    MAE = mean(abs(pred - actual)),
+    R2 = cor(pred, actual)^2
+  )
+  randomForest::importance(fit)
+} else {
+  message("Install randomForest to run random forest regression.")
+}
+```
+
+## k-nearest neighbors regression
+
+```{r knn-regression}
+data <- read_example("knnRegression.csv")
+model_data <- subset(data, select = -participant)
+
+if (has_pkg("caret")) {
+  set.seed(1)
+  ctrl <- caret::trainControl(method = "cv", number = 10)
+
+  fit <- caret::train(
+    wellbeing_score ~ sleep_hours + stress_score + physical_activity_min_week + social_support_score,
+    data = model_data,
+    method = "knn",
+    trControl = ctrl,
+    preProcess = c("center", "scale"),
+    tuneLength = 10
+  )
+
+  fit
+} else {
+  message("Install caret to run k-nearest neighbors regression.")
+}
+```
+
+# Machine learning classification
+
+## Decision tree classifier
+
+```{r decision-tree-classifier}
+data <- read_example("decisionTreeClassifier.csv")
+data$class <- factor(data$class)
+model_data <- subset(data, select = -participant)
+
+if (has_pkg("rpart")) {
+  set.seed(1)
+  train_id <- sample(seq_len(nrow(model_data)), size = floor(0.70 * nrow(model_data)))
+
+  fit <- rpart::rpart(
+    class ~ .,
+    data = model_data[train_id, ],
+    method = "class"
+  )
+
+  pred <- predict(fit, newdata = model_data[-train_id, ], type = "class")
+  table(Predicted = pred, Observed = model_data$class[-train_id])
+  mean(pred == model_data$class[-train_id])
+
+  plot(fit)
+  text(fit)
+} else {
+  message("Install rpart to run decision tree classification.")
+}
+```
+
+## Random forest classifier
+
+```{r random-forest-classifier}
+data <- read_example("randomForestClassifier.csv")
+data$class <- factor(data$class)
+model_data <- subset(data, select = -athlete)
+
+if (has_pkg("randomForest")) {
+  set.seed(1)
+  train_id <- sample(seq_len(nrow(model_data)), size = floor(0.70 * nrow(model_data)))
+
+  fit <- randomForest::randomForest(
+    class ~ .,
+    data = model_data[train_id, ],
+    ntree = 500,
+    importance = TRUE
+  )
+
+  pred <- predict(fit, newdata = model_data[-train_id, ])
+  table(Predicted = pred, Observed = model_data$class[-train_id])
+  mean(pred == model_data$class[-train_id])
+  randomForest::importance(fit)
+} else {
+  message("Install randomForest to run random forest classification.")
+}
+```
+
+## k-nearest neighbors classifier
+
+```{r knn-classifier}
+data <- read_example("knnClassifier.csv")
+data$class <- factor(data$class)
+model_data <- subset(data, select = -participant)
+
+if (has_pkg("caret")) {
+  set.seed(1)
+  ctrl <- caret::trainControl(method = "cv", number = 10)
+
+  fit <- caret::train(
+    class ~ .,
+    data = model_data,
+    method = "knn",
+    trControl = ctrl,
+    preProcess = c("center", "scale"),
+    tuneLength = 10
+  )
+
+  fit
+} else {
+  message("Install caret to run k-nearest neighbors classification.")
+}
+```
+
+## Naive Bayes classifier
+
+```{r naive-bayes-classifier}
+data <- read_example("naiveBayes.csv")
+data$class <- factor(data$class)
+model_data <- subset(data, select = -student)
+
+if (has_pkg("e1071")) {
+  set.seed(1)
+  train_id <- sample(seq_len(nrow(model_data)), size = floor(0.70 * nrow(model_data)))
+
+  fit <- e1071::naiveBayes(class ~ ., data = model_data[train_id, ])
+  pred <- predict(fit, newdata = model_data[-train_id, ])
+
+  table(Predicted = pred, Observed = model_data$class[-train_id])
+  mean(pred == model_data$class[-train_id])
+} else {
+  message("Install e1071 to run naive Bayes classification.")
+}
+```
+
+# Principal component analysis
+
+## Principal component analysis
+
+```{r principal-component-analysis}
+data <- read_example("principalComponentAnalysis.csv")
+variables <- c(
+  "attention_accuracy",
+  "working_memory",
+  "processing_speed",
+  "inhibition_score",
+  "cognitive_flexibility",
+  "verbal_memory",
+  "spatial_reasoning"
+)
+
+vars <- data[, variables]
+fit <- prcomp(vars, center = TRUE, scale. = TRUE)
+
+summary(fit)
+fit$rotation
+biplot(fit, scale = 0)
+```
