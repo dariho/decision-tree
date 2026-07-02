@@ -453,7 +453,14 @@ const languagePacks = {
       institutionLabel: "Unidistance Suisse",
       toolBadge: "Research Lab Tool",
       languageLabel: "Sprache",
+      searchShort: "Suchen",
+      searchTitle: "Test direkt suchen",
+      searchIntro: "Suchen Sie nach einem Test oder Verfahren und öffnen Sie die Empfehlung direkt.",
+      searchLabel: "Test oder Stichwort",
+      searchPlaceholder: "z. B. ANOVA, Regression, Wilcoxon ...",
+      searchEmpty: "Kein passender Test gefunden.",
       helpShort: "Hilfe",
+      closeSearch: "Suche schließen",
       closeHelp: "Hilfe schließen",
       back: "Zurück",
       reset: "Neu starten",
@@ -533,7 +540,14 @@ const languagePacks = {
       institutionLabel: "Unidistance Suisse",
       toolBadge: "Research Lab Tool",
       languageLabel: "Language",
+      searchShort: "Search",
+      searchTitle: "Search for a test",
+      searchIntro: "Search for a test or procedure and open the recommendation directly.",
+      searchLabel: "Test or keyword",
+      searchPlaceholder: "e.g., ANOVA, regression, Wilcoxon ...",
+      searchEmpty: "No matching test found.",
       helpShort: "Help",
+      closeSearch: "Close search",
       closeHelp: "Close help",
       back: "Back",
       reset: "Restart",
@@ -2172,6 +2186,12 @@ const elements = {
   resetButton: document.querySelector("#resetButton"),
   copyButton: document.querySelector("#copyButton"),
   exploreButton: document.querySelector("#exploreButton"),
+  searchButton: document.querySelector("#searchButton"),
+  searchDialog: document.querySelector("#searchDialog"),
+  closeSearchButton: document.querySelector("#closeSearchButton"),
+  searchInput: document.querySelector("#searchInput"),
+  searchResults: document.querySelector("#searchResults"),
+  searchEmpty: document.querySelector("#searchEmpty"),
   helpButton: document.querySelector("#helpButton"),
   helpDialog: document.querySelector("#helpDialog"),
   closeHelpButton: document.querySelector("#closeHelpButton"),
@@ -2194,11 +2214,17 @@ function applyStaticText() {
     const key = element.dataset.i18n;
     if (pack.ui[key]) element.textContent = pack.ui[key];
   });
+  elements.searchButton.setAttribute("aria-label", pack.ui.searchTitle);
+  elements.searchButton.title = pack.ui.searchTitle;
+  elements.closeSearchButton.setAttribute("aria-label", pack.ui.closeSearch);
+  elements.closeSearchButton.title = pack.ui.closeSearch;
+  elements.searchInput.placeholder = pack.ui.searchPlaceholder;
   elements.helpButton.setAttribute("aria-label", pack.ui.helpTitle);
   elements.helpButton.title = pack.ui.helpTitle;
   elements.closeHelpButton.setAttribute("aria-label", pack.ui.closeHelp);
   elements.closeHelpButton.title = pack.ui.closeHelp;
   elements.languageSelect.value = state.language;
+  if (elements.searchDialog.open) renderSearchResults();
 }
 
 function render() {
@@ -2495,7 +2521,7 @@ function getProcedureScreenshot(resultId, language) {
   const screenshot = procedureScreenshots[resultId]?.[state.procedureTool];
   if (!screenshot) return "";
   if (typeof screenshot === "string") return screenshot;
-  return screenshot[language] || screenshot.default || "";
+  return screenshot[language] || screenshot.en || screenshot.default || "";
 }
 
 function renderHistory() {
@@ -2529,6 +2555,87 @@ function resetTree() {
   state.currentNode = "goal";
   state.history = [];
   render();
+}
+
+function normalizeSearchText(value) {
+  return value
+    .toLocaleLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function getSearchMatches(query) {
+  const pack = getPack();
+  const normalizedQuery = normalizeSearchText(query.trim());
+  const items = Object.entries(pack.results).map(([id, result]) => {
+    const searchText = normalizeSearchText([
+      id,
+      result.title,
+      result.summary,
+      ...(result.assumptions || [])
+    ].join(" "));
+    const title = normalizeSearchText(result.title);
+    let score = 0;
+    if (!normalizedQuery) score = 1;
+    else if (title.startsWith(normalizedQuery)) score = 5;
+    else if (title.includes(normalizedQuery)) score = 4;
+    else if (searchText.includes(normalizedQuery)) score = 2;
+    return { id, result, score };
+  });
+
+  return items
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.result.title.localeCompare(b.result.title))
+    .slice(0, 8);
+}
+
+function renderSearchResults() {
+  const pack = getPack();
+  const matches = getSearchMatches(elements.searchInput.value);
+  elements.searchResults.replaceChildren(
+    ...matches.map(({ id, result }) => {
+      const button = document.createElement("button");
+      const title = document.createElement("strong");
+      const summary = document.createElement("span");
+      button.className = "search-result-button";
+      button.type = "button";
+      button.setAttribute("role", "option");
+      button.setAttribute("aria-label", result.title);
+      title.textContent = result.title;
+      summary.textContent = result.summary;
+      button.append(title, summary);
+      button.addEventListener("click", () => selectSearchResult(id));
+      return button;
+    })
+  );
+  elements.searchEmpty.hidden = matches.length > 0;
+  elements.searchResults.hidden = matches.length === 0;
+  if (!matches.length) elements.searchEmpty.textContent = pack.ui.searchEmpty;
+}
+
+function openSearch() {
+  applyStaticText();
+  renderSearchResults();
+  elements.searchDialog.showModal();
+  window.setTimeout(() => {
+    elements.searchInput.focus();
+    elements.searchInput.select();
+  }, 0);
+}
+
+function selectSearchResult(resultId) {
+  state.currentNode = resultId;
+  state.history = [];
+  elements.searchDialog.close();
+  render();
+}
+
+function handleSearchKeydown(event) {
+  if (event.key !== "Enter") return;
+  const firstResult = elements.searchResults.querySelector(".search-result-button");
+  if (!firstResult) return;
+  event.preventDefault();
+  firstResult.click();
 }
 
 function getStageForNode(nodeId) {
@@ -2624,6 +2731,10 @@ elements.backButton.addEventListener("click", goBack);
 elements.resetButton.addEventListener("click", resetTree);
 elements.copyButton.addEventListener("click", copyResult);
 elements.exploreButton.addEventListener("click", showAlternatives);
+elements.searchButton.addEventListener("click", openSearch);
+elements.closeSearchButton.addEventListener("click", () => elements.searchDialog.close());
+elements.searchInput.addEventListener("input", renderSearchResults);
+elements.searchInput.addEventListener("keydown", handleSearchKeydown);
 elements.helpButton.addEventListener("click", () => elements.helpDialog.showModal());
 elements.closeHelpButton.addEventListener("click", () => elements.helpDialog.close());
 elements.languageSelect.addEventListener("change", changeLanguage);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Entscheidungsbaum statistischer Testverfahren</title>
-    <link rel="stylesheet" href="styles.css?v=20260702-labels" />
+    <link rel="stylesheet" href="styles.css?v=20260702-search" />
   </head>
   <body>
     <main class="app-shell">
@@ -36,6 +36,13 @@
               <option value="it">Italiano</option>
             </select>
           </label>
+          <button class="icon-button" id="searchButton" type="button" aria-label="Test suchen" title="Test suchen">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.8" cy="10.8" r="6.8" />
+              <path d="M16 16l4 4" />
+            </svg>
+            <span data-i18n="searchShort">Suchen</span>
+          </button>
           <button class="icon-button" id="helpButton" type="button" aria-label="Hilfe öffnen" title="Hilfe">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M9.6 9a2.6 2.6 0 1 1 3.8 2.3c-.9.5-1.4 1.1-1.4 2.2" />
@@ -257,6 +264,23 @@
       </footer>
     </main>
 
+    <dialog class="search-dialog" id="searchDialog" aria-labelledby="searchTitle">
+      <button class="icon-button close-dialog" id="closeSearchButton" type="button" aria-label="Suche schließen" title="Schließen">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 6l12 12" />
+          <path d="M18 6L6 18" />
+        </svg>
+      </button>
+      <h2 id="searchTitle" data-i18n="searchTitle">Test direkt suchen</h2>
+      <p data-i18n="searchIntro">Suchen Sie nach einem Test oder Verfahren und öffnen Sie die Empfehlung direkt.</p>
+      <label class="search-field" for="searchInput">
+        <span data-i18n="searchLabel">Test oder Stichwort</span>
+        <input id="searchInput" type="search" autocomplete="off" spellcheck="false" />
+      </label>
+      <div class="search-results" id="searchResults" role="listbox"></div>
+      <p class="search-empty" id="searchEmpty" data-i18n="searchEmpty" hidden>Kein passender Test gefunden.</p>
+    </dialog>
+
     <dialog class="help-dialog" id="helpDialog" aria-labelledby="helpTitle">
       <button class="icon-button close-dialog" id="closeHelpButton" type="button" aria-label="Hilfe schließen" title="Schließen">
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -283,10 +307,10 @@
     </dialog>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="translations-extra.js?v=20260702-labels"></script>
-    <script src="scenarios.js?v=20260702-labels"></script>
-    <script src="procedure-translations.js?v=20260702-labels"></script>
-    <script src="apa-reporting.js?v=20260702-labels"></script>
-    <script src="app.js?v=20260702-labels"></script>
+    <script src="translations-extra.js?v=20260702-search"></script>
+    <script src="scenarios.js?v=20260702-search"></script>
+    <script src="procedure-translations.js?v=20260702-search"></script>
+    <script src="apa-reporting.js?v=20260702-search"></script>
+    <script src="app.js?v=20260702-search"></script>
   </body>
 </html>
