@@ -1,11 +1,11 @@
 const tree = {
   goal: {
     area: "Analysestrategie",
-    question: "Möchten Sie eine Hypothese prüfen oder Hypothesen explorativ entdecken?",
+    question: "Möchten Sie eine Hypothese oder ein Modell mit mehreren Variablen prüfen oder Hypothesen explorativ entdecken?",
     hint: "Starten Sie mit der Rolle Ihrer Analyse: Soll eine vorab formulierte Annahme geprüft werden, oder möchten Sie Muster, Dimensionen oder Gruppen in den Daten entdecken?",
     step: "Strategie",
     answers: [
-      { label: "Eine Hypothese prüfen", next: "researchGoal" },
+      { label: "Eine Hypothese oder ein Modell mit mehreren Variablen prüfen", next: "researchGoal" },
       { label: "Hypothesen explorativ entdecken", next: "discoveryStructure" }
     ]
   },
@@ -16,7 +16,7 @@ const tree = {
     step: "Fragestellung",
     answers: [
       { label: "Zusammenhang zwischen Variablen prüfen", next: "associationScale" },
-      { label: "Unterschiede oder Mittelwerte vergleichen", next: "comparisonOutcome" },
+      { label: "Unterschiede zwischen Mittelwerten, Medianen oder Varianzen vergleichen", next: "comparisonOutcome" },
       { label: "Eine Zielvariable vorhersagen", next: "predictionOutcome" },
       { label: "Häufigkeiten, Kategorien oder Anteile vergleichen", next: "categoricalDesign" }
     ]
@@ -606,11 +606,11 @@ const languagePacks = {
     tree: {
       goal: {
         area: "Analysis strategy",
-        question: "Do you want to test a hypothesis or discover hypotheses exploratively?",
+        question: "Do you want to test a hypothesis or a model with multiple variables, or discover hypotheses exploratively?",
         hint: "Start with the role of your analysis: are you testing a predefined assumption, or are you trying to discover patterns, dimensions, or groups in the data?",
         step: "Strategy",
         answers: [
-          { label: "Test a hypothesis", next: "researchGoal" },
+          { label: "Test a hypothesis or a model with multiple variables", next: "researchGoal" },
           { label: "Discover hypotheses exploratively", next: "discoveryStructure" }
         ]
       },
@@ -621,7 +621,7 @@ const languagePacks = {
         step: "Research question",
         answers: [
           { label: "Test association between variables", next: "associationScale" },
-          { label: "Compare differences or means", next: "comparisonOutcome" },
+          { label: "Compare difference between means, medians or variances", next: "comparisonOutcome" },
           { label: "Predict an outcome variable", next: "predictionOutcome" },
           { label: "Compare frequencies, categories, or proportions", next: "categoricalDesign" }
         ]
