@@ -2724,21 +2724,23 @@ function normalizeSearchText(value) {
 function getSearchMatches(query) {
   const pack = getPack();
   const normalizedQuery = normalizeSearchText(query.trim());
-  const items = Object.entries(pack.results).map(([id, result]) => {
-    const searchText = normalizeSearchText([
-      id,
-      result.title,
-      result.summary,
-      ...(result.assumptions || [])
-    ].join(" "));
-    const title = normalizeSearchText(result.title);
-    let score = 0;
-    if (!normalizedQuery) score = 1;
-    else if (title.startsWith(normalizedQuery)) score = 5;
-    else if (title.includes(normalizedQuery)) score = 4;
-    else if (searchText.includes(normalizedQuery)) score = 2;
-    return { id, result, score };
-  });
+  const items = Object.entries(pack.results)
+    .filter(([id]) => findPathToResult(id))
+    .map(([id, result]) => {
+      const searchText = normalizeSearchText([
+        id,
+        result.title,
+        result.summary,
+        ...(result.assumptions || [])
+      ].join(" "));
+      const title = normalizeSearchText(result.title);
+      let score = 0;
+      if (!normalizedQuery) score = 1;
+      else if (title.startsWith(normalizedQuery)) score = 5;
+      else if (title.includes(normalizedQuery)) score = 4;
+      else if (searchText.includes(normalizedQuery)) score = 2;
+      return { id, result, score };
+    });
 
   return items
     .filter((item) => item.score > 0)
@@ -2770,6 +2772,32 @@ function renderSearchResults() {
   if (!matches.length) elements.searchEmpty.textContent = pack.ui.searchEmpty;
 }
 
+function findPathToResult(resultId) {
+  const treeData = getPack().tree;
+  const visited = new Set();
+
+  function walk(nodeId, path) {
+    if (visited.has(nodeId)) return null;
+    const node = treeData[nodeId];
+    if (!node?.answers) return null;
+
+    visited.add(nodeId);
+    for (let answerIndex = 0; answerIndex < node.answers.length; answerIndex += 1) {
+      const answer = node.answers[answerIndex];
+      const nextPath = [...path, { nodeId, answerIndex }];
+      if (answer.result === resultId) return nextPath;
+      if (answer.next) {
+        const resultPath = walk(answer.next, nextPath);
+        if (resultPath) return resultPath;
+      }
+    }
+
+    return null;
+  }
+
+  return walk("goal", []);
+}
+
 function openSearch() {
   applyStaticText();
   renderSearchResults();
@@ -2782,7 +2810,7 @@ function openSearch() {
 
 function selectSearchResult(resultId) {
   state.currentNode = resultId;
-  state.history = [];
+  state.history = findPathToResult(resultId) || [];
   elements.searchDialog.close();
   render();
 }
