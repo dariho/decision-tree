@@ -1128,6 +1128,10 @@ Object.assign(window.resultScenarioPacks.it, {
 });
 
 Object.assign(window.resultScenarioPacks.de, {
+  ancova: {
+    psychology: "Drei Therapiegruppen werden im Angstwert nach der Intervention verglichen, während der Ausgangsangstwert kontrolliert wird.",
+    sport: "Drei Trainingsprogramme werden in der Ausdauerleistung nach dem Training verglichen, während die Ausgangsfitness kontrolliert wird."
+  },
   manova: {
     psychology: "Drei Therapiegruppen werden gleichzeitig anhand von Stress, Wohlbefinden und kognitiver Leistung verglichen.",
     sport: "Drei Trainingsprogramme werden gleichzeitig anhand von Ausdauer, Sprintzeit und wahrgenommener Erholung verglichen."
@@ -1139,6 +1143,10 @@ Object.assign(window.resultScenarioPacks.de, {
 });
 
 Object.assign(window.resultScenarioPacks.en, {
+  ancova: {
+    psychology: "Three therapy groups are compared on post-intervention anxiety while controlling for baseline anxiety.",
+    sport: "Three training programs are compared on post-training endurance while controlling for baseline fitness."
+  },
   manova: {
     psychology: "Three therapy groups are compared simultaneously on stress, wellbeing, and cognitive performance.",
     sport: "Three training programs are compared simultaneously on endurance, sprint time, and perceived recovery."
@@ -1150,6 +1158,10 @@ Object.assign(window.resultScenarioPacks.en, {
 });
 
 Object.assign(window.resultScenarioPacks.fr, {
+  ancova: {
+    psychology: "Trois groupes de thérapie sont comparés sur l'anxiété après l'intervention en contrôlant l'anxiété initiale.",
+    sport: "Trois programmes d'entraînement sont comparés sur l'endurance après l'entraînement en contrôlant la condition initiale."
+  },
   manova: {
     psychology: "Trois groupes de thérapie sont comparés simultanément sur le stress, le bien-être et la performance cognitive.",
     sport: "Trois programmes d'entraînement sont comparés simultanément sur l'endurance, le temps de sprint et la récupération perçue."
@@ -1161,6 +1173,10 @@ Object.assign(window.resultScenarioPacks.fr, {
 });
 
 Object.assign(window.resultScenarioPacks.es, {
+  ancova: {
+    psychology: "Tres grupos de terapia se comparan en ansiedad posterior a la intervención controlando la ansiedad inicial.",
+    sport: "Tres programas de entrenamiento se comparan en resistencia posterior al entrenamiento controlando la condición física inicial."
+  },
   manova: {
     psychology: "Tres grupos de terapia se comparan simultáneamente en estrés, bienestar y rendimiento cognitivo.",
     sport: "Tres programas de entrenamiento se comparan simultáneamente en resistencia, tiempo de sprint y recuperación percibida."
@@ -1172,6 +1188,10 @@ Object.assign(window.resultScenarioPacks.es, {
 });
 
 Object.assign(window.resultScenarioPacks.it, {
+  ancova: {
+    psychology: "Tre gruppi di terapia sono confrontati sull'ansia post-intervento controllando l'ansia iniziale.",
+    sport: "Tre programmi di allenamento sono confrontati sulla resistenza post-allenamento controllando la fitness iniziale."
+  },
   manova: {
     psychology: "Tre gruppi di terapia sono confrontati simultaneamente su stress, benessere e prestazione cognitiva.",
     sport: "Tre programmi di allenamento sono confrontati simultaneamente su resistenza, tempo di sprint e recupero percepito."

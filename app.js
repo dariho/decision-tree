@@ -95,8 +95,18 @@ const tree = {
     hint: "MANOVA und MANCOVA sind sinnvoll, wenn mehrere zusammenhängende metrische Zielvariablen gleichzeitig zwischen Gruppen verglichen werden.",
     step: "Zielvariablen",
     answers: [
-      { label: "Eine metrische abhängige Variable", next: "metricGroups" },
+      { label: "Eine metrische abhängige Variable", next: "singleMetricCovariates" },
       { label: "Zwei oder mehr metrische abhängige Variablen", next: "multivariateCovariates" }
+    ]
+  },
+  singleMetricCovariates: {
+    area: "Kovariaten",
+    question: "Möchten Sie eine oder mehrere Kovariaten kontrollieren?",
+    hint: "ANCOVA wird verwendet, wenn Gruppen auf einer metrischen Zielvariable verglichen werden und zusätzliche metrische Kovariaten kontrolliert werden sollen.",
+    step: "Kovariaten",
+    answers: [
+      { label: "Nein, keine Kovariaten", next: "metricGroups" },
+      { label: "Ja, eine oder mehrere Kovariaten", result: "ancova" }
     ]
   },
   multivariateCovariates: {
@@ -352,6 +362,11 @@ const results = {
     title: "Einfaktorielle ANOVA",
     summary: "Vergleicht Mittelwerte von mehr als zwei unabhängigen Gruppen.",
     assumptions: ["Unabhängige Gruppen", "Metrische Zielvariable", "Normalverteilung je Gruppe", "Varianzhomogenität"]
+  },
+  ancova: {
+    title: "ANCOVA",
+    summary: "Vergleicht Gruppen auf einer metrischen Zielvariable und kontrolliert dabei eine oder mehrere Kovariaten.",
+    assumptions: ["Eine metrische Zielvariable", "Eine oder mehrere kategoriale unabhängige Variablen", "Eine oder mehrere metrische Kovariaten", "Lineare Beziehung zwischen Kovariaten und Zielvariable", "Homogene Regressionssteigungen", "Normalverteilung der Residuen und Varianzhomogenität"]
   },
   manova: {
     title: "MANOVA",
@@ -744,8 +759,18 @@ const languagePacks = {
         hint: "MANOVA and MANCOVA are useful when several related metric outcomes are compared between groups at the same time.",
         step: "Dependent variables",
         answers: [
-          { label: "One metric dependent variable", next: "metricGroups" },
+          { label: "One metric dependent variable", next: "singleMetricCovariates" },
           { label: "Two or more metric dependent variables", next: "multivariateCovariates" }
+        ]
+      },
+      singleMetricCovariates: {
+        area: "Covariates",
+        question: "Do you want to control for one or more covariates?",
+        hint: "ANCOVA is used when groups are compared on one metric outcome while additional metric covariates are controlled.",
+        step: "Covariates",
+        answers: [
+          { label: "No covariates", next: "metricGroups" },
+          { label: "Yes, one or more covariates", result: "ancova" }
         ]
       },
       multivariateCovariates: {
@@ -937,6 +962,7 @@ const languagePacks = {
       pairedT: { title: "Paired-samples t-test", summary: "Compares two paired means, for example pre-post measurements.", assumptions: ["Two paired measurements", "Metric difference scores", "Approximate normality of differences"] },
       wilcoxon: { title: "Wilcoxon signed-rank test", summary: "Nonparametric choice for two paired measurements or ordinal paired comparisons.", assumptions: ["Two paired measurements", "At least ordinal values", "Pairing is present"] },
       anova: { title: "One-way ANOVA", summary: "Compares means across more than two independent groups.", assumptions: ["Independent groups", "Metric outcome variable", "Normality within groups", "Homogeneity of variances"] },
+      ancova: { title: "ANCOVA", summary: "Compares groups on one metric dependent variable while controlling for one or more covariates.", assumptions: ["One metric dependent variable", "One or more categorical independent variables", "One or more metric covariates", "Linear relation between covariates and the dependent variable", "Homogeneity of regression slopes", "Normally distributed residuals and homogeneity of variance"] },
       manova: { title: "MANOVA", summary: "Compares groups on two or more related metric dependent variables simultaneously.", assumptions: ["Two or more metric dependent variables", "One or more categorical independent variables", "Independent observations", "Multivariate normality within groups", "Homogeneity of covariance matrices", "Meaningful correlations among dependent variables"] },
       mancova: { title: "MANCOVA", summary: "Compares groups on two or more related metric dependent variables while controlling for one or more covariates.", assumptions: ["Two or more metric dependent variables", "One or more categorical independent variables", "One or more metric covariates", "Linear relation between covariates and dependent variables", "Homogeneity of regression slopes", "Multivariate normality and homogeneity of covariance matrices"] },
       repeatedAnova: { title: "Repeated-measures ANOVA", summary: "Tests mean differences across several paired time points or conditions.", assumptions: ["Repeated measurements", "Metric outcome variable", "Sphericity or suitable correction"] },
@@ -1466,6 +1492,10 @@ const procedureCatalog = {
     jamovi: "Analyses > ANOVA > ANOVA\nPut the metric outcome in Dependent Variable and the factor in Fixed Factor.\nEnable assumption checks and post-hoc tests if needed.",
     r: "fit <- aov(score ~ group, data = data)\nsummary(fit)\nTukeyHSD(fit)"
   },
+  ancova: {
+    jamovi: "Analyses > ANOVA > ANCOVA\nPut the metric outcome in Dependent Variable and the grouping variable(s) in Fixed Factors.\nAdd variables such as baseline_score or age_years to Covariates.\nInspect the group effect after adjustment and check the homogeneity of regression slopes when theoretically relevant.",
+    r: "fit <- lm(post_anxiety ~ group + baseline_anxiety, data = data)\nanova(fit)\ndrop1(fit, test = \"F\")"
+  },
   manova: {
     jamovi: "Analyses > ANOVA > MANCOVA\nMove two or more metric outcomes into Dependent Variables.\nAdd the grouping factor(s) as Fixed Factors and leave Covariates empty for a MANOVA.\nInspect multivariate tests such as Pillai's trace or Wilks' lambda, then follow up with univariate ANOVAs only if justified.",
     r: "fit <- manova(cbind(stress_score, wellbeing_score, performance_score) ~ group, data = data)\nsummary(fit, test = \"Pillai\")\nsummary(fit, test = \"Wilks\")\nsummary.aov(fit)"
@@ -1829,6 +1859,7 @@ const procedureScreenshots = {
 };
 
 const datasetFiles = {
+  ancova: "ancova.csv",
   anova: "anova.csv",
   binomialTest: "binomialTest.csv",
   chiSquareAssociation: "chiSquareAssociation.csv",
@@ -1903,6 +1934,7 @@ const effectSizeDefinitions = {
   pairedT: { measure: "Cohen's dz", rangeType: "d" },
   wilcoxon: { measure: "Effect size r", rangeType: "r" },
   anova: { measure: "Partial eta squared", rangeType: "eta" },
+  ancova: { measure: "Partial eta squared for the adjusted group effect", rangeType: "eta" },
   manova: { measure: "Pillai's trace or Wilks' lambda; partial eta squared for follow-up tests", rangeType: "eta" },
   mancova: { measure: "Pillai's trace or Wilks' lambda; partial eta squared for adjusted follow-up tests", rangeType: "eta" },
   repeatedAnova: { measure: "Partial eta squared", rangeType: "eta" },
@@ -2704,7 +2736,7 @@ function handleSearchKeydown(event) {
 
 function getStageForNode(nodeId) {
   const scaleNodes = ["associationScale", "comparisonOutcome", "predictionOutcome", "metricDependentVariables"];
-  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "varianceComparison", "causalModelVariables", "mixedModelOutcome", "multivariateCovariates", "oneSampleKnownVariance", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "twoWayAnovaAssumptions", "twoWayRepeatedAssumptions", "normalAssociation", "rankCorrelationChoice"];
+  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "varianceComparison", "causalModelVariables", "mixedModelOutcome", "singleMetricCovariates", "multivariateCovariates", "oneSampleKnownVariance", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "twoWayAnovaAssumptions", "twoWayRepeatedAssumptions", "normalAssociation", "rankCorrelationChoice"];
   if (nodeId === "goal" || nodeId === "researchGoal" || nodeId === "discoveryStructure") return "goal";
   if (scaleNodes.includes(nodeId)) return "scale";
   if (groupNodes.includes(nodeId)) return "groups";

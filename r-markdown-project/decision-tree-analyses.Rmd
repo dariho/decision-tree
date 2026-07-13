@@ -375,6 +375,19 @@ summary(fit)
 TukeyHSD(fit)
 ```
 
+## ANCOVA
+
+Purpose: Use ANCOVA to compare group means on one continuous outcome while adjusting for one or more continuous covariates. It is useful when groups may differ on a baseline score or another variable that should be statistically controlled.
+
+```{r ancova}
+data <- read_example("ancova.csv")
+data$group <- factor(data$group)
+
+fit <- lm(post_anxiety ~ group + baseline_anxiety, data = data)
+anova(fit)
+drop1(fit, test = "F")
+```
+
 ## MANOVA
 
 Purpose: Use MANOVA when you want to compare two or more related continuous dependent variables across groups at the same time. It first tests whether the groups differ on the combined outcome profile before considering any follow-up tests for individual outcomes.
