@@ -29,6 +29,7 @@ has_pkg <- function(package) {
 
 optional_packages <- c(
   "ARTool",
+  "bootnet",
   "caret",
   "e1071",
   "lavaan",
@@ -40,6 +41,7 @@ optional_packages <- c(
   "ordinal",
   "performance",
   "psych",
+  "qgraph",
   "randomForest",
   "rpart"
 )
@@ -222,6 +224,28 @@ pe <- lavaan::parameterEstimates(
 pe
 
 
+```
+
+## Confirmatory factor analysis
+
+Purpose: Use confirmatory factor analysis to test whether observed indicators fit a measurement model defined before looking at the data. CFA is appropriate when the expected factors and item-factor assignments are theory-driven.
+
+```{r confirmatory-factor-analysis}
+data <- read_example("confirmatoryFactorAnalysis.csv")
+
+if (has_pkg("lavaan")) {
+  model <- '
+    stress =~ stress1 + stress2 + stress3
+    recovery =~ recovery1 + recovery2 + recovery3
+    confidence =~ conf1 + conf2 + conf3
+  '
+
+  fit <- lavaan::cfa(model, data = data)
+  summary(fit, standardized = TRUE, fit.measures = TRUE)
+  lavaan::fitMeasures(fit, c("cfi", "tli", "rmsea", "srmr"))
+} else {
+  message("Install lavaan to run CFA.")
+}
 ```
 
 ## Discriminant analysis
@@ -696,6 +720,29 @@ if (has_pkg("psych")) {
 } else {
   fit <- factanal(data[, items], factors = 3, rotation = "promax")
   print(fit)
+}
+```
+
+## Network analysis
+
+Purpose: Use network analysis to explore direct relations among several variables while keeping each variable as a node. The resulting edges should be interpreted as conditional associations, not as evidence of causality.
+
+```{r network-analysis}
+data <- read_example("networkAnalysis.csv")
+items <- c("stress", "sleep_quality", "rumination", "mood", "motivation", "performance")
+
+cor_mat <- cor(data[, items])
+round(cor_mat, 2)
+
+if (has_pkg("qgraph")) {
+  qgraph::qgraph(
+    cor_mat,
+    layout = "spring",
+    labels = items,
+    theme = "colorblind"
+  )
+} else {
+  message("Install qgraph to draw the network plot.")
 }
 ```
 

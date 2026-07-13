@@ -21,6 +21,9 @@ window.localizedProcedurePacks = {
     structuralEquationModeling: {
       jamovi: "Installieren und öffnen Sie das SEMLj-Modul in jamovi.\nNutzen Sie bevorzugt die Option SEM (Syntax), um Mess- und Strukturmodell festzulegen, da dies klarer und reproduzierbarer ist als der interaktive Modellaufbau.\nDefinieren Sie latente Variablen über ihre Indikatoren, ergänzen Sie die angenommenen Strukturpfade in Syntax und prüfen Sie standardisierte Ladungen, Pfadkoeffizienten, gegebenenfalls indirekte Effekte und globale Fit-Indizes."
     },
+    confirmatoryFactorAnalysis: {
+      jamovi: "Installieren und öffnen Sie das SEMLj-Modul in jamovi.\nNutzen Sie SEM (Syntax), um nur das Messmodell zu definieren, also latente Faktoren mit ihren Indikatoren ohne Strukturpfade.\nPrüfen Sie standardisierte Faktorladungen, Residuen, theoretisch begründete Modifikationsindizes und Fit-Indizes wie CFI, TLI, RMSEA und SRMR."
+    },
     discriminantAnalysis: {
       jamovi: "Installieren und öffnen Sie das SnowCluster-Modul in jamovi.\nWählen Sie Classification > Linear Discriminant Analysis.\nLegen Sie die nominale Gruppenvariable als abhängige Variable und die intervallskalierten Variablen als Prädiktoren fest; prüfen Sie Diskriminanzfunktionen und Klassifikationsgenauigkeit."
     },
@@ -129,6 +132,9 @@ window.localizedProcedurePacks = {
     factorAnalysis: {
       jamovi: "Analysen > Faktoren > Explorative Faktorenanalyse\nVerschieben Sie die zusammengehörigen Variablen in Variablen.\nWählen Sie Extraktionsmethode, Rotation und Faktorenzahl und prüfen Sie Ladungen sowie Modellpassung."
     },
+    networkAnalysis: {
+      jamovi: "Installieren und öffnen Sie das BSS-Modul in jamovi.\nWählen Sie die Option Network Analysis und verschieben Sie die ausgewählten Variablen in das Analysefeld.\nPrüfen Sie Netzwerkplot, Kantengewichte und Zentralitäts- oder Wichtigkeitsindizes; interpretieren Sie Kanten als bedingte Zusammenhänge, nicht als kausale Effekte."
+    },
     clusterAnalysis: {
       jamovi: "Installieren Sie das SnowCluster-Modul aus der jamovi-Bibliothek und öffnen Sie es über das Analysen-Menü.\nVerschieben Sie die Variablen, die Personen oder Objekte beschreiben, in das Feld für Clustering-Variablen.\nStandardisieren Sie die Variablen bei Bedarf, wählen Sie Clustering-Methode/Distanzoption, legen Sie die Clusterzahl fest oder vergleichen Sie Lösungen und prüfen Sie die Clusterqualität."
     },
@@ -163,6 +169,9 @@ window.localizedProcedurePacks = {
     },
     structuralEquationModeling: {
       jamovi: "Installez et ouvrez le module SEMLj dans jamovi.\nUtilisez de préférence l'option SEM (syntax) pour spécifier le modèle de mesure et le modèle structurel, car elle est plus claire et plus reproductible que le constructeur interactif.\nDéfinissez les variables latentes avec leurs indicateurs, ajoutez les chemins structurels hypothétiques en syntaxe, puis examinez les charges standardisées, les coefficients de chemin, les effets indirects si nécessaire et les indices d'ajustement globaux."
+    },
+    confirmatoryFactorAnalysis: {
+      jamovi: "Installez et ouvrez le module SEMLj dans jamovi.\nUtilisez SEM (syntax) pour définir seulement le modèle de mesure, c'est-à-dire les facteurs latents avec leurs indicateurs sans chemins structurels.\nExaminez les charges factorielles standardisées, les résidus, les indices de modification justifiés théoriquement et les indices d'ajustement comme CFI, TLI, RMSEA et SRMR."
     },
     discriminantAnalysis: {
       jamovi: "Installez et ouvrez le module SnowCluster dans jamovi.\nChoisissez Classification > Linear Discriminant Analysis.\nDéfinissez la variable de groupe nominale comme variable dépendante et les variables à échelle d'intervalle comme prédicteurs ; examinez les fonctions discriminantes et l'exactitude de classification."
@@ -272,6 +281,9 @@ window.localizedProcedurePacks = {
     factorAnalysis: {
       jamovi: "Analyses > Facteurs > Analyse factorielle exploratoire\nPlacez les variables liées dans Variables.\nChoisissez la méthode d'extraction, la rotation et le nombre de facteurs, puis examinez les charges et l'ajustement du modèle."
     },
+    networkAnalysis: {
+      jamovi: "Installez et ouvrez le module BSS dans jamovi.\nChoisissez l'option Network Analysis et placez les variables sélectionnées dans le champ d'analyse.\nExaminez le graphique du réseau, les poids des arêtes et les indices de centralité ou d'importance ; interprétez les arêtes comme des associations conditionnelles, pas comme des effets causaux."
+    },
     clusterAnalysis: {
       jamovi: "Installez le module SnowCluster depuis la bibliothèque jamovi et ouvrez-le dans le menu Analyses.\nPlacez les variables décrivant les personnes ou objets dans le champ des variables de clustering.\nStandardisez les variables si nécessaire, choisissez la méthode de clustering/l'option de distance, fixez ou comparez le nombre de clusters et examinez la qualité de la solution."
     },
@@ -306,6 +318,9 @@ window.localizedProcedurePacks = {
     },
     structuralEquationModeling: {
       jamovi: "Instale y abra el módulo SEMLj en jamovi.\nUse preferentemente la opción SEM (syntax) para especificar el modelo de medición y el modelo estructural, porque es más clara y reproducible que el constructor interactivo.\nDefina las variables latentes con sus indicadores, añada las rutas estructurales hipotetizadas en sintaxis y revise cargas estandarizadas, coeficientes de ruta, efectos indirectos si corresponde e índices globales de ajuste."
+    },
+    confirmatoryFactorAnalysis: {
+      jamovi: "Instale y abra el módulo SEMLj en jamovi.\nUse SEM (syntax) para definir solo el modelo de medición, es decir, factores latentes con sus indicadores y sin rutas estructurales.\nRevise cargas factoriales estandarizadas, residuos, índices de modificación justificados teóricamente e índices de ajuste como CFI, TLI, RMSEA y SRMR."
     },
     discriminantAnalysis: {
       jamovi: "Instale y abra el módulo SnowCluster en jamovi.\nElija Classification > Linear Discriminant Analysis.\nDefina la variable nominal de grupo como variable dependiente y las variables de escala de intervalo como predictores; revise funciones discriminantes y exactitud de clasificación."
@@ -415,6 +430,9 @@ window.localizedProcedurePacks = {
     factorAnalysis: {
       jamovi: "Análisis > Factores > Análisis factorial exploratorio\nMueva las variables relacionadas a Variables.\nElija el método de extracción, la rotación y el número de factores, e inspeccione cargas y ajuste del modelo."
     },
+    networkAnalysis: {
+      jamovi: "Instale y abra el módulo BSS en jamovi.\nElija la opción Network Analysis y mueva las variables seleccionadas al campo de análisis.\nRevise el gráfico de red, los pesos de las aristas y los índices de centralidad o importancia; interprete las aristas como asociaciones condicionales, no como efectos causales."
+    },
     clusterAnalysis: {
       jamovi: "Instale el módulo SnowCluster desde la biblioteca de jamovi y ábralo desde el menú Análisis. \nMueva las variables que describen personas u objetos al campo de variables de clustering.\nEstandarice las variables si es necesario, elija el método de clustering/opción de distancia, fije o compare el número de conglomerados y revise la calidad de la solución."
     },
@@ -501,6 +519,9 @@ window.localizedProcedurePacks.it = {
   },
   structuralEquationModeling: {
     jamovi: "Installa e apri il modulo SEMLj in jamovi.\nUsa preferibilmente l'opzione SEM (syntax) per specificare il modello di misura e il modello strutturale, perché è più chiara e riproducibile rispetto al costruttore interattivo.\nDefinisci le variabili latenti con i rispettivi indicatori, aggiungi i percorsi strutturali ipotizzati in sintassi e controlla carichi standardizzati, coefficienti di percorso, eventuali effetti indiretti e indici globali di adattamento."
+  },
+  confirmatoryFactorAnalysis: {
+    jamovi: "Installa e apri il modulo SEMLj in jamovi.\nUsa SEM (syntax) per definire solo il modello di misura, cioè fattori latenti con i rispettivi indicatori e senza percorsi strutturali.\nControlla carichi fattoriali standardizzati, residui, indici di modifica giustificati teoricamente e indici di adattamento come CFI, TLI, RMSEA e SRMR."
   },
   discriminantAnalysis: {
     jamovi: "Installa e apri il modulo SnowCluster in jamovi.\nScegli Classification > Linear Discriminant Analysis.\nImposta la variabile nominale di gruppo come variabile dipendente e le variabili a scala di intervallo come predittori; controlla funzioni discriminanti e accuratezza di classificazione."
@@ -609,6 +630,9 @@ window.localizedProcedurePacks.it = {
   },
   factorAnalysis: {
     jamovi: "Analisi > Fattori > Analisi fattoriale esplorativa\nSposta le variabili correlate in Variabili.\nScegli metodo di estrazione, rotazione e numero di fattori, poi controlla carichi e adattamento del modello."
+  },
+  networkAnalysis: {
+    jamovi: "Installa e apri il modulo BSS in jamovi.\nScegli l'opzione Network Analysis e sposta le variabili selezionate nel campo di analisi.\nControlla il grafico di rete, i pesi degli archi e gli indici di centralità o importanza; interpreta gli archi come associazioni condizionali, non come effetti causali."
   },
   clusterAnalysis: {
     jamovi: "Installa il modulo SnowCluster dalla libreria jamovi e aprilo dal menu Analisi.\nSposta le variabili che descrivono persone o oggetti nel campo delle variabili di clustering.\nStandardizza le variabili se necessario, scegli il metodo di clustering/opzione di distanza, imposta o confronta il numero di cluster e controlla la qualità della soluzione."

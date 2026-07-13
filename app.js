@@ -28,6 +28,7 @@ const tree = {
     step: "Exploration",
     answers: [
       { label: "Mehrere Variablen anhand einer Korrelationsmatrix bündeln oder reduzieren", result: "factorAnalysis" },
+      { label: "Direkte Beziehungen zwischen Variablen als Netzwerk explorieren", result: "networkAnalysis" },
       { label: "Ähnliche Personen oder Objekte zu Gruppen zusammenfassen", result: "clusterAnalysis" },
       { label: "Distanzen zwischen Personen oder Objekten mit möglichst wenigen Dimensionen darstellen", result: "multidimensionalScaling" }
     ]
@@ -52,8 +53,18 @@ const tree = {
     step: "Modelltyp",
     answers: [
       { label: "Alle Variablen sind messbar / beobachtet", result: "pathAnalysis" },
-      { label: "Messbare Variablen und latente Variablen", result: "structuralEquationModeling" },
+      { label: "Messbare Variablen und latente Variablen", next: "latentModelType" },
       { label: "Nominale abhängige Variable und intervallskalierte unabhängige Variablen", result: "discriminantAnalysis" }
+    ]
+  },
+  latentModelType: {
+    area: "Latentes Modell",
+    question: "Möchten Sie nur ein Messmodell prüfen oder zusätzlich gerichtete Pfade testen?",
+    hint: "CFA prüft, ob beobachtete Indikatoren zu einem vorab definierten Faktorenmodell passen. SEM ergänzt gerichtete Pfade zwischen latenten und/oder beobachteten Variablen.",
+    step: "Latentes Modell",
+    answers: [
+      { label: "Nur das Messmodell prüfen", result: "confirmatoryFactorAnalysis" },
+      { label: "Messmodell plus gerichtete Strukturpfade prüfen", result: "structuralEquationModeling" }
     ]
   },
   normalAssociation: {
@@ -318,6 +329,11 @@ const results = {
     summary: "Kombiniert Messmodelle für latente Variablen mit gerichteten Strukturpfaden zwischen latenten und beobachteten Variablen.",
     assumptions: ["Latente Konstrukte werden durch mehrere Indikatoren gemessen", "Theoretisch begründetes Mess- und Strukturmodell", "Ausreichende Stichprobengröße", "Modellfit und alternative Modelle prüfen"]
   },
+  confirmatoryFactorAnalysis: {
+    title: "Konfirmatorische Faktorenanalyse (CFA)",
+    summary: "Prüft, ob ein vorab theoretisch festgelegtes Messmodell zu den beobachteten Indikatoren passt.",
+    assumptions: ["Latente Konstrukte sind vorab definiert", "Mehrere Indikatoren pro Faktor", "Theoretisch begründete Zuordnung der Items zu Faktoren", "Ausreichende Stichprobengröße", "Modellfit und lokale Fehlanpassungen prüfen"]
+  },
   discriminantAnalysis: {
     title: "Diskriminanzanalyse",
     summary: "Klassifiziert Fälle in nominale Gruppen anhand mehrerer intervallskalierter Prädiktoren und beschreibt, welche Variablen die Gruppen trennen.",
@@ -467,6 +483,11 @@ const results = {
     title: "Faktorenanalyse",
     summary: "Exploratives Verfahren, um mehrere korrelierte Variablen auf wenige zugrunde liegende Faktoren oder Dimensionen zu reduzieren.",
     assumptions: ["Mehrere metrische oder annähernd metrische Variablen", "Sinnvolle Korrelationen zwischen Variablen", "Ausreichende Stichprobengröße", "Interpretierbare Faktorstruktur", "Keine A-priori-Hypothese zu den Beziehungen zwischen den Faktoren"]
+  },
+  networkAnalysis: {
+    title: "Netzwerkanalyse",
+    summary: "Exploriert direkte Beziehungen zwischen mehreren Variablen als Netzwerk aus Knoten und Kanten.",
+    assumptions: ["Mehrere metrische oder ordinale Variablen", "Kanten werden als bedingte Zusammenhänge interpretiert", "Ausreichende Stichprobengröße", "Stabilität und Robustheit des Netzwerks prüfen", "Keine kausale Interpretation ohne geeignetes Design"]
   },
   clusterAnalysis: {
     title: "Clusteranalyse",
@@ -692,6 +713,7 @@ const languagePacks = {
         step: "Exploration",
         answers: [
           { label: "Group or reduce several variables using a correlation matrix", result: "factorAnalysis" },
+          { label: "Explore direct relations among variables as a network", result: "networkAnalysis" },
           { label: "Group similar people or objects", result: "clusterAnalysis" },
           { label: "Represent distances between people or objects with the minimum number of dimensions", result: "multidimensionalScaling" }
         ]
@@ -716,8 +738,18 @@ const languagePacks = {
         step: "Model type",
         answers: [
           { label: "All variables are measurable / observed", result: "pathAnalysis" },
-          { label: "Measurable variables and latent variables", result: "structuralEquationModeling" },
+          { label: "Measurable variables and latent variables", next: "latentModelType" },
           { label: "Nominal dependent variable and interval-scaled independent variables", result: "discriminantAnalysis" }
+        ]
+      },
+      latentModelType: {
+        area: "Latent model",
+        question: "Do you want to test only a measurement model, or also directional paths?",
+        hint: "CFA tests whether observed indicators fit a predefined factor model. SEM adds directional paths among latent and/or observed variables.",
+        step: "Latent model",
+        answers: [
+          { label: "Test only the measurement model", result: "confirmatoryFactorAnalysis" },
+          { label: "Test measurement model plus directional structural paths", result: "structuralEquationModeling" }
         ]
       },
       normalAssociation: {
@@ -953,6 +985,7 @@ const languagePacks = {
       logLinearModel: { title: "Log-linear model", summary: "Models associations and interactions among several nominal variables in a contingency table.", assumptions: ["Several nominal variables", "Frequency data in a contingency table", "Independent observations", "Sufficient expected cell counts"] },
       pathAnalysis: { title: "Path analysis (mediation)", summary: "Models directed relations among several observed variables, often to test direct, indirect, or mediated effects.", assumptions: ["All variables are observed/measurable", "Theoretically justified path direction", "Linear relationships", "Adequate sample size", "Causal interpretation only with a suitable design"] },
       structuralEquationModeling: { title: "Structural equation modeling (SEM)", summary: "Combines measurement models for latent variables with directed structural paths among latent and observed variables.", assumptions: ["Latent constructs measured by multiple indicators", "Theoretically justified measurement and structural model", "Adequate sample size", "Model fit and alternative models should be evaluated"] },
+      confirmatoryFactorAnalysis: { title: "Confirmatory factor analysis (CFA)", summary: "Tests whether a theoretically predefined measurement model fits the observed indicators.", assumptions: ["Latent constructs are predefined", "Multiple indicators per factor", "The item-factor assignment is theoretically justified", "Adequate sample size", "Model fit and local misfit should be evaluated"] },
       discriminantAnalysis: { title: "Discriminant analysis", summary: "Classifies cases into nominal groups from several interval-scaled predictors and describes which variables separate the groups.", assumptions: ["Nominal dependent variable with known groups", "Interval-scaled independent variables", "Multivariate normality within groups", "Similar covariance matrices", "Adequate group sizes"] },
       oneSampleT: { title: "One-sample t-test", summary: "Compares the mean of one metric sample with a specified reference value.", assumptions: ["Metric variable", "Independent observations", "Approximate normal distribution"] },
       oneSampleZ: { title: "One-sample z-test", summary: "Compares the mean of one metric sample with a reference value when the population standard deviation or variance is known.", assumptions: ["Metric variable", "Independent observations", "Known population standard deviation or variance", "Normal population or sufficiently large sample"] },
@@ -983,6 +1016,7 @@ const languagePacks = {
       logisticRegression: { title: "Binary logistic regression", summary: "Models the probability of a dichotomous outcome variable.", assumptions: ["Dichotomous outcome variable", "Independent observations", "No strong multicollinearity", "Sufficient number of events"] },
       multinomialRegression: { title: "Multinomial logistic regression", summary: "Models a categorical outcome variable with more than two categories.", assumptions: ["Multicategory categorical outcome", "Independent observations", "Meaningful reference category"] },
       factorAnalysis: { title: "Factor analysis", summary: "Exploratory procedure for reducing several correlated variables to a smaller set of latent factors or dimensions.", assumptions: ["Several metric or approximately metric variables", "Meaningful correlations among variables", "Adequate sample size", "Interpretable factor structure", "No a priori hypothesis about the relationships among the factors"] },
+      networkAnalysis: { title: "Network analysis", summary: "Explores direct relations among several variables as a network of nodes and edges.", assumptions: ["Several metric or ordinal variables", "Edges are interpreted as conditional associations", "Adequate sample size", "Network stability and robustness should be checked", "No causal interpretation without a suitable design"] },
       clusterAnalysis: { title: "Cluster analysis", summary: "Exploratory procedure for grouping people or objects based on similarity.", assumptions: ["Features describing people or objects", "Appropriate scaling or standardisation", "Meaningful distance or similarity measure", "Cluster solution is substantively interpretable"] },
       multidimensionalScaling: { title: "Multidimensional scaling", summary: "Exploratory procedure for representing distances or dissimilarities among people or objects in a small number of dimensions.", assumptions: ["Distance or dissimilarity matrix", "People or objects are comparable", "Number of dimensions chosen using stress and interpretability", "Primarily an exploratory representation"] },
       chiSquareVariance: { title: "Chi-square test for one variance", summary: "Tests whether a sample variance differs from a known or theoretical population variance.", assumptions: ["One metric variable", "Known or theoretically justified population variance", "Independent observations", "Normality in the population"] },
@@ -1456,6 +1490,10 @@ const procedureCatalog = {
     jamovi: "Install and open the SEMLj module in jamovi.\nUse the SEM (syntax) option as the preferred way to specify the measurement and structural model, because it is clearer and more reproducible than the interactive builder.\nDefine latent variables with their indicators, add the hypothesised structural paths in syntax, and inspect standardized loadings, path coefficients, indirect effects if relevant, and global fit indices.",
     r: "library(lavaan)\nmodel <- '\n  stress =~ stress1 + stress2 + stress3\n  recovery =~ sleep1 + sleep2 + sleep3\n  recovery ~ stress\n  performance ~ recovery + stress\n'\nfit <- sem(model, data = data)\nsummary(fit, standardized = TRUE, fit.measures = TRUE, rsquare = TRUE)"
   },
+  confirmatoryFactorAnalysis: {
+    jamovi: "Install and open the SEMLj module in jamovi.\nUse SEM (syntax) to define the measurement model only, for example latent factors with their indicators and no structural regression paths.\nInspect standardized factor loadings, residuals, modification indices when justified, and global fit indices such as CFI, TLI, RMSEA, and SRMR.",
+    r: "library(lavaan)\nmodel <- '\n  stress =~ stress1 + stress2 + stress3\n  recovery =~ sleep1 + sleep2 + sleep3\n  confidence =~ conf1 + conf2 + conf3\n'\nfit <- cfa(model, data = data)\nsummary(fit, standardized = TRUE, fit.measures = TRUE)"
+  },
   discriminantAnalysis: {
     jamovi: "Install and open the SnowCluster module in jamovi.\nChoose Classification > Linear Discriminant Analysis.\nSet the nominal group variable as the dependent variable and the interval-scaled variables as predictors; inspect discriminant functions and classification accuracy.",
     r: "library(MASS)\nfit <- lda(group ~ anxiety + motivation + reaction_time, data = data)\nfit\npred <- predict(fit)$class\ntable(Predicted = pred, Observed = data$group)\nmean(pred == data$group)"
@@ -1620,6 +1658,10 @@ const procedureCatalog = {
     jamovi: "Analyses > Factor > Exploratory Factor Analysis\nMove the related variables into Variables.\nChoose the extraction method, rotation, number of factors, and inspect loadings and model fit.",
     r: "library(psych)\nfa.parallel(data[, items], fa = \"fa\")\nfit <- fa(data[, items], nfactors = 3, rotate = \"oblimin\")\nprint(fit$loadings, cutoff = .30)"
   },
+  networkAnalysis: {
+    jamovi: "Install and open the BSS module in jamovi.\nChoose the Network Analysis option and move the selected variables into the analysis field.\nInspect the network plot, edge weights, and centrality or importance indices; interpret edges as conditional associations, not causal effects.",
+    r: "items <- c(\"stress\", \"sleep_quality\", \"rumination\", \"mood\", \"motivation\", \"performance\")\ncor_mat <- cor(data[, items])\nif (requireNamespace(\"qgraph\", quietly = TRUE)) {\n  qgraph::qgraph(cor_mat, layout = \"spring\", labels = items)\n} else {\n  round(cor_mat, 2)\n}"
+  },
   clusterAnalysis: {
     jamovi: "Install the SnowCluster module from the jamovi library and open it from the Analyses menu. Choose Hierarchical Clustering. \nMove the variables that describe people or objects into the clustering variables field.\nStandardise variables if needed, choose the clustering method/distance option, set or compare the number of clusters, and inspect the cluster quality output.",
     r: "scaled <- scale(data[, variables])\nd <- dist(scaled, method = \"euclidean\")\nfit <- hclust(d, method = \"ward.D2\")\nplot(fit)\nclusters <- cutree(fit, k = 3)"
@@ -1709,6 +1751,21 @@ const procedureScreenshots = {
   anova: {
     jamovi: {
       en: "assets/jamovi/anova_ENG.png"
+    }
+  },
+  ancova: {
+    jamovi: {
+      en: "assets/jamovi/ANCOVA_ENG.png"
+    }
+  },
+  manova: {
+    jamovi: {
+      en: "assets/jamovi/MANOVA_ENG.png"
+    }
+  },
+  mancova: {
+    jamovi: {
+      en: "assets/jamovi/MANCOVA_ENG.png"
     }
   },
   repeatedAnova: {
@@ -1870,6 +1927,7 @@ const datasetFiles = {
   decisionTreeRegression: "decisionTreeRegression.csv",
   discriminantAnalysis: "discriminantAnalysis.csv",
   factorAnalysis: "factorAnalysis.csv",
+  confirmatoryFactorAnalysis: "confirmatoryFactorAnalysis.csv",
   fisher: "fisher.csv",
   friedman: "friedman.csv",
   generalizedLinearMixedModel: "generalizedMixedModel.csv",
@@ -1885,6 +1943,7 @@ const datasetFiles = {
   manova: "manova.csv",
   mannWhitney: "mannWhitney.csv",
   mcnemar: "mcnemar.csv",
+  networkAnalysis: "networkAnalysis.csv",
   metaCorrelationAnalysis: "metaCorrelation.csv",
   metaEffectSizeAnalysis: "metaEffectSizes.csv",
   fixedEffectMetaAnalysis: "metaEffectSizes.csv",
@@ -1966,9 +2025,11 @@ const effectSizeDefinitions = {
   metaRegression: { measure: "Meta-regression coefficient and residual heterogeneity", rangeType: "metaRegression" },
   publicationBiasDiagnostics: { measure: "Funnel plot asymmetry / Egger's test", rangeType: "publicationBias" },
   pathAnalysis: { measure: "Standardized path coefficients and indirect effect", rangeType: "beta" },
+  confirmatoryFactorAnalysis: { measure: "Standardized factor loadings and model fit indices", rangeType: "loading" },
   structuralEquationModeling: { measure: "Standardized loadings, path coefficients, and R squared", rangeType: "beta" },
   discriminantAnalysis: { measure: "Canonical correlation and classification accuracy", rangeType: "canonical" },
   factorAnalysis: { measure: "Factor loadings and variance explained", rangeType: "loading" },
+  networkAnalysis: { measure: "Edge weights and centrality indices", rangeType: "r" },
   clusterAnalysis: { measure: "Silhouette width", rangeType: "silhouette" },
   multidimensionalScaling: { measure: "Stress value", rangeType: "stress" },
   chiSquareVariance: { measure: "Variance ratio s2 / sigma2", rangeType: "varianceRatio" },
@@ -2736,7 +2797,7 @@ function handleSearchKeydown(event) {
 
 function getStageForNode(nodeId) {
   const scaleNodes = ["associationScale", "comparisonOutcome", "predictionOutcome", "metricDependentVariables"];
-  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "varianceComparison", "causalModelVariables", "mixedModelOutcome", "singleMetricCovariates", "multivariateCovariates", "oneSampleKnownVariance", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "twoWayAnovaAssumptions", "twoWayRepeatedAssumptions", "normalAssociation", "rankCorrelationChoice"];
+  const groupNodes = ["metricGroups", "ordinalGroups", "categoricalDesign", "varianceComparison", "causalModelVariables", "latentModelType", "mixedModelOutcome", "singleMetricCovariates", "multivariateCovariates", "oneSampleKnownVariance", "oneSampleNormal", "twoIndependentNormal", "twoPairedNormal", "manyGroupsDesign", "anovaAssumptions", "repeatedAssumptions", "twoWayAnovaAssumptions", "twoWayRepeatedAssumptions", "normalAssociation", "rankCorrelationChoice"];
   if (nodeId === "goal" || nodeId === "researchGoal" || nodeId === "discoveryStructure") return "goal";
   if (scaleNodes.includes(nodeId)) return "scale";
   if (groupNodes.includes(nodeId)) return "groups";

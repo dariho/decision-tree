@@ -1128,6 +1128,14 @@ Object.assign(window.resultScenarioPacks.it, {
 });
 
 Object.assign(window.resultScenarioPacks.de, {
+  confirmatoryFactorAnalysis: {
+    psychology: "Eine Skala zur Belastung soll mit drei vorab definierten Faktoren für Stress, Erholung und Selbstvertrauen geprüft werden.",
+    sport: "Ein Fragebogen zur Trainingsbereitschaft soll mit den Faktoren Motivation, Erholung und Selbstvertrauen bestätigt werden."
+  },
+  networkAnalysis: {
+    psychology: "Mehrere Symptomausprägungen wie Schlafprobleme, Grübeln, Stimmung und Motivation werden als Netzwerk direkter Zusammenhänge exploriert.",
+    sport: "Belastung, Erholung, Schlafqualität, Motivation und Leistung werden als Netzwerk möglicher direkter Beziehungen untersucht."
+  },
   ancova: {
     psychology: "Drei Therapiegruppen werden im Angstwert nach der Intervention verglichen, während der Ausgangsangstwert kontrolliert wird.",
     sport: "Drei Trainingsprogramme werden in der Ausdauerleistung nach dem Training verglichen, während die Ausgangsfitness kontrolliert wird."
@@ -1143,6 +1151,14 @@ Object.assign(window.resultScenarioPacks.de, {
 });
 
 Object.assign(window.resultScenarioPacks.en, {
+  confirmatoryFactorAnalysis: {
+    psychology: "A distress questionnaire is tested against a predefined three-factor structure for stress, recovery, and confidence.",
+    sport: "A training-readiness questionnaire is tested against predefined factors for motivation, recovery, and confidence."
+  },
+  networkAnalysis: {
+    psychology: "Symptoms such as sleep problems, rumination, mood, and motivation are explored as a network of direct associations.",
+    sport: "Training load, recovery, sleep quality, motivation, and performance are explored as a network of possible direct relations."
+  },
   ancova: {
     psychology: "Three therapy groups are compared on post-intervention anxiety while controlling for baseline anxiety.",
     sport: "Three training programs are compared on post-training endurance while controlling for baseline fitness."
@@ -1158,6 +1174,14 @@ Object.assign(window.resultScenarioPacks.en, {
 });
 
 Object.assign(window.resultScenarioPacks.fr, {
+  confirmatoryFactorAnalysis: {
+    psychology: "Un questionnaire de détresse est testé selon une structure à trois facteurs définie à l'avance : stress, récupération et confiance.",
+    sport: "Un questionnaire de préparation à l'entraînement est testé selon des facteurs prédéfinis de motivation, récupération et confiance."
+  },
+  networkAnalysis: {
+    psychology: "Des symptômes comme les problèmes de sommeil, la rumination, l'humeur et la motivation sont explorés comme un réseau d'associations directes.",
+    sport: "La charge d'entraînement, la récupération, la qualité du sommeil, la motivation et la performance sont explorées comme un réseau de relations directes possibles."
+  },
   ancova: {
     psychology: "Trois groupes de thérapie sont comparés sur l'anxiété après l'intervention en contrôlant l'anxiété initiale.",
     sport: "Trois programmes d'entraînement sont comparés sur l'endurance après l'entraînement en contrôlant la condition initiale."
@@ -1173,6 +1197,14 @@ Object.assign(window.resultScenarioPacks.fr, {
 });
 
 Object.assign(window.resultScenarioPacks.es, {
+  confirmatoryFactorAnalysis: {
+    psychology: "Un cuestionario de malestar se contrasta con una estructura de tres factores definida previamente: estrés, recuperación y confianza.",
+    sport: "Un cuestionario de disposición al entrenamiento se contrasta con factores predefinidos de motivación, recuperación y confianza."
+  },
+  networkAnalysis: {
+    psychology: "Síntomas como problemas de sueño, rumiación, estado de ánimo y motivación se exploran como una red de asociaciones directas.",
+    sport: "Carga de entrenamiento, recuperación, calidad del sueño, motivación y rendimiento se exploran como una red de posibles relaciones directas."
+  },
   ancova: {
     psychology: "Tres grupos de terapia se comparan en ansiedad posterior a la intervención controlando la ansiedad inicial.",
     sport: "Tres programas de entrenamiento se comparan en resistencia posterior al entrenamiento controlando la condición física inicial."
@@ -1188,6 +1220,14 @@ Object.assign(window.resultScenarioPacks.es, {
 });
 
 Object.assign(window.resultScenarioPacks.it, {
+  confirmatoryFactorAnalysis: {
+    psychology: "Un questionario sul disagio viene testato rispetto a una struttura a tre fattori definita in anticipo: stress, recupero e fiducia.",
+    sport: "Un questionario sulla readiness all'allenamento viene testato rispetto a fattori predefiniti di motivazione, recupero e fiducia."
+  },
+  networkAnalysis: {
+    psychology: "Sintomi come problemi di sonno, ruminazione, umore e motivazione vengono esplorati come rete di associazioni dirette.",
+    sport: "Carico di allenamento, recupero, qualità del sonno, motivazione e prestazione vengono esplorati come rete di possibili relazioni dirette."
+  },
   ancova: {
     psychology: "Tre gruppi di terapia sono confrontati sull'ansia post-intervento controllando l'ansia iniziale.",
     sport: "Tre programmi di allenamento sono confrontati sulla resistenza post-allenamento controllando la fitness iniziale."
