@@ -48,6 +48,12 @@ window.localizedProcedurePacks = {
     anova: {
       jamovi: "Analysen > ANOVA > ANOVA\nLegen Sie die metrische Zielvariable in Abhängige Variable und den Faktor in Fester Faktor.\nAktivieren Sie Annahmenprüfungen und bei Bedarf Post-hoc-Tests."
     },
+    manova: {
+      jamovi: "Analysen > ANOVA > MANCOVA\nLegen Sie zwei oder mehr metrische Zielvariablen in Abhängige Variablen.\nFügen Sie die Gruppenvariable(n) als Feste Faktoren hinzu und lassen Sie Kovariaten leer.\nPrüfen Sie multivariate Tests wie Pillai's trace oder Wilks' Lambda und berichten Sie univariate Follow-ups nur bei fachlicher Begründung."
+    },
+    mancova: {
+      jamovi: "Analysen > ANOVA > MANCOVA\nLegen Sie zwei oder mehr metrische Zielvariablen in Abhängige Variablen.\nFügen Sie die Gruppenvariable(n) als Feste Faktoren hinzu und Variablen wie Alter oder Ausgangswert als Kovariaten.\nPrüfen Sie Pillai's trace oder Wilks' Lambda und bei Bedarf adjustierte univariate Follow-ups."
+    },
     repeatedAnova: {
       jamovi: "Analysen > ANOVA > ANOVA mit Messwiederholung\nDefinieren Sie den Messwiederholungsfaktor und seine Stufen.\nOrdnen Sie die Messwiederholungsspalten zu und aktivieren Sie Sphärizitätskorrekturen."
     },
@@ -182,6 +188,12 @@ window.localizedProcedurePacks = {
     anova: {
       jamovi: "Analyses > ANOVA > ANOVA\nPlacez la variable cible métrique dans Variable dépendante et le facteur dans Facteur fixe.\nActivez les vérifications des conditions et les tests post-hoc si nécessaire."
     },
+    manova: {
+      jamovi: "Analyses > ANOVA > MANCOVA\nPlacez deux variables cibles métriques ou plus dans Variables dépendantes.\nAjoutez les variables de groupe comme Facteurs fixes et laissez Covariables vide.\nExaminez les tests multivariés comme la trace de Pillai ou le lambda de Wilks et rapportez les suivis univariés seulement s'ils sont justifiés."
+    },
+    mancova: {
+      jamovi: "Analyses > ANOVA > MANCOVA\nPlacez deux variables cibles métriques ou plus dans Variables dépendantes.\nAjoutez les variables de groupe comme Facteurs fixes et les variables comme l'âge ou le score initial dans Covariables.\nExaminez la trace de Pillai ou le lambda de Wilks et, si nécessaire, les suivis univariés ajustés."
+    },
     repeatedAnova: {
       jamovi: "Analyses > ANOVA > ANOVA à mesures répétées\nDéfinissez le facteur à mesures répétées et ses niveaux.\nAssignez les colonnes de mesures répétées et activez les corrections de sphéricité."
     },
@@ -315,6 +327,12 @@ window.localizedProcedurePacks = {
     },
     anova: {
       jamovi: "Análisis > ANOVA > ANOVA\nColoque la variable objetivo métrica en Variable dependiente y el factor en Factor fijo.\nActive las comprobaciones de supuestos y pruebas post-hoc si es necesario."
+    },
+    manova: {
+      jamovi: "Análisis > ANOVA > MANCOVA\nColoque dos o más variables objetivo métricas en Variables dependientes.\nAñada las variables de grupo como Factores fijos y deje Covariables vacío.\nRevise pruebas multivariadas como la traza de Pillai o lambda de Wilks y reporte seguimientos univariados solo si están justificados."
+    },
+    mancova: {
+      jamovi: "Análisis > ANOVA > MANCOVA\nColoque dos o más variables objetivo métricas en Variables dependientes.\nAñada las variables de grupo como Factores fijos y variables como edad o puntuación inicial en Covariables.\nRevise la traza de Pillai o lambda de Wilks y, si es necesario, seguimientos univariados ajustados."
     },
     repeatedAnova: {
       jamovi: "Análisis > ANOVA > ANOVA de medidas repetidas\nDefina el factor de medidas repetidas y sus niveles.\nAsigne las columnas de medición repetida y active correcciones de esfericidad."
@@ -501,6 +519,12 @@ window.localizedProcedurePacks.it = {
   },
   anova: {
     jamovi: "Analisi > ANOVA > ANOVA\nInserisci l'esito metrico in Variabile dipendente e il fattore in Fattore fisso.\nAttiva i controlli delle assunzioni e i test post-hoc se necessari."
+  },
+  manova: {
+    jamovi: "Analisi > ANOVA > MANCOVA\nInserisci due o più esiti metrici in Variabili dipendenti.\nAggiungi le variabili di gruppo come Fattori fissi e lascia vuote le Covariate.\nControlla test multivariati come traccia di Pillai o lambda di Wilks e riporta follow-up univariati solo se giustificati."
+  },
+  mancova: {
+    jamovi: "Analisi > ANOVA > MANCOVA\nInserisci due o più esiti metrici in Variabili dipendenti.\nAggiungi le variabili di gruppo come Fattori fissi e variabili come età o punteggio iniziale in Covariate.\nControlla traccia di Pillai o lambda di Wilks e, se necessario, follow-up univariati aggiustati."
   },
   repeatedAnova: {
     jamovi: "Analisi > ANOVA > ANOVA a misure ripetute\nDefinisci il fattore a misure ripetute e i suoi livelli.\nAssegna le colonne delle misure ripetute e attiva le correzioni di sfericità."

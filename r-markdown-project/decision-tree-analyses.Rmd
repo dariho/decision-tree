@@ -3,10 +3,10 @@ title: "Decision Tree Statistical Analyses in R"
 subtitle: "Example R code linked to the prepared datasets"
 author: "Darias Holgado & Corinna Martarelli"
 output:
-  html_document:
-    toc: true
-    toc_depth: 3
-    number_sections: true
+  rmdformats::readthedown:
+    highlight: kate
+    code_folding: hide
+   
 ---
 
 ```{r setup}
@@ -73,6 +73,8 @@ install_missing_packages()
 
 ## Pearson correlation
 
+Purpose: Use Pearson correlation to quantify the strength and direction of a linear association between two continuous variables.
+
 ```{r pearson-correlation}
 data <- read_example("pearson.csv")
 cor.test(data$x, data$y, method = "pearson")
@@ -81,6 +83,8 @@ plot(data$x, data$y, xlab = "x", ylab = "y")
 
 ## Spearman rank correlation
 
+Purpose: Use Spearman correlation to assess whether two variables have a monotonic association based on ranks, especially when normality or linearity is not plausible.
+
 ```{r spearman-correlation}
 data <- read_example("spearman.csv")
 cor.test(data$stress_rank, data$wellbeing_rank, method = "spearman", exact = FALSE)
@@ -88,12 +92,16 @@ cor.test(data$stress_rank, data$wellbeing_rank, method = "spearman", exact = FAL
 
 ## Kendall rank correlation
 
+Purpose: Use Kendall correlation to evaluate rank-order association, often with smaller samples or many tied ranks.
+
 ```{r kendall-correlation}
 data <- read_example("kendall.csv")
 cor.test(data$adherence_rank, data$wellbeing_rank, method = "kendall", exact = FALSE)
 ```
 
 ## Chi-square test of association
+
+Purpose: Use this test to examine whether two categorical variables are statistically associated in a contingency table.
 
 ```{r chi-square-association}
 data <- read_example("chiSquareAssociation.csv")
@@ -104,6 +112,8 @@ chisq.test(tab)
 
 ## Fisher exact test
 
+Purpose: Use Fisher's exact test to examine association between two categorical variables when sample sizes or expected cell counts are small.
+
 ```{r fisher-exact}
 data <- read_example("fisher.csv")
 tab <- table(data$treatment, data$response)
@@ -113,6 +123,8 @@ fisher.test(tab)
 
 ## McNemar test
 
+Purpose: Use McNemar's test to compare paired binary responses, such as before-after classifications from the same participants.
+
 ```{r mcnemar-test}
 data <- read_example("mcnemar.csv")
 tab <- table(data$before, data$after)
@@ -121,6 +133,8 @@ mcnemar.test(tab)
 ```
 
 ## Log-linear model
+
+Purpose: Use a log-linear model to analyse associations among several categorical variables through their frequency counts.
 
 ```{r log-linear-model}
 data <- read_example("logLinearModel.csv")
@@ -135,6 +149,8 @@ if (has_pkg("MASS")) {
 ```
 
 ## Path analysis / mediation
+
+Purpose: Use path analysis or mediation to evaluate a theoretically specified indirect pathway between measured variables. This can estimate indirect effects, but causal interpretation still depends on design and assumptions.
 
 ```{r path-analysis}
 data <- read_example("pathAnalysis.csv")
@@ -178,6 +194,8 @@ lavaan::inspect(fit, "r2")
 
 ## Structural equation modeling
 
+Purpose: Use SEM to test models that combine latent variables, measurement models, and structural relations among variables.
+
 ```{r structural-equation-modeling}
 data <- read_example("structuralEquationModeling.csv")
 
@@ -208,6 +226,8 @@ pe
 
 ## Discriminant analysis
 
+Purpose: Use discriminant analysis to classify cases into known groups using continuous predictors and to describe which predictors separate the groups.
+
 ```{r discriminant-analysis}
 data <- read_example("discriminantAnalysis.csv")
 data$group <- factor(data$group)
@@ -227,12 +247,16 @@ if (has_pkg("MASS")) {
 
 ## One-sample t-test
 
+Purpose: Use a one-sample t-test to compare the mean of one continuous variable against a theoretical or reference value.
+
 ```{r one-sample-t-test}
 data <- read_example("oneSampleT.csv")
 t.test(data$score, mu = 0)
 ```
 
 ## One-sample z-test
+
+Purpose: Use a one-sample z-test to compare a sample mean against a reference mean when the population standard deviation is known.
 
 ```{r one-sample-z-test}
 data <- read_example("oneSampleZ.csv")
@@ -256,6 +280,8 @@ c(
 
 ## One-sample Wilcoxon signed-rank test
 
+Purpose: Use the one-sample Wilcoxon signed-rank test to compare a median or typical value against a reference value when a parametric t-test is not appropriate.
+
 ```{r one-sample-wilcoxon}
 data <- read_example("oneSampleWilcoxon.csv")
 wilcox.test(data$rating, mu = 0)
@@ -265,6 +291,8 @@ wilcox.test(data$rating, mu = 0)
 
 ## Independent-samples t-test
 
+Purpose: Use an independent-samples t-test to compare the means of two independent groups on a continuous outcome.
+
 ```{r independent-t-test}
 data <- read_example("independentT.csv")
 data$group <- factor(data$group)
@@ -272,6 +300,8 @@ t.test(score ~ group, data = data, var.equal = FALSE)
 ```
 
 ## Mann-Whitney U test
+
+Purpose: Use the Mann-Whitney U test to compare two independent groups when the outcome is ordinal or when parametric assumptions are not suitable.
 
 ```{r mann-whitney-u}
 data <- read_example("mannWhitney.csv")
@@ -281,6 +311,8 @@ wilcox.test(pain_score ~ group, data = data)
 
 ## Paired-samples t-test
 
+Purpose: Use a paired-samples t-test to compare two related measurements, such as pre-post scores from the same participants.
+
 ```{r paired-t-test}
 data <- read_example("pairedT.csv")
 t.test(data$baseline_score, data$followup_score, paired = TRUE)
@@ -288,6 +320,8 @@ shapiro.test(data$difference)
 ```
 
 ## Wilcoxon signed-rank test
+
+Purpose: Use the Wilcoxon signed-rank test to compare two paired measurements when the differences are ordinal or non-normal.
 
 ```{r wilcoxon-signed-rank}
 data <- read_example("wilcoxon.csv")
@@ -297,6 +331,8 @@ wilcox.test(data$before, data$after, paired = TRUE)
 # Variance tests
 
 ## Chi-square test for one variance
+
+Purpose: Use this test to compare a sample variance with a hypothesized population variance under normality assumptions.
 
 ```{r chi-square-variance}
 data <- read_example("chiSquareVariance.csv")
@@ -316,6 +352,8 @@ c(
 
 ## F-test for two variances
 
+Purpose: Use the F-test to compare whether two independent groups have equal variances.
+
 ```{r f-test-variance}
 data <- read_example("varianceFTest.csv")
 data$group <- factor(data$group)
@@ -326,6 +364,8 @@ var.test(score ~ group, data = data)
 
 ## One-way ANOVA
 
+Purpose: Use one-way ANOVA to compare the means of three or more independent groups defined by one factor.
+
 ```{r one-way-anova}
 data <- read_example("anova.csv")
 data$group <- factor(data$group)
@@ -335,7 +375,43 @@ summary(fit)
 TukeyHSD(fit)
 ```
 
+## MANOVA
+
+Purpose: Use MANOVA when you want to compare two or more related continuous dependent variables across groups at the same time. It first tests whether the groups differ on the combined outcome profile before considering any follow-up tests for individual outcomes.
+
+```{r manova}
+data <- read_example("manova.csv")
+data$group <- factor(data$group)
+
+fit <- manova(
+  cbind(stress_score, wellbeing_score, performance_score) ~ group,
+  data = data
+)
+summary(fit, test = "Pillai")
+summary(fit, test = "Wilks")
+summary.aov(fit)
+```
+
+## MANCOVA
+
+Purpose: Use MANCOVA when groups are compared on two or more related continuous dependent variables while statistically controlling one or more continuous covariates. It is useful when baseline differences or participant characteristics should be adjusted before interpreting group differences.
+
+```{r mancova}
+data <- read_example("mancova.csv")
+data$group <- factor(data$group)
+
+fit <- manova(
+  cbind(stress_score, wellbeing_score, performance_score) ~ group + age_years + baseline_score,
+  data = data
+)
+summary(fit, test = "Pillai")
+summary(fit, test = "Wilks")
+summary.aov(fit)
+```
+
 ## Repeated-measures ANOVA
+
+Purpose: Use repeated-measures ANOVA to compare means across three or more related conditions or time points from the same participants.
 
 ```{r repeated-measures-anova}
 data <- read_example("repeatedAnova.csv")
@@ -352,6 +428,8 @@ summary(fit)
 
 ## Two-way ANOVA
 
+Purpose: Use two-way ANOVA to test the main and interaction effects of two or more independent factors on a continuous outcome.
+
 ```{r two-way-anova}
 data <- read_example("twoWayAnova.csv")
 data$therapy <- factor(data$therapy)
@@ -362,6 +440,8 @@ summary(fit)
 ```
 
 ## Two-way repeated-measures ANOVA
+
+Purpose: Use two-way repeated-measures ANOVA to test main and interaction effects when the same participants are measured across combinations of repeated factors.
 
 ```{r two-way-repeated-anova}
 data <- read_example("twoWayRepeatedAnova.csv")
@@ -379,6 +459,8 @@ summary(fit)
 
 ## Kruskal-Wallis test
 
+Purpose: Use the Kruskal-Wallis test to compare three or more independent groups when the outcome is ordinal or parametric assumptions are not suitable.
+
 ```{r kruskal-wallis}
 data <- read_example("kruskalWallis.csv")
 data$group <- factor(data$group)
@@ -387,12 +469,16 @@ kruskal.test(rank_score ~ group, data = data)
 
 ## Friedman test
 
+Purpose: Use the Friedman test to compare three or more related conditions when repeated-measures ANOVA assumptions are not suitable.
+
 ```{r friedman-test}
 data <- read_example("friedman.csv")
 friedman.test(as.matrix(data[, c("condition_a", "condition_b", "condition_c")]))
 ```
 
 ## Nonparametric two-way ANOVA via aligned rank transform
+
+Purpose: Use aligned rank transform ANOVA to test factorial effects with nonparametric data while retaining an ANOVA-like interaction framework.
 
 ```{r nonparametric-two-way-anova}
 data <- read_example("nonparametricTwoWayAnova.csv")
@@ -408,6 +494,8 @@ if (has_pkg("ARTool")) {
 ```
 
 ## Nonparametric two-way repeated-measures ANOVA via aligned rank transform
+
+Purpose: Use aligned rank transform methods for repeated factorial designs when the outcome does not meet parametric assumptions.
 
 ```{r nonparametric-two-way-repeated-anova}
 data <- read_example("nonparametricTwoWayRepeatedAnova.csv")
@@ -431,6 +519,8 @@ if (has_pkg("ARTool")) {
 
 ## Binomial test
 
+Purpose: Use the binomial test to compare an observed number of successes in a two-level outcome with an expected probability.
+
 ```{r binomial-test}
 data <- read_example("binomialTest.csv")
 successes <- sum(data$response == "yes")
@@ -439,6 +529,8 @@ binom.test(successes, n, p = 0.50)
 ```
 
 ## Chi-square goodness-of-fit test
+
+Purpose: Use the chi-square goodness-of-fit test to compare observed category frequencies with expected frequencies from a theoretical distribution.
 
 ```{r chi-square-goodness}
 data <- read_example("chiSquareGoodness.csv")
@@ -452,6 +544,8 @@ chisq.test(observed, p = rep(1 / length(observed), length(observed)))
 Regression models estimate associations and predictions. They do not, by themselves, provide evidence of causality.
 
 ## Linear regression
+
+Purpose: Use linear regression to predict a continuous outcome from one or more predictors and estimate their associations. Regression coefficients should not be interpreted as causal effects without a suitable design.
 
 ```{r linear-regression}
 data <- read_example("linearRegression.csv")
@@ -469,6 +563,8 @@ par(mfrow = c(1, 1))
 
 ## Binary logistic regression
 
+Purpose: Use binary logistic regression to predict a two-category outcome and estimate effects as log-odds or odds ratios.
+
 ```{r binary-logistic-regression}
 data <- read_example("logisticRegression.csv")
 data$injury <- factor(data$injury, levels = c("no", "yes"))
@@ -484,6 +580,8 @@ exp(coef(fit))
 ```
 
 ## Multinomial logistic regression
+
+Purpose: Use multinomial logistic regression to predict an outcome with more than two unordered categories.
 
 ```{r multinomial-logistic-regression}
 data <- read_example("multinomialRegression.csv")
@@ -501,6 +599,8 @@ if (has_pkg("nnet")) {
 ```
 
 ## Linear mixed model
+
+Purpose: Use a linear mixed model for continuous outcomes when observations are clustered or repeated, allowing random effects such as participant-level intercepts.
 
 ```{r linear-mixed-model}
 data <- read_example("linearMixedModel.csv")
@@ -521,6 +621,8 @@ if (has_pkg("lme4") && has_pkg("lmerTest")) {
 ```
 
 ## Generalized linear mixed model
+
+Purpose: Use a generalized linear mixed model for non-continuous outcomes, such as binary responses, when observations are clustered or repeated.
 
 ```{r generalized-linear-mixed-model}
 data <- read_example("generalizedMixedModel.csv")
@@ -543,6 +645,8 @@ if (has_pkg("lme4")) {
 
 ## Ordinal mixed model
 
+Purpose: Use an ordinal mixed model for ordered categorical outcomes collected in clustered or repeated-measures designs.
+
 ```{r ordinal-mixed-model}
 data <- read_example("ordinalMixedModel.csv")
 data$participant <- factor(data$participant)
@@ -558,9 +662,11 @@ if (has_pkg("ordinal")) {
 }
 ```
 
-# Exploratory structure
+# Exploratory hypotheses
 
 ## Factor analysis
+
+Purpose: Use factor analysis to identify latent dimensions that explain patterns of correlations among several observed variables.
 
 ```{r factor-analysis}
 data <- read_example("factorAnalysis.csv")
@@ -582,6 +688,8 @@ if (has_pkg("psych")) {
 
 ## Cluster analysis
 
+Purpose: Use cluster analysis to group people or objects into relatively homogeneous clusters based on similarity across variables.
+
 ```{r cluster-analysis}
 data <- read_example("clusterAnalysis.csv")
 variables <- c("training_load", "recovery_score", "sprint_time", "jump_height", "injury_count")
@@ -600,6 +708,8 @@ table(kmeans_fit$cluster)
 ```
 
 ## Multidimensional scaling
+
+Purpose: Use multidimensional scaling to represent similarities or distances among objects in a low-dimensional visual space.
 
 ```{r multidimensional-scaling}
 data <- read_example("multidimensionalScaling.csv")
@@ -621,6 +731,8 @@ if (has_pkg("MASS")) {
 
 ## Odds ratio meta-analysis
 
+Purpose: Use this meta-analysis when primary studies report binary events in two groups and the effect is summarized as an odds ratio.
+
 ```{r meta-odds-ratio}
 data <- read_example("metaOddsRatio.csv")
 
@@ -639,13 +751,15 @@ if (has_pkg("metafor")) {
 
   fit <- metafor::rma(yi, vi, mods = ~ moderator, data = es, method = "REML")
   summary(fit)
-  forest(fit, slab = data$study_label)
+  metafor::forest(fit, slab = data$study_label)
 } else {
   message("Install metafor to run this meta-analysis.")
 }
 ```
 
 ## Correlation coefficient meta-analysis
+
+Purpose: Use this meta-analysis to synthesize correlations across studies, typically after transforming correlations to Fisher's z scale.
 
 ```{r meta-correlation}
 data <- read_example("metaCorrelation.csv")
@@ -655,13 +769,15 @@ if (has_pkg("metafor")) {
   fit <- metafor::rma(yi, vi, mods = ~ moderator, data = es, method = "REML")
   summary(fit)
   predict(fit, transf = metafor::transf.ztor)
-  forest(fit, slab = data$study_label)
+  metafor::forest(fit, slab = data$study_label)
 } else {
   message("Install metafor to run this meta-analysis.")
 }
 ```
 
 ## Mean difference meta-analysis
+
+Purpose: Use this meta-analysis when studies report group means, standard deviations, and sample sizes for a continuous outcome.
 
 ```{r meta-mean-difference}
 data <- read_example("metaMeanDifferences.csv")
@@ -680,13 +796,15 @@ if (has_pkg("metafor")) {
 
   fit <- metafor::rma(yi, vi, mods = ~ moderator, data = es, method = "REML")
   summary(fit)
-  forest(fit, slab = data$study_label)
+  metafor::forest(fit, slab = data$study_label)
 } else {
   message("Install metafor to run this meta-analysis.")
 }
 ```
 
 ## Effect size meta-analysis
+
+Purpose: Use this workflow when studies already provide an effect size with its variance or standard error.
 
 ```{r meta-effect-size}
 data <- read_example("metaEffectSizes.csv")
@@ -701,8 +819,8 @@ if (has_pkg("metafor")) {
   )
 
   summary(fit)
-  forest(fit, slab = data$study_label)
-  funnel(fit)
+  metafor::forest(fit, slab = data$study_label)
+  metafor::funnel(fit)
   metafor::regtest(fit, model = "rma")
 } else {
   message("Install metafor to run this meta-analysis.")
@@ -710,6 +828,8 @@ if (has_pkg("metafor")) {
 ```
 
 ## Fixed-effect meta-analysis
+
+Purpose: Use a fixed-effect meta-analysis when the goal is to estimate one common effect assumed to be shared by all included studies.
 
 ```{r fixed-effect-meta-analysis}
 data <- read_example("metaEffectSizes.csv")
@@ -723,13 +843,15 @@ if (has_pkg("metafor")) {
   )
 
   summary(fit)
-  forest(fit, slab = data$study_label)
+  metafor::forest(fit, slab = data$study_label)
 } else {
   message("Install metafor to run this meta-analysis.")
 }
 ```
 
 ## Random-effects meta-analysis
+
+Purpose: Use a random-effects meta-analysis when true effects are expected to vary across studies and the goal is to estimate the mean of that distribution.
 
 ```{r random-effects-meta-analysis}
 data <- read_example("metaEffectSizes.csv")
@@ -744,13 +866,15 @@ if (has_pkg("metafor")) {
 
   summary(fit)
   predict(fit)
-  forest(fit, slab = data$study_label)
+  metafor::forest(fit, slab = data$study_label)
 } else {
   message("Install metafor to run this meta-analysis.")
 }
 ```
 
 ## Subgroup meta-analysis
+
+Purpose: Use subgroup meta-analysis to examine whether pooled effects differ across categorical study characteristics.
 
 ```{r subgroup-meta-analysis}
 data <- read_example("metaEffectSizes.csv")
@@ -778,6 +902,8 @@ if (has_pkg("metafor")) {
 
 ## Meta-regression
 
+Purpose: Use meta-regression to examine whether study-level moderators explain variation in effect sizes across studies.
+
 ```{r meta-regression}
 data <- read_example("metaEffectSizes.csv")
 
@@ -798,6 +924,8 @@ if (has_pkg("metafor")) {
 
 ## Publication-bias diagnostics
 
+Purpose: Use publication-bias diagnostics to inspect funnel plot asymmetry and possible small-study effects after fitting a meta-analysis model.
+
 ```{r publication-bias-diagnostics}
 data <- read_example("metaEffectSizes.csv")
 
@@ -809,7 +937,7 @@ if (has_pkg("metafor")) {
     method = "REML"
   )
 
-  funnel(fit)
+  metafor::funnel(fit)
   metafor::regtest(fit, model = "rma")
   metafor::trimfill(fit)
 } else {
@@ -818,6 +946,8 @@ if (has_pkg("metafor")) {
 ```
 
 ## Proportion meta-analysis
+
+Purpose: Use proportion meta-analysis to synthesize event proportions or prevalence estimates across studies.
 
 ```{r meta-proportion}
 data <- read_example("metaProportion.csv")
@@ -833,7 +963,7 @@ if (has_pkg("metafor")) {
   fit <- metafor::rma(yi, vi, mods = ~ moderator, data = es, method = "REML")
   summary(fit)
   predict(fit, transf = metafor::transf.ilogit)
-  forest(fit, slab = data$study_label)
+  metafor::forest(fit, slab = data$study_label)
 } else {
   message("Install metafor to run this meta-analysis.")
 }
@@ -842,6 +972,8 @@ if (has_pkg("metafor")) {
 # Machine learning regression
 
 ## Decision tree regression
+
+Purpose: Use decision tree regression to predict a continuous outcome with transparent if-then decision rules.
 
 ```{r decision-tree-regression}
 data <- read_example("decisionTreeRegression.csv")
@@ -874,6 +1006,8 @@ if (has_pkg("rpart")) {
 
 ## Random forest regression
 
+Purpose: Use random forest regression to improve continuous-outcome prediction by averaging many decision trees and estimating variable importance.
+
 ```{r random-forest-regression}
 data <- read_example("randomForestRegression.csv")
 model_data <- subset(data, select = -athlete)
@@ -904,6 +1038,8 @@ if (has_pkg("randomForest")) {
 
 ## k-nearest neighbors regression
 
+Purpose: Use k-nearest neighbors regression to predict a continuous outcome from the outcomes of similar cases in the predictor space.
+
 ```{r knn-regression}
 data <- read_example("knnRegression.csv")
 model_data <- subset(data, select = -participant)
@@ -931,6 +1067,8 @@ if (has_pkg("caret")) {
 
 ## Decision tree classifier
 
+Purpose: Use a decision tree classifier to predict categorical group membership with interpretable decision rules.
+
 ```{r decision-tree-classifier}
 data <- read_example("decisionTreeClassifier.csv")
 data$class <- factor(data$class)
@@ -950,14 +1088,16 @@ if (has_pkg("rpart")) {
   table(Predicted = pred, Observed = model_data$class[-train_id])
   mean(pred == model_data$class[-train_id])
 
-  plot(fit)
-  text(fit)
+  # plot(fit)
+  # text(fit)
 } else {
   message("Install rpart to run decision tree classification.")
 }
 ```
 
 ## Random forest classifier
+
+Purpose: Use a random forest classifier to improve categorical prediction by combining many trees and evaluating variable importance.
 
 ```{r random-forest-classifier}
 data <- read_example("randomForestClassifier.csv")
@@ -986,6 +1126,8 @@ if (has_pkg("randomForest")) {
 
 ## k-nearest neighbors classifier
 
+Purpose: Use k-nearest neighbors classification to assign cases to categories based on the classes of similar observations.
+
 ```{r knn-classifier}
 data <- read_example("knnClassifier.csv")
 data$class <- factor(data$class)
@@ -1012,6 +1154,8 @@ if (has_pkg("caret")) {
 
 ## Naive Bayes classifier
 
+Purpose: Use a Naive Bayes classifier as a fast probabilistic model for categorical prediction, especially as a baseline model.
+
 ```{r naive-bayes-classifier}
 data <- read_example("naiveBayes.csv")
 data$class <- factor(data$class)
@@ -1034,6 +1178,8 @@ if (has_pkg("e1071")) {
 # Principal component analysis
 
 ## Principal component analysis
+
+Purpose: Use PCA to reduce several correlated continuous variables into fewer components that summarize the main sources of variance.
 
 ```{r principal-component-analysis}
 data <- read_example("principalComponentAnalysis.csv")

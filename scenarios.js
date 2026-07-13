@@ -1127,6 +1127,61 @@ Object.assign(window.resultScenarioPacks.it, {
   }
 });
 
+Object.assign(window.resultScenarioPacks.de, {
+  manova: {
+    psychology: "Drei Therapiegruppen werden gleichzeitig anhand von Stress, Wohlbefinden und kognitiver Leistung verglichen.",
+    sport: "Drei Trainingsprogramme werden gleichzeitig anhand von Ausdauer, Sprintzeit und wahrgenommener Erholung verglichen."
+  },
+  mancova: {
+    psychology: "Therapiegruppen werden in Stress, Wohlbefinden und kognitiver Leistung verglichen, während Alter und Ausgangsbelastung kontrolliert werden.",
+    sport: "Trainingsgruppen werden in Ausdauer, Sprintzeit und Erholung verglichen, während Alter und Ausgangsfitness kontrolliert werden."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.en, {
+  manova: {
+    psychology: "Three therapy groups are compared simultaneously on stress, wellbeing, and cognitive performance.",
+    sport: "Three training programs are compared simultaneously on endurance, sprint time, and perceived recovery."
+  },
+  mancova: {
+    psychology: "Therapy groups are compared on stress, wellbeing, and cognitive performance while controlling for age and baseline distress.",
+    sport: "Training groups are compared on endurance, sprint time, and recovery while controlling for age and baseline fitness."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.fr, {
+  manova: {
+    psychology: "Trois groupes de thérapie sont comparés simultanément sur le stress, le bien-être et la performance cognitive.",
+    sport: "Trois programmes d'entraînement sont comparés simultanément sur l'endurance, le temps de sprint et la récupération perçue."
+  },
+  mancova: {
+    psychology: "Des groupes de thérapie sont comparés sur le stress, le bien-être et la performance cognitive en contrôlant l'âge et la détresse initiale.",
+    sport: "Des groupes d'entraînement sont comparés sur l'endurance, le temps de sprint et la récupération en contrôlant l'âge et la condition initiale."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.es, {
+  manova: {
+    psychology: "Tres grupos de terapia se comparan simultáneamente en estrés, bienestar y rendimiento cognitivo.",
+    sport: "Tres programas de entrenamiento se comparan simultáneamente en resistencia, tiempo de sprint y recuperación percibida."
+  },
+  mancova: {
+    psychology: "Los grupos de terapia se comparan en estrés, bienestar y rendimiento cognitivo controlando edad y malestar inicial.",
+    sport: "Los grupos de entrenamiento se comparan en resistencia, tiempo de sprint y recuperación controlando edad y condición física inicial."
+  }
+});
+
+Object.assign(window.resultScenarioPacks.it, {
+  manova: {
+    psychology: "Tre gruppi di terapia sono confrontati simultaneamente su stress, benessere e prestazione cognitiva.",
+    sport: "Tre programmi di allenamento sono confrontati simultaneamente su resistenza, tempo di sprint e recupero percepito."
+  },
+  mancova: {
+    psychology: "I gruppi di terapia sono confrontati su stress, benessere e prestazione cognitiva controllando età e disagio iniziale.",
+    sport: "I gruppi di allenamento sono confrontati su resistenza, tempo di sprint e recupero controllando età e fitness iniziale."
+  }
+});
+
 const metaScenarioAliases = [
   "metaOddsRatioAnalysis",
   "metaCorrelationAnalysis",
