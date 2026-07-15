@@ -19,10 +19,10 @@ window.localizedProcedurePacks = {
       jamovi: "Installieren und öffnen Sie das medmod-Modul in jamovi.\nLegen Sie Prädiktor, Mediator und Zielvariable für das angenommene Mediationsmodell fest.\nFordern Sie standardisierte Schätzungen, indirekte Effekte, Konfidenzintervalle und Modellinformationen an."
     },
     structuralEquationModeling: {
-      jamovi: "Installieren und öffnen Sie das SEMLj-Modul in jamovi.\nNutzen Sie bevorzugt die Option SEM (Syntax), um Mess- und Strukturmodell festzulegen, da dies klarer und reproduzierbarer ist als der interaktive Modellaufbau.\nDefinieren Sie latente Variablen über ihre Indikatoren, ergänzen Sie die angenommenen Strukturpfade in Syntax und prüfen Sie standardisierte Ladungen, Pfadkoeffizienten, gegebenenfalls indirekte Effekte und globale Fit-Indizes."
+      jamovi: "Installieren und öffnen Sie das SEMLj-Modul in jamovi und nutzen Sie die interaktive SEM-Funktion.\nOrdnen Sie die Indikatoren den latenten Variablen zu. Latente endogene Variablen werden als abhängige Variablen und latente exogene Variablen als unabhängige Variablen verwendet.\nDefinieren Sie die Strukturpfade zwischen den latenten Variablen und prüfen Sie standardisierte Ladungen, Pfadkoeffizienten, gegebenenfalls indirekte Effekte, R-Quadrat und globale Fit-Indizes."
     },
     confirmatoryFactorAnalysis: {
-      jamovi: "Installieren und öffnen Sie das SEMLj-Modul in jamovi.\nNutzen Sie SEM (Syntax), um nur das Messmodell zu definieren, also latente Faktoren mit ihren Indikatoren ohne Strukturpfade.\nPrüfen Sie standardisierte Faktorladungen, Residuen, theoretisch begründete Modifikationsindizes und Fit-Indizes wie CFI, TLI, RMSEA und SRMR."
+      jamovi: "Installieren und öffnen Sie das Factor-Modul in jamovi.\nWählen Sie Confirmatory Factor Analysis und ordnen Sie jeden beobachteten Indikator dem angenommenen latenten Faktor zu.\nPrüfen Sie standardisierte Faktorladungen, Residuen, theoretisch begründete Modifikationsindizes und Fit-Indizes wie CFI, TLI, RMSEA und SRMR."
     },
     discriminantAnalysis: {
       jamovi: "Installieren und öffnen Sie das SnowCluster-Modul in jamovi.\nWählen Sie Classification > Linear Discriminant Analysis.\nLegen Sie die nominale Gruppenvariable als abhängige Variable und die intervallskalierten Variablen als Prädiktoren fest; prüfen Sie Diskriminanzfunktionen und Klassifikationsgenauigkeit."
@@ -168,10 +168,10 @@ window.localizedProcedurePacks = {
       jamovi: "Installez et ouvrez le module medmod dans jamovi.\nIndiquez la variable prédictrice, le médiateur et la variable résultat pour le modèle de médiation hypothétique.\nDemandez les estimations standardisées, les effets indirects, les intervalles de confiance et les informations du modèle."
     },
     structuralEquationModeling: {
-      jamovi: "Installez et ouvrez le module SEMLj dans jamovi.\nUtilisez de préférence l'option SEM (syntax) pour spécifier le modèle de mesure et le modèle structurel, car elle est plus claire et plus reproductible que le constructeur interactif.\nDéfinissez les variables latentes avec leurs indicateurs, ajoutez les chemins structurels hypothétiques en syntaxe, puis examinez les charges standardisées, les coefficients de chemin, les effets indirects si nécessaire et les indices d'ajustement globaux."
+      jamovi: "Installez et ouvrez le module SEMLj dans jamovi et utilisez la fonction SEM interactive.\nAssociez les indicateurs aux variables latentes. Les variables latentes endogènes sont les variables dépendantes, et les variables latentes exogènes sont les variables indépendantes.\nDéfinissez les chemins structurels entre variables latentes, puis examinez les charges standardisées, les coefficients de chemin, les effets indirects si nécessaire, le R carré et les indices d'ajustement globaux."
     },
     confirmatoryFactorAnalysis: {
-      jamovi: "Installez et ouvrez le module SEMLj dans jamovi.\nUtilisez SEM (syntax) pour définir seulement le modèle de mesure, c'est-à-dire les facteurs latents avec leurs indicateurs sans chemins structurels.\nExaminez les charges factorielles standardisées, les résidus, les indices de modification justifiés théoriquement et les indices d'ajustement comme CFI, TLI, RMSEA et SRMR."
+      jamovi: "Installez et ouvrez le module Factor dans jamovi.\nChoisissez Confirmatory Factor Analysis et associez chaque indicateur observé au facteur latent hypothétique.\nExaminez les charges factorielles standardisées, les résidus, les indices de modification justifiés théoriquement et les indices d'ajustement comme CFI, TLI, RMSEA et SRMR."
     },
     discriminantAnalysis: {
       jamovi: "Installez et ouvrez le module SnowCluster dans jamovi.\nChoisissez Classification > Linear Discriminant Analysis.\nDéfinissez la variable de groupe nominale comme variable dépendante et les variables à échelle d'intervalle comme prédicteurs ; examinez les fonctions discriminantes et l'exactitude de classification."
@@ -317,10 +317,10 @@ window.localizedProcedurePacks = {
       jamovi: "Instale y abra el módulo medmod en jamovi.\nEspecifique la variable predictora, la mediadora y la variable resultado para el modelo de mediación hipotetizado.\nSolicite estimaciones estandarizadas, efectos indirectos, intervalos de confianza e información del modelo."
     },
     structuralEquationModeling: {
-      jamovi: "Instale y abra el módulo SEMLj en jamovi.\nUse preferentemente la opción SEM (syntax) para especificar el modelo de medición y el modelo estructural, porque es más clara y reproducible que el constructor interactivo.\nDefina las variables latentes con sus indicadores, añada las rutas estructurales hipotetizadas en sintaxis y revise cargas estandarizadas, coeficientes de ruta, efectos indirectos si corresponde e índices globales de ajuste."
+      jamovi: "Instale y abra el módulo SEMLj en jamovi y use la función SEM interactiva.\nAsigne los indicadores a las variables latentes. Las variables latentes endógenas son las variables dependientes, y las variables latentes exógenas son las variables independientes.\nDefina las rutas estructurales entre variables latentes y revise cargas estandarizadas, coeficientes de ruta, efectos indirectos si corresponde, R cuadrado e índices globales de ajuste."
     },
     confirmatoryFactorAnalysis: {
-      jamovi: "Instale y abra el módulo SEMLj en jamovi.\nUse SEM (syntax) para definir solo el modelo de medición, es decir, factores latentes con sus indicadores y sin rutas estructurales.\nRevise cargas factoriales estandarizadas, residuos, índices de modificación justificados teóricamente e índices de ajuste como CFI, TLI, RMSEA y SRMR."
+      jamovi: "Instale y abra el módulo Factor en jamovi.\nElija Confirmatory Factor Analysis y asigne cada indicador observado a su factor latente hipotetizado.\nRevise cargas factoriales estandarizadas, residuos, índices de modificación justificados teóricamente e índices de ajuste como CFI, TLI, RMSEA y SRMR."
     },
     discriminantAnalysis: {
       jamovi: "Instale y abra el módulo SnowCluster en jamovi.\nElija Classification > Linear Discriminant Analysis.\nDefina la variable nominal de grupo como variable dependiente y las variables de escala de intervalo como predictores; revise funciones discriminantes y exactitud de clasificación."
@@ -518,10 +518,10 @@ window.localizedProcedurePacks.it = {
     jamovi: "Installa e apri il modulo medmod in jamovi.\nSpecifica la variabile predittore, il mediatore e la variabile esito per il modello di mediazione ipotizzato.\nRichiedi stime standardizzate, effetti indiretti, intervalli di confidenza e informazioni sul modello."
   },
   structuralEquationModeling: {
-    jamovi: "Installa e apri il modulo SEMLj in jamovi.\nUsa preferibilmente l'opzione SEM (syntax) per specificare il modello di misura e il modello strutturale, perché è più chiara e riproducibile rispetto al costruttore interattivo.\nDefinisci le variabili latenti con i rispettivi indicatori, aggiungi i percorsi strutturali ipotizzati in sintassi e controlla carichi standardizzati, coefficienti di percorso, eventuali effetti indiretti e indici globali di adattamento."
+    jamovi: "Installa e apri il modulo SEMLj in jamovi e usa la funzione SEM interattiva.\nAssegna gli indicatori alle variabili latenti. Le variabili latenti endogene sono le variabili dipendenti, mentre le variabili latenti esogene sono le variabili indipendenti.\nDefinisci i percorsi strutturali tra variabili latenti e controlla carichi standardizzati, coefficienti di percorso, eventuali effetti indiretti, R quadrato e indici globali di adattamento."
   },
   confirmatoryFactorAnalysis: {
-    jamovi: "Installa e apri il modulo SEMLj in jamovi.\nUsa SEM (syntax) per definire solo il modello di misura, cioè fattori latenti con i rispettivi indicatori e senza percorsi strutturali.\nControlla carichi fattoriali standardizzati, residui, indici di modifica giustificati teoricamente e indici di adattamento come CFI, TLI, RMSEA e SRMR."
+    jamovi: "Installa e apri il modulo Factor in jamovi.\nScegli Confirmatory Factor Analysis e assegna ogni indicatore osservato al fattore latente ipotizzato.\nControlla carichi fattoriali standardizzati, residui, indici di modifica giustificati teoricamente e indici di adattamento come CFI, TLI, RMSEA e SRMR."
   },
   discriminantAnalysis: {
     jamovi: "Installa e apri il modulo SnowCluster in jamovi.\nScegli Classification > Linear Discriminant Analysis.\nImposta la variabile nominale di gruppo come variabile dipendente e le variabili a scala di intervallo come predittori; controlla funzioni discriminanti e accuratezza di classificazione."

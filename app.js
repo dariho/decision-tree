@@ -1487,11 +1487,11 @@ const procedureCatalog = {
     r: "library(lavaan)\nmodel <- '\n  mediator ~ a * predictor\n  outcome ~ b * mediator + c_prime * predictor\n  indirect := a * b\n  total := c_prime + indirect\n'\nfit <- sem(model, data = data, se = \"bootstrap\", bootstrap = 5000)\nsummary(fit, standardized = TRUE, fit.measures = TRUE, rsquare = TRUE)"
   },
   structuralEquationModeling: {
-    jamovi: "Install and open the SEMLj module in jamovi.\nUse the SEM (syntax) option as the preferred way to specify the measurement and structural model, because it is clearer and more reproducible than the interactive builder.\nDefine latent variables with their indicators, add the hypothesised structural paths in syntax, and inspect standardized loadings, path coefficients, indirect effects if relevant, and global fit indices.",
+    jamovi: "Install and open the SEMLj module in jamovi and use the interactive SEM function.\nAssign indicators to the latent variables, then place latent endogenous variables as the dependent variables and latent exogenous variables as the independent variables.\nDefine the structural paths between latent variables and inspect standardized loadings, path coefficients, indirect effects if relevant, R squared, and global fit indices.",
     r: "library(lavaan)\nmodel <- '\n  stress =~ stress1 + stress2 + stress3\n  recovery =~ sleep1 + sleep2 + sleep3\n  recovery ~ stress\n  performance ~ recovery + stress\n'\nfit <- sem(model, data = data)\nsummary(fit, standardized = TRUE, fit.measures = TRUE, rsquare = TRUE)"
   },
   confirmatoryFactorAnalysis: {
-    jamovi: "Install and open the SEMLj module in jamovi.\nUse SEM (syntax) to define the measurement model only, for example latent factors with their indicators and no structural regression paths.\nInspect standardized factor loadings, residuals, modification indices when justified, and global fit indices such as CFI, TLI, RMSEA, and SRMR.",
+    jamovi: "Install and open the Factor module in jamovi.\nChoose Confirmatory Factor Analysis and assign each observed indicator to its hypothesised latent factor.\nInspect standardized factor loadings, residuals, modification indices when justified, and global fit indices such as CFI, TLI, RMSEA, and SRMR.",
     r: "library(lavaan)\nmodel <- '\n  stress =~ stress1 + stress2 + stress3\n  recovery =~ sleep1 + sleep2 + sleep3\n  confidence =~ conf1 + conf2 + conf3\n'\nfit <- cfa(model, data = data)\nsummary(fit, standardized = TRUE, fit.measures = TRUE)"
   },
   discriminantAnalysis: {
@@ -1878,6 +1878,11 @@ const procedureScreenshots = {
       en: "assets/jamovi/multidimensionalScaling_ENG.png"
     }
   },
+  confirmatoryFactorAnalysis: {
+    jamovi: {
+      en: "assets/jamovi/confirmatoryFactorAnalysis_ENG.png"
+    }
+  },
   structuralEquationModeling: {
     jamovi: {
       en: "assets/jamovi/structuralEquationModeling_ENG.png"
@@ -1911,6 +1916,11 @@ const procedureScreenshots = {
   metaEffectSizeAnalysis: {
     jamovi: {
       en: "assets/jamovi/metaEffectSizes_ENG.png"
+    }
+  },
+  principalComponentAnalysis: {
+    jamovi: {
+      en: "assets/jamovi/principalComponentAnalysis_ENG.png"
     }
   }
 };
