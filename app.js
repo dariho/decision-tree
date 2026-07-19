@@ -1371,7 +1371,7 @@ const metaLanguageAdditions = {
       metaCorrelationAnalysis: { title: "Correlation-coefficient meta-analysis", summary: "Synthesizes correlation coefficients from several studies.", assumptions: ["Correlation and sample size available for each study", "Studies measure comparable constructs", "Moderator and Study Label can be added", "Select fixed/random effects, moderator analyses, and publication-bias checks in the model options"] },
       metaMeanDifferenceAnalysis: { title: "Mean-difference meta-analysis", summary: "Synthesizes group differences from n, mean, and standard deviation.", assumptions: ["n, M, and SD available for each group", "Groups and measurement scales are comparable", "Moderator and Study Label can be added", "Select fixed/random effects, moderator analyses, and publication-bias checks in the model options"] },
       metaEffectSizeAnalysis: { title: "Effect-size meta-analysis", summary: "Synthesizes already computed effect sizes with their variance or standard error.", assumptions: ["Effect size available for each study", "Variance or standard error available for each effect size", "Moderator and Study Label can be added", "Select fixed/random effects, moderator analyses, and publication-bias checks in the model options"] },
-      metaProportionAnalysis: { title: "Proportion meta-analysis", summary: "Synthesizes proportions from event frequencies and total sample sizes.", assumptions: ["Event frequency available for each study", "Total sample size available for each study", "Moderator and Study Label can be added", "Select fixed/random effects, moderator analyses, and publication-bias checks in the model options"] },
+      metaProportionAnalysis: { title: "Proportion meta-analysis", summary: "Synthesizes proportions from event frequencies/counts and total sample sizes.", assumptions: ["Event frequency/count available for each study", "Total sample size available for each study", "Moderator and Study Label can be added", "Select fixed/random effects, moderator analyses, and publication-bias checks in the model options"] },
       majorMetaAnalysis: { title: "Meta-analysis", summary: "Synthesizes several studies with the appropriate input option. The fixed- or random-effects model, moderator analyses, and publication-bias diagnostics are then chosen in the model options.", assumptions: ["Several independent studies or effect sizes", "Input data match the selected option", "Justify fixed vs. random effects from study design and heterogeneity", "Report moderator analyses and publication-bias checks as optional follow-up analyses"] },
       fixedEffectMetaAnalysis: { title: "Fixed-effect meta-analysis", summary: "Estimates one common effect under the assumption that all studies share the same true effect.", assumptions: ["Several independent studies or effect sizes", "Common effect size and standard error/variance available", "Studies are substantively very similar", "Heterogeneity is low"] },
       randomEffectsMetaAnalysis: { title: "Random-effects meta-analysis", summary: "Estimates an average effect when true effects may vary between studies.", assumptions: ["Several independent studies or effect sizes", "Effect size and precision measure available", "Between-study variance is estimated", "Heterogeneity is reported with tau2/I2"] },
@@ -1611,12 +1611,12 @@ const procedureCatalog = {
     r: "library(nnet)\ndata$treatment_outcome <- relevel(factor(data$treatment_outcome), ref = \"completion\")\nfit <- multinom(treatment_outcome ~ baseline_symptom_score + motivation_score + previous_therapy + age_years, data = data)\nsummary(fit)"
   },
   majorMetaAnalysis: {
-    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data: odds-ratio meta-analysis, correlation coefficients, mean differences from n, M, and SD, effect sizes with Variance or SE, or Proportion.\nEnter the required study-level fields. For correlations, use correlations, sample size, Moderator, and Study Label. For Effect sizes, use effect size, Variance or SE, Moderator, and Study Label. For Proportion, use event frequency, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Use the same options to select fixed or random effects, and optionally request moderator analyses and publication-bias diagnostics.",
+    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data: Correlation Coefficients (r, N), Dichotomous Models, Mean Differences (n, M, SD), Effect Sizes and (Sampling Variances or Standard Errors), or Proportions.\nEnter the required study-level fields. For Dichotomous Models, use raw incident counts and total sample sizes for the experimental and control groups. For Proportions, use raw event frequencies and total sample sizes; values greater than 1 are expected because MAJOR computes the proportions internally. For correlations, use correlations and sample size. For Effect Sizes, use effect size plus Variance or SE. Add Study Label and optional numeric Moderator when needed.\nIn Model Options, choose the model estimator and model measures; for Proportions, choose the effect size model measures. Use the same options to select fixed or random effects, and optionally request moderator analyses and publication-bias diagnostics.",
     r: "library(metafor)\n# Generic precomputed-effect workflow\nfit <- rma(yi = effect_size, sei = standard_error, mods = ~ moderator, data = data, method = \"REML\")\nsummary(fit)\nforest(fit)\nfunnel(fit)\nregtest(fit, model = \"rma\")"
   },
   metaOddsRatioAnalysis: {
-    jamovi: "Install/open the MAJOR module in jamovi and choose the odds-ratio meta-analysis input option.\nEnter the event frequencies and total sample sizes for the comparison groups, plus Moderator and Study Label when available.\nIn Model Options, choose the model estimator and model measures. Select fixed or random effects there, and optionally request moderator analyses and publication-bias diagnostics.",
-    r: "library(metafor)\ndata$non_events_treatment <- data$total_treatment - data$events_treatment\ndata$non_events_control <- data$total_control - data$events_control\nes <- escalc(measure = \"OR\", ai = events_treatment, bi = non_events_treatment, ci = events_control, di = non_events_control, data = data)\nfit <- rma(yi, vi, mods = ~ moderator, data = es, method = \"REML\")\nsummary(fit)"
+    jamovi: "Install/open MAJOR > Meta Analysis > Effect Sizes and (Sampling Variances or Standard Errors).\nUse the prepared log-odds-ratio dataset: move log_odds_ratio to Effect Sizes, variance to Variance or SE, study_label to Study Label, and optionally moderator_code to Moderator. In the option Selected (correspondent observed ES), choose Sampling Variances.\nThis avoids the current MAJOR Dichotomous Models error ('condition has length > 1'). Interpret the pooled effect on the log-odds scale, then exponentiate it to report the pooled odds ratio.",
+    r: "library(metafor)\nfit <- rma(yi = log_odds_ratio, vi = variance, mods = ~ moderator_code, data = data, method = \"REML\")\nsummary(fit)\npredict(fit, transf = exp)"
   },
   metaCorrelationAnalysis: {
     jamovi: "Install/open the MAJOR module in jamovi and choose the correlation coefficients input option.\nEnter the correlations, sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures. Select fixed or random effects there, and optionally request moderator analyses and publication-bias diagnostics.",
@@ -1631,27 +1631,27 @@ const procedureCatalog = {
     r: "library(metafor)\nfit <- rma(yi = effect_size, vi = variance, mods = ~ moderator, data = data, method = \"REML\")\nsummary(fit)\n# If only SE is available, use sei = se instead of vi = variance."
   },
   metaProportionAnalysis: {
-    jamovi: "Install/open the MAJOR module in jamovi and choose the Proportion input option.\nEnter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and the effect size model measures. Select fixed or random effects there, and optionally request moderator analyses and publication-bias diagnostics.",
-    r: "library(metafor)\nes <- escalc(measure = \"PLO\", xi = event_frequency, ni = total_sample_size, data = data)\nfit <- rma(yi, vi, mods = ~ moderator, data = es, method = \"REML\")\nsummary(fit)\npredict(fit, transf = transf.ilogit)"
+    jamovi: "Install/open MAJOR > Meta Analysis > Proportions.\nMove event_frequency to Frequencies of the Event, total_sample_size to Total Sample Sizes, and study_label to Study Label. These fields use raw counts, so event_frequency can be greater than 1. If you use a moderator, move moderator_code to Moderator and set Moderator type in Model Options.\nIn Model Options, choose the estimator and effect size model measure, such as Raw proportion or Logit transformed proportion, then select fixed/random effects, moderator analyses, and publication-bias diagnostics as needed.",
+    r: "library(metafor)\nes <- escalc(measure = \"PLO\", xi = event_frequency, ni = total_sample_size, data = data)\nfit <- rma(yi, vi, mods = ~ moderator_code, data = es, method = \"REML\")\nsummary(fit)\npredict(fit, transf = transf.ilogit)"
   },
   fixedEffectMetaAnalysis: {
-    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Select a fixed-effect model and inspect the pooled effect with its 95% CI.",
+    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the event frequency/count, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Select a fixed-effect model and inspect the pooled effect with its 95% CI.",
     r: "library(metafor)\nfit <- rma(yi = effect_size, sei = se, data = data, method = \"FE\")\nsummary(fit)\nforest(fit)"
   },
   randomEffectsMetaAnalysis: {
-    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Select a random-effects model and report the pooled effect, 95% CI, tau2, I2, and prediction interval if available.",
+    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the event frequency/count, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Select a random-effects model and report the pooled effect, 95% CI, tau2, I2, and prediction interval if available.",
     r: "library(metafor)\nfit <- rma(yi = effect_size, sei = se, data = data, method = \"REML\")\nsummary(fit)\npredict(fit)\nforest(fit)"
   },
   subgroupMetaAnalysis: {
-    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data before adding subgroup information.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Use the Moderator as the subgroup variable and report pooled effects within each subgroup plus the between-subgroup test.",
+    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data before adding subgroup information.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the event frequency/count, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Use the Moderator as the subgroup variable and report pooled effects within each subgroup plus the between-subgroup test.",
     r: "library(metafor)\nfit <- rma(yi = effect_size, sei = se, mods = ~ moderator, data = data, method = \"REML\")\nsummary(fit)\n# For separate subgroup summaries: by(data, data$moderator, function(d) summary(rma(yi = effect_size, sei = se, data = d, method = \"REML\")))"
   },
   metaRegression: {
-    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data before adding moderators.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Report the moderator coefficient, confidence interval, p-value, residual heterogeneity, and the number of studies used.",
+    jamovi: "Install/open the MAJOR module in jamovi and choose the input option that matches your data before adding moderators.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the event frequency/count, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Report the moderator coefficient, confidence interval, p-value, residual heterogeneity, and the number of studies used.",
     r: "library(metafor)\nfit <- rma(yi = effect_size, sei = se, mods = ~ moderator, data = data, method = \"REML\")\nsummary(fit)"
   },
   publicationBiasDiagnostics: {
-    jamovi: "Install/open the MAJOR module in jamovi and first run the meta-analysis using the correct input option.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the frequency of the event, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Request funnel plot and small-study/publication-bias diagnostics such as Egger's test when available.",
+    jamovi: "Install/open the MAJOR module in jamovi and first run the meta-analysis using the correct input option.\nFor correlation coefficients, enter the correlations, sample size, Moderator, and Study Label. For Effect sizes, enter the effect size, Variance or SE, Moderator, and Study Label. For Proportion, enter the event frequency/count, total sample size, Moderator, and Study Label.\nIn Model Options, choose the model estimator and model measures; for Proportion, choose the effect size model measures. Request funnel plot and small-study/publication-bias diagnostics such as Egger's test when available.",
     r: "library(metafor)\nfit <- rma(yi = effect_size, sei = se, data = data, method = \"REML\")\nfunnel(fit)\nregtest(fit, model = \"rma\")\ntrimfill(fit)"
   },
   factorAnalysis: {
@@ -2310,6 +2310,49 @@ const state = {
   procedureTool: "jamovi"
 };
 
+const assumptionDialogCopy = {
+  de: {
+    kicker: "Voraussetzung",
+    detailsAction: "Details",
+    howToCheck: "Prüfung",
+    whatToReport: "Berichten",
+    note: "Geprüfte Hinweise zu den Voraussetzungen für dieses Verfahren.",
+    close: "Details schließen"
+  },
+  en: {
+    kicker: "Assumption",
+    detailsAction: "Details",
+    howToCheck: "How to check",
+    whatToReport: "What to report",
+    note: "Reviewed assumption guidance for the selected analysis.",
+    close: "Close assumption details"
+  },
+  fr: {
+    kicker: "Condition",
+    detailsAction: "Détails",
+    howToCheck: "Comment vérifier",
+    whatToReport: "À rapporter",
+    note: "Indications validées sur les conditions de cette procédure.",
+    close: "Fermer les détails"
+  },
+  es: {
+    kicker: "Supuesto",
+    detailsAction: "Detalles",
+    howToCheck: "Cómo comprobarlo",
+    whatToReport: "Qué reportar",
+    note: "Orientación revisada sobre los supuestos de este análisis.",
+    close: "Cerrar detalles"
+  },
+  it: {
+    kicker: "Assunzione",
+    detailsAction: "Dettagli",
+    howToCheck: "Come verificarla",
+    whatToReport: "Cosa riportare",
+    note: "Indicazioni revisionate sulle assunzioni di questa procedura.",
+    close: "Chiudi dettagli"
+  }
+};
+
 const elements = {
   questionPanel: document.querySelector("#questionPanel"),
   resultPanel: document.querySelector("#resultPanel"),
@@ -2362,6 +2405,18 @@ const elements = {
   helpButton: document.querySelector("#helpButton"),
   helpDialog: document.querySelector("#helpDialog"),
   closeHelpButton: document.querySelector("#closeHelpButton"),
+  assumptionDialog: document.querySelector("#assumptionDialog"),
+  closeAssumptionButton: document.querySelector("#closeAssumptionButton"),
+  assumptionDialogKicker: document.querySelector("#assumptionDialogKicker"),
+  assumptionDialogTitle: document.querySelector("#assumptionDialogTitle"),
+  assumptionDialogSummary: document.querySelector("#assumptionDialogSummary"),
+  assumptionCheckSection: document.querySelector("#assumptionCheckSection"),
+  assumptionCheckHeading: document.querySelector("#assumptionCheckHeading"),
+  assumptionCheckText: document.querySelector("#assumptionCheckText"),
+  assumptionReportSection: document.querySelector("#assumptionReportSection"),
+  assumptionReportHeading: document.querySelector("#assumptionReportHeading"),
+  assumptionReportText: document.querySelector("#assumptionReportText"),
+  assumptionDialogNote: document.querySelector("#assumptionDialogNote"),
   languageSelect: document.querySelector("#languageSelect"),
   toast: document.querySelector("#toast"),
   matrixCells: [...document.querySelectorAll(".matrix-cell")],
@@ -2373,8 +2428,13 @@ function getPack() {
   return languagePacks[state.language] || languagePacks.de;
 }
 
+function getAssumptionDialogCopy() {
+  return assumptionDialogCopy[state.language] || assumptionDialogCopy.en;
+}
+
 function applyStaticText() {
   const pack = getPack();
+  const assumptionCopy = getAssumptionDialogCopy();
   document.documentElement.lang = pack.lang;
   document.title = pack.ui.appTitle;
   elements.translatedText.forEach((element) => {
@@ -2390,6 +2450,12 @@ function applyStaticText() {
   elements.helpButton.title = pack.ui.helpTitle;
   elements.closeHelpButton.setAttribute("aria-label", pack.ui.closeHelp);
   elements.closeHelpButton.title = pack.ui.closeHelp;
+  elements.closeAssumptionButton.setAttribute("aria-label", assumptionCopy.close);
+  elements.closeAssumptionButton.title = assumptionCopy.close;
+  elements.assumptionDialogKicker.textContent = assumptionCopy.kicker;
+  elements.assumptionCheckHeading.textContent = assumptionCopy.howToCheck;
+  elements.assumptionReportHeading.textContent = assumptionCopy.whatToReport;
+  elements.assumptionDialogNote.textContent = assumptionCopy.note;
   elements.languageSelect.value = state.language;
   if (elements.searchDialog.open) renderSearchResults();
 }
@@ -2489,19 +2555,88 @@ function renderResult(resultId) {
   renderEffectSize(resultId, pack);
   renderClusterGuide(resultId, pack);
   renderApaReport(resultId, pack);
-  elements.assumptionsList.replaceChildren(
-    ...result.assumptions.map((assumption) => {
-      const li = document.createElement("li");
-      li.textContent = assumption;
-      return li;
-    })
-  );
+  renderAssumptions(resultId, result);
   elements.stepLabel.textContent = pack.ui.resultStep;
   elements.modeLabel.textContent = pack.ui.resultMode;
   updateProgressDisplay(pack, true);
   elements.backButton.disabled = false;
   renderHistory();
   setActiveMatrix("result");
+}
+
+function renderAssumptions(resultId, result) {
+  const copy = getAssumptionDialogCopy();
+  const reviewedDetails = window.assumptionDetails?.[resultId] || [];
+  const assumptionItems = state.language === "en" && reviewedDetails.length
+    ? reviewedDetails.map((detail) => ({ assumption: detail.label, detail }))
+    : result.assumptions.map((assumption, assumptionIndex) => ({
+        assumption,
+        detail: getAssumptionDetail(resultId, assumptionIndex)
+      }));
+
+  elements.assumptionsList.replaceChildren(
+    ...assumptionItems.map(({ assumption, detail }) => {
+      const li = document.createElement("li");
+
+      if (!detail) {
+        li.textContent = assumption;
+        return li;
+      }
+
+      const button = document.createElement("button");
+      const label = document.createElement("span");
+      const action = document.createElement("span");
+      button.className = "assumption-detail-button";
+      button.type = "button";
+      button.setAttribute("aria-haspopup", "dialog");
+      button.setAttribute("aria-label", `${assumption}. ${copy.detailsAction}`);
+      label.textContent = assumption;
+      action.className = "assumption-detail-action";
+      action.textContent = copy.detailsAction;
+      button.append(label, action);
+      button.addEventListener("click", () => openAssumptionDialog(assumption, detail));
+      li.append(button);
+      return li;
+    })
+  );
+}
+
+function normalizeAssumptionText(text) {
+  return String(text || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getAssumptionDetail(resultId, assumptionIndex) {
+  const details = window.assumptionDetails?.[resultId] || [];
+  const englishAssumption = languagePacks.en?.results?.[resultId]?.assumptions?.[assumptionIndex];
+  if (!englishAssumption) return null;
+  const normalizedAssumption = normalizeAssumptionText(englishAssumption);
+  return details.find((detail) => normalizeAssumptionText(detail.label) === normalizedAssumption) || null;
+}
+
+function openAssumptionDialog(displayAssumption, detail) {
+  const copy = getAssumptionDialogCopy();
+  elements.assumptionDialogKicker.textContent = `${copy.kicker} · ${elements.resultTitle.textContent}`;
+  elements.assumptionDialogTitle.textContent = displayAssumption;
+  elements.assumptionDialogSummary.textContent = detail.detail;
+  elements.assumptionCheckSection.hidden = !detail.howToCheck;
+  elements.assumptionCheckText.textContent = detail.howToCheck || "";
+  elements.assumptionReportSection.hidden = !detail.whatToReport;
+  elements.assumptionReportText.textContent = detail.whatToReport || "";
+  elements.assumptionDialogNote.textContent = copy.note;
+
+  if (typeof elements.assumptionDialog.showModal === "function") {
+    elements.assumptionDialog.showModal();
+  } else {
+    elements.assumptionDialog.setAttribute("open", "");
+  }
+}
+
+function closeAssumptionDialog() {
+  if (elements.assumptionDialog.open) elements.assumptionDialog.close();
 }
 
 function renderScenarios(resultId, pack) {
@@ -2932,6 +3067,16 @@ elements.searchInput.addEventListener("input", renderSearchResults);
 elements.searchInput.addEventListener("keydown", handleSearchKeydown);
 elements.helpButton.addEventListener("click", () => elements.helpDialog.showModal());
 elements.closeHelpButton.addEventListener("click", () => elements.helpDialog.close());
+elements.closeAssumptionButton.addEventListener("click", closeAssumptionDialog);
+elements.assumptionDialog.addEventListener("click", (event) => {
+  const dialogBox = elements.assumptionDialog.getBoundingClientRect();
+  const clickedBackdrop =
+    event.clientX < dialogBox.left ||
+    event.clientX > dialogBox.right ||
+    event.clientY < dialogBox.top ||
+    event.clientY > dialogBox.bottom;
+  if (clickedBackdrop) closeAssumptionDialog();
+});
 elements.languageSelect.addEventListener("change", changeLanguage);
 elements.procedureSelect.addEventListener("change", changeProcedureTool);
 elements.matrixCells.forEach((cell) => {

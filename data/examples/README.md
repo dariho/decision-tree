@@ -18,6 +18,7 @@ Each CSV matches one result id in the decision tree. Use these files to create J
 | `wilcoxon` | `wilcoxon.csv` | Pair `before` with `after`, use Wilcoxon signed-rank. |
 | `anova` | `anova.csv` | Dependent variable `score`, factor `group`. |
 | `repeatedAnova` | `repeatedAnova.csv` | Repeated measures columns: `baseline`, `week4`, `week8`; subject id: `id`. |
+| `manova` | `manova.csv` | Dependent variables `stress_score`, `wellbeing_score`, and `performance_score`; grouping variable `group`. Generated to give non-significant Shapiro-Wilk and Box's M checks. |
 | `twoWayAnova` | `twoWayAnova.csv` | Dependent variable `stress_score`; fixed factors `therapy` and `age_group`. |
 | `twoWayRepeatedAnova` | `twoWayRepeatedAnova.csv` | Repeated measures cells from two within-subject factors: intensity (`low`, `high`) by time (`pre`, `post`, `followup`). |
 | `linearMixedModel` | `linearMixedModel.csv` | Metric outcome `score`; fixed effects `condition` and `week`; random intercept for `participant`. |
@@ -45,10 +46,10 @@ Each CSV matches one result id in the decision tree. Use these files to create J
 | `multidimensionalScaling` | `multidimensionalScaling.csv` | Use the symmetric distance matrix among emotions for MDS. |
 | `chiSquareVariance` | `chiSquareVariance.csv` | Test the variance of `score` against a hypothesised population variance, e.g. `100`. |
 | `varianceFTest` | `varianceFTest.csv` | Compare the variance of `score` between the two levels of `group`. |
-| `metaOddsRatio` | `metaOddsRatio.csv` | MAJOR odds-ratio meta-analysis using treatment/control event counts, totals, `moderator`, and `study_label`. |
+| `metaOddsRatio` | `metaOddsRatio.csv` | Odds-ratio meta-analysis via MAJOR Effect Sizes, using precomputed `log_odds_ratio`, `variance`, `se`, `study_label`, and optional `moderator_code` (1 = psychology, 2 = sport). |
 | `metaCorrelation` | `metaCorrelation.csv` | MAJOR correlation-coefficient meta-analysis using `correlation`, `sample_size`, `moderator`, and `study_label`. |
 | `metaMeanDifferences` | `metaMeanDifferences.csv` | MAJOR mean-difference meta-analysis from `n`, `M`, and `SD` for treatment and control groups. |
 | `metaEffectSizes` | `metaEffectSizes.csv` | MAJOR effect-size meta-analysis using `effect_size`, `variance` or `se`, `moderator`, and `study_label`. |
-| `metaProportion` | `metaProportion.csv` | MAJOR proportion meta-analysis using `event_frequency`, `total_sample_size`, `moderator`, and `study_label`. |
+| `metaProportion` | `metaProportion.csv` | MAJOR Proportions analysis using raw `event_frequency` counts and `total_sample_size`. Use `moderator_code` as 1 = psychology and 2 = sport if needed. |
 
 For clean screenshots, avoid extra ID columns unless Jamovi needs them for the specific analysis. Extra variables can accidentally be selected during manual setup.

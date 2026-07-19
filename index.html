@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Entscheidungsbaum statistischer Testverfahren</title>
-    <link rel="stylesheet" href="styles.css?v=20260702-search" />
+    <link rel="stylesheet" href="styles.css?v=20260719-assumptions" />
   </head>
   <body>
     <main class="app-shell">
@@ -260,7 +260,7 @@
           <span data-i18n="footerContact">Fehler oder Verbesserungsvorschläge:</span>
           <a href="mailto:darias.holgado@fernuni.ch">darias.holgado@fernuni.ch</a>
         </span>
-        <span>Beta Version 2.0.0 · Currently under development · Last update: 2026-07-04 09:28 CEST</span>
+        <span>Beta Version 2.0.0 · Currently under development · Last update: 2026-07-19 13:54 CEST</span>
       </footer>
     </main>
 
@@ -306,11 +306,33 @@
       </div>
     </dialog>
 
+    <dialog class="assumption-dialog" id="assumptionDialog" aria-labelledby="assumptionDialogTitle">
+      <button class="icon-button close-dialog" id="closeAssumptionButton" type="button" aria-label="Close assumption details" title="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 6l12 12" />
+          <path d="M18 6L6 18" />
+        </svg>
+      </button>
+      <p class="dialog-kicker" id="assumptionDialogKicker">Assumption</p>
+      <h2 id="assumptionDialogTitle"></h2>
+      <p class="assumption-dialog-summary" id="assumptionDialogSummary"></p>
+      <section class="assumption-dialog-section" id="assumptionCheckSection" hidden>
+        <h3 id="assumptionCheckHeading">How to check</h3>
+        <p id="assumptionCheckText"></p>
+      </section>
+      <section class="assumption-dialog-section" id="assumptionReportSection" hidden>
+        <h3 id="assumptionReportHeading">What to report</h3>
+        <p id="assumptionReportText"></p>
+      </section>
+      <p class="assumption-dialog-note" id="assumptionDialogNote">Reviewed assumption guidance for the selected analysis.</p>
+    </dialog>
+
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="translations-extra.js?v=20260702-search"></script>
-    <script src="scenarios.js?v=20260702-search"></script>
-    <script src="procedure-translations.js?v=20260702-search"></script>
-    <script src="apa-reporting.js?v=20260702-search"></script>
-    <script src="app.js?v=20260702-search"></script>
+    <script src="translations-extra.js?v=20260719-assumptions"></script>
+    <script src="scenarios.js?v=20260719-assumptions"></script>
+    <script src="procedure-translations.js?v=20260719-assumptions"></script>
+    <script src="apa-reporting.js?v=20260719-assumptions"></script>
+    <script src="assumptions-details.js?v=20260719-assumptions"></script>
+    <script src="app.js?v=20260719-assumptions"></script>
   </body>
 </html>

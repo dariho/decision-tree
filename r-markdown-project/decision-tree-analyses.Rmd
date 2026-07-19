@@ -797,20 +797,15 @@ Purpose: Use this meta-analysis when primary studies report binary events in two
 data <- read_example("metaOddsRatio.csv")
 
 if (has_pkg("metafor")) {
-  data$non_events_treatment <- data$total_treatment - data$events_treatment
-  data$non_events_control <- data$total_control - data$events_control
-
-  es <- metafor::escalc(
-    measure = "OR",
-    ai = events_treatment,
-    bi = non_events_treatment,
-    ci = events_control,
-    di = non_events_control,
-    data = data
+  fit <- metafor::rma(
+    yi = log_odds_ratio,
+    vi = variance,
+    mods = ~ moderator_code,
+    data = data,
+    method = "REML"
   )
-
-  fit <- metafor::rma(yi, vi, mods = ~ moderator, data = es, method = "REML")
   summary(fit)
+  predict(fit, transf = exp)
   metafor::forest(fit, slab = data$study_label)
 } else {
   message("Install metafor to run this meta-analysis.")
@@ -1020,7 +1015,7 @@ if (has_pkg("metafor")) {
     data = data
   )
 
-  fit <- metafor::rma(yi, vi, mods = ~ moderator, data = es, method = "REML")
+  fit <- metafor::rma(yi, vi, mods = ~ moderator_code, data = es, method = "REML")
   summary(fit)
   predict(fit, transf = metafor::transf.ilogit)
   metafor::forest(fit, slab = data$study_label)

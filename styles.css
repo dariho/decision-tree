@@ -854,6 +854,60 @@ button {
   line-height: 1.5;
 }
 
+#assumptionsList {
+  display: grid;
+  gap: 8px;
+  padding-left: 0;
+  list-style: none;
+}
+
+#assumptionsList li {
+  min-width: 0;
+}
+
+.assumption-detail-button {
+  width: 100%;
+  min-height: 42px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.assumption-detail-button:hover,
+.assumption-detail-button:focus-visible {
+  border-color: rgba(73, 196, 182, 0.68);
+  background: linear-gradient(90deg, rgba(73, 196, 182, 0.12), var(--surface-raised));
+  color: var(--ink);
+  outline: none;
+}
+
+.assumption-detail-action {
+  min-height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  border: 1px solid rgba(73, 196, 182, 0.42);
+  border-radius: var(--radius);
+  background: var(--teal-soft);
+  color: var(--teal-strong);
+  font-size: 11px;
+  font-weight: 820;
+  line-height: 1;
+  white-space: nowrap;
+}
+
 .dataset-section p {
   margin: 0 0 12px;
   color: var(--muted);
@@ -1228,7 +1282,8 @@ button {
 }
 
 .help-dialog,
-.search-dialog {
+.search-dialog,
+.assumption-dialog {
   width: min(640px, calc(100vw - 32px));
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1239,22 +1294,70 @@ button {
 }
 
 .help-dialog::backdrop,
-.search-dialog::backdrop {
+.search-dialog::backdrop,
+.assumption-dialog::backdrop {
   background: rgba(3, 8, 9, 0.68);
   backdrop-filter: blur(4px);
 }
 
 .help-dialog h2,
-.search-dialog h2 {
+.search-dialog h2,
+.assumption-dialog h2 {
   margin: 0 44px 14px 0;
   font-size: 24px;
   line-height: 1.1;
 }
 
 .help-dialog p,
-.search-dialog p {
+.search-dialog p,
+.assumption-dialog p {
   color: var(--muted);
   line-height: 1.58;
+}
+
+.assumption-dialog {
+  border-color: rgba(73, 196, 182, 0.46);
+}
+
+.dialog-kicker {
+  margin: 0 44px 7px 0;
+  color: var(--teal-strong);
+  font-size: 11px;
+  font-weight: 820;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.assumption-dialog-summary {
+  margin: 0;
+  color: #d6e2e0;
+  font-size: 14px;
+}
+
+.assumption-dialog-section {
+  margin-top: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-soft);
+}
+
+.assumption-dialog-section h3 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.assumption-dialog-section p,
+.assumption-dialog-note {
+  margin: 0;
+  font-size: 13px;
+}
+
+.assumption-dialog-note {
+  margin-top: 16px;
+  color: #879999;
 }
 
 .close-dialog {
@@ -1510,6 +1613,14 @@ button {
   .help-columns,
   .reference-matrix {
     grid-template-columns: 1fr;
+  }
+
+  .assumption-detail-button {
+    grid-template-columns: 1fr;
+  }
+
+  .assumption-detail-action {
+    justify-self: start;
   }
 
   .scenario-item + .scenario-item {
