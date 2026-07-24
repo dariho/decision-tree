@@ -2326,7 +2326,6 @@ const assumptionDialogCopy = {
     detailsAction: "Details",
     howToCheck: "Prüfung",
     whatToReport: "Berichten",
-    note: "Geprüfte Hinweise zu den Voraussetzungen für dieses Verfahren.",
     close: "Details schließen"
   },
   en: {
@@ -2334,7 +2333,6 @@ const assumptionDialogCopy = {
     detailsAction: "Details",
     howToCheck: "How to check",
     whatToReport: "What to report",
-    note: "Reviewed assumption guidance for the selected analysis.",
     close: "Close assumption details"
   },
   fr: {
@@ -2342,7 +2340,6 @@ const assumptionDialogCopy = {
     detailsAction: "Détails",
     howToCheck: "Comment vérifier",
     whatToReport: "À rapporter",
-    note: "Indications validées sur les conditions de cette procédure.",
     close: "Fermer les détails"
   },
   es: {
@@ -2350,7 +2347,6 @@ const assumptionDialogCopy = {
     detailsAction: "Detalles",
     howToCheck: "Cómo comprobarlo",
     whatToReport: "Qué reportar",
-    note: "Orientación revisada sobre los supuestos de este análisis.",
     close: "Cerrar detalles"
   },
   it: {
@@ -2358,7 +2354,6 @@ const assumptionDialogCopy = {
     detailsAction: "Dettagli",
     howToCheck: "Come verificarla",
     whatToReport: "Cosa riportare",
-    note: "Indicazioni revisionate sulle assunzioni di questa procedura.",
     close: "Chiudi dettagli"
   }
 };
@@ -2426,7 +2421,6 @@ const elements = {
   assumptionReportSection: document.querySelector("#assumptionReportSection"),
   assumptionReportHeading: document.querySelector("#assumptionReportHeading"),
   assumptionReportText: document.querySelector("#assumptionReportText"),
-  assumptionDialogNote: document.querySelector("#assumptionDialogNote"),
   languageSelect: document.querySelector("#languageSelect"),
   toast: document.querySelector("#toast"),
   matrixCells: [...document.querySelectorAll(".matrix-cell")],
@@ -2465,7 +2459,6 @@ function applyStaticText() {
   elements.assumptionDialogKicker.textContent = assumptionCopy.kicker;
   elements.assumptionCheckHeading.textContent = assumptionCopy.howToCheck;
   elements.assumptionReportHeading.textContent = assumptionCopy.whatToReport;
-  elements.assumptionDialogNote.textContent = assumptionCopy.note;
   elements.languageSelect.value = state.language;
   if (elements.searchDialog.open) renderSearchResults();
 }
@@ -2576,7 +2569,7 @@ function renderResult(resultId) {
 
 function renderAssumptions(resultId, result) {
   const copy = getAssumptionDialogCopy();
-  const reviewedDetails = window.assumptionDetails?.[resultId] || [];
+  const reviewedDetails = getAssumptionDetails(resultId, "en");
   const assumptionItems = state.language === "en" && reviewedDetails.length
     ? reviewedDetails.map((detail) => ({ assumption: detail.label, detail }))
     : result.assumptions.map((assumption, assumptionIndex) => ({
@@ -2619,12 +2612,21 @@ function normalizeAssumptionText(text) {
     .trim();
 }
 
+function getAssumptionDetails(resultId, language = state.language) {
+  const packs = window.assumptionDetails || {};
+  return packs[language]?.[resultId] || packs.en?.[resultId] || packs[resultId] || [];
+}
+
 function getAssumptionDetail(resultId, assumptionIndex) {
-  const details = window.assumptionDetails?.[resultId] || [];
+  const englishDetails = getAssumptionDetails(resultId, "en");
   const englishAssumption = languagePacks.en?.results?.[resultId]?.assumptions?.[assumptionIndex];
   if (!englishAssumption) return null;
   const normalizedAssumption = normalizeAssumptionText(englishAssumption);
-  return details.find((detail) => normalizeAssumptionText(detail.label) === normalizedAssumption) || null;
+  const englishDetail = englishDetails.find((detail) => normalizeAssumptionText(detail.label) === normalizedAssumption);
+  if (!englishDetail) return null;
+
+  const localizedDetails = getAssumptionDetails(resultId, state.language);
+  return localizedDetails.find((detail) => detail.id === englishDetail.id) || englishDetail;
 }
 
 function openAssumptionDialog(displayAssumption, detail) {
@@ -2636,7 +2638,6 @@ function openAssumptionDialog(displayAssumption, detail) {
   elements.assumptionCheckText.textContent = detail.howToCheck || "";
   elements.assumptionReportSection.hidden = !detail.whatToReport;
   elements.assumptionReportText.textContent = detail.whatToReport || "";
-  elements.assumptionDialogNote.textContent = copy.note;
 
   if (typeof elements.assumptionDialog.showModal === "function") {
     elements.assumptionDialog.showModal();

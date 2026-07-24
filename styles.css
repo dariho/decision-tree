@@ -1349,15 +1349,9 @@ button {
   line-height: 1.25;
 }
 
-.assumption-dialog-section p,
-.assumption-dialog-note {
+.assumption-dialog-section p {
   margin: 0;
   font-size: 13px;
-}
-
-.assumption-dialog-note {
-  margin-top: 16px;
-  color: #879999;
 }
 
 .close-dialog {
